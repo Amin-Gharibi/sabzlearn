@@ -10,7 +10,7 @@ module.exports = {
         'darkGray': '#1C1C28',
         'darkGray-700': '#32334D',
         'darkGray-600': '#777C94',
-        'darkSlate': '#4A4B6D'
+        'darkSlate': '#4A4B6D',
       },
       fontFamily: {
         'danaRegular': 'Dana-Regular',
@@ -21,12 +21,20 @@ module.exports = {
         'morabbaMedium': 'Morabba-Medium',
         'morabbaBold': 'Morabba-Bold'
       },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '0.625rem'
+        }
+      },
       screens: {
         'xs': "470px",
         'sm': '640px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',
+        '2xl': '1536px'
       },
       boxShadow: {
         'light': 'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 60px 0px'
