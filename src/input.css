@@ -102,4 +102,35 @@
     .user-profile-dropdown {
         @apply absolute left-0 top-full pt-4 transition-all hide;
     }
+
+    .section--title {
+        @apply relative font-danaDemiBold text-2xl sm:text-3xl text-zinc-700 dark:text-white pr-6 sm:pr-7;
+    }
+
+    .section--title::before {
+        @apply content-[''] absolute top-0 bottom-0 right-0 my-auto w-[14px] h-[14px] rounded-sm;
+    }
+
+    .section--title__latest-courses::before {
+        @apply bg-amber-400 dark:bg-yellow-400;
+    }
+
+    .course--price__offered {
+        @apply relative h-5 font-danaRegular text-zinc-700 dark:text-slate-400 text-sm -mb-1.5;
+    }
+
+    .course--price__offered::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        right: -3px;
+        margin: auto;
+        width: 112%;
+        height: 1px;
+        background-color: rgba(119, 124, 145, 54%);
+    }
+
+    .course--price {
+        @apply font-danaMedium text-xl text-primary space-x-1.5;
+    }
 }
