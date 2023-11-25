@@ -137,4 +137,40 @@
     .section--title__roadmaps::before {
         @apply bg-fuchsia-500;
     }
+
+    .section--title__about::before {
+        @apply bg-sky-500 dark:bg-secondary;
+    }
+
+    .about--items-circles {
+        @apply w-20 h-20 rounded-full shrink-0;
+    }
+
+    .about--items-circles__blue {
+        background-image: conic-gradient(from 90deg at 50% 50%, rgb(14 165 233 / 0.3), #0EA5E9);
+        @apply rotate-45;
+    }
+
+    .dark .about--items-circles__blue {
+        background-image: conic-gradient(from 90deg at 50% 50%, #4E81FB, rgb(78 129 251 / 0));
+    }
+
+    .about--items-circles__green {
+        background-image: conic-gradient(from 90deg at 50% 50%, rgb(46 213 115 / 0.3), #2ED573);
+        @apply rotate-[255deg];
+    }
+
+    .about--items-circles__yellow {
+        background-image: conic-gradient(from 90deg at 50% 50%, rgb(234 179 8 / 0.3), #EAB308);
+        @apply -rotate-[255deg];
+    }
+
+    .about--items-circles__red {
+        background-image: conic-gradient(from 90deg at 50% 50%, rgb(236 72 153 / 0.3), #EC4899);
+        @apply -rotate-[45deg];
+    }
+
+    .dark .about--items-circles__red {
+        background-image: conic-gradient(from 90deg at 50% 50%, rgb(244 63 94 / 0.3), #F43F5E);
+    }
 }
