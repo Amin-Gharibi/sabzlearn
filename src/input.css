@@ -133,4 +133,8 @@
     .course--price {
         @apply font-danaMedium text-xl text-primary space-x-1.5;
     }
+
+    .section--title__roadmaps::before {
+        @apply bg-fuchsia-500;
+    }
 }
