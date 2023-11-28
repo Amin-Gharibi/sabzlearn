@@ -29,5 +29,34 @@ const changeThemeHandler = () => {
     }
 }
 
+window.addEventListener('load', () => {
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        // autoplay: {
+        //     delay: 2000,
+        // },
+        slidesPerView: 4,
+        spaceBetween: 10,
+        breakpoints: {
+          640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+          },
+          1024: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+          },
+          1280: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+          }
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+})
+
 userProfileBtn.addEventListener('click', toggleProfileDropDown)
 themeChangerBtn.addEventListener('click', changeThemeHandler)
