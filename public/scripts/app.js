@@ -30,32 +30,33 @@ const changeThemeHandler = () => {
 }
 
 window.addEventListener('load', () => {
-    const swiper = new Swiper(".mySwiper", {
+    const swiper = new Swiper('.swiper', {
+        direction: "horizontal",
         loop: true,
-        // autoplay: {
-        //     delay: 2000,
-        // },
-        slidesPerView: 4,
-        spaceBetween: 10,
-        breakpoints: {
-          640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-          },
-          1024: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-          },
-          1280: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-          }
+        autoplay: {
+            delay: 2000,
         },
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
         },
-    });
+        slidesPerView: 1,
+        spaceBetween: 20,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            1280: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            }
+        }
+    })
 })
 
 userProfileBtn.addEventListener('click', toggleProfileDropDown)
