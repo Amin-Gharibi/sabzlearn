@@ -2,7 +2,12 @@ let $ = document
 const userProfileBtn = $.querySelector('#user-profile')
 const userProfileDropDownWrapper = $.querySelector('.user-profile-dropdown')
 const dropDownOverlay = $.querySelector('.profile-dropdown--overlay')
-const themeChangerBtn = $.querySelector('#theme-changer-btn')
+const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
+const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
+const mobileMenu = $.querySelector("#mobile-menu")
+const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
+const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
+const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 
 const toggleProfileDropDown = () => {
     userProfileDropDownWrapper.classList.toggle('user-profile-dropdown__show')
@@ -59,5 +64,28 @@ window.addEventListener('load', () => {
     })
 })
 
+const toggleMobileMenu = () => {
+    mobileMenu.classList.contains('-right-64') ? mobileMenu.classList.replace('-right-64', 'right-0') && mobileMenuOverlay.classList.add('mobile-menu--overlay__show') : mobileMenu.classList.replace('right-0', '-right-64') && mobileMenuOverlay.classList.remove('mobile-menu--overlay__show')
+}
+
+const toggleSubMenusHandler = (event) => {
+    // if the target had 2 children then it has submenu
+    if (event.currentTarget.children.length === 2) {
+        // open the submenu
+        event.currentTarget.children[1].classList.toggle('mobile-menu--submenu__open')
+        // rotate the chevron down svg
+        event.currentTarget.children[0].children[0].classList.toggle('rotated-svg')
+    }
+}
+
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
+mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
+mobileMenuListItems.forEach(item => {
+    item.addEventListener('click', event => toggleSubMenusHandler(event))
+})
+
 userProfileBtn.addEventListener('click', toggleProfileDropDown)
-themeChangerBtn.addEventListener('click', changeThemeHandler)
+themeChangerBtn.forEach(btn => {
+    btn.addEventListener('click', changeThemeHandler)
+})
+hamburgerMenuBtn.addEventListener('click', toggleMobileMenu)
