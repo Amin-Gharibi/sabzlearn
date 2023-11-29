@@ -1066,12 +1066,20 @@ video {
   top: 100%;
 }
 
+.left-0 {
+  left: 0px;
+}
+
 .z-20 {
   z-index: 20;
 }
 
 .z-50 {
   z-index: 50;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .my-auto {
@@ -1335,6 +1343,18 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-2 {
+  width: 0.5rem;
+}
+
+.w-2\.5 {
+  width: 0.625rem;
+}
+
+.w-\[112px\] {
+  width: 112px;
 }
 
 .max-w-\[1920px\] {
@@ -1676,6 +1696,10 @@ video {
 
 .bg-white\/30 {
   background-color: rgb(255 255 255 / 0.3);
+}
+
+.bg-sky-500\/50 {
+  background-color: rgb(14 165 233 / 0.5);
 }
 
 .bg-gradient-to-b {
@@ -2171,6 +2195,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-sky-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(56 189 248 / var(--tw-bg-opacity));
+}
+
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;
   color: rgb(46 213 115 / var(--tw-text-opacity));
@@ -2316,6 +2345,15 @@ video {
   background-color: rgb(250 204 21 / 0.1);
 }
 
+:is(.dark .dark\:bg-gray-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-secondary\/40) {
+  background-color: rgb(78 129 245 / 0.4);
+}
+
 :is(.dark .dark\:fill-white) {
   fill: #fff;
 }
@@ -2402,6 +2440,28 @@ video {
 
 :is(.dark .dark\:hover\:bg-secondary\/10:hover) {
   background-color: rgb(78 129 245 / 0.1);
+}
+
+:is(.dark .dark\:hover\:bg-secondary\/60:hover) {
+  background-color: rgb(78 129 245 / 0.6);
+}
+
+:is(.dark .dark\:hover\:bg-\[\#\]:hover) {
+  background-color: #;
+}
+
+:is(.dark .dark\:hover\:bg-\[\#\#f6\]:hover) {
+  background-color: ##f6;
+}
+
+:is(.dark .dark\:hover\:bg-\[\#3F6\]:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 255 102 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:hover\:bg-\[\#3F6CDB\]:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 108 219 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:focus\:border-gray-600:focus) {
@@ -2515,6 +2575,14 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:h-14 {
     height: 3.5rem;
   }
@@ -2523,12 +2591,20 @@ video {
     height: 8rem;
   }
 
+  .md\:h-full {
+    height: 100%;
+  }
+
   .md\:w-14 {
     width: 3.5rem;
   }
 
   .md\:w-\[104px\] {
     width: 104px;
+  }
+
+  .md\:w-\[155px\] {
+    width: 155px;
   }
 
   .md\:grid-cols-2 {
@@ -2645,6 +2721,14 @@ video {
 
   .xl\:w-\[550px\] {
     width: 550px;
+  }
+
+  .xl\:w-28 {
+    width: 7rem;
+  }
+
+  .xl\:w-\[180px\] {
+    width: 180px;
   }
 
   .xl\:grid-cols-4 {
