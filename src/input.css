@@ -17,7 +17,7 @@
 }
 
 .mobile-menu--overlay__show {
-    @apply fixed inset-0 w-full h-full z-30 bg-black/40 md:backdrop-blur transition-all show;
+    @apply fixed inset-0 w-full h-full z-30 bg-black/40 transition-all show;
 }
 
 .user-profile-dropdown__show {
