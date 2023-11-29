@@ -1,3 +1,5 @@
+import {changeThemeHandler} from './funcs/ChangeThemeHandler'
+
 let $ = document
 const userProfileBtn = $.querySelector('#user-profile')
 const userProfileDropDownWrapper = $.querySelector('.user-profile-dropdown')
@@ -9,6 +11,7 @@ const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
 const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
 const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 
+// toggles the dropdown when user clicks on his profile picture
 const toggleProfileDropDown = () => {
     userProfileDropDownWrapper.classList.toggle('user-profile-dropdown__show')
     dropDownOverlay.classList.toggle('profile-dropdown--overlay__show')
@@ -24,16 +27,10 @@ const toggleProfileDropDown = () => {
     }
 }
 
-const changeThemeHandler = () => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        $.documentElement.classList.remove('dark')
-        localStorage.theme = 'light'
-    } else {
-        $.documentElement.classList.add('dark')
-        localStorage.theme = 'dark'
-    }
-}
+// changes theme as user loads the page
+changeThemeHandler()
 
+// settings for swiper
 window.addEventListener('load', () => {
     const swiper = new Swiper('.swiper', {
         direction: "horizontal",
@@ -64,10 +61,12 @@ window.addEventListener('load', () => {
     })
 })
 
+// toggles menu that gets opened as soon as user clicks on hamburger manu icon
 const toggleMobileMenu = () => {
     mobileMenu.classList.contains('-right-64') ? mobileMenu.classList.replace('-right-64', 'right-0') && mobileMenuOverlay.classList.add('mobile-menu--overlay__show') : mobileMenu.classList.replace('right-0', '-right-64') && mobileMenuOverlay.classList.remove('mobile-menu--overlay__show')
 }
 
+// toggles the submenus of hamburger menu list items
 const toggleSubMenusHandler = (event) => {
     // if the target had 2 children then it has submenu
     if (event.currentTarget.children.length === 2) {
@@ -78,12 +77,12 @@ const toggleSubMenusHandler = (event) => {
     }
 }
 
+// add event listeners
 mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
 mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
 mobileMenuListItems.forEach(item => {
     item.addEventListener('click', event => toggleSubMenusHandler(event))
 })
-
 userProfileBtn.addEventListener('click', toggleProfileDropDown)
 themeChangerBtn.forEach(btn => {
     btn.addEventListener('click', changeThemeHandler)
