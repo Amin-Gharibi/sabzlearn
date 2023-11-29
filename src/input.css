@@ -13,7 +13,7 @@
 }
 
 .profile-dropdown--overlay__show {
-    @apply absolute inset-0 w-full h-full z-10 bg-black/40 md:backdrop-blur transition-all show;
+    @apply fixed inset-0 w-full h-full z-10 bg-black/40 md:backdrop-blur transition-all show;
 }
 
 .user-profile-dropdown__show {
