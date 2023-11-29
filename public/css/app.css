@@ -870,6 +870,38 @@ video {
   background: linear-gradient(0deg, rgba(40,41,61,1) 0%, rgba(40,41,61,0) 100%);
 }
 
+.instagram--section {
+  background-image: url('../images/instagram/section-pattern.png'), linear-gradient(to right, #502ED6, #CD2F6A, #FFE354);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .instagram--section {
+    height: 10rem;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: right;
+  }
+}
+
+@media (min-width: 1024px) {
+  .instagram--section {
+    height: 9rem;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -935,6 +967,10 @@ video {
   margin-bottom: auto;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -989,10 +1025,6 @@ video {
 
 .mt-\[88px\] {
   margin-top: 88px;
-}
-
-.mb-10 {
-  margin-bottom: 2.5rem;
 }
 
 .line-clamp-2 {
@@ -1165,6 +1197,10 @@ video {
   max-width: 500px;
 }
 
+.shrink-0 {
+  flex-shrink: 0;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -1175,10 +1211,6 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1313,6 +1345,12 @@ video {
   margin-bottom: calc(0.625rem * var(--tw-space-y-reverse));
 }
 
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
 .divide-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
@@ -1435,6 +1473,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-white\/30 {
+  background-color: rgb(255 255 255 / 0.3);
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -1510,6 +1552,11 @@ video {
 .px-2\.5 {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-5 {
@@ -1622,6 +1669,11 @@ video {
   line-height: 2rem;
 }
 
+.text-4xl\/\[58px\] {
+  font-size: 2.25rem;
+  line-height: 58px;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -1652,6 +1704,11 @@ video {
   line-height: 1rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .font-thin {
   font-weight: 100;
 }
@@ -1666,6 +1723,10 @@ video {
 
 .leading-\[80px\] {
   line-height: 80px;
+}
+
+.leading-\[58px\] {
+  line-height: 58px;
 }
 
 .text-amber-400 {
@@ -1791,6 +1852,11 @@ video {
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
+.hover\:border-white:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -1810,6 +1876,10 @@ video {
   background-color: rgb(2 132 199 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-transparent:hover {
+  background-color: transparent;
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1818,6 +1888,11 @@ video {
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;
   color: rgb(46 213 115 / var(--tw-text-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:text-zinc-700:hover {
@@ -1934,11 +2009,6 @@ video {
 :is(.dark .dark\:text-darkGray-600) {
   --tw-text-opacity: 1;
   color: rgb(119 124 148 / var(--tw-text-opacity));
-}
-
-:is(.dark .dark\:text-darkSlate) {
-  --tw-text-opacity: 1;
-  color: rgb(74 75 109 / var(--tw-text-opacity));
 }
 
 :is(.dark .dark\:text-gray-200) {
@@ -2077,6 +2147,11 @@ video {
     gap: 1.75rem;
   }
 
+  .sm\:bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  }
+
   .sm\:px-7 {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
@@ -2085,6 +2160,11 @@ video {
   .sm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .sm\:text-\[\#502ED6\] {
+    --tw-text-opacity: 1;
+    color: rgb(80 46 214 / var(--tw-text-opacity));
   }
 }
 

@@ -211,4 +211,9 @@
     .dark .article--image__container::after {
         background: linear-gradient(0deg, rgba(40,41,61,1) 0%, rgba(40,41,61,0) 100%);
     }
+
+    .instagram--section {
+        background-image: url('../images/instagram/section-pattern.png'), linear-gradient(to right, #502ED6, #CD2F6A, #FFE354);
+        @apply w-full md:h-40 lg:h-36 flex flex-col md:flex-row justify-center md:justify-between items-center gap-y-4 p-8 lg:px-14 text-center md:text-right text-white rounded-2xl;
+    }
 }
