@@ -177,4 +177,38 @@
     .section--title__newest-courses::before {
         @apply bg-primary;
     }
+
+    .section--title__articles::before {
+        @apply bg-pink-500 dark:bg-rose-500;
+    }
+
+    .article--image__container {
+        @apply relative w-full h-[217px];
+    }
+
+    .article--image__container::before,
+    .article--image__container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        bottom: -12px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .article--image__container::before {
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 90%);
+    }
+
+    .dark .article--image__container::before {
+        background: linear-gradient(0deg, rgba(40,41,61,1) 0%, rgba(40,41,61,0) 90%);
+    }
+
+    .article--image__container::after {
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .dark .article--image__container::after {
+        background: linear-gradient(0deg, rgba(40,41,61,1) 0%, rgba(40,41,61,0) 100%);
+    }
 }
