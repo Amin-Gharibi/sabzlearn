@@ -334,4 +334,12 @@
     .text-ltr {
         direction: ltr;
     }
+
+    .remember-me--checkbox__checked {
+        @apply !bg-sky-500;
+    }
+
+    .dark .remember-me--checkbox__checked {
+        background-color: #4E81FB !important;
+    }
 }
