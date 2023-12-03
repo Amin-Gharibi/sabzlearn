@@ -32,6 +32,53 @@
     rotate: 180deg;
 }
 
+.-left-infinity {
+    left: -100%;
+}
+
+.text-alert-red {
+    color: red;
+}
+
+.bg-alert-red {
+    background-color: red;
+}
+
+#alert {
+    @apply fixed top-4 p-4 bg-white rounded-md transition-all cursor-default;
+    transition-delay: 0ms;
+}
+
+.alert--up-side {
+    @apply h-full flex justify-between items-center gap-2;
+}
+
+.alert--description {
+    @apply text-slate-500 max-w-[220px];
+}
+
+.alert--lower-side {
+    @apply  absolute bottom-1 left-0 right-0 h-1 mx-auto rounded-full transition-all;
+    transition-delay: 0ms;
+    transition-duration: 3000ms;
+}
+
+.alert--lower-side__full {
+    @apply w-full;
+}
+
+.alert__show {
+    @apply left-4;
+}
+
+.alert--lower-side__none {
+    @apply w-0;
+}
+
+.alert__hide {
+    @apply -left-full;
+}
+
 @layer base {
     @font-face {
         font-family: 'Dana-Regular';
