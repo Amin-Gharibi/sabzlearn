@@ -6,7 +6,7 @@ const loginStepOne = $.querySelector('#login-step-1')
 const loginStepTwo = $.querySelector('#login-step-2')
 const formStepOne = $.querySelector('#form-step-1')
 const formStepTwo = $.querySelector('#form-step-2')
-const form = $.querySelector('.form')
+const wholeContainer = $.querySelector('#login-using-phone-container')
 const phoneNumberInput = $.querySelector('#phone-number-input')
 const userPhoneNumberText = $.querySelector('#login--phone-number')
 const otpInputs = $.querySelectorAll('.otp--inputs')
@@ -33,7 +33,7 @@ const loginStepOneSubmission = (event) => {
 
     // if phone number was valid shows an alert and goes to next step and starts the interval for resend btn
     if (phoneNumberInput.value.length === 11) {
-        alert(form, 'check-circle', 'primary', 'موفق', 'کد تایید به شماره موبایل وارد شده ارسال شد.')
+        alert(wholeContainer, 'check-circle', 'primary', 'موفق', 'کد تایید به شماره موبایل وارد شده ارسال شد.')
 
         loginStepOne.classList.add('hidden')
         loginStepTwo.classList.remove('hidden')
@@ -45,7 +45,7 @@ const loginStepOneSubmission = (event) => {
             otpResendTimeIntervalHandler(i, otpResendBtn, updateResendTime)
         }, 1000)
     } else {
-        alert(form, 'close-circle', 'alert-red', 'خطا', 'ارسال کد تایید به شماره وارد شده با خطا مواجه شد.')
+        alert(wholeContainer, 'close-circle', 'alert-red', 'خطا', 'ارسال کد تایید به شماره وارد شده با خطا مواجه شد.')
     }
 
     userPhoneNumberText.innerHTML = phoneNumberInput.value
@@ -91,7 +91,7 @@ const resendingOtpCodeHandler = () => {
     }, 1000)
 
     otpInputs.forEach(input => input.value = '')
-    alert(form, 'check-circle', 'primary', 'موفق', 'کد تایید جدید به شماره موبایل وارد شده ارسال شد.')
+    alert(wholeContainer, 'check-circle', 'primary', 'موفق', 'کد تایید جدید به شماره موبایل وارد شده ارسال شد.')
 }
 
 // handles back button in the second step
