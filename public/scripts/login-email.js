@@ -1,10 +1,12 @@
 import {alert} from "./funcs/alert.js";
 
+// variables
 let $ = document
 const rememberMeCheckBox = $.querySelector('.remember-me--checkbox')
 const wholeContainer = $.querySelector('#login-using-email-container')
 const form = $.querySelector('#login-using-email')
 
+// ------------------- Functions
 const toggleRememberMeCheckBox = (event) => {
     const input = event.currentTarget.firstChild
     const checkBoxMark = event.currentTarget.children[1]
@@ -21,5 +23,11 @@ const formSubmissionHandler = event => {
     alert(wholeContainer, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
 }
 
+// ------------------------- End of Functions
+
+// ------------------------- Event listeners
+
 form.addEventListener('submit', event => formSubmissionHandler(event))
 rememberMeCheckBox.addEventListener('click', (event) => toggleRememberMeCheckBox(event))
+
+// ------------------------- End of Event listeners
