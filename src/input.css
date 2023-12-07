@@ -467,4 +467,30 @@
     .article--text img {
         @apply w-full my-[2em] md:my-[1.77777778em] rounded-xl;
     }
+
+    .filtering--special-items__toggle {
+        @apply relative block w-[46px] h-6 bg-gray-200 dark:bg-darkGray rounded-full;
+    }
+
+    .filtering--special-items__toggle:after {
+        content: '';
+        @apply absolute top-0 bottom-0 right-1 w-4 h-4 my-auto rounded-full bg-white dark:bg-darkGray-800 transition-all;
+    }
+
+    input:checked ~ .categories--toggle {
+        @apply bg-secondary-light dark:bg-secondary;
+    }
+
+    input:checked ~ .filtering--special-items__toggle {
+        @apply bg-secondary-light dark:bg-secondary;
+    }
+
+    input:checked ~ .filtering--special-items__toggle:after {
+        right: 26px;
+        @apply dark:bg-white;
+    }
+
+    .filtering-data > button.active {
+        @apply bg-gray-100 dark:bg-darkGray-700 font-danaMedium text-zinc-700 dark:text-white;
+    }
 }

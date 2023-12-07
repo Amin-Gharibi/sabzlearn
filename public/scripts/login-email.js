@@ -2,9 +2,9 @@ import {alert} from "./funcs/alert.js";
 
 // variables
 let $ = document
-const rememberMeCheckBox = $.querySelector('.remember-me--checkbox')
-const wholeContainer = $.querySelector('#login-using-email-container')
-const form = $.querySelector('#login-using-email')
+const rememberMeCheckBox = $.querySelector('.remember-me--checkbox'),
+    wholeContainer = $.querySelector('#login-using-email-container'),
+    form = $.querySelector('#login-using-email');
 
 // ------------------- Functions
 const toggleRememberMeCheckBox = (event) => {

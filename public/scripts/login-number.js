@@ -2,15 +2,15 @@ import {alert} from './funcs/alert.js'
 
 // define needed variables
 let $ = document
-const loginStepOne = $.querySelector('#login-step-1')
-const loginStepTwo = $.querySelector('#login-step-2')
-const formStepOne = $.querySelector('#form-step-1')
-const formStepTwo = $.querySelector('#form-step-2')
-const wholeContainer = $.querySelector('#login-using-phone-container')
-const phoneNumberInput = $.querySelector('#phone-number-input')
-const userPhoneNumberText = $.querySelector('#login--phone-number')
-const otpInputs = $.querySelectorAll('.otp--inputs')
-const loginSecondStepBackBtn = $.querySelector('.login--step-two__back-btn')
+const loginStepOne = $.querySelector('#login-step-1'),
+    loginStepTwo = $.querySelector('#login-step-2'),
+    formStepOne = $.querySelector('#form-step-1'),
+    formStepTwo = $.querySelector('#form-step-2'),
+    wholeContainer = $.querySelector('#login-using-phone-container'),
+    phoneNumberInput = $.querySelector('#phone-number-input'),
+    userPhoneNumberText = $.querySelector('#login--phone-number'),
+    otpInputs = $.querySelectorAll('.otp--inputs'),
+    loginSecondStepBackBtn = $.querySelector('.login--step-two__back-btn');
 
 // -------------------------------- Functions
 
