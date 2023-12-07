@@ -1046,7 +1046,7 @@ progress::-webkit-progress-value {
   background-color: rgb(78 129 245 / var(--tw-bg-opacity));
 }
 
-.short-link--title:before {
+.side-bar--titles:before {
   content: '';
   position: absolute;
   right: 0;
@@ -1056,8 +1056,6 @@ progress::-webkit-progress-value {
   width: 2rem;
   height: 0.5rem;
   border-radius: 2px;
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
 .topic {
@@ -1134,6 +1132,61 @@ progress::-webkit-progress-value {
 :is(.dark .topic__body) {
   --tw-bg-opacity: 1;
   background-color: rgb(40 41 61 / var(--tw-bg-opacity));
+}
+
+.article--text p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+@media (min-width: 768px) {
+  .article--text p {
+    margin-top: 1.33333em;
+    margin-bottom: 1.33333em;
+  }
+}
+
+.article--text h2 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-family: Dana-DemiBold;
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.333333;
+}
+
+@media (min-width: 768px) {
+  .article--text h2 {
+    margin-top: 1.8666667em;
+    margin-bottom: 1.066666667em;
+    font-size: 1.66666667em;
+  }
+}
+
+.article--text strong,
+    .article--text h2 {
+  --tw-text-opacity: 1;
+  color: rgb(24 24 27 / var(--tw-text-opacity));
+}
+
+:is(.dark .article--text strong),:is(.dark 
+    .article--text h2) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.article--text img {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  width: 100%;
+  border-radius: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .article--text img {
+    margin-top: 1.77777778em;
+    margin-bottom: 1.77777778em;
+  }
 }
 
 .invisible {
@@ -1244,6 +1297,10 @@ progress::-webkit-progress-value {
   order: 2;
 }
 
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1286,8 +1343,20 @@ progress::-webkit-progress-value {
   margin-bottom: 1.25rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .mb-7 {
   margin-bottom: 1.75rem;
+}
+
+.ml-0 {
+  margin-left: 0px;
+}
+
+.ml-0\.5 {
+  margin-left: 0.125rem;
 }
 
 .ml-1 {
@@ -1369,6 +1438,13 @@ progress::-webkit-progress-value {
   -webkit-line-clamp: 2;
 }
 
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .line-clamp-4 {
   overflow: hidden;
   display: -webkit-box;
@@ -1382,6 +1458,10 @@ progress::-webkit-progress-value {
 
 .inline-block {
   display: inline-block;
+}
+
+.inline {
+  display: inline;
 }
 
 .\!flex {
@@ -1436,6 +1516,10 @@ progress::-webkit-progress-value {
   height: 5rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-4 {
   height: 1rem;
 }
@@ -1472,6 +1556,10 @@ progress::-webkit-progress-value {
   height: 18px;
 }
 
+.h-\[190px\] {
+  height: 190px;
+}
+
 .h-\[25px\] {
   height: 25px;
 }
@@ -1498,6 +1586,10 @@ progress::-webkit-progress-value {
 
 .h-\[50px\] {
   height: 50px;
+}
+
+.h-\[56px\] {
+  height: 56px;
 }
 
 .h-\[60px\] {
@@ -1534,6 +1626,10 @@ progress::-webkit-progress-value {
 
 .max-h-12 {
   max-height: 3rem;
+}
+
+.max-h-\[800px\] {
+  max-height: 800px;
 }
 
 .min-h-\[414px\] {
@@ -1574,6 +1670,10 @@ progress::-webkit-progress-value {
 
 .w-20 {
   width: 5rem;
+}
+
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-4 {
@@ -1747,6 +1847,14 @@ progress::-webkit-progress-value {
   justify-content: space-between;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-1\.5 {
+  gap: 0.375rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -1893,15 +2001,36 @@ progress::-webkit-progress-value {
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
 .divide-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
   border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
 }
 
+.divide-dashed > :not([hidden]) ~ :not([hidden]) {
+  border-style: dashed;
+}
+
 .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-divide-opacity));
+}
+
+.divide-slate-500 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(100 116 139 / var(--tw-divide-opacity));
 }
 
 .self-start {
@@ -1948,6 +2077,10 @@ progress::-webkit-progress-value {
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-\[2px\] {
@@ -2123,6 +2256,10 @@ progress::-webkit-progress-value {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
+.bg-gradient-to-t {
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
 .bg-gradient-to-tr {
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -2160,6 +2297,12 @@ progress::-webkit-progress-value {
 .from-blue-400 {
   --tw-gradient-from: #60a5fa var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(96 165 250 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-white {
+  --tw-gradient-from: #fff var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -2348,6 +2491,10 @@ progress::-webkit-progress-value {
   padding-bottom: 1.25rem;
 }
 
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
 .pb-\[14px\] {
   padding-bottom: 14px;
 }
@@ -2433,6 +2580,11 @@ progress::-webkit-progress-value {
   line-height: 2rem;
 }
 
+.text-2xl\/9 {
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
 .text-2xl\/\[42px\] {
   font-size: 1.5rem;
   line-height: 42px;
@@ -2459,6 +2611,11 @@ progress::-webkit-progress-value {
 }
 
 .text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-lg\/7 {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
@@ -2569,6 +2726,12 @@ progress::-webkit-progress-value {
   opacity: 0;
 }
 
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-light {
   --tw-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 60px 0px;
   --tw-shadow-colored: 0px 0px 0px 0px var(--tw-shadow-color), 0px 0px 0px 0px var(--tw-shadow-color), 0px 1px 60px 0px var(--tw-shadow-color);
@@ -2668,63 +2831,82 @@ progress::-webkit-progress-value {
   background-color: red;
 }
 
-#alert {
+/* alert */
+
+.alert-box {
   position: fixed;
   top: 1rem;
+  left: 1rem;
+  z-index: 999;
+  width: 250px;
   cursor: default;
-  border-radius: 0.375rem;
+  overflow: hidden;
+  border-radius: 0.25rem;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding: 1rem;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  transition-delay: 0ms;
-}
-
-.alert--up-side {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.alert--description {
-  max-width: 220px;
   --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
+  color: rgb(63 63 70 / var(--tw-text-opacity));
+  visibility: hidden;
+  opacity: 0;
 }
 
-.alert--lower-side {
+:is(.dark .alert-box) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(40 41 61 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.alert-box {
+  transform: translateX(calc(-100% - 20px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.alert-box.active {
+  transform: translateX(0%);
+  --tw-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 60px 0px;
+  --tw-shadow-colored: 0px 0px 0px 0px var(--tw-shadow-color), 0px 0px 0px 0px var(--tw-shadow-color), 0px 1px 60px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  visibility: visible;
+  opacity: 1;
+}
+
+.alert--content-container {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
+.alert--content__text-side {
+  display: flex;
+  max-width: 200px;
+  flex-direction: column;
+  row-gap: 0.125rem;
+}
+
+.alert--progress {
   position: absolute;
-  bottom: 0.25rem;
-  left: 0px;
-  right: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 0.25rem;
-  border-radius: 9999px;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0ms;
-  transition-duration: 3000ms;
-}
-
-.alert--lower-side__full {
+  bottom: 2px;
+  left: 0;
+  right: 0;
   width: 100%;
+  height: 4px;
+  margin: 0 auto;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 213 115 / var(--tw-bg-opacity));
 }
 
-.alert__show {
-  left: 1rem;
+.alert--progress.active {
+  animation: progress 3s linear forwards;
 }
 
-.alert--lower-side__none {
-  width: 0px;
-}
-
-.alert__hide {
-  left: -100%;
+@keyframes progress {
+  100% {
+    width: 0;
+  }
 }
 
 .topic__title--active {
@@ -2752,6 +2934,30 @@ progress::-webkit-progress-value {
 .placeholder\:text-slate-500::placeholder {
   --tw-text-opacity: 1;
   color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+
+.before\:bg-amber-400::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
+.before\:bg-pink-500::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
+}
+
+.before\:bg-primary::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 213 115 / var(--tw-bg-opacity));
+}
+
+.before\:bg-secondary-light::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
 .focus-within\:border-gray-300:focus-within {
@@ -2920,6 +3126,11 @@ progress::-webkit-progress-value {
   display: none;
 }
 
+:is(.dark .dark\:divide-darkGray-500) > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(148 163 184 / var(--tw-divide-opacity));
+}
+
 :is(.dark .dark\:divide-darkSlate) > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(74 75 109 / var(--tw-divide-opacity));
@@ -3041,6 +3252,12 @@ progress::-webkit-progress-value {
   background-color: rgb(250 204 21 / 0.1);
 }
 
+:is(.dark .dark\:from-darkGray-800) {
+  --tw-gradient-from: #28293D var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(40 41 61 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 :is(.dark .dark\:fill-white) {
   fill: #fff;
 }
@@ -3138,6 +3355,18 @@ progress::-webkit-progress-value {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+:is(.dark .before\:dark\:bg-rose-500)::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 63 94 / var(--tw-bg-opacity));
+}
+
+:is(.dark .before\:dark\:bg-yellow-400)::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:focus-within\:border-darkSlate:focus-within) {
@@ -3641,6 +3870,10 @@ progress::-webkit-progress-value {
     order: 2;
   }
 
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .lg\:ml-5 {
     margin-left: 1.25rem;
   }
@@ -3738,6 +3971,11 @@ progress::-webkit-progress-value {
     line-height: 2rem;
   }
 
+  .lg\:text-4xl\/\[48px\] {
+    font-size: 2.25rem;
+    line-height: 48px;
+  }
+
   .lg\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
@@ -3746,6 +3984,11 @@ progress::-webkit-progress-value {
   .lg\:text-\[32px\]\/\[48px\] {
     font-size: 32px;
     line-height: 48px;
+  }
+
+  .lg\:text-xl\/9 {
+    font-size: 1.25rem;
+    line-height: 2.25rem;
   }
 
   .lg\:leading-\[96px\] {

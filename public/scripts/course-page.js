@@ -2,6 +2,7 @@ import { changeThemeHandler } from './funcs/ChangeThemeHandler.js';
 import { toggleProfileDropDown } from "./funcs/toggleProfileDropDown.js";
 import { toggleMobileMenu } from "./funcs/toggleMobileMenu.js";
 import { toggleSubMenusHandler } from "./funcs/toggleSubMenusHandler.js";
+import { copyShortLinks } from "./funcs/copyShortLinks.js";
 
 let $ = document
 const seasonsTitle = $.querySelectorAll('.topic__title')
@@ -12,6 +13,7 @@ const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
 const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
 const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
+const copyShortLinkBtn = $.querySelector(".short-link--copy-btn")
 
 // -------------------- Functions
 
@@ -42,5 +44,7 @@ mobileMenuListItems.forEach(item => {
 mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
 mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
 hamburgerMenuBtn.addEventListener('click', toggleMobileMenu)
+
+copyShortLinkBtn.addEventListener('click', event => copyShortLinks(event, $.body))
 
 // Event Listeners End

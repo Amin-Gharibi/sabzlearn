@@ -1,53 +1,44 @@
 function alert(wholeContainer, logoId, alertColor, alertTitle, alertDescription) {
-    const alertBox = document.querySelector('#alert')
-    if (!alertBox || !alertBox.classList.contains('alert__show')) {
-        wholeContainer.insertAdjacentHTML('afterend', `
-        <!--alert-->
-<div id="alert" class="alert__show">
-    <!--upper side-->
-    <div class="alert--up-side">
-        <!--tick logo-->
-        <div>
-            <svg class="w-10 h-10 text-${alertColor}">
-                <use href="#${logoId}"></use>
-            </svg>
+    const oldAlertBox = document.querySelector('.alert-box')
+    oldAlertBox && oldAlertBox.remove()
+
+    wholeContainer.insertAdjacentHTML('afterend', `
+        <div class="alert-box">
+            <div class="alert--content-container">
+                <!--alert logo-->
+                <div>
+                    <svg class="w-10 h-10 text-${alertColor}">
+                        <use href="#${logoId}"></use>
+                    </svg>    
+                </div>
+                <!--alert text content-->
+                <div class="alert--content__text-side">
+                    <span class="font-danaDemiBold text-xl dark:text-white">
+                        ${alertTitle}
+                    </span>
+                    <p class="font-danaRegular dark:text-darkGray-500">
+                        ${alertDescription}
+                    </p>
+                </div>
+            </div>
+            <div class="alert--progress"></div>
         </div>
-        <!--alert content-->
-        <div>
-            <span class="font-danaDemiBold text-xl">${alertTitle}</span>
-            <p class="alert--description">
-                ${alertDescription}
-            </p>
-        </div>
-    </div>
-    <!--lower side-->
-    <div class="alert--lower-side alert--lower-side__full bg-${alertColor}">
-    </div>
-</div>
     `)
 
-        const alertContainer = document.querySelector('#alert')
+    const alertBox = document.querySelector('.alert-box'),
+        alertProgress = document.querySelector('.alert--progress');
+    let timer1, timer2;
 
-        setTimeout(() => {
-            alertContainer.children[1].classList.replace('alert--lower-side__full', 'alert--lower-side__none')
-        }, 0)
-
-        setTimeout(function () {
-            alertContainer.classList.replace('alert__show', 'alert__hide')
+    setTimeout(() => {
+        alertBox.classList.add('active')
+        alertProgress.classList.add('active')
+        timer1 = setTimeout(() => {
+            alertBox.classList.remove('active')
         }, 3000)
-        alertContainer.children[1].classList.replace('alert--lower-side__none', 'alert--lower-side__full')
-
-        const hideAlertBox = () => {
-            const alertBox = document.querySelector('#alert')
-            alertBox.classList.replace('alert__show', 'alert__hide')
-        }
-
-        alertContainer.addEventListener('click', hideAlertBox)
-
-        setTimeout(() => {
-            alertContainer.removeEventListener('click', hideAlertBox)
-        }, 3000)
-    }
+        timer2 = setTimeout(() => {
+            alertProgress.classList.remove('active')
+        }, 4000)
+    }, 10)
 }
 
 export {alert}

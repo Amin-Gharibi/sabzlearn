@@ -44,40 +44,49 @@
     background-color: red;
 }
 
-#alert {
-    @apply fixed top-4 p-4 bg-white rounded-md transition-all cursor-default;
-    transition-delay: 0ms;
+
+/* alert */
+.alert-box {
+    @apply fixed top-4 left-4 z-[999] w-[250px] p-4 hide bg-white dark:bg-darkGray-800 text-zinc-700 dark:text-white rounded overflow-hidden cursor-default;
+    transform: translateX(calc(-100% - 20px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 }
 
-.alert--up-side {
-    @apply h-full flex justify-between items-center gap-2;
+.alert-box.active {
+    transform: translateX(0%);
+    @apply shadow-light show;
 }
 
-.alert--description {
-    @apply text-slate-500 max-w-[220px];
+.alert--content-container {
+    @apply flex items-center gap-x-2;
 }
 
-.alert--lower-side {
-    @apply  absolute bottom-1 left-0 right-0 h-1 mx-auto rounded-full transition-all;
-    transition-delay: 0ms;
-    transition-duration: 3000ms;
+.alert--content__text-side {
+    @apply max-w-[200px] flex flex-col gap-y-0.5;
 }
 
-.alert--lower-side__full {
-    @apply w-full;
+.alert--progress {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    margin: 0 auto;
+    @apply bg-primary rounded-full;
 }
 
-.alert__show {
-    @apply left-4;
+.alert--progress.active {
+    animation: progress 3s linear forwards;
 }
 
-.alert--lower-side__none {
-    @apply w-0;
+@keyframes progress {
+    100% {
+        width: 0;
+    }
 }
 
-.alert__hide {
-    @apply -left-full;
-}
+
 
 .topic__title--active {
     @apply bg-gray-200 dark:bg-darkSlate rounded-b-none;
@@ -418,7 +427,7 @@
         @apply bg-secondary-light dark:bg-secondary rounded-2xl;
     }
 
-    .short-link--title:before {
+    .side-bar--titles:before {
         content: '';
         position: absolute;
         right: 0;
@@ -428,7 +437,6 @@
         width: 2rem;
         height: 0.5rem;
         border-radius: 2px;
-        @apply bg-secondary-light;
     }
 
     .topic {
@@ -441,5 +449,22 @@
 
     .topic__body {
         @apply divide-y divide-gray-200 dark:divide-darkSlate dark:bg-darkGray-800 rounded-b-2xl overflow-hidden transition-all;
+    }
+
+    .article--text p {
+        @apply my-[1.25em] md:my-[1.33333em];
+    }
+
+    .article--text h2 {
+        @apply font-danaDemiBold font-bold text-[1.5em] mt-[2em] mb-[1em] md:text-[1.66666667em] md:mt-[1.8666667em] md:mb-[1.066666667em] leading-[1.333333];
+    }
+
+    .article--text strong,
+    .article--text h2{
+        @apply text-zinc-900 dark:text-white;
+    }
+
+    .article--text img {
+        @apply w-full my-[2em] md:my-[1.77777778em] rounded-xl;
     }
 }
