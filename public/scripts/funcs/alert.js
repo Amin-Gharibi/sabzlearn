@@ -21,7 +21,7 @@ function alert(wholeContainer, logoId, alertColor, alertTitle, alertDescription)
                     </p>
                 </div>
             </div>
-            <div class="alert--progress"></div>
+            <div class="alert--progress bg-${alertColor}"></div>
         </div>
     `)
 

@@ -83,6 +83,16 @@
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
     </symbol>
+
+    <symbol id="check-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clip-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="close-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+    </symbol>
 </svg>
 
 <div class="w-full xs:w-[400px] min-h-screen flex flex-col justify-center items-center mx-auto px-5 xs:p-0">
@@ -110,32 +120,32 @@
                 </span>
             </div>
             <!--registering form-->
-            <form>
+            <form id="signup-form">
                 <!--inputs-->
                 <div class="space-y-2.5 sm:space-y-3.5">
                     <div class="relative overflow-hidden rounded-xl border border-transparent focus-within:border-gray-300 dark:focus-within:border-darkSlate transition-all group">
-                        <input type="text" placeholder="نام کاربری" autofocus
+                        <input type="text" placeholder="نام کاربری" autofocus id="username-input"
                                class="w-full h-12 sm:h-14 bg-gray-100 dark:bg-darkGray-700 text-sm sm:text-xl text-ltr text-right text-zinc-700 dark:text-white pl-9 pr-4 -tracking-[0.025em] sm:pl-12 outline-0 placeholder-slate-500 dark:placeholder-darkGray-500">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 absolute top-0 bottom-0 left-3 sm:left-4 z-10 my-auto text-slate-500 dark:text-darkGray-500 group-focus-within:text-zinc-700 dark:group-focus-within:text-white">
                             <use href="#user"></use>
                         </svg>
                     </div>
                     <div class="relative overflow-hidden rounded-xl border border-transparent focus-within:border-gray-300 dark:focus-within:border-darkSlate transition-all group">
-                        <input type="tel" placeholder="شماره موبایل"
+                        <input type="tel" placeholder="شماره موبایل" id="phone-input"
                                class="w-full h-12 sm:h-14 bg-gray-100 dark:bg-darkGray-700 text-sm sm:text-xl text-ltr text-right text-zinc-700 dark:text-white pl-9 pr-4 -tracking-[0.025em] sm:pl-12 outline-0 placeholder-slate-500 dark:placeholder-darkGray-500">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 absolute top-0 bottom-0 left-3 sm:left-4 z-10 my-auto text-slate-500 dark:text-darkGray-500 group-focus-within:text-zinc-700 dark:group-focus-within:text-white">
                             <use href="#phone"></use>
                         </svg>
                     </div>
                     <div class="relative overflow-hidden rounded-xl border border-transparent focus-within:border-gray-300 dark:focus-within:border-darkSlate transition-all group">
-                        <input type="email" placeholder="آدرس ایمیل"
+                        <input type="email" placeholder="آدرس ایمیل" id="email-input"
                                class="w-full h-12 sm:h-14 bg-gray-100 dark:bg-darkGray-700 text-sm sm:text-xl text-ltr text-right text-zinc-700 dark:text-white pl-9 pr-4 -tracking-[0.025em] sm:pl-12 outline-0 placeholder-slate-500 dark:placeholder-darkGray-500">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 absolute top-0 bottom-0 left-3 sm:left-4 z-10 my-auto text-slate-500 dark:text-darkGray-500 group-focus-within:text-zinc-700 dark:group-focus-within:text-white">
                             <use href="#envelope"></use>
                         </svg>
                     </div>
                     <div class="relative overflow-hidden rounded-xl border border-transparent focus-within:border-gray-300 dark:focus-within:border-darkSlate transition-all group">
-                        <input type="password" placeholder="رمز عبور"
+                        <input type="password" placeholder="رمز عبور" id="password-input"
                                class="w-full h-12 sm:h-14 bg-gray-100 dark:bg-darkGray-700 text-sm sm:text-xl text-ltr text-right text-zinc-700 dark:text-white pl-9 pr-4 -tracking-[0.025em] sm:pl-12 outline-0 placeholder-slate-500 dark:placeholder-darkGray-500">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 absolute top-0 bottom-0 left-3 sm:left-4 z-10 my-auto text-slate-500 dark:text-darkGray-500 group-focus-within:text-zinc-700 dark:group-focus-within:text-white">
                             <use href="#lock"></use>
@@ -159,5 +169,8 @@
         استفاده از خدمت سبزلرن را پذیرفته اید.
     </p>
 </div>
+
+
+<script src="./scripts/signup.js" type="module"></script>
 </body>
 </html>
