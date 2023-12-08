@@ -12,8 +12,21 @@
     opacity: 0;
 }
 
-.profile-dropdown--overlay__show {
+.profile-dropdown--overlay__show,
+.notifications-dropdown--overlay__show{
     @apply fixed inset-0 w-full h-full z-10 bg-black/40 md:backdrop-blur transition-all show;
+}
+
+.notifications-dropdown--overlay__show {
+    z-index: 20 !important;
+}
+
+.notification-center-dropdown__show {
+    @apply opacity-100 visible;
+}
+
+.notification-center--wrapper__show {
+    @apply z-30;
 }
 
 .mobile-menu--overlay__show {
@@ -170,6 +183,10 @@
 
 @layer components {
     .profile-dropdown--overlay {
+        @apply hide;
+    }
+
+    .notifications-dropdown--overlay {
         @apply hide;
     }
 
@@ -490,5 +507,13 @@
 
     .filtering-data > button.active {
         @apply bg-gray-100 dark:bg-darkGray-700 font-danaMedium text-zinc-700 dark:text-white;
+    }
+
+    .notification-center--wrapper {
+        @apply z-0;
+    }
+
+    .notification-center-dropdown {
+        @apply absolute left-0 top-full z-30 pt-4 text-zinc-700 dark:text-white transition-all -translate-x-28 md:translate-x-0 opacity-0 invisible cursor-default;
     }
 }
