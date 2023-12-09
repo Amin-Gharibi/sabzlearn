@@ -1,17 +1,23 @@
-import {changeThemeHandler} from "./funcs/ChangeThemeHandler.js";
-import {toggleMobileMenu} from "./funcs/toggleMobileMenu.js";
-import {toggleProfileDropDown} from "./funcs/toggleProfileDropDown.js";
+import {
+    changeThemeHandler,
+    getApplyBalance, getApplyCoursesCount, getApplyTicketsCount,
+    getApplyUsername, getToken,
+    toggleMobileMenu,
+    toggleProfileDropDown
+} from "./utils/utils.js";
+import {getMe} from "./funcs/auth.js";
+import {getTickets, showRecentTicketsHandler} from "./funcs/tickets.js";
 
 let $ = document
-const userProfileBtn = $.querySelector('#user-profile'),
-    themeChangerBtn = $.querySelectorAll('.theme-changer-btn'),
-    hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn'),
-    mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn'),
-    mobileMenuOverlay = $.querySelector('.mobile-menu--overlay'),
-    notificationCenterBtn = $.querySelector('.notification-center--btn'),
-    notificationCenterDropDown = $.querySelector('.notification-center-dropdown'),
-    dropDownOverlay = $.querySelector('.notifications-dropdown--overlay'),
-    notificationCenterWrapper = $.querySelector('.notification-center--wrapper');
+const userProfileBtn = $.querySelector('#user-profile')
+const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
+const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
+const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
+const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
+const notificationCenterBtn = $.querySelector('.notification-center--btn')
+const notificationCenterDropDown = $.querySelector('.notification-center-dropdown')
+const dropDownOverlay = $.querySelector('.notifications-dropdown--overlay')
+const notificationCenterWrapper = $.querySelector('.notification-center--wrapper')
 
 const toggleNotificationsCenter = () => {
     notificationCenterDropDown.classList.toggle('notification-center-dropdown__show')
@@ -28,6 +34,15 @@ const toggleNotificationsCenter = () => {
         hasOverlayEvent = true
     }
 }
+
+window.addEventListener('load', async () => {
+    const [data, tickets] = await Promise.all([getMe(), getTickets()])
+    getApplyUsername(data)
+    getApplyBalance(data)
+    getApplyCoursesCount(data)
+    getApplyTicketsCount(tickets)
+    showRecentTicketsHandler(tickets)
+})
 
 notificationCenterBtn.addEventListener('click', toggleNotificationsCenter)
 

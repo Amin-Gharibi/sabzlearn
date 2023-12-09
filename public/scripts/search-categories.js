@@ -1,17 +1,24 @@
-import {changeThemeHandler} from "./funcs/ChangeThemeHandler.js";
-import {toggleMobileMenu} from "./funcs/toggleMobileMenu.js";
-import {toggleProfileDropDown} from "./funcs/toggleProfileDropDown.js";
-import {toggleSubMenusHandler} from "./funcs/toggleSubMenusHandler.js";
+import {
+    changeThemeHandler,
+    showDetailsInAccountCenter, showHeaderMenus,
+    toggleMobileMenu,
+    toggleProfileDropDown,
+    toggleSubMenusHandler
+} from "./utils/utils.js";
+import {getMe} from "./funcs/auth.js";
 
 let $ = document
-const userProfileBtn = $.querySelector('#user-profile'),
-    themeChangerBtn = $.querySelectorAll('.theme-changer-btn'),
-    hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn'),
-    mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn'),
-    mobileMenuOverlay = $.querySelector('.mobile-menu--overlay'),
-    mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items');
+const userProfileBtn = $.querySelector('#user-profile')
+const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
+const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
+const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
+const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
+const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 
-
+window.addEventListener('load', async () => {
+    const [data] = await Promise.all([getMe(), showHeaderMenus()])
+    showDetailsInAccountCenter(data)
+})
 
 
 

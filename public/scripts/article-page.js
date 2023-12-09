@@ -1,17 +1,27 @@
-import {changeThemeHandler} from "./funcs/ChangeThemeHandler.js";
-import {toggleMobileMenu} from "./funcs/toggleMobileMenu.js";
-import {toggleProfileDropDown} from "./funcs/toggleProfileDropDown.js";
-import {toggleSubMenusHandler} from "./funcs/toggleSubMenusHandler.js";
-import {copyShortLinks} from "./funcs/copyShortLinks.js";
+import {
+    changeThemeHandler,
+    toggleMobileMenu,
+    toggleProfileDropDown,
+    toggleSubMenusHandler,
+    copyShortLinks,
+    showDetailsInAccountCenter, showHeaderMenus
+} from "./utils/utils.js";
+import {getMe} from "./funcs/auth.js";
 
 let $ = document
-const themeChangerBtn = $.querySelectorAll('.theme-changer-btn'),
-    mobileMenuOverlay = $.querySelector('.mobile-menu--overlay'),
-    mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn'),
-    hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn'),
-    userProfileBtn = $.querySelector('#user-profile'),
-    mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items'),
-    copyShortLinkBtn = $.querySelector(".short-link--copy-btn");
+const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
+const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
+const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
+const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
+const userProfileBtn = $.querySelector('#user-profile')
+const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
+const copyShortLinkBtn = $.querySelector(".short-link--copy-btn")
+
+window.addEventListener('load', async () => {
+    // const data = await getMe()
+    const [data] = await Promise.all([getMe(), showHeaderMenus()])
+    showDetailsInAccountCenter(data)
+})
 
 themeChangerBtn.forEach(btn => {
     btn.addEventListener('click', changeThemeHandler)

@@ -243,7 +243,7 @@
 </svg>
 
 <main class="flex gap-x-10 2xl:gap-x-14 lg:px-8 xl:px-14 2xl:px-[100px] lg:py-7 md:bg-white md:dark:bg-darkGray-800 ">
-    <!--menu for desktop size-->
+    <!--menu-->
     <aside id="mobile-menu" class="fixed top-0 bottom-0 -right-64 z-50 lg:static w-64 lg:w-56 lg:min-h-[calc(100vh - 68px)] flex flex-col shrink-0 lg:mt-10 px-7 py-5 lg:px-0 lg:py-0 bg-white dark:bg-darkGray-800 transition-all lg:transform-none">
         <!--logos-->
         <div class="flex items-center justify-between pb-5 mb-7 border-b md:border-none border-b-gray-200 dark:border-b-darkSlate">
@@ -300,7 +300,7 @@
             </div>
             <!--for desktop size only, say hello to user-->
             <h3 class="hidden md:block font-danaDemiBold text-2xl">
-            <span>
+            <span class="account-center--username">
                 Amin Gharibi
             </span>
                 عزیز; خوش اومدی 🙌
@@ -352,15 +352,15 @@
                                              class="w-12 h-12 object-cover rounded-full cursor-pointer">
                                     </a>
                                 </div>
-                                <!--user name and balance-->
+                                <!--username and balance-->
                                 <div class="flex flex-col gap-y-1">
                                     <!--user name-->
-                                    <span class="text-lg">
+                                    <span class="account-center--username text-lg">
                                         امین غریبی
                                     </span>
                                     <!--user balance-->
                                     <span class="text-sm text-sky-500 dark:text-secondary">
-                                        موجودی: <span>0</span> تومان
+                                        موجودی: <span class="account-center--balance">0</span> تومان
                                     </span>
                                 </div>
                             </div>
@@ -417,8 +417,8 @@
         <main class="px-5 md:px-0">
             <!--mobile size only, say hello to user-->
             <h3 class="md:hidden mb-7 font-danaDemiBold">
-            <span>
-                Amin Gharibi
+            <span class="account-center--username">
+
             </span>
                 عزیز; خوش اومدی 🙌
             </h3>
@@ -434,12 +434,12 @@
                     </div>
                     <!--box content-->
                     <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
-                    <span class="text-xs">
-                        کش بک
-                    </span>
+                        <span class="text-xs">
+                            کش بک
+                        </span>
                         <span class="font-danaDemiBold text-sm md:text-lg">
-                        0 تومان
-                    </span>
+                            0 تومان
+                        </span>
                     </div>
                 </div>
                 <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-sky-500 dark:bg-secondary rounded-2xl">
@@ -451,12 +451,12 @@
                     </div>
                     <!--box content-->
                     <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
-                    <span class="text-xs">
-                        دوره های من
-                    </span>
+                        <span class="text-xs">
+                            دوره های من
+                        </span>
                         <span class="font-danaDemiBold text-sm md:text-lg">
-                        17 دوره
-                    </span>
+                            <span class="account-center--courses-count"></span> دوره
+                        </span>
                     </div>
                 </div>
                 <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-pink-500 dark:bg-rose-500 rounded-2xl">
@@ -468,12 +468,12 @@
                     </div>
                     <!--box content-->
                     <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
-                    <span class="text-xs">
-                        مجموع تیکت ها
-                    </span>
+                        <span class="text-xs">
+                            مجموع تیکت ها
+                        </span>
                         <span class="font-danaDemiBold text-sm md:text-lg">
-                        5 تیکت
-                    </span>
+                            <span class="account-center--tickets-count"></span> تیکت
+                        </span>
                     </div>
                 </div>
                 <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-primary rounded-2xl">
@@ -489,7 +489,7 @@
                         موجودی حساب
                     </span>
                         <span class="font-danaDemiBold text-sm md:text-lg">
-                        0 تومان
+                        <span class="account-center--balance"></span> تومان
                     </span>
                     </div>
                 </div>
@@ -658,72 +658,8 @@
                             </a>
                         </div>
                         <!--section body-->
-                        <div>
-                            <!--each ticket-->
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    دوره تیلویند
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    دوره تیلویند
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    دوره تیلویند
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    دوره تیلویند
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
-                            </div>
+                        <div class="recent-tickets--wrapper">
+
                         </div>
                     </div>
                     <!--recent questions-->

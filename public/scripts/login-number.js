@@ -1,4 +1,4 @@
-import {alert} from './funcs/alert.js'
+import {alert} from './utils/utils.js'
 
 // define needed variables
 let $ = document

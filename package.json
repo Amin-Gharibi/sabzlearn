@@ -4,5 +4,8 @@
   },
   "scripts": {
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./public/css/app.css --watch"
+  },
+  "dependencies": {
+    "jalaali-js": "^1.2.6"
   }
 }

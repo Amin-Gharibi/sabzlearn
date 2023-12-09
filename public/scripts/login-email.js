@@ -1,4 +1,4 @@
-import {alert} from "./funcs/alert.js";
+import {login} from "./funcs/auth.js";
 
 // variables
 let $ = document
@@ -20,7 +20,7 @@ const toggleRememberMeCheckBox = (event) => {
 const formSubmissionHandler = event => {
     event.preventDefault()
 
-    alert(wholeContainer, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
+    login()
 }
 
 // ------------------------- End of Functions
