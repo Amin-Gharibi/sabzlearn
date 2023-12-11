@@ -319,7 +319,6 @@ window.addEventListener('load',  async () => {
         getPopularCourses()
     ])
 
-    console.log(articles)
     showDetailsInAccountCenter(data)
     showWantedCourses(latestCourses, '.latest-courses--wrapper', false)
     showWantedCourses(newestCourses, '.newest-courses--wrapper', true)
