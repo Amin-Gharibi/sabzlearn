@@ -12,12 +12,12 @@ import {
 import {getMe} from "./funcs/auth.js";
 
 let $ = document
-const userProfileBtn = $.querySelector('#user-profile'),
-    themeChangerBtn = $.querySelectorAll('.theme-changer-btn'),
-    hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn'),
-    mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn'),
-    mobileMenuOverlay = $.querySelector('.mobile-menu--overlay'),
-    mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items');
+const userProfileBtn = $.querySelector('#user-profile')
+const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
+const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
+const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
+const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
+const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 
 const showWantedCourses = (courses, wrapper, isSwiperSlide) => {
     if (!courses.length) {
@@ -208,7 +208,7 @@ const showWantedArticles = articles => {
     const articlesWrapper = $.querySelector('.published-articles--wrapper')
     let day, month, year, date, faDate;
 
-    const finalArticlesStr = articles.slice(0, 4).map(article => {
+    const finalArticlesStr = articles.map(article => {
 
         year = parseInt(article.updatedAt.slice(0, 4))
         month = parseInt(article.updatedAt.slice(5, 7))
@@ -320,11 +320,11 @@ window.addEventListener('load',  async () => {
     ])
 
     showDetailsInAccountCenter(data)
-    showWantedCourses(latestCourses, '.latest-courses--wrapper', false)
+    showWantedCourses(latestCourses.slice(0, 12), '.latest-courses--wrapper', false)
     showWantedCourses(newestCourses, '.newest-courses--wrapper', true)
-    showWantedArticles(articles)
+    showWantedArticles(articles.slice(0, 4))
     showWantedCourses(preSaleCourses, '.pre-sale-courses--wrapper', true)
-    showWantedCourses(popularCourses, '.popular-courses--wrapper', false)
+    showWantedCourses(popularCourses.slice(0, 8), '.popular-courses--wrapper', false)
 })
 
 // add event listeners
