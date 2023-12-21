@@ -14,7 +14,7 @@
 
 .profile-dropdown--overlay__show,
 .notifications-dropdown--overlay__show,
-.mobile-filter--overlay__show {
+.mobile-bottom-sheet--overlay__show {
     @apply fixed inset-0 w-full h-full z-10 bg-black/40 md:backdrop-blur transition-all show;
 }
 
@@ -22,7 +22,7 @@
     z-index: 20 !important;
 }
 
-.mobile-filter--overlay__show {
+.mobile-bottom-sheet--overlay {
     z-index: 30 !important;
 }
 
@@ -44,6 +44,18 @@
 
 .mobile-menu--submenu__open {
     display: block !important;
+}
+
+.mobile-filter__open {
+    @apply flex;
+}
+
+.category-mobile__body-open {
+    @apply block;
+}
+
+.bottom-sheet__open {
+    @apply translate-y-0;
 }
 
 .rotated-svg {
@@ -199,7 +211,7 @@
         @apply hide;
     }
 
-    .mobile-filter--overlay {
+    .mobile-bottom-sheet--overlay {
         @apply hide;
     }
 
@@ -573,10 +585,6 @@
 
     .bottom-sheet {
         @apply fixed bottom-0 right-0 left-0 z-50 translate-y-full transition-transform;
-    }
-
-    .bottom-sheet__open {
-        @apply translate-y-0;
     }
 
     .bottom-sheet__item {
