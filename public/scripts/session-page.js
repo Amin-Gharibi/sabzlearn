@@ -1,5 +1,5 @@
 import {
-    changeThemeHandler,
+    changeThemeHandler, searchFormSubmissionHandler,
     showDetailsInAccountCenter, showHeaderMenus,
     toggleMobileMenu,
     toggleProfileDropDown,
@@ -17,6 +17,12 @@ const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 
 
 window.addEventListener('load', async () => {
+    // handle search input in the header of page
+    const searchForms = document.querySelectorAll('.search-form')
+    searchForms.forEach(form => {
+        form.addEventListener('submit', event => searchFormSubmissionHandler(event))
+    })
+
     const [data] = await Promise.all([getMe(), showHeaderMenus()])
 
     showDetailsInAccountCenter(data)
