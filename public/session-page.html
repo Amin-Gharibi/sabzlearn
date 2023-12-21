@@ -276,10 +276,12 @@
         <div class="flex items-center justify-between pb-5 mt-5 relative border-b border-b-gray-200 dark:border-b-darkSlate">
             <!--logo-->
             <div class="flex items-center gap-x-2">
-                <img src="./images/logos/mainLogo.webp" class="w-[62px]" alt="سبز لرن">
-                <svg class="w-[81px] h-[37px] dark:text-white">
-                    <use href="#logo-type"></use>
-                </svg>
+                <a href="index.html">
+                    <img src="./images/logos/mainLogo.webp" class="w-[62px] inline" alt="سبز لرن">
+                    <svg class="w-[81px] h-[37px] dark:text-white inline">
+                        <use href="#logo-type"></use>
+                    </svg>
+                </a>
             </div>
             <!--close btn-->
             <div id="mobile-menu--close-btn" class="flex items-center justify-center w-9 h-9">
@@ -289,7 +291,7 @@
             </div>
         </div>
         <!--search form-->
-        <form class="block mt-7" method="get">
+        <form class="search-form block mt-7" method="get">
             <label class="relative w-full h-12 block transition-all">
                 <input class="rounded-xl bg-gray-100 dark:bg-darkGray-800 dark:focus:text-white text-slate-500 placeholder:text-slate-500 dark:text-gray-500 dark:placeholder-gray-500 w-full h-full dark:border dark:border-gray-700 dark:focus:border-gray-600 text-base pl-12 pr-5 outline-0 block transition-all"
                        name="search" type="text" placeholder="جستجو">
@@ -485,7 +487,7 @@
     <!--middle section-->
     <div class="flex justify-center items-center h-14">
         <!--sabzlearn logo-->
-        <a href="#" class="block lg:pl-5 lg:ml-5 lg:border-l border-l-gray-100 dark:border-l-gray-700" title="سبزلرن">
+        <a href="index.html" class="block lg:pl-5 lg:ml-5 lg:border-l border-l-gray-100 dark:border-l-gray-700" title="سبزلرن">
             <img src="./images/logos/mainLogo.webp" alt="logo" class="w-20 md:w-[104px]" loading="lazy">
         </a>
 
@@ -503,7 +505,7 @@
         </div>
         <!--search box for large sizes-->
         <div class="h-14 hidden xl:flex justify-center items-center bg-gray-100 dark:bg-transparent text-slate-500 dark:text-darkGray-600 rounded-full">
-            <form action="" class="relative h-full">
+            <form class="search-form relative h-full">
                 <input type="text" placeholder="جستجو"
                        class="w-48 focus:w-64 h-full pl-14 pr-5 focus:text-zinc-700 placeholder-slate-500 dark:placeholder-darkGray-600 rounded-full border border-transparent hover:border-gray-200 dark:border-darkGray-700 dark:hover:border-darkGray-700 focus:border-gray-300 focus:hover:border-gray-200 outline-0 bg-transparent transition-all">
                 <button type="submit" class="w-7 h-7 absolute top-0 bottom-0 my-auto left-5" role="button">

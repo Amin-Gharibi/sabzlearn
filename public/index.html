@@ -212,10 +212,12 @@
         <div class="flex items-center justify-between pb-5 mt-5 relative border-b border-b-gray-200 dark:border-b-darkSlate">
             <!--logo-->
             <div class="flex items-center gap-x-2">
-                <img src="./images/logos/mainLogo.webp" class="w-[62px]" alt="سبز لرن">
-                <svg class="w-[81px] h-[37px] dark:text-white">
-                    <use href="#logo-type"></use>
-                </svg>
+                <a href="index.html">
+                    <img src="./images/logos/mainLogo.webp" class="w-[62px] inline" alt="سبز لرن">
+                    <svg class="w-[81px] h-[37px] dark:text-white inline">
+                        <use href="#logo-type"></use>
+                    </svg>
+                </a>
             </div>
             <!--close btn-->
             <div id="mobile-menu--close-btn" class="flex items-center justify-center w-9 h-9">
@@ -225,7 +227,7 @@
             </div>
         </div>
         <!--search form-->
-        <form class="block mt-7" method="get">
+        <form class="search-form block mt-7" method="get">
             <label class="relative w-full h-12 block transition-all">
                 <input class="rounded-xl bg-gray-100 dark:bg-darkGray-800 dark:focus:text-white text-slate-500 placeholder:text-slate-500 dark:text-gray-500 dark:placeholder-gray-500 w-full h-full dark:border dark:border-gray-700 dark:focus:border-gray-600 text-base pl-12 pr-5 outline-0 block transition-all"
                        name="search" type="text" placeholder="جستجو">
@@ -421,7 +423,7 @@
     <!--middle section-->
     <div class="flex justify-center items-center h-14">
         <!--sabzlearn logo-->
-        <a href="#" class="block lg:pl-5 lg:ml-5 lg:border-l border-l-gray-100 dark:border-l-gray-700" title="سبزلرن">
+        <a href="index.html" class="block lg:pl-5 lg:ml-5 lg:border-l border-l-gray-100 dark:border-l-gray-700" title="سبزلرن">
             <img src="./images/logos/mainLogo.webp" alt="logo" class="w-20 md:w-[104px]" loading="lazy">
         </a>
 
@@ -439,7 +441,7 @@
         </div>
         <!--search box for large sizes-->
         <div class="h-14 hidden xl:flex justify-center items-center bg-gray-100 dark:bg-transparent text-slate-500 dark:text-darkGray-600 rounded-full">
-            <form action="" class="relative h-full">
+            <form class="search-form relative h-full">
                 <input type="text" placeholder="جستجو"
                        class="w-48 focus:w-64 h-full pl-14 pr-5 focus:text-zinc-700 placeholder-slate-500 dark:placeholder-darkGray-600 rounded-full border border-transparent hover:border-gray-200 dark:border-darkGray-700 dark:hover:border-darkGray-700 focus:border-gray-300 focus:hover:border-gray-200 outline-0 bg-transparent transition-all">
                 <button type="submit" class="w-7 h-7 absolute top-0 bottom-0 my-auto left-5" role="button">
@@ -609,7 +611,7 @@
                     </p>
                 </div>
                 <div class="self-end">
-                    <a href="/courses"
+                    <a href="search-categories.html"
                        class="font-danaMedium flex justify-end items-center gap-x-0.5 rounded-xl px-2.5 py-2 text-sky-500 hover:bg-sky-500/10 dark:text-secondary dark:hover:bg-secondary/10 transition-colors">
                         مشاهده همه دوره ها
                         <svg class="w-5 h-5">
@@ -640,8 +642,8 @@
             <!--section body-->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-10 text-white">
                 <div class="overflow-hidden rounded-2xl h-40">
-                    <a href="#"
-                       class="relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#FFB535] to-[#F2295B]">
+                    <a href="search-categories.html?cat=frontend" data-value="frontend"
+                       class="categories relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#FFB535] to-[#F2295B]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" x="0" y="0" viewBox="0 0 66 66">
                             <path d="m58.08 10.05c1.31 0 2.37-1.06 2.37-2.37s-1.06-2.37-2.37-2.37-2.37 1.06-2.37 2.37 1.07 2.37 2.37 2.37zm0-3.05c.38 0 .69.31.69.69s-.31.69-.69.69c-.39 0-.69-.3-.69-.69s.31-.69.69-.69z"
                                   fill="#ffffff" data-original="#000000" class=""></path>
@@ -657,12 +659,12 @@
                         <span class="font-danaDemiBold text-2xl">
                             فرانت اند
                         </span>
-                        <span class="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">25</span>
+                        <span class="categories--courses-count absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">0</span>
                     </a>
                 </div>
                 <div class="overflow-hidden rounded-2xl h-40">
-                    <a href="#"
-                       class="relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#30C4EB] to-[#27E55C]">
+                    <a href="search-categories.html?cat=security" data-value="security"
+                       class="categories relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#30C4EB] to-[#27E55C]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" x="0" y="0"
                              viewBox="0 0 512.001 512.001">
                             <path d="M466.395,88.411C395.95,69.109,325.091,39.054,261.478,1.496c-3.379-1.995-7.572-1.995-10.95,0
@@ -700,12 +702,12 @@
                         <span class="font-danaDemiBold text-2xl">
                             امنیت
                         </span>
-                        <span class="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">25</span>
+                        <span class="categories--courses-count absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">0</span>
                     </a>
                 </div>
                 <div class="overflow-hidden rounded-2xl h-40">
-                    <a href="#"
-                       class="relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#9C33F7] to-[#2B9FFF]">
+                    <a href="search-categories.html?cat=python" data-value="python"
+                       class="categories relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#9C33F7] to-[#2B9FFF]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" x="0" y="0" viewBox="0 0 64 64">
                             <circle cx="29" cy="14" r="2" fill="#ffffff" data-original="#000000"></circle>
                             <path d="m52 21h-6v-9c0-2.757-2.243-5-5-5h-14c-2.757 0-5 2.243-5 5v7h-10c-2.757 0-5 2.243-5 5v14c0 2.757 2.243 5 5 5h6v9c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5v-7h10c2.757 0 5-2.243 5-5v-14c0-2.757-2.243-5-5-5zm-43 17v-14c0-1.654 1.346-3 3-3h22c1.323 0 1.324-2 0-2h-10v-7c0-1.654 1.346-3 3-3h14c1.654 0 3 1.346 3 3v16c0 1.654-1.346 3-3 3h-18c-2.757 0-5 2.243-5 5v5h-6c-1.654 0-3-1.346-3-3zm46 2c0 1.654-1.346 3-3 3h-22c-1.323 0-1.324 2 0 2h10v7c0 1.654-1.346 3-3 3h-14c-1.654 0-3-1.346-3-3v-10-6c0-1.654 1.346-3 3-3h18c2.757 0 5-2.243 5-5v-5h6c1.654 0 3 1.346 3 3z"
@@ -715,12 +717,12 @@
                         <span class="font-danaDemiBold text-2xl">
                             پایتون
                         </span>
-                        <span class="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">25</span>
+                        <span class="categories--courses-count absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">0</span>
                     </a>
                 </div>
                 <div class="overflow-hidden rounded-2xl h-40">
-                    <a href="#"
-                       class="relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#FF3571] to-[#870075]">
+                    <a href="search-categories.html?cat=softskills" data-value="softskills"
+                       class="categories relative w-full h-full flex flex-col justify-center items-center gap-y-2.5 bg-gradient-to-r from-[#FF3571] to-[#870075]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" x="0" y="0"
                              viewBox="0 0 511.999 511.999">
                             <path d="M502.044,227.555l-62.141-62.141c13.191-3.238,25.727-9.909,36.022-20.211c15.054-15.047,22.615-34.848,22.61-54.566
@@ -764,7 +766,7 @@
                         <span class="font-danaDemiBold text-2xl">
                             مهارت های نرم
                         </span>
-                        <span class="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">25</span>
+                        <span class="categories--courses-count absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-white dark:bg-darkGray-800 font-danaMedium text-center text-zinc-700 dark:text-white">0</span>
                     </a>
                 </div>
             </div>
