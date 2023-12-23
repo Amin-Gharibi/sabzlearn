@@ -18,7 +18,12 @@ const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 const copyShortLinkBtn = $.querySelector(".short-link--copy-btn")
 
 window.addEventListener('load', async () => {
-    // const data = await getMe()
+    // handle search input in the header of page
+    const searchForms = document.querySelectorAll('.search-form')
+    searchForms.forEach(form => {
+        form.addEventListener('submit', event => searchFormSubmissionHandler(event))
+    })
+
     const [data] = await Promise.all([getMe(), showHeaderMenus()])
     showDetailsInAccountCenter(data)
 })
