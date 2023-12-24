@@ -555,10 +555,9 @@
 <main>
     <div class="container">
         <!--page address section-->
-        <section
-                class="h-[50px] hidden md:flex justify-start items-center mt-7 bg-white dark:bg-darkGray-800 text-lg text-zinc-700 dark:text-white shadow-light overflow-x-auto overflow-y-hidden rounded-2xl">
+        <section class="page-address-bar h-[50px] hidden md:flex justify-start items-center mt-7 bg-white dark:bg-darkGray-800 text-lg text-zinc-700 dark:text-white shadow-light overflow-x-auto overflow-y-hidden rounded-2xl">
             <div class="page-address--item">
-                <a href="#">
+                <a href="index.html">
                     <svg class="w-6 h-6">
                         <use href="#home"></use>
                     </svg>
@@ -569,49 +568,23 @@
             </svg>
 
             <div class="page-address--item">
-                <a href="#">
+                <a href="search-categories.html">
                     دوره ها
                 </a>
             </div>
             <svg class="w-10 h-full text-gray-100 dark:text-darkGray">
                 <use href="#chevron-left-address"></use>
             </svg>
-
-            <div class="page-address--item">
-                <a href="#">
-                    فرانت اند
-                </a>
-            </div>
-            <svg class="w-10 h-full text-gray-100 dark:text-darkGray">
-                <use href="#chevron-left-address"></use>
-            </svg>
-
-            <div class="page-address--item">
-                <a href="#">
-                    آموزش Next.js بصورت پروژه محور
-                </a>
-            </div>
         </section>
         <!--course initial details-->
-        <section
-                class="flex flex-col lg:flex-row justify-between items-stretch gap-x-5 xl:gap-x-10 mt-5 mb-4 sm:my-10 p-3.5 sm:p-0  bg-white sm:bg-transparent dark:bg-darkGray-800 dark:sm:bg-transparent rounded-2xl">
+        <section class="flex flex-col lg:flex-row justify-between items-stretch gap-x-5 xl:gap-x-10 mt-5 mb-4 sm:my-10 p-3.5 sm:p-0  bg-white sm:bg-transparent dark:bg-darkGray-800 dark:sm:bg-transparent rounded-2xl">
             <!--section content-->
-            <div class="order-2 lg:order-1 flex flex-col justify-start items-start">
+            <div class="w-full order-2 lg:order-1 flex flex-col justify-start items-start">
                 <!--upper side-->
                 <div class="flex-grow">
-                    <h1 class="font-morabbaBold text-2xl/[42px] sm:text-3xl/[48px] lg:text-[32px]/[48px] text-zinc-700 dark:text-white lg:line-clamp-2">
-                        آموزش Next.js بصورت پروژه محور
+                    <h1 id="course-name" class="font-morabbaBold text-2xl/[42px] sm:text-3xl/[48px] lg:text-[32px]/[48px] text-zinc-700 dark:text-white lg:line-clamp-2">
                     </h1>
-                    <p class="text-lg sm:text-xl/8 line-clamp-4 lg:line-clamp-2 xl:line-clamp-3 mt-3.5 xl:mt-5 text-zinc-700 dark:text-white">
-                        نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای
-                        توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره
-                        نکست هم داره، بعلاوه چند چیز دیگه که اینجا جا نمیشه بخوام بگم
-                        نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای
-                        توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره
-                        نکست هم داره، بعلاوه چند چیز دیگه که اینجا جا نمیشه بخوام بگم
-                        نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای
-                        توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره
-                        نکست هم داره، بعلاوه چند چیز دیگه که اینجا جا نمیشه بخوام بگم
+                    <p id="course-description" class="text-lg sm:text-xl/8 line-clamp-4 lg:line-clamp-2 xl:line-clamp-3 mt-3.5 xl:mt-5 text-zinc-700 dark:text-white">
                     </p>
                 </div>
                 <!--lower side-->
@@ -621,35 +594,12 @@
                     <!--price and shop-->
                     <div class="flex flex-col-reverse sm:flex-row justify-between items-center mt-6 sm:mt-3.5">
                         <!--button-->
-                        <div class="w-full sm:w-max">
-                            <!--when registered-->
-                            <a href="#lessons"
-                               class="w-full sm:w-auto h-[62px] hidden justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-secondary-light hover:bg-sky-600 dark:bg-[#4E81FB] dark:hover:bg-[#2563EB] text-white select-none rounded-xl transition-all">
-                                <svg class="w-8 h-8">
-                                    <use href="#play-circle"></use>
-                                </svg>
-                                <span>
-                                مشاهده دوره
-                            </span>
-                            </a>
-                            <!--when not registered-->
-                            <a href="#"
-                               class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
-                                <svg class="w-[25px] h-[30px]">
-                                    <use href="#shield-done"></use>
-                                </svg>
-                                <span>
-                                شرکت در دوره
-                            </span>
-                            </a>
+                        <div id="watch-or-register-course-btn" class="w-full sm:w-max">
                         </div>
                         <!--price-->
-                        <span class="inline-flex justify-center items-center gap-x-1.5 flex-wrap font-danaDemiBold text-3xl text-zinc-700 dark:text-white mr-4 sm:mr-2 mb-5 sm:mb-0">
-                        1,290,000
-                        <svg class="w-6 h-6">
-                            <use href="#toman"></use>
-                        </svg>
-                    </span>
+                        <div id="course-price" class="flex justify-center sm:justify-end mb-1 items-center">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -670,7 +620,7 @@
                         </svg>
                         <div>
                             <h4 class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">وضعیت دوره</h4>
-                            <p class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5">در حال برگزاری</p>
+                            <p id="course-situation" class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5"></p>
                         </div>
                     </div>
 
@@ -681,7 +631,7 @@
                         </svg>
                         <div>
                             <h4 class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">مدت زمان دوره</h4>
-                            <p class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5">21 ساعت</p>
+                            <p id="course-time" class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5"></p>
                         </div>
                     </div>
 
@@ -693,7 +643,7 @@
                         </svg>
                         <div>
                             <h4 class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">آخرین بروزرسانی</h4>
-                            <p class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5">12/09/1402</p>
+                            <p id="course-updated-at" class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5"></p>
                         </div>
                     </div>
 
@@ -704,7 +654,7 @@
                         </svg>
                         <div>
                             <h4 class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">روش پشتیبانی</h4>
-                            <p class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5">آنلاین</p>
+                            <p id="course-support" class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5"></p>
                         </div>
                     </div>
 
@@ -715,7 +665,7 @@
                         </svg>
                         <div>
                             <h4 class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">پیش نیاز</h4>
-                            <p class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5">ReactJS</p>
+                            <p id="course-requirement" class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5"></p>
                         </div>
                     </div>
 
@@ -727,7 +677,7 @@
                         </svg>
                         <div>
                             <h4 class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">نوع مشاهده</h4>
-                            <p class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5">به صورت آنلاین</p>
+                            <p id="course-watching-option" class="text-slate-500 dark:text-darkGray-500 text-xs mt-0.5 sm:mt-1.5"></p>
                         </div>
                     </div>
                 </div>
@@ -742,7 +692,7 @@
                             </svg>
 
                             <div class="text-center">
-                                <span class="block font-danaDemiBold text-2xl dark:text-white">1293</span>
+                                <span class="course-students block font-danaDemiBold text-2xl dark:text-white"></span>
                                 <span class="block text-slate-500 dark:text-darkGray-500 text-sm">دانشجو</span>
                             </div>
                         </div>
@@ -753,7 +703,7 @@
                             </svg>
 
                             <div class="text-center">
-                                <span class="block font-danaDemiBold text-2xl dark:text-white">5.0</span>
+                                <span class="course-rating block font-danaDemiBold text-2xl dark:text-white"></span>
                                 <span class="block text-slate-500 dark:text-darkGray-500 text-sm">رضایت</span>
                             </div>
                         </div>
@@ -763,34 +713,14 @@
                         <!--progress title-->
                         <div class="mb-4 flex justify-between items-center dark:text-white text-xl">
                             <span>درصد تکمیل دوره</span>
-                            <span>70%</span>
+                            <span class="course-progress__title"></span>
                         </div>
                         <!--progress bar-->
-                        <progress value="70" max="100" class="h-2.5 w-full align-baseline"></progress>
+                        <progress value="" max="100" class="course-progress__bar h-2.5 w-full align-baseline"></progress>
                     </div>
                 </div>
                 <!--teacher for mobile size-->
-                <div class="lg:hidden flex flex-col justify-center items-center bg-white dark:bg-darkGray-800 mt-4 p-5 pb-[14px] shadow-light dark:shadow-none rounded-2xl">
-                    <div class="w-full flex justify-center items-center gap-x-2.5 mb-3.5 pb-5 border-b lg:border-none border-b-gray-100 dark:border-b-darkSlate">
-                        <img src="./images/avatars/saeediRad.png" alt="teacher-picture"
-                             class="block w-[60px] h-[60px] object-cover rounded-full">
-                        <div>
-                            <h4 class="mb-1 font-danaDemiBold text-2xl dark:text-white">
-                                محمدامین سعیدی راد
-                            </h4>
-                            <p class="mt-1.5 text-sm text-slate-500 dark:text-darkGray-500">
-                                Full Stack Web Developer
-                            </p>
-                        </div>
-                    </div>
-                    <a href="#" class="inline-flex gap-x-1.5 text-sm text-slate-500 dark:text-darkGray-500">
-                        <svg class="w-5 h-5">
-                            <use href="#exit"></use>
-                        </svg>
-                        <span>
-                            مشاهده پروفایل
-                        </span>
-                    </a>
+                <div class="course-teacher-section__mobile lg:hidden flex flex-col justify-center items-center bg-white dark:bg-darkGray-800 mt-4 p-5 pb-[14px] shadow-light dark:shadow-none rounded-2xl">
                 </div>
                 <!--lessons-->
                 <div class="bg-white dark:bg-darkGray-800 mt-4 sm:mt-5 px-3.5 md:px-5 pt-5 md:pt-7 pb-3.5 md:pb-6 shadow-light dark:shadow-none rounded-2xl">
@@ -802,7 +732,7 @@
                                 سرفصل های دوره
                             </h3>
                         </div>
-                        <span class="dark:text-white">
+                        <span id="course-exact-time" class="dark:text-white">
                             22:03
                         </span>
                     </div>
@@ -813,7 +743,7 @@
                             <!--title and what you see whe closed-->
                             <div class="topic__title">
                                 <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
+                                    سرفصل ها توسط بک اند هندل نشده اند :(
                                 </h3>
                                 <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
                                     <use href="#chevron-down"></use>
@@ -821,598 +751,13 @@
                             </div>
                             <!--episodes-->
                             <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <!--title and what you see whe closed-->
-                            <div class="topic__title">
-                                <h3 class="font-danaMedium text-base md:text-xl dark:text-white">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 dark:text-white transition-transform">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--episodes-->
-                            <div class="topic__body" style="max-height: 0;">
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
-                                    <!--episode title-->
-                                    <a href="#" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
-                                        <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
-                                            1
-                                        </span>
-                                        <h4 class="text-sm md:text-lg dark:text-white group-hover:text-primary transition-colors">
-                                            معرفی دوره + پاسخ به سوالات متداول
-                                        </h4>
-                                    </a>
-                                    <!--episode tag and time-->
-                                    <div class="w-full flex justify-between items-center mt-3.5">
-                                        <span class="inline-block h-[25px] leading-[25px] px-2.5 bg-gray-200 dark:bg-darkSlate group-hover:bg-primary/10 text-xs dark:text-white group-hover:text-primary rounded transition-colors">
-                                            جلسه رایگان
-                                        </span>
-                                        <div class="flex justify-end items-center gap-x-1.5 md:gap-x-2">
-                                            <span class="text-sm md:text-lg text-slate-500 dark:text-darkGray-500">08:26</span>
-                                            <svg class="w-5 h-5 md:w-6 md:h-6 dark:text-white group-hover:text-primary transition-colors">
-                                                <use href="#play-circle"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--course comments-->
-                <div class="mt-4 sm:mt-5 px-3.5 md:px-5 pt-5 md:pt-7 md:pb-6 bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none rounded-2xl">
+                <div class="mt-4 sm:mt-5 px-3.5 md:px-5 pt-5 md:pt-7 md:pb-6 pb-2 bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none rounded-2xl">
                     <!--top side-->
                     <div class="flex justify-between items-center flex-wrap mb-5">
                         <!--title-->
@@ -1423,24 +768,15 @@
                             </h3>
                         </div>
                         <!--new comment button-->
-                        <button class="w-max h-10 flex justify-center items-center px-4 text-base bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
+                        <button id="show-add-new-comment-form-btn" class="w-max h-10 flex justify-center items-center px-4 text-base bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
                             ایجاد نظر جدید
                         </button>
                     </div>
                     <!--add new comment form-->
-                    <form class="mb-5">
+                    <form class="add-comment-form">
                         <!--form header-->
-                        <div class="flex items-center gap-x-2 mb-3">
-                            <img src="./images/profile.png" alt="user-profile-picture"
-                                 class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
-                            <div class="dark:text-white">
-                                <span class="inline-block font-danaMedium text-base md:text-xl">
-                                    Amin
-                                </span>
-                                <p class="text-sm text-slate-500 dark:text-darkGray-500">
-                                    ثبت نظر جدید
-                                </p>
-                            </div>
+                        <div id="add-comment-form-header" class="flex items-center gap-x-2 mb-3">
+
                         </div>
                         <!--form content-->
                         <textarea rows="6" id="comment-textarea"
@@ -1448,221 +784,17 @@
                                   placeholder="نظر خود را بنویسید ..."></textarea>
                         <!--form buttons-->
                         <div class="flex gap-x-2 justify-end mt-2.5">
-                            <button class="w-max h-10 flex justify-center items-center px-4 text-base bg-gray-200 hover:bg-gray-300 dark:bg-darkGray-700 dark:hover:bg-darkSlate dark:text-white select-none rounded-xl transition-all"
+                            <button type="button" class="w-max h-10 flex justify-center items-center px-4 text-base bg-gray-200 hover:bg-gray-300 dark:bg-darkGray-700 dark:hover:bg-darkSlate dark:text-white select-none rounded-xl transition-all"
                                     id="comment-cancel-btn">لغو
                             </button>
-                            <button class="w-max h-10 flex justify-center items-center px-4 text-base bg-sky-500 hover:bg-sky-600 dark:bg-[#4E81FB] dark:hover:bg-[#2563EB] text-white select-none rounded-xl transition-all"
+                            <button type="submit" class="w-max h-10 flex justify-center items-center px-4 text-base bg-sky-500 hover:bg-sky-600 dark:bg-[#4E81FB] dark:hover:bg-[#2563EB] text-white select-none rounded-xl transition-all"
                                     id="comment-submit-btn">ثبت
                             </button>
                         </div>
                     </form>
                     <!--comments container-->
-                    <div class="space-y-3.5 sm:space-y-5">
+                    <div id="course-comments-container" class="space-y-3.5 sm:space-y-5">
                         <!--each comment-->
-                        <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-100 dark:bg-darkGray-700 rounded-2xl">
-                            <!--user profile and role for desktop-->
-                            <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="./images/profile.png" alt="user-profile"
-                                     class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                <span class="w-[60px] h-[18px] bg-slate-500 dark:bg-slate-400/10 text-xs text-white dark:text-slate-400 text-center rounded">
-                                    کاربر
-                                </span>
-                            </div>
-                            <!--user name && comment && answers-->
-                            <div class="w-full">
-                                <!--username && date && profile and role for mobile && reply btn-->
-                                <div class="w-full flex justify-between items-center">
-                                    <!--username && date && profile and role for mobile size-->
-                                    <div class="flex items-center gap-x-2">
-                                        <img src="./images/profile.png" alt="profile"
-                                             class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                        <div class="shrink-0">
-                                            <!--username-->
-                                            <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                Amin Gharibi
-                                            </span>
-                                            <!--user role and release date-->
-                                            <div class="flex items-center gap-x-1.5 mt-1">
-                                                <span class="md:hidden w-[60px] h-[18px] bg-slate-500 dark:bg-slate-400/10 text-xs text-white dark:text-slate-400 text-center rounded">
-                                                    کاربر
-                                                </span>
-                                                <span class="text-xs text-slate-500 dark:text-white">
-                                                    1402/09/13
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--reply btn-->
-                                    <button class="w-6 h-5 text-slate-500 dark:text-gray-500">
-                                        <svg class="w-6 h-5">
-                                            <use href="#reply"></use>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <!--comment content-->
-                                <p class="dark:text-white leading-7 mt-3.5">
-                                    خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این موجود،
-                                    نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و ضعف هندل می
-                                    کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه که با
-                                    همکاری سبزلرن بیشتر از هر دانشگاهی در ایران برنامه نویس تربیت کردن و باعث ارتقا دانش
-                                    برنامه نویسی بین پارسی زبانان شدن از همه شما متشکرم
-                                    فقط اگر این آهنگ intro اول جلسات رو که یه صدای ترق گوش سوراخ کن داره رو عوض می کردید
-                                    دو چندان سپاسگذار می شدم
-                                </p>
-                                <!--answers-->
-                                <div class="mt-7 space-y-3.5 md:space-y-5">
-                                    <!--each answer-->
-                                    <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
-                                        <!--user profile and role-->
-                                        <div class="hidden md:flex flex-col items-center gap-y-2">
-                                            <img src="./images/profile.png" alt="user-profile"
-                                                 class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                            <span class="w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                مدیریت
-                                            </span>
-                                        </div>
-                                        <!--user name && comment-->
-                                        <div class="w-full">
-                                            <!--username && date && profile and role for mobile size-->
-                                            <div class="w-full flex justify-between items-center">
-                                                <!--username && date && profile and role for mobile size-->
-                                                <div class="flex items-center gap-x-2">
-                                                    <img src="./images/profile.png" alt="profile"
-                                                         class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                                    <div class="shrink-0">
-                                                        <!--username-->
-                                                        <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                            قدیر یلمه
-                                                        </span>
-                                                        <!--user role and release date-->
-                                                        <div class="flex items-center gap-x-1.5 mt-1">
-                                                            <span class="md:hidden w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                                مدیریت
-                                                            </span>
-                                                            <span class="text-xs text-slate-500 dark:text-white">
-                                                                1402/09/13
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--comment content-->
-                                            <p class="dark:text-white leading-7 mt-3.5">
-                                                خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این
-                                                موجود،
-                                                نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و
-                                                ضعف
-                                                هندل می
-                                                کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه
-                                                که
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-100 dark:bg-darkGray-700 rounded-2xl">
-                            <!--user profile and role-->
-                            <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="./images/profile.png" alt="user-profile"
-                                     class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                <span class="w-[60px] h-[18px] bg-primary dark:bg-primary/10 text-xs text-white dark:text-primary text-center rounded">
-                                    دانشجو
-                                </span>
-                            </div>
-                            <!--user name && comment && answers-->
-                            <div class="w-full">
-                                <!--username && date && profile and role for mobile size && reply btn-->
-                                <div class="w-full flex justify-between items-center">
-                                    <!--username && date && profile and role for mobile size-->
-                                    <div class="flex items-center gap-x-2">
-                                        <img src="./images/profile.png" alt="profile"
-                                             class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                        <div class="shrink-0">
-                                            <!--username-->
-                                            <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                Amin Gharibi
-                                            </span>
-                                            <!--user role and release date-->
-                                            <div class="flex items-center gap-x-1.5 mt-1">
-                                                <span class="md:hidden w-[60px] h-[18px] bg-primary dark:bg-primary/10 text-xs text-white dark:text-primary text-center rounded">
-                                                    دانشجو
-                                                </span>
-                                                <span class="text-xs text-slate-500 dark:text-white">
-                                                    1402/09/13
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--reply btn-->
-                                    <button class="w-6 h-5 text-slate-500 dark:text-gray-500">
-                                        <svg class="w-6 h-5">
-                                            <use href="#reply"></use>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <!--comment content-->
-                                <p class="dark:text-white leading-7 mt-3.5">
-                                    خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این موجود،
-                                    نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و ضعف هندل می
-                                    کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه که با
-                                    همکاری سبزلرن بیشتر از هر دانشگاهی در ایران برنامه نویس تربیت کردن و باعث ارتقا دانش
-                                    برنامه نویسی بین پارسی زبانان شدن از همه شما متشکرم
-                                    فقط اگر این آهنگ intro اول جلسات رو که یه صدای ترق گوش سوراخ کن داره رو عوض می کردید
-                                    دو چندان سپاسگذار می شدم
-                                </p>
-                                <!--answers-->
-                                <div class="mt-7 space-y-3.5 md:space-y-5">
-                                    <!--each answer-->
-                                    <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
-                                        <!--user profile and role-->
-                                        <div class="hidden md:flex flex-col items-center gap-y-2">
-                                            <img src="./images/profile.png" alt="user-profile"
-                                                 class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                            <span class="w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                مدرس
-                                            </span>
-                                        </div>
-                                        <!--user name && comment-->
-                                        <div class="w-full">
-                                            <!--username && date-->
-                                            <div class="w-full flex justify-between items-center">
-                                                <!--username && date && profile and role for mobile size-->
-                                                <div class="flex items-center gap-x-2">
-                                                    <img src="./images/profile.png" alt="profile"
-                                                         class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                                    <div class="shrink-0">
-                                                        <!--username-->
-                                                        <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                            محمدامین سعیدی راد
-                                                        </span>
-                                                        <!--user role and release date-->
-                                                        <div class="flex items-center gap-x-1.5 mt-1">
-                                                            <span class="md:hidden w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                                مدرس
-                                                            </span>
-                                                            <span class="text-xs text-slate-500 dark:text-white">
-                                                                1402/09/13
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--comment content-->
-                                            <p class="dark:text-white leading-7 mt-3.5">
-                                                خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این
-                                                موجود،
-                                                نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و
-                                                ضعف
-                                                هندل می
-                                                کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه
-                                                که
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1679,7 +811,7 @@
                             </svg>
 
                             <div class="text-center">
-                                <span class="block font-danaDemiBold text-2xl dark:text-white">1293</span>
+                                <span class="course-students block font-danaDemiBold text-2xl dark:text-white"></span>
                                 <span class="block text-slate-500 dark:text-darkGray-500 text-sm">دانشجو</span>
                             </div>
                         </div>
@@ -1690,7 +822,7 @@
                             </svg>
 
                             <div class="text-center">
-                                <span class="block font-danaDemiBold text-2xl dark:text-white">5.0</span>
+                                <span class="course-rating block font-danaDemiBold text-2xl dark:text-white"></span>
                                 <span class="block text-slate-500 dark:text-darkGray-500 text-sm">رضایت</span>
                             </div>
                         </div>
@@ -1700,28 +832,14 @@
                         <!--progress title-->
                         <div class="mb-4 flex justify-between items-center dark:text-white text-xl">
                             <span>درصد تکمیل دوره</span>
-                            <span>70%</span>
+                            <span class="course-progress__title"></span>
                         </div>
                         <!--progress bar-->
-                        <progress value="70" max="100" class="h-2.5 w-full align-baseline"></progress>
+                        <progress value="" max="100" class="course-progress__bar h-2.5 w-full align-baseline"></progress>
                     </div>
                 </div>
                 <!--teacher-->
-                <div class="hidden lg:flex flex-col justify-start items-center bg-white dark:bg-darkGray-800 py-6 px-5 shadow-light dark:shadow-none rounded-2xl">
-                    <img src="./images/avatars/saeediRad.png" alt="teacher-picture"
-                         class="block w-[90px] h-[90px] mb-2 object-cover rounded-full">
-                    <h4 class="mb-1 text-2xl dark:text-white">
-                        محمدامین سعیدی راد
-                    </h4>
-                    <a href="#" class="inline-flex gap-x-1.5 text-slate-500 dark:text-darkGray-500 text-sm">
-                        <span>
-                            مدرس دوره
-                        </span>
-                        <svg class="w-5 h-5">
-                            <use href="#exit"></use>
-                        </svg>
-                    </a>
-                    <p class="text-zinc-700 dark:text-white font-danaLight mt-2.5"></p>
+                <div class="course-teacher-section__desktop hidden lg:flex flex-col justify-start items-center bg-white dark:bg-darkGray-800 py-6 px-5 shadow-light dark:shadow-none rounded-2xl">
                 </div>
                 <!--short link-->
                 <div class="hidden lg:block px-5 py-6 bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none rounded-2xl overflow-hidden">

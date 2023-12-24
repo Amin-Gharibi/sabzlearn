@@ -309,13 +309,31 @@ const getPublishedArticles = async () => {
     return allArticles.filter(article => article.publish)
 }
 
-const createCourseTemplate = (courses, isSwiperSlide) => {
-    const coursesFinalStr = Array.from(courses).map(course => {
+const timeToHour = time => {
+    const separatedTime = time.split(':').map(copyOfTime => +copyOfTime)
+    let finalAnswer;
+    if (separatedTime.length === 3) {
+        finalAnswer = separatedTime[0] * 3600 + separatedTime[1] * 60 + separatedTime[3]
+    } else if (separatedTime.length === 2) {
+        finalAnswer = separatedTime[0] * 60 + separatedTime[1]
+    } else if (separatedTime.length === 1) {
+        finalAnswer = separatedTime[0]
+    }
+
+    return finalAnswer / 3600;
+}
+
+const createCourseTemplate = async (courses, isSwiperSlide) => {
+    const coursesFinalStr = await Promise.all(Array.from(courses).map(async course => {
+        const courseWithSessions = await getCourseByShortName(course.shortName)
+        const relativeMin = courseWithSessions.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0).toString().split('.')[1] || '0'
+        const exactMin = (Number('0.' + relativeMin) * 60).toFixed(0)
+
         return `
             <div class="${course.off === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden rounded-2xl bg-white dark:bg-darkGray-800">
                 <!--item image-->
                 <div class="w-full h-[168px] rounded-2xl overflow-hidden">
-                    <a href="/course-page.html?c=${course.href}" title="${course.name}" class="w-full h-full">
+                    <a href="course-page.html?c=${course.shortName}" title="${course.name}" class="w-full h-full">
                         <img src="http://localhost:4000/courses/covers/${course.cover}" alt="${course.name}"
                              loading="lazy"
                              class="w-full h-full object-cover">
@@ -325,13 +343,13 @@ const createCourseTemplate = (courses, isSwiperSlide) => {
                 <div class="${course.off === 0 ? 'flex flex-col ' : 'pb-2 '}px-5 pt-2.5 flex-grow">
                     <!--item tags-->
                     <div class="mb-2.5">
-                        <a href="#"
+                        <a href="${course.categoryID.name}"
                            class="inline-flex items-center justify-center text-xs text-sky-500 dark:text-yellow-400 bg-sky-500/10 dark:bg-yellow-400/10 py-1 px-1.5 rounded">
                             ${course.categoryID.title}
                         </a>
                     </div>
                     <!--item title-->
-                    <a href="#"
+                    <a href="course-page.html?c=${course.shortName}"
                        class="inline-flex font-danaMedium text-zinc-700 dark:text-white mb-2.5 max-h-12 line-clamp-2">
                         ${course.name}
                     </a>
@@ -361,8 +379,8 @@ const createCourseTemplate = (courses, isSwiperSlide) => {
                                     <use href="#clock"></use>
                                 </svg>
                                 <span>
-                                00:00
-                            </span>
+                                    ${(courseWithSessions.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0) || '0').toString().split('.')[0].padStart(2, '0') + ':' + exactMin.padStart(2, '0')}
+                                </span>
                             </div>
                         </div>
                         <!--rate-->
@@ -407,9 +425,9 @@ const createCourseTemplate = (courses, isSwiperSlide) => {
                 </div>
             </div>
         `
-    }).join('')
+    }))
 
-    return coursesFinalStr
+    return coursesFinalStr.join('')
 }
 
 const addSearchParam = (key, value) => {
@@ -490,7 +508,7 @@ const showCoursesBasedOnUrl = async (courses, shownCoursesCount) => {
     }
 
     // updates the inner html of the container
-    filteredCoursesWrapper.innerHTML = createCourseTemplate(finalCourses.slice(0, shownCoursesCount), false)
+    filteredCoursesWrapper.innerHTML = await createCourseTemplate(finalCourses.slice(0, shownCoursesCount), false)
     // updates the note at the end of the page
     categoryCoursesLowerOptionsHandler(finalCourses, shownCoursesCount)
 }
@@ -682,6 +700,11 @@ const filterCourses = async (courses, filter) => {
     return courses
 }
 
+const intlDateToPersianDate = (year, month, day) => {
+    const date = new Date(year, month, day)
+    return new Intl.DateTimeFormat('fa-IR').format(date)
+}
+
 const createArticlesTemplate = articles => {
     let day, month, year, date, faDate;
 
@@ -690,8 +713,7 @@ const createArticlesTemplate = articles => {
         year = parseInt(article.updatedAt.slice(0, 4))
         month = parseInt(article.updatedAt.slice(5, 7))
         day = parseInt(article.updatedAt.slice(8, 10))
-        date = new Date(year, month, day)
-        faDate = new Intl.DateTimeFormat('fa-IR').format(date)
+        faDate = intlDateToPersianDate(year, month, day)
 
         return `
             <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border border-gray-700 rounded-2xl">
@@ -763,6 +785,30 @@ const searchFormSubmissionHandler = event => {
     location.href = `search-categories.html?s=${searchInput.value}`
 }
 
+const getCourseByShortName = async shortName => {
+    const response = await fetch(`http://localhost:4000/v1/courses/${shortName}`)
+    return response.json()
+}
+
+const calcCourseProgress = course => {
+    const uploadedSessions = course.sessions.length
+    const promisedSessions = course.promisedSessions
+
+    return (uploadedSessions * 100 / promisedSessions).toFixed(0)
+}
+
+const getAllComments = async () => {
+    const response = fetch('http://localhost:4000/v1/comments')
+
+    return (await response).json()
+}
+
+const getCourseComments = async courseName => {
+    const allComments = await getAllComments()
+
+    return allComments.filter(comment => comment.course === courseName)
+}
+
 export {
     alert,
     changeThemeHandler,
@@ -798,5 +844,10 @@ export {
     getEachCategoriesCoursesEn,
     getAllFaCategories,
     searchFormSubmissionHandler,
-    clearSearchParams
+    clearSearchParams,
+    getCourseByShortName,
+    intlDateToPersianDate,
+    calcCourseProgress,
+    timeToHour,
+    getCourseComments
 }

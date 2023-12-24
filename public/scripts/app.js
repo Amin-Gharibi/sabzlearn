@@ -78,19 +78,19 @@ window.addEventListener('load', async () => {
     }
 
     const latestCoursesWrapper = document.querySelector('.latest-courses--wrapper')
-    latestCoursesWrapper.innerHTML = createCourseTemplate(latestCourses.slice(0, 12), false)
+    latestCoursesWrapper.innerHTML = await createCourseTemplate(latestCourses.slice(0, 12), false)
 
     const newestCoursesWrapper = document.querySelector('.newest-courses--wrapper')
-    newestCoursesWrapper.innerHTML = createCourseTemplate(newestCourses, true)
+    newestCoursesWrapper.innerHTML = await createCourseTemplate(newestCourses, true)
 
     const articlesWrapper = document.querySelector('.published-articles--wrapper')
     articlesWrapper.innerHTML = createArticlesTemplate(publishedArticles.slice(0, 4))
 
     const presaleCoursesWrapper = document.querySelector('.pre-sale-courses--wrapper')
-    presaleCoursesWrapper.innerHTML = createCourseTemplate(preSaleCourses, true)
+    presaleCoursesWrapper.innerHTML = await createCourseTemplate(preSaleCourses, true)
 
     const popularCoursesWrapper = document.querySelector('.popular-courses--wrapper')
-    popularCoursesWrapper.innerHTML = createCourseTemplate(popularCourses.slice(0, 8), false)
+    popularCoursesWrapper.innerHTML = await createCourseTemplate(popularCourses.slice(0, 8), false)
 })
 
 // add event listeners
