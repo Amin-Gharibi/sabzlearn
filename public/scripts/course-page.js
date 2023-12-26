@@ -9,7 +9,13 @@ import {
     searchFormSubmissionHandler,
     getCourseByShortName,
     getSearchParam,
-    intlDateToPersianDate, calcCourseProgress, timeToHour, getToken, alert, getCourseComments
+    intlDateToPersianDate,
+    calcCourseProgress,
+    timeToHour,
+    getToken,
+    alert,
+    getCourseComments,
+    isCurrentUserStudentOfCourse
 } from './utils/utils.js';
 import {getMe} from "./funcs/auth.js";
 
@@ -183,7 +189,7 @@ window.addEventListener('load', async () => {
             lessonsContainer.insertAdjacentHTML('beforeend', `
             <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
                 <!--episode title-->
-                <a href="session-page.js?session=${lesson.title}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
+                <a href="${lesson.free || (isCurrentUserStudentOfCourse(getCourseByShortName(getSearchParam('c')))) ? `session-page.js?session=${lesson.title}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
                     <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
                         ${index + 1}
                     </span>
@@ -211,6 +217,17 @@ window.addEventListener('load', async () => {
         <span class="block w-full h-full text-center py-3 bg-gray-100 dark:bg-darkGray-700 text-zinc-700 dark:text-white">به زودی :)</span>
     `)
     }
+
+    // if user wasn't registered to the course and clicked on a paid lesson do this
+    const goToBuyCourseBtnLinkElems = document.querySelectorAll('a[href="#watch-or-register-course-btn"]')
+    goToBuyCourseBtnLinkElems.forEach(btn => {
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+            const buyCourseBtn = document.querySelector('#watch-or-register-course-btn')
+            buyCourseBtn.scrollIntoView({behavior: 'smooth', block: 'center'})
+            alert(document.body, 'close-circle', 'alert-red', 'دقت کنید!', 'برای دسترسی به جلسات نقدی لطفا دوره را خریداری کنید!')
+        })
+    })
 
     // customize comment section of each course
     // show add new comment form as soon as user clicks on new comment btn

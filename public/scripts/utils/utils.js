@@ -1,3 +1,5 @@
+import {getMe} from "../funcs/auth.js";
+
 //project alert
 function alert(wholeContainer, logoId, alertColor, alertTitle, alertDescription) {
     const oldAlertBox = document.querySelector('.alert-box')
@@ -809,6 +811,11 @@ const getCourseComments = async courseName => {
     return allComments.filter(comment => comment.course === courseName)
 }
 
+const isCurrentUserStudentOfCourse = course => {
+    getMe().then(user => {
+        return user.courses.find(c => c._id === course._id)
+    });}
+
 export {
     alert,
     changeThemeHandler,
@@ -849,5 +856,6 @@ export {
     intlDateToPersianDate,
     calcCourseProgress,
     timeToHour,
-    getCourseComments
+    getCourseComments,
+    isCurrentUserStudentOfCourse
 }
