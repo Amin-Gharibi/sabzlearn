@@ -109,7 +109,7 @@ const getFromLocalStorage = key => {
 }
 
 const getToken = () => {
-    return (JSON.parse(localStorage.getItem('user'))).token || null
+    return getFromLocalStorage('user') && getFromLocalStorage('user').token || null
 }
 
 const getApplyUsername = data => {
@@ -811,11 +811,6 @@ const getCourseComments = async courseName => {
     return allComments.filter(comment => comment.course === courseName)
 }
 
-const isCurrentUserStudentOfCourse = course => {
-    getMe().then(user => {
-        return user.courses.find(c => c._id === course._id)
-    });}
-
 export {
     alert,
     changeThemeHandler,
@@ -856,6 +851,5 @@ export {
     intlDateToPersianDate,
     calcCourseProgress,
     timeToHour,
-    getCourseComments,
-    isCurrentUserStudentOfCourse
+    getCourseComments
 }
