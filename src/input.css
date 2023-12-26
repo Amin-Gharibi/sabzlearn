@@ -603,4 +603,14 @@
     .bottom-sheet__item--selected svg{
         @apply block;
     }
+
+    .add-comment-form {
+        max-height: 0;
+        @apply hide overflow-hidden transition-all mb-0;
+    }
+
+    .add-comment-form.active {
+        max-height: 100%;
+        @apply show mb-5;
+    }
 }
