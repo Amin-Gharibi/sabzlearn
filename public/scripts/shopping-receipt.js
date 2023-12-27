@@ -1,5 +1,4 @@
 import {alert, getCourseByShortName, getSearchParam, getToken} from "./utils/utils.js";
-import {getMe} from "./funcs/auth.js";
 
 window.addEventListener('load',  async () => {
     const course = await getCourseByShortName(getSearchParam('c'))

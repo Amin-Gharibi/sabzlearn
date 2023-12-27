@@ -44,6 +44,15 @@
 
 .mobile-menu--submenu__open {
     display: block !important;
+    @apply transition-colors text-slate-500 dark:text-darkGray-500;
+}
+
+span:has(+ .mobile-menu--submenu__open) {
+    @apply text-zinc-700;
+}
+
+:is(.dark span:has(+ .mobile-menu--submenu__open)) {
+    @apply text-white;
 }
 
 .mobile-filter__open {

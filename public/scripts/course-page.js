@@ -1,11 +1,5 @@
 import {
-    changeThemeHandler,
-    toggleProfileDropDown,
-    toggleMobileMenu,
-    toggleSubMenusHandler,
     copyShortLinks,
-    showDetailsInAccountCenter,
-    showHeaderMenus,
     searchFormSubmissionHandler,
     getCourseByShortName,
     getSearchParam,
@@ -21,12 +15,6 @@ import {getMe} from "./funcs/auth.js";
 let $ = document
 const seasonsTitle = $.querySelectorAll('.topic__title')
 const seasonsEpsContainer = $.querySelectorAll('.topic__body')
-const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
-const userProfileBtn = $.querySelector('#user-profile')
-const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
-const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
-const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
-const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
 const copyShortLinkBtn = $.querySelector(".short-link--copy-btn")
 
 // -------------------- Functions
@@ -40,11 +28,8 @@ window.addEventListener('load', async () => {
 
     const player = new Plyr('#player');
 
-    const [data, course] = await Promise.all([getMe(), getCourseByShortName(getSearchParam('c')), showHeaderMenus()])
-    showDetailsInAccountCenter(data)
+    const [data, course] = await Promise.all([getMe(), getCourseByShortName(getSearchParam('c'))])
     const courseComments = (await getCourseComments(course.name)).filter(comment => comment.isAccepted)
-
-    console.log(course)
 
     // customize the addressBar
     const pageAddressBar = document.querySelector('.page-address-bar')
@@ -447,7 +432,6 @@ window.addEventListener('load', async () => {
 const toggleSeasonHandler = (title, index) => {
     title.classList.toggle('topic__title--active')
     if (title.classList.contains('topic__title--active')) {
-        let numberOfEps = 2
         seasonsEpsContainer[index].style.maxHeight = ``
     } else {
         seasonsEpsContainer[index].style.maxHeight = "0px"
@@ -461,16 +445,6 @@ const toggleSeasonHandler = (title, index) => {
 seasonsTitle.forEach((title, index) => {
     title.addEventListener('click', () => toggleSeasonHandler(title, index))
 })
-themeChangerBtn.forEach(btn => {
-    btn.addEventListener('click', changeThemeHandler)
-})
-userProfileBtn.addEventListener('click', toggleProfileDropDown)
-mobileMenuListItems.forEach(item => {
-    item.addEventListener('click', event => toggleSubMenusHandler(event))
-})
-mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
-mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
-hamburgerMenuBtn.addEventListener('click', toggleMobileMenu)
 
 copyShortLinkBtn.addEventListener('click', event => copyShortLinks(event, $.body))
 

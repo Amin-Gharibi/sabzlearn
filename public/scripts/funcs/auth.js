@@ -117,4 +117,9 @@ const getMe = async () => {
     return await request.json()
 }
 
-export {register, login, getMe}
+const logOut = () => {
+    localStorage.removeItem('user')
+    location.reload()
+}
+
+export {register, login, getMe, logOut}
