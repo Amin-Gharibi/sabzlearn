@@ -548,6 +548,16 @@ const showCourseCategories = async () => {
     mobileCourseCategoriesContainer.innerHTML = categoriesFinalStr
 }
 
+const getUserCourses = async () => {
+    const response = await fetch(`http://localhost:4000/v1/users/courses`, {
+        headers: {
+            "Authorization": `Bearer ${getToken()}`
+        }
+    })
+
+    return await response.json()
+}
+
 // handles filtering data
 const filterCourses = async (courses, filter) => {
     const categories = await getAllEnCategories()
@@ -571,12 +581,7 @@ const filterCourses = async (courses, filter) => {
             courses = courses.filter(course => course.status === 'presale')
             break
         case 'enrolled' :
-            const response = await fetch(`http://localhost:4000/v1/users/courses`, {
-                headers: {
-                    "Authorization": `Bearer ${getToken()}`
-                }
-            })
-            const userCourses = await response.json()
+            const userCourses = await getUserCourses()
             courses = courses.filter(course => {
                 return userCourses.some(userCourse => userCourse._id === course._id)
             })
@@ -750,5 +755,6 @@ export {
     intlDateToPersianDate,
     calcCourseProgress,
     timeToHour,
-    getCourseComments
+    getCourseComments,
+    getUserCourses
 }
