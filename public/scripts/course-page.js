@@ -263,7 +263,7 @@ window.addEventListener('load', async () => {
     // customize the header of add new comment form for each user
     const addCommentFormHeaderSection = document.querySelector('#add-comment-form-header')
     addCommentFormHeaderSection.innerHTML = `
-        <img src="http://localhost:4000${data.profile}" alt="${data.name}" class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
+        <img src="http://localhost:4000${data.profile || '/images/profile.png'}" alt="${data.name}" class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
         <div class="dark:text-white">
             <span class="inline-block font-danaMedium text-base md:text-xl">
                 ${data.name}
@@ -288,13 +288,12 @@ window.addEventListener('load', async () => {
     if (courseComments.length) {
         courseComments.forEach(comment => {
             let commentAnswerStr = ''
-            console.log(comment)
             if (comment.answer) {
                 commentAnswerStr = `
                 <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
                             <!--user profile and role-->
                             <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="http://localhost:4000${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}"
+                                <img src="http://localhost:4000${comment.answerContent.creator.profile || '/images/profile.png'}" alt="${comment.answerContent.creator.name}"
                                      class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
                                 <span class="w-[60px] h-[18px] ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.answerContent.creator.role.toLowerCase() === 'admin' || comment.answerContent.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                                     ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}

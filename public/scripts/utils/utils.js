@@ -414,7 +414,10 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         <div class="${course.off === 0 ? 'hidden' : 'flex'} flex-col items-start gap-x-1.5 font-danaMedium text-xl text-primary">
                             <span class="course--price__offered">${course.price.toLocaleString()}</span>
                             <span class="course--price">
-                                ${course.off === 100 ? 'رایگان!' : (course.price - (course.off * course.price / 100)).toLocaleString()}
+                                ${course.off === 100 ? 'رایگان!' : ((course.price - (course.off * course.price / 100)).toLocaleString())}
+                                ${course.off === 100 ? '' : `<svg class="w-4 h-4">
+                                <use href="#toman"></use>
+                            </svg>`}
                             </span>
                         </div>
                     </div>

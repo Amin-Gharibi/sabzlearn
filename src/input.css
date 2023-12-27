@@ -345,7 +345,7 @@
     }
 
     .course--price {
-        @apply font-danaMedium text-xl text-primary space-x-1.5;
+        @apply flex items-center gap-x-1.5 font-danaMedium text-xl text-primary space-x-1.5;
     }
 
     .section--title__roadmaps::before {
