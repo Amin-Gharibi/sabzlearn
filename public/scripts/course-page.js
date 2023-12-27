@@ -86,7 +86,7 @@ window.addEventListener('load', async () => {
         </span>
     `
     watchOrRegisterCourseBtns.innerHTML = (() => {
-        if (data.courses.find(c => c._id === course._id)) {
+        if (data && data.courses.find(c => c._id === course._id)) {
             return `
                 <!--when registered-->
                 <a id="scroll-to-lessons" href="#lessons" class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-secondary-light hover:bg-sky-600 dark:bg-[#4E81FB] dark:hover:bg-[#2563EB] text-white select-none rounded-xl transition-all">
@@ -101,7 +101,7 @@ window.addEventListener('load', async () => {
         }
         return `
             <!--when not registered-->
-            <a href="shopping-receipt.html?c=${course.shortName}&token=${getToken()}" class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
+            <a href="${(data && `shopping-receipt.html?c=${course.shortName}&token=${getToken()}`) || 'login-email.html'}" class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
                 <svg class="w-[25px] h-[30px]">
                     <use href="#shield-done"></use>
                 </svg>
@@ -199,7 +199,7 @@ window.addEventListener('load', async () => {
             lessonsContainer.insertAdjacentHTML('beforeend', `
             <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
                 <!--episode title-->
-                <a href="${lesson.free || data.courses.find(c => c._id === course._id) ? `session-page.js?session=${lesson.title}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
+                <a href="${lesson.free || (data && data.courses.find(c => c._id === course._id)) ? `session-page.js?session=${lesson.title}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
                     <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
                         ${index + 1}
                     </span>
@@ -243,7 +243,13 @@ window.addEventListener('load', async () => {
     // show add new comment form as soon as user clicks on new comment btn
     const showAddNewCommentFormBtn = document.querySelector('#show-add-new-comment-form-btn')
     const addNewCommentForm = document.querySelector('.add-comment-form')
-    showAddNewCommentFormBtn.addEventListener('click', () => addNewCommentForm.classList.add('active'))
+    showAddNewCommentFormBtn.addEventListener('click', () => {
+        if (data) {
+            addNewCommentForm.classList.add('active')
+        } else {
+            alert(document.body, 'close-circle', 'alert-red', 'خطا', 'برای ایجاد نظر جدید ابتدا وارد حساب خود شوید!')
+        }
+    })
 
     // customize the header of add new comment form for each user
     const addCommentFormHeaderSection = document.querySelector('#add-comment-form-header')
@@ -382,7 +388,6 @@ window.addEventListener('load', async () => {
     // validate the comment body input
     const validateCommentAndSend = event => {
         event.preventDefault()
-        console.log(event.target)
         const commentContentInput = document.querySelector('#comment-textarea')
         if (commentContentInput.value) {
             SendNewCommentHandler()

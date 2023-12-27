@@ -92,7 +92,7 @@ const login = () => {
                     alert(document.body, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
                     saveToLocalStorage('user', {token: data.accessToken})
                     setTimeout(() => {
-                        location.href = 'index.html'
+                        location.href = document.referrer
                     }, 1000)
                 }
             })
