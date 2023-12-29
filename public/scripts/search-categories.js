@@ -27,6 +27,11 @@ window.addEventListener('load', async () => {
             const searchInput = document.querySelector('.search-cat-form input:first-child')
             searchInput.value = getSearchParam('s')
         }
+
+        if (getSearchParam('cat') && !getSearchParam('s')) {
+            const courseCategoriesSection = document.querySelector('#course-categories-section')
+            courseCategoriesSection.classList.remove('sm:block')
+        }
     }
 
     // handle search input in the header of page

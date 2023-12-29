@@ -582,12 +582,12 @@ const filterCourses = async (courses, filter) => {
             courses = courses.filter(course => course.off === 100)
             break
         case 'presale' :
-            courses = courses.filter(course => course.status === 'presale')
+            courses = courses.filter(course => course.status === 1)
             break
         case 'enrolled' :
             const userCourses = await getUserCourses()
             courses = courses.filter(course => {
-                return userCourses.some(userCourse => userCourse._id === course._id)
+                return userCourses.some(userCourse => userCourse.course._id === course._id)
             })
             break
         case getSearchParam('cat') || Math.random() :

@@ -126,7 +126,16 @@ window.addEventListener('load', async () => {
     const courseSupportTitle = document.querySelector('#course-support')
     const courseRequirements = document.querySelector('#course-requirement')
     const courseWatchingOption = document.querySelector('#course-watching-option')
-    courseSituationTitle.innerHTML = course.status
+    courseSituationTitle.innerHTML = (() => {
+        switch (course.status) {
+            case 1:
+                return 'پیش فروش'
+            case 2:
+                return 'در حال برگزاری'
+            case 3:
+                return 'تکمیل شده'
+        }
+    })()
     courseTimeTitle.innerHTML = `${course.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0).toFixed(0)} ساعت`
     const year = parseInt(course.updatedAt.slice(0, 4))
     const month = parseInt(course.updatedAt.slice(5, 7))
