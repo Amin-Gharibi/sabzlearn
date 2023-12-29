@@ -68,6 +68,10 @@ const getFromLocalStorage = key => {
     return JSON.parse(localStorage.getItem(key))
 }
 
+const removeFromLocalStorage = key => {
+    return localStorage.removeItem(key)
+}
+
 const getToken = () => {
     return getFromLocalStorage('user') && getFromLocalStorage('user').token || null
 }
@@ -756,5 +760,6 @@ export {
     calcCourseProgress,
     timeToHour,
     getCourseComments,
-    getUserCourses
+    getUserCourses,
+    removeFromLocalStorage
 }
