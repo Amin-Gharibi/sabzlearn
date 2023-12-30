@@ -570,7 +570,15 @@ span:has(+ .mobile-menu--submenu__open) {
     }
 
     .chapter__body .lesson {
-        @apply h-14 flex justify-between items-center px-5 hover:bg-gray-100 dark:hover:bg-darkGray-700/50 text-slate-500 dark:text-darkGray-500 transition-all;
+        @apply h-14 flex justify-between items-center px-5 transition-all;
+    }
+
+    .chapter__body .lesson:not(.lesson--watching) {
+        @apply hover:bg-gray-100 dark:hover:bg-darkGray-700/50 text-slate-500 dark:text-darkGray-500;
+    }
+
+    .lesson--watching {
+        @apply bg-secondary-light dark:bg-secondary hover:bg-secondary-light dark:hover:bg-secondary text-white;
     }
 
     .lesson .lesson__status {

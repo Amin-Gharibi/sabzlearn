@@ -149,7 +149,7 @@ window.addEventListener('load', async () => {
         if (lessons.length) {
             lessons.forEach((lesson, index) => {
                 chapterBody.insertAdjacentHTML('beforeend', `
-                <div class="lesson">
+                <div class="lesson${lesson._id === getSearchParam('session') ? ' lesson--watching' : ''}">
                     <!-- title -->
                     <div class="flex items-center gap-x-1.5">
                         <span class="lesson__status"></span>

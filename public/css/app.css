@@ -1391,25 +1391,50 @@ input:checked~.filtering--special-items__toggle:after {
   justify-content: space-between;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-.chapter__body .lesson:hover {
+.chapter__body .lesson:not(.lesson--watching) {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+
+.chapter__body .lesson:not(.lesson--watching):hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-:is(.dark .chapter__body .lesson) {
+:is(.dark .chapter__body .lesson:not(.lesson--watching)) {
   --tw-text-opacity: 1;
   color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 
-:is(.dark .chapter__body .lesson:hover) {
+:is(.dark .chapter__body .lesson:not(.lesson--watching):hover) {
   background-color: rgb(50 51 77 / 0.5);
+}
+
+.lesson--watching {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.lesson--watching:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+}
+
+:is(.dark .lesson--watching) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(78 129 245 / var(--tw-bg-opacity));
+}
+
+:is(.dark .lesson--watching:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(78 129 245 / var(--tw-bg-opacity));
 }
 
 .lesson .lesson__status {
