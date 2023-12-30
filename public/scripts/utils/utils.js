@@ -1,5 +1,3 @@
-import {getMe} from "../funcs/auth.js";
-
 //project alert
 function alert(wholeContainer, logoId, alertColor, alertTitle, alertDescription) {
     const oldAlertBox = document.querySelector('.alert-box')
@@ -62,44 +60,6 @@ const copyShortLinks = (event, alertParent) => {
         .catch(() => alert(alertParent, 'close-circle', 'red-alert', 'ناموفق', 'خطا در کپی کردن لینک'))
 }
 
-//toggle mobile menu
-const toggleMobileMenu = () => {
-    const mobileMenu = document.querySelector("#mobile-menu")
-    const mobileMenuOverlay = document.querySelector('.mobile-menu--overlay')
-
-    mobileMenu.classList.contains('-right-64') ? mobileMenu.classList.replace('-right-64', 'right-0') && mobileMenuOverlay.classList.add('mobile-menu--overlay__show') : mobileMenu.classList.replace('right-0', '-right-64') && mobileMenuOverlay.classList.remove('mobile-menu--overlay__show')
-}
-
-// toggles the dropdown when user clicks on his profile picture
-const toggleProfileDropDown = () => {
-    const userProfileDropDownWrapper = document.querySelector('.user-profile-dropdown')
-    const dropDownOverlay = document.querySelector('.profile-dropdown--overlay')
-
-    userProfileDropDownWrapper.classList.toggle('user-profile-dropdown__show')
-    dropDownOverlay.classList.toggle('profile-dropdown--overlay__show')
-
-    let hasOverlayEvent = false
-
-    if (hasOverlayEvent) {
-        dropDownOverlay.removeEventListener('click', toggleProfileDropDown)
-        hasOverlayEvent = false
-    } else {
-        dropDownOverlay.addEventListener('click', toggleProfileDropDown)
-        hasOverlayEvent = true
-    }
-}
-
-// toggles the submenus of hamburger menu list items
-const toggleSubMenusHandler = event => {
-    // if the target had 2 children then it has submenu
-    if (event.currentTarget.children.length === 2) {
-        // open the submenu
-        event.currentTarget.children[1].classList.toggle('mobile-menu--submenu__open')
-        // rotate the chevron down svg
-        event.currentTarget.children[0].children[0].classList.toggle('rotated-svg')
-    }
-}
-
 const saveToLocalStorage = (key, value) => {
     return localStorage.setItem(key, JSON.stringify(value))
 }
@@ -108,8 +68,19 @@ const getFromLocalStorage = key => {
     return JSON.parse(localStorage.getItem(key))
 }
 
+const removeFromLocalStorage = key => {
+    return localStorage.removeItem(key)
+}
+
 const getToken = () => {
     return getFromLocalStorage('user') && getFromLocalStorage('user').token || null
+}
+
+const getHeaderMenus = async () => {
+    const response = await fetch('http://localhost:4000/v1/menus', {
+        method: 'GET',
+    })
+    return await response.json()
 }
 
 const getApplyUsername = data => {
@@ -142,72 +113,6 @@ const getApplyTicketsCount = tickets => {
     accountTicketsCount.forEach(title => {
         title.innerHTML = tickets.length
     })
-}
-
-// show user detail in header in account center
-const showDetailsInAccountCenter = data => {
-    const loginSignupBtnsWrapper = document.querySelector('.login-signup-btn--wrapper')
-    const accountCenterBtn = document.querySelector('.account-center-btn')
-
-    if (!data) {
-        loginSignupBtnsWrapper.classList.remove('hidden')
-        accountCenterBtn.classList.add('hidden')
-    } else {
-        loginSignupBtnsWrapper.classList.add('hidden')
-        accountCenterBtn.classList.remove('hidden')
-
-        getApplyUsername(data)
-        getApplyBalance(data)
-    }
-}
-
-const getHeaderMenus = async () => {
-    const response = await fetch('http://localhost:4000/v1/menus', {
-        method: 'GET',
-    })
-    return await response.json()
-}
-
-const showHeaderMenus = async () => {
-    const data = await getHeaderMenus()
-
-    const menus = data.map((menu, index) => {
-        return `
-            <li class="relative group flex justify-start items-center">
-                <a href="${index === data.length - 1 ? 'article-page.html' : `search-categories.html?cat=${menu.cat}`}"
-                   class="group-hover:text-primary flex justify-start items-center gap-x-1.5 transition-colors">
-                    ${menu.title}
-                    ${
-            (menu.submenus.length && `
-                            <svg class="w-4 h-4">
-                                <use href="#chevron-down"></use>
-                            </svg>
-                        `) || ''
-        }
-                </a>
-                ${
-            menu.submenus.length && `
-                        <div class="absolute top-full right-0 z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 pt-1 xl:pt-4 transition-all">
-                            <ul class="w-64 flex flex-col justify-start items-start gap-y-5 shadow-light rounded-2xl py-5 px-6 bg-white dark:bg-darkGray-700">
-                                ${
-                menu.submenus.map(submenu => {
-                    return `<li class="w-full hover:text-primary transition-colors">
-                                                                                    <a href="${submenu.href}" class="block overflow-hidden text-ellipsis whitespace-nowrap text-base">
-                                                                                        ${submenu.title}
-                                                                                    </a>
-                                                                                </li>`
-                }).join('')
-            }
-                            </ul>
-                        </div>
-                    ` || ''
-        }
-            </li>
-        `
-    }).join('')
-
-    const navigationLinksWrapper = document.querySelector('.navigation-links--wrapper')
-    navigationLinksWrapper.insertAdjacentHTML('beforeend', menus)
 }
 
 const getCourses = async () => {
@@ -414,7 +319,10 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         <div class="${course.off === 0 ? 'hidden' : 'flex'} flex-col items-start gap-x-1.5 font-danaMedium text-xl text-primary">
                             <span class="course--price__offered">${course.price.toLocaleString()}</span>
                             <span class="course--price">
-                                ${course.off === 100 ? 'رایگان!' : (course.price - (course.off * course.price / 100)).toLocaleString()}
+                                ${course.off === 100 ? 'رایگان!' : ((course.price - (course.off * course.price / 100)).toLocaleString())}
+                                ${course.off === 100 ? '' : `<svg class="w-4 h-4">
+                                <use href="#toman"></use>
+                            </svg>`}
                             </span>
                         </div>
                     </div>
@@ -644,6 +552,16 @@ const showCourseCategories = async () => {
     mobileCourseCategoriesContainer.innerHTML = categoriesFinalStr
 }
 
+const getUserCourses = async () => {
+    const response = await fetch(`http://localhost:4000/v1/users/courses`, {
+        headers: {
+            "Authorization": `Bearer ${getToken()}`
+        }
+    })
+
+    return await response.json()
+}
+
 // handles filtering data
 const filterCourses = async (courses, filter) => {
     const categories = await getAllEnCategories()
@@ -664,17 +582,12 @@ const filterCourses = async (courses, filter) => {
             courses = courses.filter(course => course.off === 100)
             break
         case 'presale' :
-            courses = courses.filter(course => course.status === 'presale')
+            courses = courses.filter(course => course.status === 1)
             break
         case 'enrolled' :
-            const response = await fetch(`http://localhost:4000/v1/users/courses`, {
-                headers: {
-                    "Authorization": `Bearer ${getToken()}`
-                }
-            })
-            const userCourses = await response.json()
+            const userCourses = await getUserCourses()
             courses = courses.filter(course => {
-                return userCourses.some(userCourse => userCourse._id === course._id)
+                return userCourses.some(userCourse => userCourse.course._id === course._id)
             })
             break
         case getSearchParam('cat') || Math.random() :
@@ -815,19 +728,14 @@ export {
     alert,
     changeThemeHandler,
     copyShortLinks,
-    toggleMobileMenu,
-    toggleProfileDropDown,
-    toggleSubMenusHandler,
     saveToLocalStorage,
     getFromLocalStorage,
     getToken,
-    showDetailsInAccountCenter,
+    getHeaderMenus,
     getApplyUsername,
     getApplyBalance,
     getApplyCoursesCount,
     getApplyTicketsCount,
-    getHeaderMenus,
-    showHeaderMenus,
     getCourses,
     getLastEditedCourses,
     getLastCreatedCourses,
@@ -851,5 +759,7 @@ export {
     intlDateToPersianDate,
     calcCourseProgress,
     timeToHour,
-    getCourseComments
+    getCourseComments,
+    getUserCourses,
+    removeFromLocalStorage
 }

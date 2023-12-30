@@ -92,7 +92,7 @@ const login = () => {
                     alert(document.body, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
                     saveToLocalStorage('user', {token: data.accessToken})
                     setTimeout(() => {
-                        location.href = 'index.html'
+                        location.href = document.referrer
                     }, 1000)
                 }
             })
@@ -117,4 +117,9 @@ const getMe = async () => {
     return await request.json()
 }
 
-export {register, login, getMe}
+const logOut = () => {
+    localStorage.removeItem('user')
+    location.reload()
+}
+
+export {register, login, getMe, logOut}

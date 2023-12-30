@@ -1,11 +1,5 @@
 import {
-    changeThemeHandler,
-    toggleProfileDropDown,
-    toggleMobileMenu,
-    toggleSubMenusHandler,
     copyShortLinks,
-    showDetailsInAccountCenter,
-    showHeaderMenus,
     searchFormSubmissionHandler,
     getCourseByShortName,
     getSearchParam,
@@ -21,12 +15,6 @@ import {getMe} from "./funcs/auth.js";
 let $ = document
 const seasonsTitle = $.querySelectorAll('.topic__title')
 const seasonsEpsContainer = $.querySelectorAll('.topic__body')
-const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
-const userProfileBtn = $.querySelector('#user-profile')
-const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
-const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
-const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
-const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
 const copyShortLinkBtn = $.querySelector(".short-link--copy-btn")
 
 // -------------------- Functions
@@ -40,11 +28,8 @@ window.addEventListener('load', async () => {
 
     const player = new Plyr('#player');
 
-    const [data, course] = await Promise.all([getMe(), getCourseByShortName(getSearchParam('c')), showHeaderMenus()])
-    showDetailsInAccountCenter(data)
+    const [data, course] = await Promise.all([getMe(), getCourseByShortName(getSearchParam('c'))])
     const courseComments = (await getCourseComments(course.name)).filter(comment => comment.isAccepted)
-
-    console.log(course)
 
     // customize the addressBar
     const pageAddressBar = document.querySelector('.page-address-bar')
@@ -101,7 +86,7 @@ window.addEventListener('load', async () => {
         </span>
     `
     watchOrRegisterCourseBtns.innerHTML = (() => {
-        if (data.courses.find(c => c._id === course._id)) {
+        if (data && data.courses.find(c => c._id === course._id)) {
             return `
                 <!--when registered-->
                 <a id="scroll-to-lessons" href="#lessons" class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-secondary-light hover:bg-sky-600 dark:bg-[#4E81FB] dark:hover:bg-[#2563EB] text-white select-none rounded-xl transition-all">
@@ -116,7 +101,7 @@ window.addEventListener('load', async () => {
         }
         return `
             <!--when not registered-->
-            <a href="shopping-receipt.html?c=${course.shortName}&token=${getToken()}" class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
+            <a href="${(data && `shopping-receipt.html?c=${course.shortName}&token=${getToken()}`) || 'login-email.html'}" class="w-full sm:w-auto h-[62px] flex justify-center items-center gap-x-2.5 px-5 font-danaDemiBold text-2xl bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
                 <svg class="w-[25px] h-[30px]">
                     <use href="#shield-done"></use>
                 </svg>
@@ -141,7 +126,16 @@ window.addEventListener('load', async () => {
     const courseSupportTitle = document.querySelector('#course-support')
     const courseRequirements = document.querySelector('#course-requirement')
     const courseWatchingOption = document.querySelector('#course-watching-option')
-    courseSituationTitle.innerHTML = course.status
+    courseSituationTitle.innerHTML = (() => {
+        switch (course.status) {
+            case 1:
+                return 'پیش فروش'
+            case 2:
+                return 'در حال برگزاری'
+            case 3:
+                return 'تکمیل شده'
+        }
+    })()
     courseTimeTitle.innerHTML = `${course.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0).toFixed(0)} ساعت`
     const year = parseInt(course.updatedAt.slice(0, 4))
     const month = parseInt(course.updatedAt.slice(5, 7))
@@ -214,7 +208,7 @@ window.addEventListener('load', async () => {
             lessonsContainer.insertAdjacentHTML('beforeend', `
             <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
                 <!--episode title-->
-                <a href="${lesson.free || data.courses.find(c => c._id === course._id) ? `session-page.js?session=${lesson.title}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
+                <a href="${lesson.free || (data && data.courses.find(c => c._id === course._id)) ? `session-page.js?session=${lesson.title}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
                     <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
                         ${index + 1}
                     </span>
@@ -258,12 +252,18 @@ window.addEventListener('load', async () => {
     // show add new comment form as soon as user clicks on new comment btn
     const showAddNewCommentFormBtn = document.querySelector('#show-add-new-comment-form-btn')
     const addNewCommentForm = document.querySelector('.add-comment-form')
-    showAddNewCommentFormBtn.addEventListener('click', () => addNewCommentForm.classList.add('active'))
+    showAddNewCommentFormBtn.addEventListener('click', () => {
+        if (data) {
+            addNewCommentForm.classList.add('active')
+        } else {
+            alert(document.body, 'close-circle', 'alert-red', 'خطا', 'برای ایجاد نظر جدید ابتدا وارد حساب خود شوید!')
+        }
+    })
 
     // customize the header of add new comment form for each user
     const addCommentFormHeaderSection = document.querySelector('#add-comment-form-header')
     addCommentFormHeaderSection.innerHTML = `
-        <img src="http://localhost:4000${data.profile}" alt="${data.name}" class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
+        <img src="http://localhost:4000${data.profile || '/images/profile.png'}" alt="${data.name}" class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
         <div class="dark:text-white">
             <span class="inline-block font-danaMedium text-base md:text-xl">
                 ${data.name}
@@ -288,13 +288,12 @@ window.addEventListener('load', async () => {
     if (courseComments.length) {
         courseComments.forEach(comment => {
             let commentAnswerStr = ''
-            console.log(comment)
             if (comment.answer) {
                 commentAnswerStr = `
                 <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
                             <!--user profile and role-->
                             <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="http://localhost:4000${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}"
+                                <img src="http://localhost:4000${comment.answerContent.creator.profile || '/images/profile.png'}" alt="${comment.answerContent.creator.name}"
                                      class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
                                 <span class="w-[60px] h-[18px] ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.answerContent.creator.role.toLowerCase() === 'admin' || comment.answerContent.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                                     ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}
@@ -398,7 +397,6 @@ window.addEventListener('load', async () => {
     // validate the comment body input
     const validateCommentAndSend = event => {
         event.preventDefault()
-        console.log(event.target)
         const commentContentInput = document.querySelector('#comment-textarea')
         if (commentContentInput.value) {
             SendNewCommentHandler()
@@ -448,7 +446,6 @@ window.addEventListener('load', async () => {
 const toggleSeasonHandler = (title, index) => {
     title.classList.toggle('topic__title--active')
     if (title.classList.contains('topic__title--active')) {
-        let numberOfEps = 2
         seasonsEpsContainer[index].style.maxHeight = ``
     } else {
         seasonsEpsContainer[index].style.maxHeight = "0px"
@@ -462,16 +459,6 @@ const toggleSeasonHandler = (title, index) => {
 seasonsTitle.forEach((title, index) => {
     title.addEventListener('click', () => toggleSeasonHandler(title, index))
 })
-themeChangerBtn.forEach(btn => {
-    btn.addEventListener('click', changeThemeHandler)
-})
-userProfileBtn.addEventListener('click', toggleProfileDropDown)
-mobileMenuListItems.forEach(item => {
-    item.addEventListener('click', event => toggleSubMenusHandler(event))
-})
-mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
-mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
-hamburgerMenuBtn.addEventListener('click', toggleMobileMenu)
 
 copyShortLinkBtn.addEventListener('click', event => copyShortLinks(event, $.body))
 

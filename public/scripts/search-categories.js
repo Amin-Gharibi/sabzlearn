@@ -1,27 +1,13 @@
 import {
     addSearchParam,
-    changeThemeHandler, clearSearchParams,
+    clearSearchParams,
     getAllEnCategories, getAllFaCategories,
     getCourses,
     getSearchParam,
     removeSearchParam, searchFormSubmissionHandler,
     showCourseCategories,
     showCoursesBasedOnUrl,
-    showDetailsInAccountCenter,
-    showHeaderMenus,
-    toggleMobileMenu,
-    toggleProfileDropDown,
-    toggleSubMenusHandler
 } from "./utils/utils.js";
-import {getMe} from "./funcs/auth.js";
-
-let $ = document
-const userProfileBtn = $.querySelector('#user-profile')
-const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
-const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
-const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
-const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
-const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
 
 window.addEventListener('load', async () => {
     // set page title handling
@@ -41,6 +27,11 @@ window.addEventListener('load', async () => {
             const searchInput = document.querySelector('.search-cat-form input:first-child')
             searchInput.value = getSearchParam('s')
         }
+
+        if (getSearchParam('cat') && !getSearchParam('s')) {
+            const courseCategoriesSection = document.querySelector('#course-categories-section')
+            courseCategoriesSection.classList.remove('sm:block')
+        }
     }
 
     // handle search input in the header of page
@@ -52,8 +43,7 @@ window.addEventListener('load', async () => {
     let shownCoursesCount = 12
     let courses = await getCourses()
     // get all asynchronous functions
-    const [data, , courseCategories] = await Promise.all([getMe(), showHeaderMenus(), getAllEnCategories(), showCourseCategories(), showCoursesBasedOnUrl(courses, shownCoursesCount)])
-    showDetailsInAccountCenter(data)
+    const [courseCategories] = await Promise.all([getAllEnCategories(), showCourseCategories(), showCoursesBasedOnUrl(courses, shownCoursesCount)])
 
     // get both buttons so if one changed in a size the other one also changes
     const desktopSortingButtons = document.querySelectorAll('.sorting-data:not(.mobile-sorting-data) > button')
@@ -196,15 +186,3 @@ mobileSortingBtn.addEventListener('click', toggleMobileSortingMenu)
 
 const applyMobileFiltersBtn = document.querySelector('.apply-mobile-filters')
 applyMobileFiltersBtn.addEventListener('click', toggleMobileFilterMenu)
-
-
-mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
-mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
-hamburgerMenuBtn.addEventListener('click', toggleMobileMenu)
-mobileMenuListItems.forEach(item => {
-    item.addEventListener('click', event => toggleSubMenusHandler(event))
-})
-userProfileBtn.addEventListener('click', toggleProfileDropDown)
-themeChangerBtn.forEach(btn => {
-    btn.addEventListener('click', changeThemeHandler)
-})
