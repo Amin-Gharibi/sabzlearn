@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبز لرن | جلسه</title>
     <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/plyr/plyr.css">
     <link rel="shortcut icon" href="./images/logos/favIcon.png" type="image/x-icon">
     <!--change theme as user has wished as soon as page loads-->
     <script type="text/javascript">
@@ -260,6 +261,13 @@
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
     </symbol>
+
+    <symbol id="exit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd"
+              d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z"
+              clip-rule="evenodd"/>
+    </symbol>
+
 </svg>
 
 <header class="max-w-[1920px] h-[88px] md:h-32 flex justify-between items-center bg-white dark:bg-darkGray px-9 md:px-16 lg:px-4 2xl:px-12 dark:border-b border-b-darkGray-700">
@@ -465,9 +473,9 @@
     <div class="container">
         <!--page address section-->
         <section
-                class="h-[50px] hidden md:flex justify-start items-center mt-7 bg-white dark:bg-darkGray-800 text-lg text-zinc-700 dark:text-white shadow-light overflow-x-auto overflow-y-hidden rounded-2xl">
+                class="page-address-bar h-[50px] hidden md:flex justify-start items-center mt-7 bg-white dark:bg-darkGray-800 text-lg text-zinc-700 dark:text-white shadow-light overflow-x-auto overflow-y-hidden rounded-2xl">
             <div class="page-address--item">
-                <a href="#">
+                <a href="index.html">
                     <svg class="w-6 h-6">
                         <use href="#home"></use>
                     </svg>
@@ -478,66 +486,51 @@
             </svg>
 
             <div class="page-address--item">
-                <a href="#">
+                <a href="search-categories.html">
                     دوره ها
                 </a>
             </div>
             <svg class="w-10 h-full text-gray-100 dark:text-darkGray">
                 <use href="#chevron-left-address"></use>
             </svg>
-
-            <div class="page-address--item">
-                <a href="#">
-                    فرانت اند
-                </a>
-            </div>
-            <svg class="w-10 h-full text-gray-100 dark:text-darkGray">
-                <use href="#chevron-left-address"></use>
-            </svg>
-
-            <div class="page-address--item">
-                <a href="#">
-                    آموزش Next.js بصورت پروژه محور
-                </a>
-            </div>
         </section>
         <!--player and sessions section-->
         <section class="flex items-start lg:items-stretch flex-col lg:flex-row gap-4 md:gap-5 mt-5 md:mt-7">
             <!-- player -->
-            <div
-                    class="w-full bg-white dark:bg-darkGray-800 px-3.5 pb-3.5 pt-5 md:px-5 md:pb-5 md:pt-7 shadow-light dark:shadow-none rounded-2xl">
+            <div class="w-full bg-white dark:bg-darkGray-800 px-3.5 pb-3.5 pt-5 md:px-5 md:pb-5 md:pt-7 shadow-light dark:shadow-none rounded-2xl">
                 <!-- course title -->
                 <div class="flex items-start gap-x-3.5 mb-4 md:mb-5">
                     <span class="block shrink-0 w-2.5 h-10 bg-sky-500 dark:bg-secondary rounded-sm"></span>
-                    <h3 class="text-zinc-700 dark:text-white font-morabbaBold text-2xl/10 lg:text-3xl/[44px]">آموزش
-                        جاوا اسکریپت رایگان مقدماتی تا پیشرفته + مینی پروژه</h3>
+                    <h3 id="course-title" class="text-zinc-700 dark:text-white font-morabbaBold text-2xl/10 lg:text-3xl/[44px]">آموزش
+
+                    </h3>
                 </div>
                 <!-- course video player -->
-                <div class="w-[458px] h-[100px] mb-3 md:mb-5 bg-white">
-
+                <div id="player-wrapper" class="mb-3 md:mb-5 rounded-xl md:rounded-2xl overflow-hidden">
+                    <video id="player" controls crossorigin playsinline>
+                        <source src="http://localhost:4000/sessions/b36e8afba55d2275896e1fbda77ec47f7981e20c230f3470f8678b2fc6160515.mp4"
+                                type="video/mp4" size="720">
+                    </video>
                 </div>
                 <!-- session title -->
                 <div class="flex items-start pb-5 mb-5 border-b border-b-gray-100 dark:border-b-darkGray-700">
-                        <span
-                                class="inline-block text-slate-500 dark:text-darkGray-500 font-danaDemiBold text-lg md:text-2xl border-l border-l-gray-200 dark:border-l-darkGray-700 pl-2 ml-2">150</span>
-                    <h5
-                            class="h-auto lg:h-[86px] xl:max-h-14 text-zinc-700 dark:text-white font-danaDemiBold text-base md:text-xl">
-                        سخن پایانی - چه مطالبی از JS تو این دوره گفته نشدن!!
+                    <span id="lesson-number" class="inline-block text-slate-500 dark:text-darkGray-500 font-danaDemiBold text-lg md:text-2xl border-l border-l-gray-200 dark:border-l-darkGray-700 pl-2 ml-2"></span>
+                    <h5 id="lesson-title" class="h-auto lg:h-[86px] xl:max-h-14 text-zinc-700 dark:text-white font-danaDemiBold text-base md:text-xl">
+
                     </h5>
                 </div>
                 <!-- session options -->
                 <div class="flex justify-between items-center flex-wrap gap-4 tracking-tight">
                     <!-- right options -->
                     <div class="w-full sm:w-auto flex items-center flex-wrap gap-3">
-                        <a href="#"
-                           class="w-max h-10 flex justify-center items-center gap-x-2 px-3 text-base bg-primary dark:bg-primary/10 hover:bg-green-500 dark:hover:bg-primary/10 text-white dark:text-primary select-none rounded-xl transition-all">
+                        <a href="#" id="download-video-btn" class="w-max h-10 flex justify-center items-center gap-x-2 px-3 text-base bg-primary dark:bg-primary/10 hover:bg-green-500 dark:hover:bg-primary/10 text-white dark:text-primary select-none rounded-xl transition-all">
                             <svg class="w-5 h-5">
                                 <use href="#arrow-down-tray"></use>
                             </svg>
                             دانلود ویدیو
                         </a>
                         <a href="#"
-                           class="w-max h-10 flex justify-center items-center gap-x-2 px-3 text-base bg-yellow-400 dark:bg-yellow-400/10 hover:bg-[#F9A134] dark:hover:bg-yellow-400/10 text-white dark:text-yellow-400 select-none rounded-xl transition-all">
+                           class="hidden w-max h-10 justify-center items-center gap-x-2 px-3 text-base bg-yellow-400 dark:bg-yellow-400/10 hover:bg-[#F9A134] dark:hover:bg-yellow-400/10 text-white dark:text-yellow-400 select-none rounded-xl transition-all">
                             <svg class="w-5 h-5">
                                 <use href="#envelope"></use>
                             </svg>
@@ -547,7 +540,7 @@
                     <!-- left options -->
                     <div>
                         <a href="#"
-                           class="w-max h-10 flex justify-center items-center gap-x-2 flex-grow sm:flex-grow-0 px-3 text-base bg-gray-200 hover:bg-gray-300 dark:bg-darkGray-700 dark:hover:bg-darkSlate text-slate-500 dark:text-darkGray-500 select-none rounded-xl transition-all">
+                           class="hidden w-max h-10 justify-center items-center gap-x-2 flex-grow sm:flex-grow-0 px-3 text-base bg-gray-200 hover:bg-gray-300 dark:bg-darkGray-700 dark:hover:bg-darkSlate text-slate-500 dark:text-darkGray-500 select-none rounded-xl transition-all">
                             <svg class="w-5 h-5">
                                 <use xlink:href="#arrow-down-tray"></use>
                             </svg>
@@ -566,7 +559,7 @@
                             <!--title and what you see whe closed-->
                             <div class="chapter__title">
                                 <h3 class="font-danaMedium text-base md:text-lg transition-colors line-clamp-1">
-                                    معرفی دوره
+                                    سرفصل ها توسط بک اند هندل نشده اند :(
                                 </h3>
                                 <svg class="w-5 h-5 transition-all">
                                     <use href="#chevron-down"></use>
@@ -574,128 +567,6 @@
                             </div>
                             <!--lesson-->
                             <div class="chapter__body" style="max-height: 0;">
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chapter">
-                            <!--title and what you see whe closed-->
-                            <div class="chapter__title">
-                                <h3 class="font-danaMedium text-base md:text-lg transition-colors line-clamp-1">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 transition-all">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--lesson-->
-                            <div class="chapter__body" style="max-height: 0;">
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chapter">
-                            <!--title and what you see whe closed-->
-                            <div class="chapter__title">
-                                <h3 class="font-danaMedium text-base md:text-lg transition-colors line-clamp-1">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 transition-all">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--lesson-->
-                            <div class="chapter__body" style="max-height: 0;">
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chapter">
-                            <!--title and what you see whe closed-->
-                            <div class="chapter__title">
-                                <h3 class="font-danaMedium text-base md:text-lg transition-colors line-clamp-1">
-                                    معرفی دوره
-                                </h3>
-                                <svg class="w-5 h-5 transition-all">
-                                    <use href="#chevron-down"></use>
-                                </svg>
-                            </div>
-                            <!--lesson-->
-                            <div class="chapter__body" style="max-height: 0;">
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
-                                <div class="lesson">
-                                    <!-- title -->
-                                    <div class="flex items-center gap-x-1.5">
-                                        <span class="lesson__status"></span>
-                                        <a href="#" class="text-sm md:text-base line-clamp-1">معرفی دوره + پاسخ به
-                                            سوالات متداول</a>
-                                    </div>
-                                    <!-- time -->
-                                    <span class="text-xs md:text-sm">13:22</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -703,11 +574,10 @@
             </div>
         </section>
         <section class="flex flex-col lg:flex-row gap-4 md:gap-5 mt-4 md:mt-5">
-            <!-- Questions -->
+            <!-- Questions and mobile teacher -->
             <div class="w-full">
                 <!-- Course Questions -->
-                <div
-                        class="bg-white dark:bg-darkGray-800 px-3.5 md:px-5 pt-5 md:pt-7 pb-3.5 md:pb-6 shadow-light dark:shadow-none rounded-2xl">
+                <div class="bg-white dark:bg-darkGray-800 px-3.5 md:px-5 pt-5 md:pt-7 pb-3.5 md:pb-6 shadow-light dark:shadow-none rounded-2xl">
                     <!-- Section Head -->
                     <div class="flex items-center justify-between flex-wrap mb-6">
                         <div class="flex items-center gap-x-3.5">
@@ -718,84 +588,58 @@
                         </div>
                     </div>
                     <!-- question Form -->
-                    <div class="mb-6">
+                    <div class="mb-6 hidden">
                         <div class="flex gap-x-2 mb-3">
-                            <img class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0"
-                                 src="./images/profile.png">
+                            <img class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0" alt="Amin" src="./images/profile.png">
                             <div class="flex flex-col">
-                                    <span
-                                            class="text-zinc-700 dark:text-white font-danaMedium text-base md:text-xl">Amin</span>
-                                <span class="text-slate-500 dark:text-gray-500 text-sm" data-newtxt="پرسش جدید">پرسش
-                                        جدید</span>
+                                <span class="text-zinc-700 dark:text-white font-danaMedium text-base md:text-xl">Amin</span>
+                                <span class="text-slate-500 dark:text-gray-500 text-sm">پرسش
+                                        جدید
+                                </span>
                             </div>
                         </div>
-                        <div dir="rtl"
-                             class="h-48 text-slate-500 dark:text-gray-500 focus:text-zinc-700 dark:focus:text-white bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-gray-200 dark:focus:border-slate rounded-2xl"
-                             style="display: none;"></div>
-
+                        <div dir="rtl" class="h-48 text-slate-500 dark:text-gray-500 focus:text-zinc-700 dark:focus:text-white bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-gray-200 dark:focus:border-slate rounded-2xl"></div>
                     </div>
                     <!-- List of questions -->
                     <div class="space-y-3.5 sm:space-y-5">
                         <!-- Comments -->
                         <p class="text-zinc-700 dark:text-white font-danaLight leading-7 mt-3.5">
-                            به زودی این بخش تکمیل میشود!
+                            این بخش توسط بک اند هندل نشده!
                         </p>
                     </div>
                 </div>
                 <!-- Course Teacher -->
-                <div
-                        class="md:hidden bg-white dark:bg-darkGray-800 pt-5 pb-3.5 px-3.5 xs:px-5 shadow-light dark:shadow-none rounded-2xl mt-4">
-                    <div
-                            class="flex items-center justify-center gap-x-2.5 pb-5 border-b border-b-gray-100 dark:border-b-slate mb-3.5">
-                        <img class="block w-15 h-15 object-cover rounded-full" src="./images/avatars/saeediRad.png"
-                             alt="محمدامین سعیدی راد">
-                        <div>
-                            <h4 class="text-zinc-700 dark:text-white text-2xl mb-1 font-danaDemiBold">محمدامین سعیدی
-                                راد</h4>
-                            <p class="text-slate-500 dark:text-gray-500 text-sm mt-1.5">Full Stack Web Developer</p>
-                        </div>
-                    </div>
-                    <a href="#"
-                       class="flex items-center justify-center gap-x-1.5 text-slate-500 dark:text-gray-500 text-sm">
-                        <svg class="w-5 h-5">
-                            <use xlink:href="#arrow-right-on-rectangle"></use>
-                        </svg>
-                        مشاهده پروفایل
-                    </a>
+                <div class="course-teacher-section__mobile flex flex-col items-center md:hidden bg-white dark:bg-darkGray-800 pt-5 pb-3.5 px-3.5 xs:px-5 shadow-light dark:shadow-none rounded-2xl mt-4">
                 </div>
             </div>
             <aside class="hidden lg:block w-80 xl:w-96 shrink-0 sticky top-5 space-y-5">
                 <!-- Mini Box Information like time, status, lessons count -->
                 <div class="block">
                     <div class="flex gap-3 md:gap-4">
-                        <div
-                                class="w-full bg-white py-3 dark:bg-darkGray-800 text-center shadow-light dark:shadow-none rounded-2xl">
+                        <div class="w-full bg-white py-3 dark:bg-darkGray-800 text-center shadow-light dark:shadow-none rounded-2xl">
                             <svg class="text-primary w-7 h-7 mx-auto">
-                                <use xlink:href="#exclamation-circle"></use>
+                                <use href="#exclamation-circle"></use>
                             </svg>
                             <div class="flex flex-col items-center justify-center mt-2.5">
-                                    <span class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">در حال
-                                        برگزاری</span>
+                                <span id="course-situation" class="font-danaDemiBold text-lg text-zinc-700 dark:text-white"></span>
                                 <p class="text-slate-500 dark:text-gray-500 text-xs">وضعیت دوره</p>
                             </div>
                         </div>
-                        <div
-                                class="w-full bg-white py-3 dark:bg-darkGray-800 text-center shadow-light dark:shadow-none rounded-2xl">
+                        <div class="w-full bg-white py-3 dark:bg-darkGray-800 text-center shadow-light dark:shadow-none rounded-2xl">
                             <svg class="text-primary w-7 h-7 mx-auto">
-                                <use xlink:href="#clock"></use>
+                                <use href="#clock"></use>
                             </svg>
                             <div class="flex flex-col items-center justify-center mt-2.5">
-                                <span class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">45:08</span>
+                                <span id="course-time" class="font-danaDemiBold text-lg text-zinc-700 dark:text-white"></span>
                                 <p class="text-slate-500 dark:text-gray-500 text-xs">زمان دوره</p>
                             </div>
                         </div>
-                        <div
-                                class="w-full bg-white py-3 dark:bg-darkGray-800 text-center shadow-light dark:shadow-none rounded-2xl">
+                        <div class="w-full bg-white py-3 dark:bg-darkGray-800 text-center shadow-light dark:shadow-none rounded-2xl">
                             <svg class="text-primary w-7 h-7 mx-auto">
-                                <use xlink:href="#video-camera"></use>
+                                <use href="#video-camera"></use>
                             </svg>
                             <div class="flex flex-col items-center justify-center mt-2.5">
-                                <span class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">225</span>
+                                <span id="all-sessions-count" class="font-danaDemiBold text-lg text-zinc-700 dark:text-white"></span>
                                 <p class="text-slate-500 dark:text-gray-500 text-xs">جلسات دوره</p>
                             </div>
                         </div>
@@ -804,25 +648,12 @@
                 <div class="bg-white dark:bg-darkGray-800 p-5 pb-4 shadow-light dark:shadow-none rounded-2xl">
                     <div class="flex items-center justify-between mb-3.5 text-zinc-700 dark:text-white text-xl">
                         <span class="font-danaDemiBold">پیشرفت شما</span>
-                        <span>13%</span>
+                        <span>0%</span>
                     </div>
-                    <progress value="13" max="100" class="h-2.5 w-full align-baseline"></progress>
+                    <progress value="0" max="100" class="h-2.5 w-full align-baseline"></progress>
                 </div>
                 <!-- Course Teacher -->
-                <div
-                        class="block bg-white dark:bg-darkGray-800 px-5 py-6 shadow-light dark:shadow-none rounded-2xl text-center">
-                    <img class="block mx-auto mb-2 w-[90px] h-[90px] rounded-full"
-                         src="https://secure.gravatar.com/avatar/50db59beddbfed36a1646dae99ca7b2d?s=96&amp;d=mm&amp;r=g"
-                         alt="محمدامین سعیدی راد">
-                    <h4 class="text-zinc-700 dark:text-white text-2xl mb-1">محمدامین سعیدی راد</h4>
-                    <a href="https://sabzlearn.ir/teacher/ce01010101it"
-                       class="flex items-center justify-center gap-x-1.5 text-slate-500 dark:text-darkGray-500 text-sm">
-                        مدرس دوره
-                        <svg class="w-5 h-5">
-                            <use href="#arrow-right-on-rectangle"></use>
-                        </svg>
-                    </a>
-                    <p class="text-zinc-700 dark:text-white font-danaLight mt-2.5"></p>
+                <div class="course-teacher-section__desktop block bg-white dark:bg-darkGray-800 px-5 py-6 shadow-light dark:shadow-none rounded-2xl text-center">
                 </div>
             </aside>
         </section>
@@ -926,7 +757,8 @@
 <div class="profile-dropdown--overlay"></div>
 <div class="mobile-menu--overlay"></div>
 
-<script src="./scripts/session-page.js" type="module"></script>
 <script src="./scripts/shared/shared.js" type="module"></script>
+<script src="./scripts/session-page.js" type="module"></script>
+<script src="./scripts/plyr/plyr.js"></script>
 </body>
 </html>

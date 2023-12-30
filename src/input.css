@@ -129,8 +129,13 @@ span:has(+ .mobile-menu--submenu__open) {
     @apply bg-gray-200 dark:bg-darkSlate rounded-b-none;
 }
 
-.topic__title--active>svg {
+.topic__title--active>svg,
+.chapter__title--active>svg{
     @apply rotate-180;
+}
+
+.chapter__title--active {
+
 }
 
 @layer base {
