@@ -8,13 +8,13 @@ import {
     timeToHour,
     getToken,
     alert,
-    getCourseComments
+    getCourseComments, toggleSeasonHandler
 } from './utils/utils.js';
 import {getMe} from "./funcs/auth.js";
 
 let $ = document
-const seasonsTitle = $.querySelectorAll('.topic__title')
-const seasonsEpsContainer = $.querySelectorAll('.topic__body')
+const seasonsTitle = document.querySelector('.topic__title')
+const seasonBody = document.querySelector('.topic__body')
 const copyShortLinkBtn = $.querySelector(".short-link--copy-btn")
 
 // -------------------- Functions
@@ -115,8 +115,8 @@ window.addEventListener('load', async () => {
     const scrollToLessonsBtn = document.querySelector('#scroll-to-lessons')
     scrollToLessonsBtn && scrollToLessonsBtn.addEventListener('click', event => {
         event.preventDefault()
-        const lessonsContainer = document.querySelector('#lessons')
-        lessonsContainer.scrollIntoView({behavior: "smooth", block: "center"})
+        const seasonBody = document.querySelector('#lessons')
+        seasonBody.scrollIntoView({behavior: "smooth", block: "center"})
     })
 
     // customize the info boxes of the course
@@ -201,14 +201,13 @@ window.addEventListener('load', async () => {
     const exactMin = (Number('0.' + relativeMin) * 60).toFixed(0)
     courseExactTime.innerHTML = (course.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0) || '0').toString().split('.')[0].padStart(2, '0') + ':' + exactMin.padStart(2, '0')
 
-    const lessonsContainer = document.querySelector('.topic__body')
     const lessons = course.sessions
     if (lessons.length) {
         lessons.forEach((lesson, index) => {
-            lessonsContainer.insertAdjacentHTML('beforeend', `
+            seasonBody.insertAdjacentHTML('beforeend', `
             <div class="md:flex items-center gap-2.5 flex-wrap space-y-3.5 md:space-y-0 py-4 md:py-6 px-3.5 md:px-5 bg-gray-100 dark:bg-darkGray-700 group">
                 <!--episode title-->
-                <a href="${lesson.free || (data && data.courses.find(c => c._id === course._id)) ? `session-page.js?session=${lesson.title}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
+                <a href="${lesson.free || (data && data.courses.find(c => c._id === course._id)) ? `session-page.html?c=${course.shortName}&session=${lesson._id}` : '#watch-or-register-course-btn'}" class="flex items-center gap-x-1.5 md:gap-x-2.5 shrink-0 w-[85%]">
                     <span class="flex justify-center items-center shrink-0 w-5 h-5 md:w-7 md:h-7 bg-white dark:bg-darkGray-800 group-hover:bg-primary group-hover:text-white font-danaDemiBold text-xs md:text-base dark:text-white rounded-md transition-colors">
                         ${index + 1}
                     </span>
@@ -232,7 +231,7 @@ window.addEventListener('load', async () => {
         `)
         })
     } else {
-        lessonsContainer.insertAdjacentHTML('beforeend', `
+        seasonBody.insertAdjacentHTML('beforeend', `
         <span class="block w-full h-full text-center py-3 bg-gray-100 dark:bg-darkGray-700 text-zinc-700 dark:text-white">به زودی :)</span>
     `)
     }
@@ -443,22 +442,10 @@ window.addEventListener('load', async () => {
     addCommentSubmitBtn.addEventListener('click', event => validateCommentAndSend(event))
 })
 
-const toggleSeasonHandler = (title, index) => {
-    title.classList.toggle('topic__title--active')
-    if (title.classList.contains('topic__title--active')) {
-        seasonsEpsContainer[index].style.maxHeight = ``
-    } else {
-        seasonsEpsContainer[index].style.maxHeight = "0px"
-    }
-}
-
 // Functions End
 
 // ------------------- Event Listeners
-
-seasonsTitle.forEach((title, index) => {
-    title.addEventListener('click', () => toggleSeasonHandler(title, index))
-})
+seasonsTitle.addEventListener('click', event => toggleSeasonHandler(event.currentTarget, seasonBody, 'topic__title--active'))
 
 copyShortLinkBtn.addEventListener('click', event => copyShortLinks(event, $.body))
 

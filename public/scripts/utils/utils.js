@@ -724,6 +724,26 @@ const getCourseComments = async courseName => {
     return allComments.filter(comment => comment.course === courseName)
 }
 
+const getCategoryById = async id => {
+    const response = await fetch('http://localhost:4000/v1/category')
+    const categories = await response.json()
+    return categories.find(cat => cat._id === id)
+}
+
+const getCourseCreatorDetails = async courseShortName => {
+    const course = await getCourseByShortName(courseShortName)
+    return course.creator
+}
+
+const toggleSeasonHandler = (title, body, className) => {
+    title.classList.toggle(className)
+    if (title.classList.contains(className)) {
+        body.style.maxHeight = ``
+    } else {
+        body.style.maxHeight = "0px"
+    }
+}
+
 export {
     alert,
     changeThemeHandler,
@@ -761,5 +781,8 @@ export {
     timeToHour,
     getCourseComments,
     getUserCourses,
-    removeFromLocalStorage
+    removeFromLocalStorage,
+    getCategoryById,
+    getCourseCreatorDetails,
+    toggleSeasonHandler
 }
