@@ -508,7 +508,7 @@
                         <svg class="w-6 h-6 text-darkGray-500">
                             <use href="#sort"></use>
                         </svg>
-                        <span>
+                        <span id="sorted-title">
                                 همه دوره ها
                         </span>
                     </div>
@@ -522,7 +522,7 @@
                         </svg>
                         <span>
                                 مرتب سازی:
-                            </span>
+                        </span>
                     </div>
                     <!--options-->
                     <div class="sorting-data">
@@ -573,7 +573,7 @@
     </div>
     <!-- bottom sheet -->
     <div class="bottom-sheet">
-        <div class="flex gap-x-3 rounded-t-2xl bg-gray-100 p-6 pb-5">
+        <div class="flex gap-x-3 rounded-t-2xl bg-gray-100 dark:bg-darkGray-700 dark:text-white p-6 pb-5">
             <button class="bottom-sheet--close-btn flex justify-center items-center text-darkGray-500">
                 <svg class="w-6 h-6">
                     <use href="#x-mark"></use>
@@ -581,34 +581,26 @@
             </button>
             <span class="font-danaDemiBold text-lg">مرتب سازی بر اساس</span>
         </div>
-        <div class="sorting-data mobile-sorting-data px-6 bg-white divide-y-[1px]">
+        <div class="sorting-data mobile-sorting-data px-6 bg-white dark:bg-darkGray-800 divide-y-[1px] dark:divide-darkSlate">
             <button class="bottom-sheet__item w-full bottom-sheet__item--selected" data-value="default">
                 <span>
-                    همه دوره ها
+                    عادی
                 </span>
                 <svg class="w-5 h-5">
                     <use href="#check"></use>
                 </svg>
             </button>
-            <button class="bottom-sheet__item w-full" data-value="cheapest">
+            <button class="bottom-sheet__item w-full" data-value="newest">
                 <span>
-                    ارزان ترین
+                    جدید ترین
                 </span>
                 <svg class="w-5 h-5">
                     <use href="#check"></use>
                 </svg>
             </button>
-            <button class="bottom-sheet__item w-full" data-value="expensive">
+            <button class="bottom-sheet__item w-full" data-value="oldest">
                 <span>
-                    گران ترین
-                </span>
-                <svg class="w-5 h-5">
-                    <use href="#check"></use>
-                </svg>
-            </button>
-            <button class="bottom-sheet__item w-full" data-value="popular">
-                <span>
-                    پرمخاطب ها
+                    قدیمی ترین
                 </span>
                 <svg class="w-5 h-5">
                     <use href="#check"></use>
@@ -618,7 +610,7 @@
     </div>
     <!-- mobile filtering -->
     <div class="mobile-filter">
-        <div class="flex justify-between items-center p-6 pb-5 bg-gray-100">
+        <div class="flex justify-between items-center p-6 pb-5 bg-gray-100 dark:bg-darkGray-700">
             <div class="flex items-center gap-x-3">
                 <button class="filter__close-btn flex items-center justify-center text-gray-500">
                     <svg class="w-6 h-6">
@@ -627,14 +619,14 @@
                 </button>
                 <span class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">فیلتر</span>
             </div>
-            <button id="clear-all-filters" class="flex items-center gap-x-1.5 px-3 py-1.5 text-sm bg-pink-500/10 text-pink-500 rounded-xl">
+            <button id="clear-all-filters" class="flex items-center gap-x-1.5 px-3 py-1.5 text-sm bg-pink-500/10 text-pink-500 dark:bg-red-500/10 dark:text-red-500 rounded-xl">
                 <svg class="w-5 h-5">
                     <use href="#trash"></use>
                 </svg>
                 حذف فیلتر ها
             </button>
         </div>
-        <form class="search-cat-form px-6 divide-y-[1px]" id="filter_mobile">
+        <form class="search-cat-form px-6 divide-y-[1px] dark:divide-darkGray-700" id="filter_mobile">
             <label class="relative select-none cursor-pointer w-full flex items-center justify-between py-5">
                 <span class="text-sm text-zinc-700 dark:text-white select-none">فقط دوره های رایگان</span>
                 <input class="filtering--special-items__input absolute w-0 h-0 opacity-0" type="checkbox" data-value="only_free">
@@ -769,6 +761,7 @@
 <div class="mobile-bottom-sheet--overlay"></div>
 
 <script src="./scripts/search-categories.js" type="module"></script>
+<script src="./scripts/shared/shared-categories-pages.js" type="module"></script>
 <script src="./scripts/shared/shared.js" type="module"></script>
 </body>
 </html>

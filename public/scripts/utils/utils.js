@@ -750,6 +750,20 @@ const getLastEditedArticles = async () => {
     return quickSort(articles, compareItemsForLastEdited)
 }
 
+const filterArticles = async shownArticlesCount => {
+    const articles = await getPublishedArticles()
+    const filter = getSearchParam('sort')
+
+    switch (filter) {
+        case 'newest':
+            return (await getLastEditedArticles()).slice(0, shownArticlesCount)
+        case 'oldest':
+            return (await getLastEditedArticles()).slice(0, shownArticlesCount).reverse()
+        default:
+            return articles.slice(0, shownArticlesCount)
+    }
+}
+
 export {
     alert,
     changeThemeHandler,
@@ -792,4 +806,6 @@ export {
     getCourseCreatorDetails,
     toggleSeasonHandler,
     getLastEditedArticles,
+    filterArticles,
+    categoryCoursesLowerOptionsHandler
 }
