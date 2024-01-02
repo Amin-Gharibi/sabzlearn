@@ -3966,14 +3966,14 @@ span:has(+ .mobile-menu--submenu__open) {
   border-color: rgb(148 163 184 / var(--tw-divide-opacity));
 }
 
-:is(.dark .dark\:divide-darkSlate) > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-opacity: 1;
-  border-color: rgb(74 75 109 / var(--tw-divide-opacity));
-}
-
 :is(.dark .dark\:divide-darkGray-700) > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(50 51 77 / var(--tw-divide-opacity));
+}
+
+:is(.dark .dark\:divide-darkSlate) > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(74 75 109 / var(--tw-divide-opacity));
 }
 
 :is(.dark .dark\:border) {
