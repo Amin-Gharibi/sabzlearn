@@ -408,10 +408,9 @@
 <main>
     <div class="container">
         <!--page address section-->
-        <section
-                class="h-[50px] hidden md:flex justify-start items-center mt-7 bg-white dark:bg-darkGray-800 text-lg text-zinc-700 dark:text-white shadow-light overflow-x-auto overflow-y-hidden rounded-2xl">
+        <section class="page-address-bar h-[50px] hidden md:flex justify-start items-center mt-7 bg-white dark:bg-darkGray-800 text-lg text-zinc-700 dark:text-white shadow-light overflow-x-auto overflow-y-hidden rounded-2xl">
             <div class="page-address--item">
-                <a href="#">
+                <a href="index.html">
                     <svg class="w-6 h-6">
                         <use href="#home"></use>
                     </svg>
@@ -422,28 +421,13 @@
             </svg>
 
             <div class="page-address--item">
-                <a href="#">
-                    دوره ها
+                <a href="search-categories-articles.html">
+                    وبلاگ
                 </a>
             </div>
             <svg class="w-10 h-full text-gray-100 dark:text-darkGray">
                 <use href="#chevron-left-address"></use>
             </svg>
-
-            <div class="page-address--item">
-                <a href="#">
-                    فرانت اند
-                </a>
-            </div>
-            <svg class="w-10 h-full text-gray-100 dark:text-darkGray">
-                <use href="#chevron-left-address"></use>
-            </svg>
-
-            <div class="page-address--item">
-                <a href="#">
-                    آموزش Next.js بصورت پروژه محور
-                </a>
-            </div>
         </section>
         <!--article content and short link and newest articles and categories and comments-->
         <section class="grid lg:grid-cols-3 gap-3.5 sm:gap-5 mt-7">
@@ -453,8 +437,8 @@
                 <div class="p-5 bg-white dark:bg-darkGray-800 dark:border border-darkGray-700 shadow-light dark:shadow-none rounded-2xl">
                     <!--article title-->
                     <div class="mb-5 pb-6 border-b border-b-gray-200 dark:border-b-darkGray-700">
-                        <h1 class="font-morabbaBold dark:text-white text-2xl/9 lg:text-4xl/[48px]">
-                            html چیست؟ کاربردهای html در طراحی وب
+                        <h1 class="article--title font-morabbaBold dark:text-white text-2xl/9 lg:text-4xl/[48px]">
+
                         </h1>
                     </div>
                     <!--article publisher and release date-->
@@ -465,7 +449,7 @@
                                 <use href="#user"></use>
                             </svg>
                             <span>
-                                نوشته از زهرا سپنج پور
+                                نوشته از <span class="article--publisher"></span>
                             </span>
                         </div>
                         <!--release date-->
@@ -473,59 +457,23 @@
                             <svg class="inline w-5 h-5 ml-0.5">
                                 <use href="#calendar-days"></use>
                             </svg>
-                            <span>
-                                1402/09/14
+                            <span class="article--date">
                             </span>
                         </div>
                     </div>
                     <!--article main content-->
-                    <div class="relative">
-                        <!--article cover-->
-                        <img src="./images/articles/What-is-html.webp" alt="main-cover"
-                             class="w-full block mb-6 rounded-3xl">
-                        <!--article text-->
-                        <div class="article--text max-h-[800px] dark:text-white text-lg/7 lg:text-xl/9 overflow-hidden">
-                            <p><strong>HTML</strong><strong> چیست؟</strong> در یک کلام، مادر همه تکنولوژی های توسعه وب
-                                هست و از قدیمی ترین ها! اگر قصد دارید در حوزه هایی مثل توسعه وب و به طور ویژه فرانت اند
-                                مسیر متخصص شدن رو در پیش بگیرید، <strong>یادگیری </strong><strong>HTML</strong> اولین
-                                قدمی هست که باید بردارید. این زبان در عین سادگی در همه جای وب نفوذ کرده و با معرفی
-                                <strong>HTML5</strong> به غولی تبدیل شده که تکنولوژی های دیگه رو مجبور به سازگاری کرده.
-                            </p>
-                            <p>از اونجایی که شما اومدید با <strong>زبان اچ تی ام ال</strong> و به طور ویژه <strong>کاربرد </strong><strong>HTML</strong>
-                                آشنا بشید و اینجا هم ویکی پدیا نیست که شجره نامه یک مطلب رو مطالعه کنید، طبق معمول یه
-                                راست وارد اصل مطلب میشیم تا بتونید در کوتاهترین زمان به شناخت کاملی از این زبان ساده و
-                                دوست داشتنی برسید.
-                            </p>
-                            <h2>
-                                HTML چیست؟ نگاهی به تاریخچه html
-                            </h2>
-                            <img decoding="async" loading="lazy"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/12/What-is-html-1.webp"
-                                 alt="html چیست">
-                            <p><strong>HTML</strong> یا <strong>Hyper Text Markup Language</strong> یک <strong>زبان
-                                نشانه گذاری</strong> در زمینه طراحی و توسعه صفحات وب هست که در سال 1991 ابداع شد. اگر 20
-                                سال پیش به قبل در فضای اینترنت بودید یا از کسی شنیدید، حتما میدونید که اون زمان صفحات وب
-                                چیزی بیشتر از یک روزنامه دیواری سرد و بی روح نبودن که پر از متون ساده و گاهی در کمال
-                                شگفتی! همراه با عکس…</p>
-                            <p><strong>HTML</strong> یا <strong>Hyper Text Markup Language</strong> یک <strong>زبان
-                                نشانه گذاری</strong> در زمینه طراحی و توسعه صفحات وب هست که در سال 1991 ابداع شد. اگر 20
-                                سال پیش به قبل در فضای اینترنت بودید یا از کسی شنیدید، حتما میدونید که اون زمان صفحات وب
-                                چیزی بیشتر از یک روزنامه دیواری سرد و بی روح نبودن که پر از متون ساده و گاهی در کمال
-                                شگفتی! همراه با عکس…</p>
-                        </div>
-                        <!--lower shadow when showing show more button-->
-                        <div class="article--text__shadow absolute bottom-0 right-0 left-0 h-[190px] bg-gradient-to-t from-white dark:from-darkGray-800"></div>
+                    <div class="article--main-content relative">
+
                     </div>
-                    <button type="button"
-                            class="w-max h-[56px] flex justify-center items-center gap-x-2.5 mx-auto mt-2 px-5 text-xl bg-primary hover:bg-green-500 text-white select-none rounded-full transition-all">
+                    <button type="button" class="show-more--btn w-max h-[56px] hidden justify-center items-center gap-x-2.5 mx-auto mt-2 px-5 text-xl bg-primary hover:bg-green-500 text-white select-none rounded-full transition-all">
                         <span>مشاهده بیشتر</span>
                         <svg class="shrink-0 w-5 h-5">
-                            <use xlink:href="#chevron-down"></use>
+                            <use href="#chevron-down"></use>
                         </svg>
                     </button>
                 </div>
                 <!--comment section-->
-                <div class="mt-4 sm:mt-5 px-3.5 md:px-5 pt-5 md:pt-7 md:pb-6 bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none rounded-2xl">
+                <div class="mt-4 sm:mt-5 px-3.5 md:px-5 pt-5 md:pt-7 md:pb-6 pb-2 bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none rounded-2xl">
                     <!--top side-->
                     <div class="flex justify-between items-center flex-wrap mb-5">
                         <!--title-->
@@ -535,248 +483,8 @@
                                 نظرات
                             </h3>
                         </div>
-                        <!--new comment button-->
-                        <button class="w-max h-10 flex justify-center items-center px-4 text-base bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all">
-                            ایجاد نظر جدید
-                        </button>
                     </div>
-                    <!--add new comment form-->
-                    <form class="mb-5">
-                        <!--form header-->
-                        <div class="flex items-center gap-x-2 mb-3">
-                            <img src="./images/profile.png" alt="user-profile-picture"
-                                 class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
-                            <div class="dark:text-white">
-                                <span class="inline-block font-danaMedium text-base md:text-xl">
-                                    Amin
-                                </span>
-                                <p class="text-sm text-slate-500 dark:text-darkGray-500">
-                                    ثبت نظر جدید
-                                </p>
-                            </div>
-                        </div>
-                        <!--form content-->
-                        <textarea rows="6" id="comment-textarea"
-                                  class="block w-full p-3 md:p-5 text-sm md:text-base text-slate-500 dark:text-darkGray-500 focus:text-zinc-700 dark:focus:text-white bg-gray-100 dark:bg-darkGray-700 border border-transparent focus:border-gray-200 dark:focus:border-darkSlate rounded-2xl transition-colors outline-0"
-                                  placeholder="نظر خود را بنویسید ..."></textarea>
-                        <!--form buttons-->
-                        <div class="flex gap-x-2 justify-end mt-2.5">
-                            <button class="w-max h-10 flex justify-center items-center px-4 text-base bg-gray-200 hover:bg-gray-300 dark:bg-darkGray-700 dark:hover:bg-darkSlate dark:text-white select-none rounded-xl transition-all"
-                                    id="comment-cancel-btn">لغو
-                            </button>
-                            <button class="w-max h-10 flex justify-center items-center px-4 text-base bg-sky-500 hover:bg-sky-600 dark:bg-[#4E81FB] dark:hover:bg-[#2563EB] text-white select-none rounded-xl transition-all"
-                                    id="comment-submit-btn">ثبت
-                            </button>
-                        </div>
-                    </form>
-                    <!--comments container-->
-                    <div class="space-y-3.5 sm:space-y-5">
-                        <!--each comment-->
-                        <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-100 dark:bg-darkGray-700 rounded-2xl">
-                            <!--user profile and role for desktop-->
-                            <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="./images/profile.png" alt="user-profile"
-                                     class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                <span class="w-[60px] h-[18px] bg-slate-500 dark:bg-slate-400/10 text-xs text-white dark:text-slate-400 text-center rounded">
-                                    کاربر
-                                </span>
-                            </div>
-                            <!--user name && comment && answers-->
-                            <div class="w-full">
-                                <!--username && date && profile and role for mobile && reply btn-->
-                                <div class="w-full flex justify-between items-center">
-                                    <!--username && date && profile and role for mobile size-->
-                                    <div class="flex items-center gap-x-2">
-                                        <img src="./images/profile.png" alt="profile"
-                                             class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                        <div class="shrink-0">
-                                            <!--username-->
-                                            <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                Amin Gharibi
-                                            </span>
-                                            <!--user role and release date-->
-                                            <div class="flex items-center gap-x-1.5 mt-1">
-                                                <span class="md:hidden w-[60px] h-[18px] bg-slate-500 dark:bg-slate-400/10 text-xs text-white dark:text-slate-400 text-center rounded">
-                                                    کاربر
-                                                </span>
-                                                <span class="text-xs text-slate-500 dark:text-white">
-                                                    1402/09/13
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--reply btn-->
-                                    <button class="w-6 h-5 text-slate-500 dark:text-gray-500">
-                                        <svg class="w-6 h-5">
-                                            <use href="#reply"></use>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <!--comment content-->
-                                <p class="dark:text-white leading-7 mt-3.5">
-                                    خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این موجود،
-                                    نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و ضعف هندل می
-                                    کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه که با
-                                    همکاری سبزلرن بیشتر از هر دانشگاهی در ایران برنامه نویس تربیت کردن و باعث ارتقا دانش
-                                    برنامه نویسی بین پارسی زبانان شدن از همه شما متشکرم
-                                    فقط اگر این آهنگ intro اول جلسات رو که یه صدای ترق گوش سوراخ کن داره رو عوض می کردید
-                                    دو چندان سپاسگذار می شدم
-                                </p>
-                                <!--answers-->
-                                <div class="mt-7 space-y-3.5 md:space-y-5">
-                                    <!--each answer-->
-                                    <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
-                                        <!--user profile and role-->
-                                        <div class="hidden md:flex flex-col items-center gap-y-2">
-                                            <img src="./images/profile.png" alt="user-profile"
-                                                 class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                            <span class="w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                مدیریت
-                                            </span>
-                                        </div>
-                                        <!--user name && comment-->
-                                        <div class="w-full">
-                                            <!--username && date && profile and role for mobile size-->
-                                            <div class="w-full flex justify-between items-center">
-                                                <!--username && date && profile and role for mobile size-->
-                                                <div class="flex items-center gap-x-2">
-                                                    <img src="./images/profile.png" alt="profile"
-                                                         class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                                    <div class="shrink-0">
-                                                        <!--username-->
-                                                        <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                            قدیر یلمه
-                                                        </span>
-                                                        <!--user role and release date-->
-                                                        <div class="flex items-center gap-x-1.5 mt-1">
-                                                            <span class="md:hidden w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                                مدیریت
-                                                            </span>
-                                                            <span class="text-xs text-slate-500 dark:text-white">
-                                                                1402/09/13
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--comment content-->
-                                            <p class="dark:text-white leading-7 mt-3.5">
-                                                خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این
-                                                موجود،
-                                                نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و
-                                                ضعف
-                                                هندل می
-                                                کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه
-                                                که
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-100 dark:bg-darkGray-700 rounded-2xl">
-                            <!--user profile and role-->
-                            <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="./images/profile.png" alt="user-profile"
-                                     class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                <span class="w-[60px] h-[18px] bg-primary dark:bg-primary/10 text-xs text-white dark:text-primary text-center rounded">
-                                    دانشجو
-                                </span>
-                            </div>
-                            <!--user name && comment && answers-->
-                            <div class="w-full">
-                                <!--username && date && profile and role for mobile size && reply btn-->
-                                <div class="w-full flex justify-between items-center">
-                                    <!--username && date && profile and role for mobile size-->
-                                    <div class="flex items-center gap-x-2">
-                                        <img src="./images/profile.png" alt="profile"
-                                             class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                        <div class="shrink-0">
-                                            <!--username-->
-                                            <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                Amin Gharibi
-                                            </span>
-                                            <!--user role and release date-->
-                                            <div class="flex items-center gap-x-1.5 mt-1">
-                                                <span class="md:hidden w-[60px] h-[18px] bg-primary dark:bg-primary/10 text-xs text-white dark:text-primary text-center rounded">
-                                                    دانشجو
-                                                </span>
-                                                <span class="text-xs text-slate-500 dark:text-white">
-                                                    1402/09/13
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--reply btn-->
-                                    <button class="w-6 h-5 text-slate-500 dark:text-gray-500">
-                                        <svg class="w-6 h-5">
-                                            <use href="#reply"></use>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <!--comment content-->
-                                <p class="dark:text-white leading-7 mt-3.5">
-                                    خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این موجود،
-                                    نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و ضعف هندل می
-                                    کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه که با
-                                    همکاری سبزلرن بیشتر از هر دانشگاهی در ایران برنامه نویس تربیت کردن و باعث ارتقا دانش
-                                    برنامه نویسی بین پارسی زبانان شدن از همه شما متشکرم
-                                    فقط اگر این آهنگ intro اول جلسات رو که یه صدای ترق گوش سوراخ کن داره رو عوض می کردید
-                                    دو چندان سپاسگذار می شدم
-                                </p>
-                                <!--answers-->
-                                <div class="mt-7 space-y-3.5 md:space-y-5">
-                                    <!--each answer-->
-                                    <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
-                                        <!--user profile and role-->
-                                        <div class="hidden md:flex flex-col items-center gap-y-2">
-                                            <img src="./images/profile.png" alt="user-profile"
-                                                 class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                            <span class="w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                مدرس
-                                            </span>
-                                        </div>
-                                        <!--user name && comment-->
-                                        <div class="w-full">
-                                            <!--username && date-->
-                                            <div class="w-full flex justify-between items-center">
-                                                <!--username && date && profile and role for mobile size-->
-                                                <div class="flex items-center gap-x-2">
-                                                    <img src="./images/profile.png" alt="profile"
-                                                         class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
-                                                    <div class="shrink-0">
-                                                        <!--username-->
-                                                        <span class="font-danaMedium text-base md:text-xl dark:text-white">
-                                                            محمدامین سعیدی راد
-                                                        </span>
-                                                        <!--user role and release date-->
-                                                        <div class="flex items-center gap-x-1.5 mt-1">
-                                                            <span class="md:hidden w-[60px] h-[18px] bg-secondary-light dark:bg-[#4E81FB]/10 text-xs text-white dark:text-[#4E81FB] text-center rounded">
-                                                                مدرس
-                                                            </span>
-                                                            <span class="text-xs text-slate-500 dark:text-white">
-                                                                1402/09/13
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--comment content-->
-                                            <p class="dark:text-white leading-7 mt-3.5">
-                                                خیلی خوشحالم که در دوره ای زندگی می کنم که nextjs وجود داره از بس که این
-                                                موجود،
-                                                نازنین و دوست داشتنی هست و کارها رو راحت و تمیز و مرتب و بدون اشکال و
-                                                ضعف
-                                                هندل می
-                                                کنه و از همه مهمتر استاد نابغه ای مثل آقای سعیدی راد اون رو تدریس می کنه
-                                                که
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="text-zinc-700 dark:text-white">این قسمت توسط بک اند هندل نشده!</span>
                 </div>
             </div>
             <!--side content-->
@@ -802,22 +510,8 @@
                     <span class="side-bar--titles before:bg-pink-500 before:dark:bg-rose-500 relative flex justify-start items-center mb-5 pr-4 font-danaDemiBold text-2xl dark:text-white">
                         جدیدترین نوشته ها
                     </span>
-                    <div class="flex flex-col mt-5 px-4 text-xl dark:text-white divide-y divide-dashed divide-slate-500 dark:divide-darkGray-500">
-                        <a href="#" class="py-3 line-clamp-3">
-                            html چیست؟ کاربردهای html در طراحی وب
-                        </a>
-                        <a href="#" class="py-3 line-clamp-3">
-                            دیکشنری در پایتون + تکنیک و ترفندهای متنوع
-                        </a>
-                        <a href="#" class="py-3 line-clamp-3">
-                            عملگرها در پایتون – راهنمای مبتدیان
-                        </a>
-                        <a href="#" class="py-3 line-clamp-3">
-                            فریمورک های پایتون + معرفی کاربردها
-                        </a>
-                        <a href="#" class="py-3 line-clamp-3">
-                            محاسبات دقیق با قدر مطلق در پایتون – راهنمای عملی برای برنامه‌نویسان
-                        </a>
+                    <div class="latest-articles flex flex-col mt-5 px-4 text-xl dark:text-white divide-y divide-dashed divide-slate-500 dark:divide-darkGray-500">
+                        
                     </div>
                 </div>
                 <!--categories-->
@@ -825,58 +519,7 @@
                     <span class="side-bar--titles before:bg-primary relative flex justify-start items-center mb-5 pr-4 font-danaDemiBold text-2xl dark:text-white">
                         دسته بندی  ها
                     </span>
-                    <ul class="text-xl dark:text-white space-y-6 px-4">
-                        <li>
-                            <a href="#" class="flex items-center gap-1.5">
-                                <svg class="w-3 h-3 text-primary">
-                                    <use href="#triangle"></use>
-                                </svg>
-                                <span>
-                                    طراحی سایت
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center gap-1.5">
-                                <svg class="w-3 h-3 text-primary">
-                                    <use href="#triangle"></use>
-                                </svg>
-                                <span>
-                                     جاوا اسکریپت
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center gap-1.5">
-                                <svg class="w-3 h-3 text-primary">
-                                    <use href="#triangle"></use>
-                                </svg>
-                                <span>
-                                     کسب درامد از برنامه نویسی
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center gap-1.5">
-                                <svg class="w-3 h-3 text-primary">
-                                    <use href="#triangle"></use>
-                                </svg>
-                                <span>
-                                     پایتون
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center gap-1.5">
-                                <svg class="w-3 h-3 text-primary">
-                                    <use href="#triangle"></use>
-                                </svg>
-                                <span>
-                                     شروع برنامه نویسی
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <span class="text-zinc-700 dark:text-white">این قسمت توسط بک اند هندل نشده!</span>
                 </div>
             </div>
         </section>

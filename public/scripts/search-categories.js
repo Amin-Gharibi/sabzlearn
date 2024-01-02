@@ -1,6 +1,6 @@
 import {
     addSearchParam,
-    clearSearchParams,
+    clearSearchParams, filterArticles,
     getAllEnCategories, getAllFaCategories,
     getCourses,
     getSearchParam,
@@ -8,6 +8,7 @@ import {
     showCourseCategories,
     showCoursesBasedOnUrl,
 } from "./utils/utils.js";
+import {toggleMobileSortingMenu} from "./shared/shared-categories-pages.js";
 
 window.addEventListener('load', async () => {
     // set page title handling
@@ -45,30 +46,9 @@ window.addEventListener('load', async () => {
     // get all asynchronous functions
     const [courseCategories] = await Promise.all([getAllEnCategories(), showCourseCategories(), showCoursesBasedOnUrl(courses, shownCoursesCount)])
 
-    // get both buttons so if one changed in a size the other one also changes
     const desktopSortingButtons = document.querySelectorAll('.sorting-data:not(.mobile-sorting-data) > button')
     const mobileSortingButtons = document.querySelectorAll('.mobile-sorting-data > button')
     let btnValue;
-    // activate sorting button on page loading
-    if (getSearchParam('sort')) {
-        desktopSortingButtons.forEach(btn => {
-            btn.classList.remove('active')
-        })
-        mobileSortingButtons.forEach(btn => {
-            btn.classList.remove('bottom-sheet__item--selected')
-        })
-        desktopSortingButtons.forEach(btn => {
-            if (getSearchParam('sort') && btn.getAttribute('data-value') === getSearchParam('sort')) {
-                btn.classList.add('active')
-            }
-        })
-        mobileSortingButtons.forEach(btn => {
-            if (getSearchParam('sort') && btn.getAttribute('data-value') === getSearchParam('sort')) {
-                btn.classList.add('bottom-sheet__item--selected')
-            }
-        })
-    }
-
     const sortingButtonsClickHandler = async btn => {
         desktopSortingButtons.forEach(button => button.classList.remove('active'))
         mobileSortingButtons.forEach(button => button.classList.remove('bottom-sheet__item--selected'))
@@ -137,6 +117,12 @@ window.addEventListener('load', async () => {
             await showCoursesBasedOnUrl(courses, shownCoursesCount)
         })
     }
+
+    const showMoreCoursesBtn = document.querySelector('.show-more__content')
+    showMoreCoursesBtn.addEventListener('click', async () => {
+        shownCoursesCount += 12;
+        await showCoursesBasedOnUrl(courses, shownCoursesCount)
+    })
 })
 
 
@@ -167,21 +153,7 @@ mobileFilterBtn.addEventListener('click', toggleMobileFilterMenu)
 
 
 const mobileSortingBtn = document.querySelector('.mobile-sort-btn')
-const toggleMobileSortingMenu = () => {
-    const mobileSortingMenu = document.querySelector('.bottom-sheet')
-    const mobileSortingMenuOverlay = document.querySelector('.mobile-bottom-sheet--overlay')
-    const mobileSortingMenuCloseBtn = document.querySelector('.bottom-sheet--close-btn')
-    mobileSortingMenu.classList.toggle('bottom-sheet__open')
-    mobileSortingMenuOverlay.classList.toggle('mobile-bottom-sheet--overlay__show')
 
-    mobileSortingMenuOverlay.addEventListener('click', toggleMobileSortingMenu)
-    mobileSortingMenuCloseBtn.addEventListener('click', toggleMobileSortingMenu)
-
-    const mobileSortingBtns = document.querySelectorAll('.mobile-sorting-data > button')
-    mobileSortingBtns.forEach(btn => {
-        btn.addEventListener('click', toggleMobileSortingMenu)
-    })
-}
 mobileSortingBtn.addEventListener('click', toggleMobileSortingMenu)
 
 const applyMobileFiltersBtn = document.querySelector('.apply-mobile-filters')

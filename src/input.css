@@ -524,7 +524,7 @@ span:has(+ .mobile-menu--submenu__open) {
 
     .filtering--special-items__toggle:after {
         content: '';
-        @apply absolute top-0 bottom-0 right-1 w-4 h-4 my-auto rounded-full bg-white dark:bg-darkGray-800 transition-all;
+        @apply absolute top-0 bottom-0 right-1 w-4 h-4 my-auto rounded-full bg-white dark:bg-darkGray-700 transition-all;
     }
 
     input:checked~.categories--toggle {
@@ -610,12 +610,12 @@ span:has(+ .mobile-menu--submenu__open) {
     }
 
     .bottom-sheet__item {
-        @apply flex justify-between items-center py-4 text-sm transition-all text-slate-500;
+        @apply flex justify-between items-center py-4 text-sm transition-all text-slate-500 dark:text-darkGray-500;
     }
 
     .bottom-sheet__item.bottom-sheet__item--selected span,
     .bottom-sheet__item.bottom-sheet__item--selected svg {
-        @apply font-danaMedium text-zinc-700;
+        @apply font-danaMedium text-zinc-700 dark:text-white;
     }
 
     .bottom-sheet__item svg {

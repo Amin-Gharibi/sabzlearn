@@ -122,9 +122,9 @@ const getCourses = async () => {
 }
 
 // quick sort complex
-const compareCoursesForLastEdited = (courseA, courseB) => {
-    const timeA = new Date(courseA.updatedAt).getTime();
-    const timeB = new Date(courseB.updatedAt).getTime();
+const compareItemsForLastEdited = (itemA, itemB) => {
+    const timeA = new Date(itemA.updatedAt).getTime();
+    const timeB = new Date(itemB.updatedAt).getTime();
 
     return timeA - timeB;
 }
@@ -183,7 +183,7 @@ const quickSort = (arr, compareCourses) => {
 const getLastEditedCourses = async () => {
     const courses = await getCourses()
 
-    return quickSort(courses, compareCoursesForLastEdited)
+    return quickSort(courses, compareItemsForLastEdited)
 }
 
 const getLastCreatedCourses = async () => {
@@ -621,7 +621,7 @@ const intlDateToPersianDate = (year, month, day) => {
 }
 
 const createArticlesTemplate = articles => {
-    let day, month, year, date, faDate;
+    let day, month, year, faDate;
 
     const finalArticlesStr = articles.map(article => {
 
@@ -641,7 +641,7 @@ const createArticlesTemplate = articles => {
                         <!--upper content-->
                         <div class="pt-1.5">
                             <h4 class="font-danaMedium max-h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                                <a href="/articles/${article.shortName}">
+                                <a href="article-page.html?article=${article.shortName}">
                                     ${article.title}
                                 </a>
                             </h4>
@@ -674,7 +674,7 @@ const createArticlesTemplate = articles => {
                             </div>
                             <!--link to article page-->
                             <div class="flex justify-center items-center py-3.5">
-                                <a href="/articles/${article.shortName}"
+                                <a href="article-page.html?article=${article.shortName}"
                                    class="flex justify-center items-center gap-x-1 font-danaMedium text-zinc-700 dark:text-white group transition-colors">
                                     <span class="leading-6 group-hover:text-primary transition-colors">
                                         مطالعه مقاله
@@ -744,6 +744,26 @@ const toggleSeasonHandler = (title, body, className) => {
     }
 }
 
+const getLastEditedArticles = async () => {
+    const articles = await getPublishedArticles()
+
+    return quickSort(articles, compareItemsForLastEdited)
+}
+
+const filterArticles = async shownArticlesCount => {
+    const articles = await getPublishedArticles()
+    const filter = getSearchParam('sort')
+
+    switch (filter) {
+        case 'newest':
+            return (await getLastEditedArticles()).slice(0, shownArticlesCount)
+        case 'oldest':
+            return (await getLastEditedArticles()).slice(0, shownArticlesCount).reverse()
+        default:
+            return articles.slice(0, shownArticlesCount)
+    }
+}
+
 export {
     alert,
     changeThemeHandler,
@@ -784,5 +804,8 @@ export {
     removeFromLocalStorage,
     getCategoryById,
     getCourseCreatorDetails,
-    toggleSeasonHandler
+    toggleSeasonHandler,
+    getLastEditedArticles,
+    filterArticles,
+    categoryCoursesLowerOptionsHandler
 }

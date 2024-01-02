@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سبز لرن | جستجو</title>
+    <title>سبز لرن | مقاله ها</title>
     <link rel="stylesheet" href="./css/app.css">
     <link rel="shortcut icon" href="./images/logos/favIcon.png" type="image/x-icon">
     <!--change theme as user has wished as soon as page loads-->
@@ -425,91 +425,33 @@
     <div class="container">
         <!--content header-->
         <div class="flex justify-center items-center gap-x-3 sm:gap-x-5 mt-[60px] text-black dark:text-white font-morabbaBold text-4xl sm:text-6xl whitespace-nowrap">
-            <span class="w-7 sm:w-10 h-2.5 bg-rose-500 shrink-0 rounded-sm"></span>
+            <span class="w-7 sm:w-10 h-2.5 bg-amber-400 dark:bg-yellow-400 shrink-0 rounded-sm"></span>
             <h2 class="page-title w-min">
-                دوره ها
+                وبلاگ
             </h2>
         </div>
         <!--content body-->
         <div class="grid items-start grid-rows-1 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-5 mt-9 sm:mt-[100px]">
             <!--side content in desktop size and categories and special filtering-->
             <aside class="lg:sticky top-5">
-                <form class="search-cat-form space-y-5">
-                    <!--search box-->
-                    <div class="relative h-[68px] flex items-center bg-white dark:bg-darkGray-800 dark:border border-darkGray-700 shadow-light dark:shadow-none rounded-2xl overflow-hidden">
-                        <input type="text"
-                               class="w-[calc(100%-55px)] h-full pr-7 bg-transparent text-sm text-zinc-700 dark:text-white outline-0 placeholder-slate-500 dark:placeholder-darkGray-500"
-                               placeholder="در بین دوره ها جستجو کنید">
-                        <button class="absolute top-0 bottom-0 left-6 my-auto">
-                            <svg class="w-7 h-7 text-slate-500 dark:text-darkGray-500">
-                                <use href="#magnifying-glass"></use>
-                            </svg>
-                        </button>
-                    </div>
-                    <!--course categories-->
-                    <div id="course-categories-section" class="hidden sm:block px-7 py-6 bg-white dark:bg-darkGray-800 dark:border border-darkGray-700 shadow-light dark:shadow-none rounded-2xl">
-                        <span class="inline-block mb-5 font-danaDemiBold text-lg dark:text-white">
-                            دسته بندی دوره ها
-                        </span>
-                        <!--items-->
-                        <div class="course-categories--wrapper space-y-3.5">
-                            <!--each item-->
-
-                        </div>
-                    </div>
-                    <!--special filtering-->
-                    <div class="hidden sm:grid grid-cols-2 lg:grid-cols-1 gap-5">
-                        <div class="h-[68px] flex justify-between items-center px-7 py-[18px] bg-white dark:bg-darkGray-800 dark:border border-darkGray-700 shadow-light dark:shadow-none rounded-2xl">
-                            <span class="text-sm dark:text-white select-none">
-                                فقط دوره های رایگان
-                            </span>
-                            <!--toggle-->
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="filtering--special-items__input absolute w-0 h-0 opacity-0" data-value="only_free">
-                                <span class="filtering--special-items__toggle"></span>
-                            </label>
-                        </div>
-                        <div class="h-[68px] flex justify-between items-center px-7 py-[18px] bg-white dark:bg-darkGray-800 dark:border border-darkGray-700 shadow-light dark:shadow-none rounded-2xl">
-                            <span class="text-sm dark:text-white select-none">
-                                در حال پیش فروش
-                            </span>
-                            <!--toggle-->
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="filtering--special-items__input absolute w-0 h-0 opacity-0" data-value="presale">
-                                <span class="filtering--special-items__toggle"></span>
-                            </label>
-                        </div>
-                        <div class="h-[68px] flex justify-between items-center px-7 py-[18px] bg-white dark:bg-darkGray-800 dark:border border-darkGray-700 shadow-light dark:shadow-none rounded-2xl">
-                            <span class="text-sm dark:text-white select-none">
-                                دوره های خریداری شده
-                            </span>
-                            <!--toggle-->
-                            <label class="relative cursor-pointer">
-                                <input type="checkbox" class="filtering--special-items__input absolute w-0 h-0 opacity-0" data-value="enrolled">
-                                <span class="filtering--special-items__toggle"></span>
-                            </label>
-                        </div>
-                    </div>
-                </form>
+                <!--categories-->
+                <div class="hidden lg:block px-5 py-6 bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none rounded-2xl overflow-hidden">
+                    <span class="side-bar--titles before:bg-primary relative flex justify-start items-center mb-5 pr-4 font-danaDemiBold text-2xl dark:text-white">
+                        دسته بندی  ها
+                    </span>
+                    <span class="text-zinc-700 dark:text-white">این قسمت توسط بک اند هندل نشده!</span>
+                </div>
             </aside>
             <!--main content and filtering data and show more courses-->
             <div class="col-span-1 lg:col-span-2 xl:col-span-3 order-1 lg:order-2">
                 <!--filtering data in mobile size-->
                 <div class="flex sm:hidden items-center gap-3.5 mb-7">
-                    <div class="mobile-filter-btn flex justify-center items-center gap-x-2 w-1/2 py-2 px-4 bg-white dark:bg-darkGray-800 text-sm text-zinc-700 dark:text-white rounded-xl select-none">
-                        <svg class="w-6 h-6 text-darkGray-500">
-                            <use href="#adjustments"></use>
-                        </svg>
-                        <span>
-                                فیلتر
-                        </span>
-                    </div>
-                    <div class="mobile-sort-btn flex justify-center items-center gap-x-2 w-1/2 py-2 px-4 bg-white dark:bg-darkGray-800 text-sm text-zinc-700 dark:text-white rounded-xl select-none">
+                    <div class="mobile-sort-btn flex justify-center items-center gap-x-2 w-full py-2 px-4 bg-white dark:bg-darkGray-800 text-sm text-zinc-700 dark:text-white rounded-xl select-none">
                         <svg class="w-6 h-6 text-darkGray-500">
                             <use href="#sort"></use>
                         </svg>
                         <span id="sorted-title">
-                                همه دوره ها
+                                عادی
                         </span>
                     </div>
                 </div>
@@ -527,21 +469,18 @@
                     <!--options-->
                     <div class="sorting-data">
                         <button class="active py-2.5 px-4 text-slate-500 rounded-[8px]" data-value="default">
-                            همه دوره ها
+                            عادی
                         </button>
-                        <button class="py-2.5 px-4 text-slate-500 rounded-[8px]" data-value="cheapest">
-                            ارزان ترین
+                        <button class="py-2.5 px-4 text-slate-500 rounded-[8px]" data-value="newest">
+                            جدید ترین
                         </button>
-                        <button class="py-2.5 px-4 text-slate-500 rounded-[8px]" data-value="expensive">
-                            گران ترین
-                        </button>
-                        <button class="py-2.5 px-4 text-slate-500 rounded-[8px]" data-value="popular">
-                            پرمخاطب ها
+                        <button class="py-2.5 px-4 text-slate-500 rounded-[8px]" data-value="oldest">
+                            قدیمی ترین
                         </button>
                     </div>
                 </div>
-                <!--filtered courses-->
-                <div class="filtered-courses--wrapper grid grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                <!--filtered articles-->
+                <div class="filtered-articles--wrapper grid grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
                 </div>
                 <!--show more courses-->
@@ -605,58 +544,6 @@
                 <svg class="w-5 h-5">
                     <use href="#check"></use>
                 </svg>
-            </button>
-        </div>
-    </div>
-    <!-- mobile filtering -->
-    <div class="mobile-filter">
-        <div class="flex justify-between items-center p-6 pb-5 bg-gray-100 dark:bg-darkGray-700">
-            <div class="flex items-center gap-x-3">
-                <button class="filter__close-btn flex items-center justify-center text-gray-500">
-                    <svg class="w-6 h-6">
-                        <use href="#x-mark"></use>
-                    </svg>
-                </button>
-                <span class="font-danaDemiBold text-lg text-zinc-700 dark:text-white">فیلتر</span>
-            </div>
-            <button id="clear-all-filters" class="flex items-center gap-x-1.5 px-3 py-1.5 text-sm bg-pink-500/10 text-pink-500 dark:bg-red-500/10 dark:text-red-500 rounded-xl">
-                <svg class="w-5 h-5">
-                    <use href="#trash"></use>
-                </svg>
-                حذف فیلتر ها
-            </button>
-        </div>
-        <form class="search-cat-form px-6 divide-y-[1px] dark:divide-darkGray-700" id="filter_mobile">
-            <label class="relative select-none cursor-pointer w-full flex items-center justify-between py-5">
-                <span class="text-sm text-zinc-700 dark:text-white select-none">فقط دوره های رایگان</span>
-                <input class="filtering--special-items__input absolute w-0 h-0 opacity-0" type="checkbox" data-value="only_free">
-                <span class="filtering--special-items__toggle"></span>
-            </label>
-            <label class="relative select-none cursor-pointer w-full flex items-center justify-between py-5">
-                <span class="text-sm text-zinc-700 dark:text-white select-none">در حال پیش فروش</span>
-                <input class="filtering--special-items__input absolute w-0 h-0 opacity-0" type="checkbox" data-value="presale">
-                <span class="filtering--special-items__toggle"></span>
-            </label>
-            <label class="relative select-none cursor-pointer w-full flex items-center justify-between py-5">
-                <span class="text-sm text-zinc-700 dark:text-white select-none">دوره ها خریداری شده</span>
-                <input class="filtering--special-items__input absolute w-0 h-0 opacity-0" type="checkbox" data-value="enrolled">
-                <span class="filtering--special-items__toggle"></span>
-            </label>
-            <div class="category">
-                <div class="category-mobile__header flex items-center justify-between py-5">
-                    <span class="text-sm text-zinc-700 dark:text-white select-none">دسته بندی دوره ها</span>
-                    <svg class="w-5 h-5 text-darkGray-500 dark:text-white transition-all">
-                        <use href="#chevron-down"></use>
-                    </svg>
-                </div>
-                <div class="category-mobile__body pb-5 space-y-3.5">
-
-                </div>
-            </div>
-        </form>
-        <div class="flex h-full items-end mt-6 p-6">
-            <button class="apply-mobile-filters w-full py-2.5 bg-primary font-danaDemiBold text-lg text-center text-white rounded-xl select-none">
-                اعمال فیلتر ها
             </button>
         </div>
     </div>
@@ -760,7 +647,7 @@
 <div class="mobile-menu--overlay"></div>
 <div class="mobile-bottom-sheet--overlay"></div>
 
-<script src="./scripts/search-categories.js" type="module"></script>
+<script src="./scripts/search-categories-articles.js" type="module"></script>
 <script src="./scripts/shared/shared-categories-pages.js" type="module"></script>
 <script src="./scripts/shared/shared.js" type="module"></script>
 </body>
