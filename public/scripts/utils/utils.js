@@ -237,7 +237,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
         const exactMin = (Number('0.' + relativeMin) * 60).toFixed(0)
 
         return `
-            <div class="${course.off === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden rounded-2xl bg-white dark:bg-darkGray-800">
+            <div class="${course.off === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
                 <!--item image-->
                 <div class="w-full h-[168px] rounded-2xl overflow-hidden">
                     <a href="course-page.html?c=${course.shortName}" title="${course.name}" class="w-full h-full">
@@ -272,12 +272,12 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         <!--course teacher and time-->
                         <div class="flex items-center gap-x-2.5 flex-wrap text-slate-500 dark:text-slate-400 text-xs">
                             <!--course teacher-->
-                            <a href="#" class="flex items-center gap-x-1 hover:text-primary transition-colors">
+                            <a href="teacher-page.html?teacher=${course.creator.username}" class="flex items-center gap-x-1 hover:text-primary transition-colors">
                                 <svg class="w-4 h-4">
                                     <use href="#user"></use>
                                 </svg>
                                 <span>
-                                ${course.creator}
+                                ${course.creator.name}
                             </span>
                             </a>
                             <!--course time-->
