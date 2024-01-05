@@ -1,6 +1,6 @@
 import {
     addSearchParam,
-    clearSearchParams, filterArticles,
+    clearSearchParams,
     getAllEnCategories, getAllFaCategories,
     getCourses,
     getSearchParam,
@@ -9,6 +9,7 @@ import {
     showCoursesBasedOnUrl,
 } from "./utils/utils.js";
 import {toggleMobileSortingMenu} from "./shared/shared-categories-pages.js";
+import {sortingButtonsClickHandler} from "./shared/shared-between-teacher-and-categories-page.js";
 
 window.addEventListener('load', async () => {
     // set page title handling
@@ -48,27 +49,13 @@ window.addEventListener('load', async () => {
 
     const desktopSortingButtons = document.querySelectorAll('.sorting-data:not(.mobile-sorting-data) > button')
     const mobileSortingButtons = document.querySelectorAll('.mobile-sorting-data > button')
-    let btnValue;
-    const sortingButtonsClickHandler = async btn => {
-        desktopSortingButtons.forEach(button => button.classList.remove('active'))
-        mobileSortingButtons.forEach(button => button.classList.remove('bottom-sheet__item--selected'))
-
-        btnValue = btn.getAttribute('data-value')
-        const desktopBtn = Array.from(desktopSortingButtons).find(button => button.getAttribute('data-value') === btnValue)
-        const mobileBtn = Array.from(mobileSortingButtons).find(button => button.getAttribute('data-value') === btnValue)
-        desktopBtn.classList.add('active')
-        mobileBtn.classList.add('bottom-sheet__item--selected')
-
-        addSearchParam('sort', btnValue)
-        await showCoursesBasedOnUrl(courses, shownCoursesCount)
-    }
 
     // sort the courses as soon as uer clicks on each sorting button
     desktopSortingButtons.forEach(btn => {
-        btn.addEventListener('click', async () => await sortingButtonsClickHandler(btn))
+        btn.addEventListener('click', async () => await sortingButtonsClickHandler(btn, courses, shownCoursesCount))
     })
     mobileSortingButtons.forEach(btn => {
-        btn.addEventListener('click', async () => await sortingButtonsClickHandler(btn))
+        btn.addEventListener('click', async () => await sortingButtonsClickHandler(btn, courses, shownCoursesCount))
     })
 
     // activate category checkboxes and lower filters on page loading

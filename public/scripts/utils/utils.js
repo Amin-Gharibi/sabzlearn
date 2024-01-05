@@ -272,12 +272,12 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         <!--course teacher and time-->
                         <div class="flex items-center gap-x-2.5 flex-wrap text-slate-500 dark:text-slate-400 text-xs">
                             <!--course teacher-->
-                            <a href="#" class="flex items-center gap-x-1 hover:text-primary transition-colors">
+                            <a href="teacher-page.html?teacher=${course.creator.username}" class="flex items-center gap-x-1 hover:text-primary transition-colors">
                                 <svg class="w-4 h-4">
                                     <use href="#user"></use>
                                 </svg>
                                 <span>
-                                ${course.creator}
+                                ${course.creator.name}
                             </span>
                             </a>
                             <!--course time-->
