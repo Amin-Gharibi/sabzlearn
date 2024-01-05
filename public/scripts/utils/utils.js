@@ -237,7 +237,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
         const exactMin = (Number('0.' + relativeMin) * 60).toFixed(0)
 
         return `
-            <div class="${course.off === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden rounded-2xl bg-white dark:bg-darkGray-800">
+            <div class="${course.off === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
                 <!--item image-->
                 <div class="w-full h-[168px] rounded-2xl overflow-hidden">
                     <a href="course-page.html?c=${course.shortName}" title="${course.name}" class="w-full h-full">
