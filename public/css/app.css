@@ -1297,7 +1297,6 @@ input:checked~.filtering--special-items__toggle:after {
   position: absolute;
   left: 0px;
   top: 100%;
-  z-index: 30;
   --tw-translate-x: -7rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   cursor: default;
@@ -1821,6 +1820,10 @@ input:checked~.filtering--special-items__toggle:after {
   margin-right: 1rem;
 }
 
+.mr-auto {
+  margin-right: auto;
+}
+
 .mt-0 {
   margin-top: 0px;
 }
@@ -2025,6 +2028,10 @@ input:checked~.filtering--special-items__toggle:after {
   height: 2.25rem;
 }
 
+.h-\[136px\] {
+  height: 136px;
+}
+
 .h-\[168px\] {
   height: 168px;
 }
@@ -2119,10 +2126,6 @@ input:checked~.filtering--special-items__toggle:after {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[136px\] {
-  height: 136px;
 }
 
 .max-h-12 {
@@ -2229,6 +2232,10 @@ input:checked~.filtering--special-items__toggle:after {
   width: 104px;
 }
 
+.w-\[136px\] {
+  width: 136px;
+}
+
 .w-\[143px\] {
   width: 143px;
 }
@@ -2299,8 +2306,8 @@ input:checked~.filtering--special-items__toggle:after {
   width: min-content;
 }
 
-.w-\[136px\] {
-  width: 136px;
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .max-w-\[1432px\] {
@@ -2708,6 +2715,14 @@ input:checked~.filtering--special-items__toggle:after {
   border-top-right-radius: 1rem;
 }
 
+.rounded-tr-sm {
+  border-top-right-radius: 0.125rem;
+}
+
+.rounded-tl-sm {
+  border-top-left-radius: 0.125rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -2806,6 +2821,10 @@ input:checked~.filtering--special-items__toggle:after {
   background-color: rgb(251 191 36 / var(--tw-bg-opacity));
 }
 
+.bg-black\/40 {
+  background-color: rgb(0 0 0 / 0.4);
+}
+
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -2892,6 +2911,10 @@ input:checked~.filtering--special-items__toggle:after {
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+}
+
+.bg-sky-500\/30 {
+  background-color: rgb(14 165 233 / 0.3);
 }
 
 .bg-gradient-to-b {
@@ -3246,6 +3269,10 @@ input:checked~.filtering--special-items__toggle:after {
   padding-top: 2rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -3574,7 +3601,7 @@ input:checked~.filtering--special-items__toggle:after {
 }
 
 .notifications-dropdown--overlay__show {
-  z-index: 20 !important;
+  z-index: 50 !important;
 }
 
 .mobile-bottom-sheet--overlay {
@@ -3587,7 +3614,7 @@ input:checked~.filtering--special-items__toggle:after {
 }
 
 .notification-center--wrapper__show {
-  z-index: 30;
+  z-index: 60;
 }
 
 .mobile-menu--overlay__show {
@@ -3756,7 +3783,11 @@ span:has(+ .mobile-menu--submenu__open) {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.chapter__title--active {
+.desktop-menu--items.active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 213 115 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .placeholder\:text-slate-500::-moz-placeholder {
@@ -4090,11 +4121,6 @@ span:has(+ .mobile-menu--submenu__open) {
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-gray-800) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
-
 :is(.dark .dark\:bg-primary\/10) {
   background-color: rgb(46 213 115 / 0.1);
 }
@@ -4136,6 +4162,15 @@ span:has(+ .mobile-menu--submenu__open) {
 
 :is(.dark .dark\:bg-yellow-400\/10) {
   background-color: rgb(250 204 21 / 0.1);
+}
+
+:is(.dark .dark\:bg-secondary\/20) {
+  background-color: rgb(78 129 245 / 0.2);
+}
+
+:is(.dark .dark\:bg-gray-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:from-darkGray-800) {
@@ -4246,6 +4281,16 @@ span:has(+ .mobile-menu--submenu__open) {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+:is(.dark .dark\:placeholder\:text-darkGray-500)::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
+}
+
+:is(.dark .dark\:placeholder\:text-darkGray-500)::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 
 :is(.dark .before\:dark\:bg-rose-500)::before {
@@ -4551,12 +4596,21 @@ span:has(+ .mobile-menu--submenu__open) {
     width: max-content;
   }
 
+  .sm\:w-2\/3 {
+    width: 66.666667%;
+  }
+
   .sm\:max-w-sm {
     max-width: 24rem;
   }
 
   .sm\:max-w-xs {
     max-width: 20rem;
+  }
+
+  .sm\:max-w-max {
+    max-width: -moz-max-content;
+    max-width: max-content;
   }
 
   .sm\:flex-grow {
@@ -4740,6 +4794,10 @@ span:has(+ .mobile-menu--submenu__open) {
 }
 
 @media (min-width: 768px) {
+  .md\:z-0 {
+    z-index: 0;
+  }
+
   .md\:mb-14 {
     margin-bottom: 3.5rem;
   }
@@ -4754,6 +4812,10 @@ span:has(+ .mobile-menu--submenu__open) {
 
   .md\:mb-\[0\.666667em\] {
     margin-bottom: 0.666667em;
+  }
+
+  .md\:mt-4 {
+    margin-top: 1rem;
   }
 
   .md\:mt-5 {
@@ -4868,10 +4930,6 @@ span:has(+ .mobile-menu--submenu__open) {
     cursor: pointer;
   }
 
-  .md\:grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -4978,6 +5036,10 @@ span:has(+ .mobile-menu--submenu__open) {
     padding: 18px;
   }
 
+  .md\:p-4 {
+    padding: 1rem;
+  }
+
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
@@ -5008,6 +5070,10 @@ span:has(+ .mobile-menu--submenu__open) {
 
   .md\:pb-6 {
     padding-bottom: 1.5rem;
+  }
+
+  .md\:pb-\[18px\] {
+    padding-bottom: 18px;
   }
 
   .md\:pt-7 {
@@ -5174,10 +5240,6 @@ span:has(+ .mobile-menu--submenu__open) {
 
   .lg\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-3 {

@@ -137,10 +137,7 @@ window.addEventListener('load', async () => {
         }
     })()
     courseTimeTitle.innerHTML = `${course.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0).toFixed(0)} ساعت`
-    const year = parseInt(course.updatedAt.slice(0, 4))
-    const month = parseInt(course.updatedAt.slice(5, 7))
-    const day = parseInt(course.updatedAt.slice(8, 10))
-    courseUpdatedAt.innerHTML = intlDateToPersianDate(year, month, day)
+    courseUpdatedAt.innerHTML = intlDateToPersianDate(course.updatedAt)
     courseSupportTitle.innerHTML = course.support
     courseRequirements.innerHTML = course.requirement
     courseWatchingOption.innerHTML = course.watchingOptions
@@ -275,11 +272,7 @@ window.addEventListener('load', async () => {
 
     // function to prevent duplicate codes
     const convertIntlDateOfCommentsToPer = comment => {
-        const year = parseInt(comment.createdAt.slice(0, 4))
-        const month = parseInt(comment.createdAt.slice(5, 7))
-        const day = parseInt(comment.createdAt.slice(8, 10))
-
-        return intlDateToPersianDate(year, month, day)
+        return intlDateToPersianDate(comment.createdAt)
     }
 
     // handle showing course comments that has been accepted

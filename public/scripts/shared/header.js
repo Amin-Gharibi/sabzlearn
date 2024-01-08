@@ -50,7 +50,7 @@ const showDetailsInAccountCenter = data => {
         loginSignupBtnsWrapper.classList.add('hidden')
         accountCenterBtn.classList.remove('hidden')
 
-        getApplyUsername(data)
+        getApplyUsername(data.name)
         getApplyBalance(data)
     }
 }

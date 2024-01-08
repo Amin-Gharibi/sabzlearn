@@ -83,11 +83,17 @@ const getHeaderMenus = async () => {
     return await response.json()
 }
 
-const getApplyUsername = data => {
+const getApplyTotalPaidAmount = courses => {
+    const totalPaidTitle = document.querySelector('#total-paid')
+    const totalPaidAmount = courses.reduce((total, course) => total + course.price - (course.price * course.off / 100), 0)
+    totalPaidTitle.innerHTML = totalPaidAmount.toLocaleString()
+}
+
+const getApplyUsername = name => {
     const accountUsername = document.querySelectorAll('.account-center--username')
 
     accountUsername.forEach(title => {
-        title.innerHTML = data.name
+        title.innerHTML = name
     })
 }
 
@@ -99,11 +105,11 @@ const getApplyBalance = data => {
     })
 }
 
-const getApplyCoursesCount = data => {
+const getApplyCoursesCount = courses => {
     const accountCoursesCountTitle = document.querySelectorAll('.account-center--courses-count')
 
     accountCoursesCountTitle.forEach(title => {
-        title.innerHTML = data.courses.length
+        title.innerHTML = courses.length
     })
 }
 
@@ -113,6 +119,28 @@ const getApplyTicketsCount = tickets => {
     accountTicketsCount.forEach(title => {
         title.innerHTML = tickets.length
     })
+}
+
+const getApplyOpenTicketsCount = tickets => {
+    const openTicketsTitle = document.querySelector('.account-center--open-tickets-count')
+    openTicketsTitle.innerHTML = tickets.filter(ticket => !ticket.answer).length
+}
+
+const getApplyClosedTicketsCount = tickets => {
+    const openTicketsTitle = document.querySelector('.account-center--closed-tickets-count')
+    openTicketsTitle.innerHTML = tickets.filter(ticket => ticket.answer).length
+}
+
+const getApplyPricedCoursesCount = courses => {
+    const title = document.querySelector('.account-center--priced-courses-count')
+    let count = 0
+    courses.forEach(course => {
+        if (course.off) {
+            count++
+        }
+    })
+    title.innerHTML = count.toString()
+    return count
 }
 
 const getCourses = async () => {
@@ -292,7 +320,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         </div>
                         <!--rate-->
                         <div class="flex items-center gap-x-1 text-amber-400 text-xs">
-                            <span class="leading-[1px]">${(course.courseAverageScore).toFixed(1)}</span>
+                            <span class="leading-[1px]">${(course.rate).toFixed(1)}</span>
                             <svg class="w-4 h-4">
                                 <use href="#star"></use>
                             </svg>
@@ -615,20 +643,16 @@ const filterCourses = async (courses, filter) => {
     return courses
 }
 
-const intlDateToPersianDate = (year, month, day) => {
-    const date = new Date(year, month, day)
+const intlDateToPersianDate = dateToConvert => {
+    const date = new Date(dateToConvert)
     return new Intl.DateTimeFormat('fa-IR').format(date)
 }
 
 const createArticlesTemplate = articles => {
-    let day, month, year, faDate;
+    let faDate;
 
     const finalArticlesStr = articles.map(article => {
-
-        year = parseInt(article.updatedAt.slice(0, 4))
-        month = parseInt(article.updatedAt.slice(5, 7))
-        day = parseInt(article.updatedAt.slice(8, 10))
-        faDate = intlDateToPersianDate(year, month, day)
+        faDate = intlDateToPersianDate(article.updatedAt)
 
         return `
             <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border border-gray-700 rounded-2xl">
@@ -764,6 +788,22 @@ const filterArticles = async shownArticlesCount => {
     }
 }
 
+const getUserTickets = async () => {
+    const response = await fetch(`http://localhost:4000/v1/tickets/user`, {
+        headers: {
+            "Authorization": `Bearer ${getToken()}`
+        }
+    })
+
+    return await response.json()
+}
+
+const lastEditedTickets = async () => {
+    const tickets = await getUserTickets()
+
+    return quickSort(tickets, compareItemsForLastEdited)
+}
+
 export {
     alert,
     changeThemeHandler,
@@ -807,5 +847,11 @@ export {
     toggleSeasonHandler,
     getLastEditedArticles,
     filterArticles,
-    categoryCoursesLowerOptionsHandler
+    categoryCoursesLowerOptionsHandler,
+    getApplyTotalPaidAmount,
+    getUserTickets,
+    getApplyPricedCoursesCount,
+    getApplyOpenTicketsCount,
+    getApplyClosedTicketsCount,
+    lastEditedTickets
 }
