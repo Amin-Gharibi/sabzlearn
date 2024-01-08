@@ -240,18 +240,31 @@
             stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
     </symbol>
+
+    <symbol id="check-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clip-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="close-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+              clip-rule="evenodd"/>
+    </symbol>
 </svg>
 
-<main class="flex gap-x-10 2xl:gap-x-14 lg:px-8 xl:px-14 2xl:px-[100px] lg:py-7 md:bg-white md:dark:bg-darkGray-800 ">
+<main class="min-h-screen flex gap-x-10 2xl:gap-x-14 lg:px-8 xl:px-14 2xl:px-[100px] lg:py-7 md:bg-white md:dark:bg-darkGray-800 ">
     <!--menu-->
-    <aside id="mobile-menu" class="fixed top-0 bottom-0 -right-64 z-50 lg:static w-64 lg:w-56 lg:min-h-[calc(100vh - 68px)] flex flex-col shrink-0 lg:mt-10 px-7 py-5 lg:px-0 lg:py-0 bg-white dark:bg-darkGray-800 transition-all lg:transform-none">
+    <aside id="mobile-menu"
+           class="fixed top-0 bottom-0 -right-64 z-50 md:z-0 lg:static w-64 lg:w-56 lg:min-h-[calc(100vh - 68px)] flex flex-col shrink-0 lg:mt-10 px-7 py-5 lg:px-0 lg:py-0 bg-white dark:bg-darkGray-800 transition-all lg:transform-none">
         <!--logos-->
         <div class="flex items-center justify-between pb-5 mb-7 border-b md:border-none border-b-gray-200 dark:border-b-darkSlate">
-            <a href="https://sabzlearn.ir" class="flex items-center gap-x-1.5 md:gap-x-2.5">
-                <img src="https://sabzlearn.ir/wp-content/themes/sabzlearn-theme/images/logo.webp" class="h-10 md:h-14"
+            <a href="index.html" class="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <img src="./images/logos/mainLogo.webp" class="h-10 md:h-14"
                      alt="سبز لرن">
                 <svg class="w-[86px] md:w-32 h-10 md:h-[57px]">
-                    <use xlink:href="#logo-type"></use>
+                    <use href="#logo-type"></use>
                 </svg>
             </a>
             <svg id="mobile-menu--close-btn" class="text-slate-500 dark:text-slate-400 w-5 h-5 md:hidden">
@@ -260,30 +273,33 @@
         </div>
         <!--menu items-->
         <div class="space-y-4 text-zinc-700 dark:text-white">
-            <a href="#" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg bg-primary text-white">
+            <a href="dashboard.html" data-value="dashboard"
+               class="desktop-menu--items flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
                 <svg class="w-6 h-6">
                     <use href="#home"></use>
                 </svg>
                 پیشخوان
             </a>
-            <a href="#" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
+            <a href="dashboard.html?sec=my-courses" data-value="my-courses"
+               class="desktop-menu--items flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
                 <svg class="w-6 h-6">
                     <use href="#folder"></use>
                 </svg>
                 دوره های من
             </a>
-            <a href="#" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
+            <a href="dashboard.html?sec=my-tickets" data-value="my-tickets"
+               class="desktop-menu--items flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
                 <svg class="w-6 h-6">
                     <use href="#chat-bubble"></use>
                 </svg>
                 تیکت ها
             </a>
-            <a href="#" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg ">
+            <button type="button" class="log-out-btns flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
                 <svg class="w-6 h-6">
                     <use href="#logout-icon"></use>
                 </svg>
                 خروج
-            </a>
+            </button>
         </div>
     </aside>
     <!--dashboard content-->
@@ -301,7 +317,7 @@
             <!--for desktop size only, say hello to user-->
             <h3 class="hidden md:block font-danaDemiBold text-2xl">
             <span class="account-center--username">
-                Amin Gharibi
+
             </span>
                 عزیز; خوش اومدی 🙌
             </h3>
@@ -320,7 +336,9 @@
                                 <span class="font-danaMedium text-xl">اعلان ها</span>
                             </div>
                             <div class="max-h-96 overflow-y-auto space-y-3 -ml-2 pl-2">
-                                <div class="text-center bg-gray-100 dark:bg-darkGray-700 p-3 rounded-xl">اعلان جدیدی وجود ندارد.</div>
+                                <div class="text-center bg-gray-100 dark:bg-darkGray-700 p-3 rounded-xl">اعلان جدیدی
+                                    وجود ندارد.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -337,8 +355,8 @@
                 <!--account btn-->
                 <div class="relative group z-20">
                     <div id="user-profile">
-                        <img src="./images/profile.png" alt="profile"
-                             class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full cursor-pointer">
+                        <img src="" alt="profile"
+                             class="user-profile-pictures w-12 h-12 md:w-14 md:h-14 object-cover rounded-full cursor-pointer">
                     </div>
                     <!--drop down menu-->
                     <div class="user-profile-dropdown">
@@ -347,16 +365,16 @@
                             <div class="flex justify-start items-center gap-x-2.5 pb-5">
                                 <!--user prof pic-->
                                 <div>
-                                    <a href="#">
-                                        <img src="./images/profile.png" alt="profile"
-                                             class="w-12 h-12 object-cover rounded-full cursor-pointer">
+                                    <a href="dashboard.html">
+                                        <img src="" alt="profile"
+                                             class="user-profile-pictures w-12 h-12 object-cover rounded-full cursor-pointer">
                                     </a>
                                 </div>
                                 <!--username and balance-->
                                 <div class="flex flex-col gap-y-1">
                                     <!--user name-->
                                     <span class="account-center--username text-lg">
-                                        امین غریبی
+
                                     </span>
                                     <!--user balance-->
                                     <span class="text-sm text-sky-500 dark:text-secondary">
@@ -367,7 +385,7 @@
                             <!--menu list items-->
                             <div class="flex flex-col justify-between items-start pt-2">
                                 <!--dashboard-->
-                                <a href="#"
+                                <a href="dashboard.html"
                                    class="w-full h-[46px] flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
                                     <svg class="w-5 h-5">
                                         <use href="#home"></use>
@@ -377,7 +395,7 @@
                                     </span>
                                 </a>
                                 <!--my courses-->
-                                <a href="#"
+                                <a href="dashboard.html?sec=my-courses"
                                    class="w-full h-[46px] flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
                                     <svg class="w-5 h-5">
                                         <use href="#folder"></use>
@@ -387,7 +405,7 @@
                                     </span>
                                 </a>
                                 <!--my tickets-->
-                                <a href="#"
+                                <a href="dashboard.html?sec=my-tickets"
                                    class="w-full h-[46px] flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
                                     <svg class="w-5 h-5">
                                         <use href="#chat-bubble"></use>
@@ -399,15 +417,15 @@
                             </div>
                             <!--logout button-->
                             <div class="flex justify-start items-center pt-2 mt-2">
-                                <a href="#"
-                                   class="w-full h-11 flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
+                                <button type="button"
+                                   class="log-out-btns w-full h-11 flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
                                     <svg class="w-5 h-5">
                                         <use href="#logout-icon"></use>
                                     </svg>
                                     <span>
                                         خروج
                                     </span>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -422,327 +440,149 @@
             </span>
                 عزیز; خوش اومدی 🙌
             </h3>
-            <!--boxes container-->
-            <div class="flex flex-wrap gap-x-3 gap-y-4 md:gap-x-10 mb-10 text-white">
-                <!--each box-->
-                <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-amber-400 dark:bg-yellow-400 rounded-2xl">
-                    <!--box logo-->
-                    <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
-                        <svg class="w-8 h-8 md:w-9 md:h-9">
-                            <use href="#credit-cart"></use>
-                        </svg>
-                    </div>
-                    <!--box content-->
-                    <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+            <!--dashboard-->
+            <div id="dashboard" class="dashboard--sections hidden">
+                <!--boxes container-->
+                <div class="flex flex-wrap gap-x-3 gap-y-4 md:gap-x-10 mb-10 text-white">
+                    <!--each box-->
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-amber-400 dark:bg-yellow-400 rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#credit-cart"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
                         <span class="text-xs">
-                            کش بک
+                            مجموع پرداخت ها
                         </span>
-                        <span class="font-danaDemiBold text-sm md:text-lg">
-                            0 تومان
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span id="total-paid"></span> تومان
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-sky-500 dark:bg-secondary rounded-2xl">
-                    <!--box logo-->
-                    <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
-                        <svg class="w-8 h-8 md:w-9 md:h-9">
-                            <use href="#rocket-launch"></use>
-                        </svg>
-                    </div>
-                    <!--box content-->
-                    <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-sky-500 dark:bg-secondary rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#rocket-launch"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
                         <span class="text-xs">
                             دوره های من
                         </span>
-                        <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="font-danaDemiBold text-sm md:text-lg">
                             <span class="account-center--courses-count"></span> دوره
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-pink-500 dark:bg-rose-500 rounded-2xl">
-                    <!--box logo-->
-                    <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
-                        <svg class="w-8 h-8 md:w-9 md:h-9">
-                            <use href="#ticket"></use>
-                        </svg>
-                    </div>
-                    <!--box content-->
-                    <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-pink-500 dark:bg-rose-500 rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#ticket"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
                         <span class="text-xs">
                             مجموع تیکت ها
                         </span>
-                        <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="font-danaDemiBold text-sm md:text-lg">
                             <span class="account-center--tickets-count"></span> تیکت
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-primary rounded-2xl">
-                    <!--box logo-->
-                    <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
-                        <svg class="w-8 h-8 md:w-9 md:h-9">
-                            <use href="#currency-dollar"></use>
-                        </svg>
-                    </div>
-                    <!--box content-->
-                    <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-primary rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#currency-dollar"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
                     <span class="text-xs">
                         موجودی حساب
                     </span>
-                        <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="font-danaDemiBold text-sm md:text-lg">
                         <span class="account-center--balance"></span> تومان
                     </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--recently watched and courses and recent tickets and recent questions-->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 items-start">
-                <!--recently watched and courses-->
-                <div>
-                    <!--recently watched title and show all courses-->
-                    <div class="flex justify-between items-center mb-4 md:mb-5 px-3.5 py-2.5 md:p-[18px] bg-white dark:bg-darkGray-800 rounded-2xl">
+                <!--recently watched and courses and recent tickets and recent questions-->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 items-start">
+                    <!--recently watched and courses-->
+                    <div>
+                        <!--recently watched title and show all courses-->
+                        <div class="flex justify-between items-center mb-4 md:mb-5 px-3.5 py-2.5 md:p-[18px] bg-white dark:bg-darkGray-800 rounded-2xl">
                         <span class="font-danaMedium md:text-xl">
                             اخیرا مشاهده شده
                         </span>
-                        <a href="#"
-                           class="h-9 flex items-center gap-x-1.5 p-3.5 bg-sky-500/10 dark:bg-secondary/10 text-sm text-sky-500 dark:text-secondary rounded-xl select-none">
+                            <a href="dashboard.html?sec=my-courses"
+                               class="h-9 flex items-center gap-x-1.5 p-3.5 bg-sky-500/10 dark:bg-secondary/10 text-sm text-sky-500 dark:text-secondary rounded-xl select-none">
                             <span>
                                 همه دوره های ثبت‌نام شده
-                            </span>
-                            <svg class="w-4 h-4">
-                                <use href="#arrow-left-mini"></use>
-                            </svg>
-                        </a>
-                    </div>
-                    <!--courses-->
-                    <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-4">
-                        <!--each course-->
-                        <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                            <!-- Course Banner -->
-                            <div class="relative h-[168px]">
-                                <a class="w-full h-full block" href="#"
-                                   title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                    <img class="block w-full h-full object-cover rounded-2xl"
-                                         src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                         alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                </a>
-                            </div>
-                            <!-- Course Body -->
-                            <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                                <!-- Course Title -->
-                                <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                                    <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                        جاوا
-                                        اسکریپت برای بازار کار</a>
-                                </h4>
-                                <!-- Course Footer -->
-                                <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                                    <div class="flex items-center justify-between text-xs mb-1.5">
-                                        <span>میزان مشاهده</span>
-                                        <span class="text-slate-500 dark:text-slate-400">7%</span>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                        <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                            <!-- Course Banner -->
-                            <div class="relative h-[168px]">
-                                <a class="w-full h-full block" href="#"
-                                   title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                    <img class="block w-full h-full object-cover rounded-2xl"
-                                         src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                         alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                </a>
-                            </div>
-                            <!-- Course Body -->
-                            <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                                <!-- Course Title -->
-                                <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                                    <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                        جاوا
-                                        اسکریپت برای بازار کار</a>
-                                </h4>
-                                <!-- Course Footer -->
-                                <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                                    <div class="flex items-center justify-between text-xs mb-1.5">
-                                        <span>میزان مشاهده</span>
-                                        <span class="text-slate-500 dark:text-slate-400">7%</span>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                        <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                            <!-- Course Banner -->
-                            <div class="relative h-[168px]">
-                                <a class="w-full h-full block" href="#"
-                                   title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                    <img class="block w-full h-full object-cover rounded-2xl"
-                                         src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                         alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                </a>
-                            </div>
-                            <!-- Course Body -->
-                            <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                                <!-- Course Title -->
-                                <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                                    <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                        جاوا
-                                        اسکریپت برای بازار کار</a>
-                                </h4>
-                                <!-- Course Footer -->
-                                <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                                    <div class="flex items-center justify-between text-xs mb-1.5">
-                                        <span>میزان مشاهده</span>
-                                        <span class="text-slate-500 dark:text-slate-400">7%</span>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                        <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                            <!-- Course Banner -->
-                            <div class="relative h-[168px]">
-                                <a class="w-full h-full block" href="#"
-                                   title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                    <img class="block w-full h-full object-cover rounded-2xl"
-                                         src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                         alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                                </a>
-                            </div>
-                            <!-- Course Body -->
-                            <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                                <!-- Course Title -->
-                                <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                                    <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                        جاوا
-                                        اسکریپت برای بازار کار</a>
-                                </h4>
-                                <!-- Course Footer -->
-                                <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                                    <div class="flex items-center justify-between text-xs mb-1.5">
-                                        <span>میزان مشاهده</span>
-                                        <span class="text-slate-500 dark:text-slate-400">7%</span>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                        <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--recent tickets and recent questions-->
-                <div>
-                    <!--recent tickets-->
-                    <div class="bg-white dark:bg-darkGray-800 p-3.5 md:p-[18px] rounded-2xl">
-                        <!--section header-->
-                        <div class="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
-                        <span class="font-danaMedium md:text-xl">
-                            تیکت های اخیر
-                        </span>
-                            <!--all tickets-->
-                            <a href="#" class="flex items-center gap-x-1.5 text-sky-500 dark:text-secondary text-sm">
-                            <span>
-                                همه تیکت ها
                             </span>
                                 <svg class="w-4 h-4">
                                     <use href="#arrow-left-mini"></use>
                                 </svg>
                             </a>
                         </div>
-                        <!--section body-->
-                        <div class="recent-tickets--wrapper">
-
+                        <!--courses-->
+                        <div class="w-full">
+                            <!--each course-->
+                            <div class="max-h-96 overflow-y-auto space-y-3 -ml-2 pl-2">
+                                <div class="text-center bg-gray-100 dark:bg-darkGray-700 p-3 rounded-xl">این بخش توسط بک
+                                    اند هندل نشده
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!--recent questions-->
-                    <div class="bg-white dark:bg-darkGray-800 p-3.5 md:p-[18px] rounded-2xl mt-7">
-                        <!--section header-->
-                        <div class="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
+                    <!--recent tickets and recent questions-->
+                    <div>
+                        <!--recent tickets-->
+                        <div class="bg-white dark:bg-darkGray-800 p-3.5 md:p-[18px] rounded-2xl">
+                            <!--section header-->
+                            <div class="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
+                        <span class="font-danaMedium md:text-xl">
+                            تیکت های اخیر
+                        </span>
+                                <!--all tickets-->
+                                <a href="dashboard.html?sec=my-tickets"
+                                   class="flex items-center gap-x-1.5 text-sky-500 dark:text-secondary text-sm">
+                            <span>
+                                همه تیکت ها
+                            </span>
+                                    <svg class="w-4 h-4">
+                                        <use href="#arrow-left-mini"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <!--section body-->
+                            <div class="recent-tickets--wrapper dashboard-recent-tickets-wrapper">
+
+                            </div>
+                        </div>
+                        <!--recent questions-->
+                        <div class="bg-white dark:bg-darkGray-800 p-3.5 md:p-[18px] rounded-2xl mt-7">
+                            <!--section header-->
+                            <div class="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
                         <span class="font-danaMedium md:text-xl">
                             پرسش های اخیر
                         </span>
-                        </div>
-                        <!--section body-->
-                        <div>
-                            <!--each question-->
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    آموزش جاوا اسکریپت رایگان مقدماتی تا پیشرفته + مینی پروژه - پیاده سازی پروژه
-                                    Shopping
-                                    Cart - تعیین تعداد هر محصول توسط کاربر
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
                             </div>
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    آموزش جاوا اسکریپت رایگان مقدماتی تا پیشرفته + مینی پروژه - پیاده سازی پروژه
-                                    Shopping
-                                    Cart - تعیین تعداد هر محصول توسط کاربر
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    آموزش جاوا اسکریپت رایگان مقدماتی تا پیشرفته + مینی پروژه - پیاده سازی پروژه
-                                    Shopping
-                                    Cart - تعیین تعداد هر محصول توسط کاربر
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                                <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                    آموزش جاوا اسکریپت رایگان مقدماتی تا پیشرفته + مینی پروژه - پیاده سازی پروژه
-                                    Shopping
-                                    Cart - تعیین تعداد هر محصول توسط کاربر
-                                </a>
-                                <!--date and status-->
-                                <div class="flex items-center gap-3 text-xs">
-                                    <!--date-->
-                                    <span class="text-slate-500 dark:text-slate-400">
-                                    1402/08/23
-                                </span>
-                                    <!--status-->
-                                    <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                                </span>
+                            <!--section body-->
+                            <div>
+                                <!--each question-->
+                                <div class="max-h-96 overflow-y-auto space-y-3 -ml-2 pl-2">
+                                    <div class="text-center bg-gray-100 dark:bg-darkGray-700 p-3 rounded-xl">این بخش
+                                        توسط بک اند هندل نشده
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -750,457 +590,201 @@
                 </div>
             </div>
 
-            <!--MY COURSES GRID-->
-            <div class="hidden grid-rows-2 xs:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
+            <!--my-courses-->
+            <div id="my-courses" class="dashboard--sections hidden">
+                <!--boxes container-->
+                <div class="flex flex-wrap gap-x-3 gap-y-4 md:gap-x-10 mb-10 text-white">
+                    <!--each box-->
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-amber-400 dark:bg-yellow-400 rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#credit-cart"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                        <span class="text-xs">
+                            دوره های ثبت نام شده
+                        </span>
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="account-center--courses-count"></span> دوره
+                        </span>
+                        </div>
                     </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-sky-500 dark:bg-secondary rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#rocket-launch"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                        <span class="text-xs">
+                            دوره های نقدی
+                        </span>
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="account-center--priced-courses-count"></span> دوره
+                        </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-primary rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#currency-dollar"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                    <span class="text-xs">
+                        دوره های رایگان
+                    </span>
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                        <span class="account-center--free-courses-count"></span> تومان
+                    </span>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
-                    <!-- Course Banner -->
-                    <div class="relative h-[168px]">
-                        <a class="w-full h-full block" href="#"
-                           title="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                            <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="https://sabzlearn.ir/wp-content/uploads/2023/08/Com_js_pro_question-768x432.png"
-                                 alt="پروژه های تخصصی با جاوا اسکریپت برای بازار کار">
-                        </a>
-                    </div>
-                    <!-- Course Body -->
-                    <div class="px-5 pb-3.5 pt-2.5 flex-grow ">
-                        <!-- Course Title -->
-                        <h4 class="font-danaMedium h-12 line-clamp-2 text-zinc-700 dark:text-white mb-2.5">
-                            <a href="https://sabzlearn.ir/course/js-exp-project/#lessons">پروژه های تخصصی با
-                                جاوا
-                                اسکریپت برای بازار کار</a>
-                        </h4>
-                        <!-- Course Footer -->
-                        <div class="pt-3 border-t border-t-gray-100 dark:border-t-darkGray-700">
-                            <div class="flex items-center justify-between text-xs mb-1.5">
-                                <span>میزان مشاهده</span>
-                                <span class="text-slate-500 dark:text-slate-400">7%</span>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-darkGray-700 h-[5px] rounded-full">
-                                <div class="bg-primary h-full rounded-full" style="width: 7%"></div>
-                            </div>
-                        </div>
-                    </div>
+                <!--MY COURSES GRID-->
+                <div class="my-courses-container grid grid-rows-2 xs:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+
                 </div>
             </div>
 
-            <!--new ticket button for tickets section FLEX-->
-            <a href="#"
-               class="hidden w-full xs:w-max items-center gap-x-[18px] p-4 md:p-6 bg-sky-500 dark:bg-secondary font-danaDemiBold text-xl text-white rounded-2xl">
-                <svg class="w-8 h-8">
-                    <use href="#plus-circle"></use>
-                </svg>
-                تیکت جدید
-            </a>
-            <!--TICKETS SECTION-->
-            <div class="hidden bg-white dark:bg-darkGray-800 mt-10 p-3.5 md:p-[18px] rounded-2xl">
-                <!--section header-->
-                <div class="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
+            <!--my tickets-->
+            <div id="my-tickets" class="dashboard--sections hidden">
+                <!--boxes container-->
+                <div class="flex flex-wrap gap-x-3 gap-y-4 md:gap-x-10 text-white">
+                    <!--each box-->
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-amber-400 dark:bg-yellow-400 rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#credit-cart"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                        <span class="text-xs">
+                            همه تیکت ها
+                        </span>
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="account-center--tickets-count"></span> تیکت
+                        </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-sky-500 dark:bg-secondary rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#rocket-launch"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                        <span class="text-xs">
+                            تیکت های باز
+                        </span>
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="account-center--open-tickets-count">0</span> تیکت
+                        </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 p-2 bg-pink-500 dark:bg-rose-500 rounded-2xl">
+                        <!--box logo-->
+                        <div class="w-14 h-14 md:w-[68px] md:h-[68px] flex justify-center items-center bg-white/20 rounded-2xl">
+                            <svg class="w-8 h-8 md:w-9 md:h-9">
+                                <use href="#ticket"></use>
+                            </svg>
+                        </div>
+                        <!--box content-->
+                        <div class="flex flex-col  gap-y-1.5 md:gap-y-2">
+                        <span class="text-xs">
+                            بسته شده
+                        </span>
+                            <span class="font-danaDemiBold text-sm md:text-lg">
+                            <span class="account-center--closed-tickets-count">0</span> تیکت
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <!--new ticket button for tickets section FLEX-->
+                <a href="dashboard.html?sec=my-tickets&add-ticket=true"
+                   class="flex w-full xs:w-max items-center gap-x-[18px] p-4 md:p-6 mt-5 bg-sky-500 dark:bg-secondary font-danaDemiBold text-xl text-white rounded-2xl">
+                    <svg class="w-8 h-8">
+                        <use href="#plus-circle"></use>
+                    </svg>
+                    تیکت جدید
+                </a>
+                <!--TICKETS SECTION-->
+                <div class="bg-white dark:bg-darkGray-800 mt-10 p-3.5 md:p-[18px] rounded-2xl">
+                    <!--section header-->
+                    <div class="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
                     <span class="font-danaMedium md:text-xl">
                         تیکت ها
                     </span>
+                    </div>
+                    <!--section body-->
+                    <div class="recent-tickets--wrapper">
+                        <!--each ticket-->
+
+                    </div>
                 </div>
-                <!--section body-->
-                <div>
-                    <!--each ticket-->
-                    <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                        <!--ticket code and subject-->
-                        <div class="flex items-center font-danaMedium">
-                            <span class="w-20 text-right text-black">
-                                #8304
-                            </span>
-                            <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                دوره تیلویند
-                            </a>
-                        </div>
-                        <!--date and status and receiver-->
-                        <div class="flex items-center gap-3 text-xs">
-                            <!--date-->
-                            <span class="text-slate-500 dark:text-slate-400">
-                                   (20:53) 1402/08/23
-                            </span>
-                            <!--receiver-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    پشتیبانی
-                            </span>
-                            <!--status-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                            </span>
-                        </div>
+            </div>
+
+            <!--add ticket form-->
+            <div id="add-ticket-form-container" class="hidden px-5 md:px-0">
+                <div class="bg-white dark:bg-darkGray-800 p-3.5 md:p-[18px] rounded-2xl">
+                    <div class="flex justify-between items-center pb-3.5 md:pb-[18px] mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
+                        <span class="font-danaMedium md:text-xl text-zinc-700 dark:text-white">ارسال تیکت</span>
                     </div>
-                    <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                        <!--ticket code and subject-->
-                        <div class="flex items-center font-danaMedium">
-                            <span class="w-20 text-right text-black">
-                                #8304
-                            </span>
-                            <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                دوره تیلویند
-                            </a>
+                    <form id="add-ticket">
+                        <div>
+                            <label for="department"
+                                   class="font-danaDemiBold text-zinc-700 dark:text-white">دپارتمان</label>
+                            <select name="department" id="department" required
+                                    class="mt-3.5 md:mt-4 w-full p-3 sm:p-5 font-danaLight text-sm sm:text-base tracking-tight text-zinc-700 dark:text-white bg-gray-100 dark:bg-darkGray-700 rounded-xl border border-transparent focus:border-gray-300 dark:focus:border-darkSlate placeholder:text-slate-500 dark:placeholder:text-darkGray-500 outline-0 transition-all">
+                                <option value="">دپارتمان مورد نظر...</option>
+                            </select>
                         </div>
-                        <!--date and status and receiver-->
-                        <div class="flex items-center gap-3 text-xs">
-                            <!--date-->
-                            <span class="text-slate-500 dark:text-slate-400">
-                                   (20:53) 1402/08/23
-                            </span>
-                            <!--receiver-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    پشتیبانی
-                            </span>
-                            <!--status-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                            </span>
+                        <div class="mt-6">
+                            <label for="title" class="font-danaDemiBold text-zinc-700 dark:text-white">
+                                موضوع تیکت
+                            </label>
+                            <input type="text"
+                                   class="w-full h-12 sm:h-14 mt-3.5 md:mt-4 px-3 sm:px-5 bg-gray-100 dark:bg-darkGray-700 text-sm sm:text-base tracking-tight text-zinc-700 dark:text-white border border-transparent rounded-xl transition-all outline-0"
+                                   id="title" name="title" required=""
+                                   placeholder="موضوع تیکت خود را وارد کنید">
                         </div>
-                    </div>
-                    <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                        <!--ticket code and subject-->
-                        <div class="flex items-center font-danaMedium">
-                            <span class="w-20 text-right text-black">
-                                #8304
-                            </span>
-                            <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                دوره تیلویند
-                            </a>
+                        <div class="mt-6">
+                            <label for="text" class="font-danaDemiBold text-zinc-700 dark:text-white">متن تیکت</label>
+                            <textarea rows="8"
+                                      class="mt-3.5 md:mt-4 w-full p-3 sm:p-5 font-danaRegular text-sm sm:text-base tracking-tight text-zinc-700 dark:text-white bg-gray-100 dark:bg-darkGray-700 rounded-xl border border-transparent focus:border-gray-300 dark:focus:border-darkSlate placeholder:text-slate-500 dark:placeholder:text-darkGray-500 outline-0 transition-all"
+                                      id="text" name="text" required
+                                      placeholder="متن تیکت خود را وارد کنید"></textarea>
                         </div>
-                        <!--date and status and receiver-->
-                        <div class="flex items-center gap-3 text-xs">
-                            <!--date-->
-                            <span class="text-slate-500 dark:text-slate-400">
-                                   (20:53) 1402/08/23
-                            </span>
-                            <!--receiver-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    پشتیبانی
-                            </span>
-                            <!--status-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                            </span>
+                        <div class="flex justify-between gap-5 flex-wrap mt-6">
+                            <div class="flex gap-x-3 mr-auto">
+                                <button class="w-max h-10 flex justify-center items-center px-[18px] text-base bg-primary hover:bg-green-500 text-white select-none rounded-xl transition-all"
+                                        type="submit">ارسال
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                        <!--ticket code and subject-->
-                        <div class="flex items-center font-danaMedium">
-                            <span class="w-20 text-right text-black">
-                                #8304
-                            </span>
-                            <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                دوره تیلویند
-                            </a>
+                    </form>
+                </div>
+                <div class="db-overlay invisible opacity-0 fixed w-full h-full top-0 left-0 bg-black/40 z-20 transition-all"></div>
+            </div>
+
+            <!--ticket page-->
+            <div id="ticket-page" class="hidden">
+                <div class="px-5 md:px-0">
+                    <div class="bg-white dark:bg-darkGray-800 p-3.5 md:p-[18px] rounded-2xl">
+                        <div class="flex justify-between items-center pb-3.5 md:pb-[18px] mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-darkGray-700">
+                            <span id="ticket-title" class="font-danaMedium md:text-xl text-zinc-700 dark:text-white"></span>
                         </div>
-                        <!--date and status and receiver-->
-                        <div class="flex items-center gap-3 text-xs">
-                            <!--date-->
-                            <span class="text-slate-500 dark:text-slate-400">
-                                   (20:53) 1402/08/23
-                            </span>
-                            <!--receiver-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    پشتیبانی
-                            </span>
-                            <!--status-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center flex-wrap gap-y-3 p-3 hover:bg-gray-100 dark:hover:bg-darkGray-700 rounded-xl transition-colors">
-                        <!--ticket code and subject-->
-                        <div class="flex items-center font-danaMedium">
-                            <span class="w-20 text-right text-black">
-                                #8304
-                            </span>
-                            <a href="#" class="w-full sm:max-w-sm sm:truncate">
-                                دوره تیلویند
-                            </a>
-                        </div>
-                        <!--date and status and receiver-->
-                        <div class="flex items-center gap-3 text-xs">
-                            <!--date-->
-                            <span class="text-slate-500 dark:text-slate-400">
-                                   (20:53) 1402/08/23
-                            </span>
-                            <!--receiver-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    پشتیبانی
-                            </span>
-                            <!--status-->
-                            <span class="py-1 px-1.5 bg-slate-500/10 dark:bg-yellow-400/10 text-slate-500 dark:text-yellow-400 rounded">
-                                    بسته شده
-                            </span>
+                        <div class="space-y-4 ticket-content-container">
                         </div>
                     </div>
                 </div>

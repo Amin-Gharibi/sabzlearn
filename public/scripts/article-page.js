@@ -34,7 +34,7 @@ window.addEventListener('load', async () => {
     const articlePublisherElem = document.querySelector('.article--publisher')
     articlePublisherElem.innerHTML = article.creator.name
     const articleUpdatingDateElem = document.querySelector('.article--date')
-    articleUpdatingDateElem.innerHTML = intlDateToPersianDate(article.updatedAt.slice(0,4), article.updatedAt.slice(5,7), article.updatedAt.slice(8, 10))
+    articleUpdatingDateElem.innerHTML = intlDateToPersianDate(article.updatedAt)
     const articleMainContentWrapper = document.querySelector('.article--main-content')
     articleMainContentWrapper.insertAdjacentHTML('beforeend', `
         <!--article cover-->

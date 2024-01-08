@@ -19,7 +19,7 @@
 }
 
 .notifications-dropdown--overlay__show {
-    z-index: 20 !important;
+    z-index: 50 !important;
 }
 
 .mobile-bottom-sheet--overlay {
@@ -31,7 +31,7 @@
 }
 
 .notification-center--wrapper__show {
-    @apply z-30;
+    z-index: 60;
 }
 
 .mobile-menu--overlay__show {
@@ -134,8 +134,8 @@ span:has(+ .mobile-menu--submenu__open) {
     @apply rotate-180;
 }
 
-.chapter__title--active {
-
+.desktop-menu--items.active {
+    @apply bg-primary text-white;
 }
 
 @layer base {
@@ -549,7 +549,7 @@ span:has(+ .mobile-menu--submenu__open) {
     }
 
     .notification-center-dropdown {
-        @apply absolute left-0 top-full z-30 pt-4 text-zinc-700 dark:text-white transition-all -translate-x-28 md:translate-x-0 opacity-0 invisible cursor-default;
+        @apply absolute left-0 top-full pt-4 text-zinc-700 dark:text-white transition-all -translate-x-28 md:translate-x-0 opacity-0 invisible cursor-default;
     }
 
     .chapters {
