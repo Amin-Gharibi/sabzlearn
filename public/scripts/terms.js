@@ -1,11 +1,13 @@
 import {
-    changeThemeHandler, searchFormSubmissionHandler, showDetailsInAccountCenter,
-    showHeaderMenus,
+    changeThemeHandler, searchFormSubmissionHandler
+} from "./utils/utils.js";
+import {getMe} from "./funcs/auth.js";
+import {
+    showDetailsInAccountCenter,
     toggleMobileMenu,
     toggleProfileDropDown,
     toggleSubMenusHandler
-} from "./utils/utils.js";
-import {getMe} from "./funcs/auth.js";
+} from "./shared/header.js";
 
 let $ = document
 const userProfileBtn = $.querySelector('#user-profile')
@@ -22,7 +24,7 @@ window.addEventListener('load', async () => {
         form.addEventListener('submit', event => searchFormSubmissionHandler(event))
     })
 
-    const [data] = await Promise.all([getMe(), showHeaderMenus()])
+    const [data] = await Promise.all([getMe()])
 
     showDetailsInAccountCenter(data)
 })

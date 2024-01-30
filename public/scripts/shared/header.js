@@ -60,7 +60,7 @@ const showHeaderMenusForDesktop = async () => {
     const menus = data.map((menu, index) => {
         return `
             <li class="relative group flex justify-start items-center">
-                <a href="${index === data.length - 1 ? 'article-page.html' : `search-categories.html?cat=${menu.cat}`}"
+                <a href="${menu.cat === "articles" ? 'search-categories-articles.html' : `search-categories.html?cat=${menu.cat}`}"
                    class="group-hover:text-primary flex justify-start items-center gap-x-1.5 transition-colors">
                     ${menu.title}
                     ${
