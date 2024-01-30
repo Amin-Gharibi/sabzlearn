@@ -346,9 +346,9 @@
         </div>
         <!--search box for large sizes-->
         <div class="h-14 hidden xl:flex justify-center items-center bg-gray-100 dark:bg-transparent text-slate-500 dark:text-darkGray-600 rounded-full">
-            <form class="search-form relative h-full">
+            <form class="search-form relative h-full m-0">
                 <input type="text" placeholder="جستجو"
-                       class="w-48 focus:w-64 h-full pl-14 pr-5 focus:text-zinc-700 placeholder-slate-500 dark:placeholder-darkGray-600 rounded-full border border-transparent hover:border-gray-200 dark:border-darkGray-700 dark:hover:border-darkGray-700 focus:border-gray-300 focus:hover:border-gray-200 outline-0 bg-transparent transition-all">
+                       class="w-48 focus:w-64 h-full pl-14 pr-5 text-slate-500 dark:text-darkGray-600 focus:text-zinc-700 dark:focus:text-white placeholder-slate-500 dark:placeholder-darkGray-600 rounded-full border border-transparent hover:border-gray-200 dark:border-darkGray-700 dark:hover:border-darkGray-700 focus:border-gray-300 focus:hover:border-gray-200 outline-0 bg-transparent transition-all">
                 <button type="submit" class="w-7 h-7 absolute top-0 bottom-0 my-auto left-5" role="button">
                     <svg class="w-full h-full">
                         <use href="#magnifying-glass"></use>
@@ -411,7 +411,7 @@
                     <!--menu list items-->
                     <div class="flex flex-col justify-between items-start pt-2">
                         <!--dashboard-->
-                        <a href="dashboard.html?sec=my-account"
+                        <a href="dashboard.html"
                            class="w-full h-[46px] flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
                             <svg class="w-5 h-5">
                                 <use href="#home"></use>
@@ -1213,6 +1213,7 @@
 <div class="profile-dropdown--overlay"></div>
 <div class="mobile-menu--overlay"></div>
 
+<script src="./scripts/shared/header.js" type="module"></script>
 <script src="./scripts/terms.js" type="module"></script>
 <script src="./scripts/shared/shared.js" type="module"></script>
 </body>

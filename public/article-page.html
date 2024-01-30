@@ -292,9 +292,9 @@
         </div>
         <!--search box for large sizes-->
         <div class="h-14 hidden xl:flex justify-center items-center bg-gray-100 dark:bg-transparent text-slate-500 dark:text-darkGray-600 rounded-full">
-            <form class="search-form relative h-full">
+            <form class="search-form relative h-full m-0">
                 <input type="text" placeholder="جستجو"
-                       class="w-48 focus:w-64 h-full pl-14 pr-5 focus:text-zinc-700 placeholder-slate-500 dark:placeholder-darkGray-600 rounded-full border border-transparent hover:border-gray-200 dark:border-darkGray-700 dark:hover:border-darkGray-700 focus:border-gray-300 focus:hover:border-gray-200 outline-0 bg-transparent transition-all">
+                       class="w-48 focus:w-64 h-full pl-14 pr-5 text-slate-500 dark:text-darkGray-600 focus:text-zinc-700 dark:focus:text-white placeholder-slate-500 dark:placeholder-darkGray-600 rounded-full border border-transparent hover:border-gray-200 dark:border-darkGray-700 dark:hover:border-darkGray-700 focus:border-gray-300 focus:hover:border-gray-200 outline-0 bg-transparent transition-all">
                 <button type="submit" class="w-7 h-7 absolute top-0 bottom-0 my-auto left-5" role="button">
                     <svg class="w-full h-full">
                         <use href="#magnifying-glass"></use>
@@ -357,7 +357,7 @@
                     <!--menu list items-->
                     <div class="flex flex-col justify-between items-start pt-2">
                         <!--dashboard-->
-                        <a href="dashboard.html?sec=my-account"
+                        <a href="dashboard.html"
                            class="w-full h-[46px] flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
                             <svg class="w-5 h-5">
                                 <use href="#home"></use>
@@ -546,13 +546,13 @@
                     دسترسی سریع
                 </h4>
                 <div class="flex flex-col justify-start items-start gap-y-3">
-                    <a href="#" class="hover:text-primary transition-colors">
+                    <a href="terms.html" class="hover:text-primary transition-colors">
                         قوانین و مقررات
                     </a>
-                    <a href="#" class="hover:text-primary transition-colors">
+                    <a href="dashboard.html?sec=my-tickets" class="hover:text-primary transition-colors">
                         ارسال تیکت
                     </a>
-                    <a href="#" class="hover:text-primary transition-colors">
+                    <a href="search-categories.html" class="hover:text-primary transition-colors">
                         همه دوره ها
                     </a>
                 </div>
@@ -562,19 +562,7 @@
                 <h4 class="font-danaMedium text-2xl text-zinc-700 dark:text-white">
                     لینک های مفید
                 </h4>
-                <div class="flex flex-col justify-start items-start gap-y-3">
-                    <a href="#" class="hover:text-primary transition-colors">
-                        آموزش جاوااسکریپت
-                    </a>
-                    <a href="#" class="hover:text-primary transition-colors">
-                        آموزش پایتون
-                    </a>
-                    <a href="#" class="hover:text-primary transition-colors">
-                        آموزش HTML
-                    </a>
-                    <a href="#" class="hover:text-primary transition-colors">
-                        آموزش CSS
-                    </a>
+                <div class="flex flex-col justify-start items-start gap-y-3" id="footer-usefull-courses">
                 </div>
             </div>
             <!--social media-->
@@ -584,25 +572,25 @@
                 </h4>
                 <div class="flex flex-col justify-start items-start gap-y-3">
                     <!--instagram link-->
-                    <a href="#" class="flex justify-start items-center gap-x-4 hover:text-primary transition-colors">
+                    <a href="https://instagram.com/amiingharibi" target="_blank" class="flex justify-start items-center gap-x-4 hover:text-primary transition-colors">
                         <div class="flex items-center justify-center rounded-full w-8 h-8 bg-orange-600 text-white bg-gradient-to-tr from-[#FEDC15] via-[#F71F87] to-[#9000DC]">
                             <svg class="w-5 h-5">
                                 <use href="#instagram"></use>
                             </svg>
                         </div>
                         <span class="text-ltr font-danaDemiBold">
-                            @sabzlearn_
+                            @amiingharibi
                         </span>
                     </a>
                     <!--telegram link-->
-                    <a href="#" class="flex justify-start items-center gap-x-4 hover:text-primary transition-colors">
+                    <a href="https://t.me/amiingharibi" target="_blank" class="flex justify-start items-center gap-x-4 hover:text-primary transition-colors">
                         <div class="flex items-center justify-center rounded-full w-8 h-8 bg-blue-500 text-white bg-gradient-to-b from-blue-400 to-blue-600">
                             <svg class="w-5 h-5">
                                 <use href="#telegram"></use>
                             </svg>
                         </div>
                         <span class="text-ltr font-danaDemiBold">
-                            @sabzlearn
+                            @amiingharibi
                         </span>
                     </a>
                 </div>
@@ -625,6 +613,6 @@
 
 <script src="./scripts/article-page.js" type="module"></script>
 <script src="./scripts/shared/shared.js" type="module"></script>
-
+<script src="./scripts/shared/footer.js"></script>
 </body>
 </html>
