@@ -3,7 +3,7 @@ import {sortingButtonsClickHandler} from "./shared/shared-between-teacher-and-ca
 import {toggleMobileSortingMenu} from "./shared/shared-categories-pages.js";
 
 window.addEventListener('load', async () => {
-    const courses = (await getCourses()).filter(course => course.creator.username === getSearchParam('teacher'))
+    const courses = (await getCourses()).filter(course => course.creator.username === getSearchParam('teacher')) // get the courses based on teacher name
     let shownCoursesCount = 12
     await showCoursesBasedOnUrl(courses, shownCoursesCount)
 
