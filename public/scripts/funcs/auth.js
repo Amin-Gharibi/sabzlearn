@@ -15,8 +15,8 @@ const register = () => {
 
     const newUserInfos = {
         name: username.value.trim(),
-        username: username.value.trim(),
-        email: email.value.trim(),
+        username: username.value.trim().toLowerCase(),
+        email: email.value.trim().toLowerCase(),
         phone: phone.value.trim(),
         password: password.value.trim(),
         confirmPassword: password.value.trim()
@@ -67,7 +67,7 @@ const login = () => {
     const passwordInput = document.querySelector('#password-input');
 
     const userInfos = {
-        identifier: identifierInput.value.trim(),
+        identifier: identifierInput.value.trim().toLowerCase(),
         password: passwordInput.value.trim()
     }
 
@@ -83,7 +83,7 @@ const login = () => {
         }).then(response => {
             return response.json()
         })
-            .then(data => {
+            .then(async data => {
                 if (data.message && data.message === "password is not correct") {
                     alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'نام کاربری یا رمز عبور درست نیست!')
                 } else if (data === "there is no user with this email or username") {
@@ -91,8 +91,13 @@ const login = () => {
                 } else {
                     alert(document.body, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
                     saveToLocalStorage('user', {token: data.accessToken})
+                    const user = await getMe()
                     setTimeout(() => {
-                        location.href = document.referrer
+                        if (user.role === "ADMIN" || user.role === "TEACHER") {
+                            location.href = 'admin-panel/main/index.html'
+                        } else {
+                            location.href = document.referrer
+                        }
                     }, 1000)
                 }
             })

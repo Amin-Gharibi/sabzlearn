@@ -14,7 +14,7 @@ window.addEventListener('load', async () => {
         courseRealPriceWrapper.insertAdjacentHTML('afterbegin', course.price.toLocaleString())
 
         const coursePayingPriceWrapper = document.querySelector('#course-paying-price')
-        coursePayingPriceWrapper.insertAdjacentHTML('afterbegin', (course.price - (course.off * course.price / 100)).toLocaleString())
+        coursePayingPriceWrapper.insertAdjacentHTML('afterbegin', (course.price - (course.discount * course.price / 100)).toLocaleString())
 
         const cancelShoppingBtn = document.querySelector('#cancel-shopping')
         cancelShoppingBtn.setAttribute('href', `course-page.html?c=${course.shortName}`)
@@ -24,7 +24,7 @@ window.addEventListener('load', async () => {
             event.preventDefault()
             try {
                 const requestBody = {
-                    price: course.price - (course.off * course.price / 100)
+                    price: course.price - (course.discount * course.price / 100)
                 }
                 let previousPageUrl = ''
                 if (document.referrer) { // save previous page's url

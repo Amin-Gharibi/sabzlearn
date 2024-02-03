@@ -57,10 +57,10 @@ const showDetailsInAccountCenter = data => {
 
 const showHeaderMenusForDesktop = async () => {
     const data = await getHeaderMenus()
-    const menus = data.map((menu, index) => {
+    const menus = !data.message && data.map(menu => {
         return `
             <li class="relative group flex justify-start items-center">
-                <a href="${menu.cat === "articles" ? 'search-categories-articles.html' : `search-categories.html?cat=${menu.cat}`}"
+                <a href="${menu.href === "articles" ? 'search-categories-articles.html' : `search-categories.html?cat=${menu.href}`}"
                    class="group-hover:text-primary flex justify-start items-center gap-x-1.5 transition-colors">
                     ${menu.title}
                     ${
@@ -90,7 +90,7 @@ const showHeaderMenusForDesktop = async () => {
         }
             </li>
         `
-    }).join('')
+    }).join('') || ''
 
     const navigationLinksWrapper = document.querySelector('.navigation-links--wrapper')
     navigationLinksWrapper.insertAdjacentHTML('beforeend', menus)
@@ -99,7 +99,7 @@ const showHeaderMenusForDesktop = async () => {
 const showHeaderMenusForMobile = async () => {
     const data = await getHeaderMenus()
 
-    const finalStr = data.map(menu => {
+    const finalStr = !data.message && data.map(menu => {
 
         return `
             <li class="mobile-menu--list-items">
@@ -127,7 +127,7 @@ const showHeaderMenusForMobile = async () => {
                 ` || ''}
             </li>
         `
-    }).join('')
+    }).join('') || ''
 
     const wrapper = document.querySelector('.mobile-navigation-links--wrapper')
     wrapper.innerHTML = finalStr

@@ -75,12 +75,12 @@ window.addEventListener('load', async () => {
     courseNameTitle.innerHTML = course.name
     courseDescriptionPara.innerHTML = course.description
     coursePriceSection.innerHTML = `
-        <span class="${!course.off ? 'hidden ' : 'flex '}course--price__offered before:-right-[5px] before:-top-1 h-full text-2xl text-slate-500 dark:text-gray-500">
+        <span class="${!course.discount ? 'hidden ' : 'flex '}course--price__offered before:-right-[5px] before:-top-1 h-full text-2xl text-slate-500 dark:text-gray-500">
             ${course.price.toLocaleString()}
         </span>
         <span class="inline-flex justify-center items-center gap-x-1.5 flex-wrap font-danaDemiBold text-3xl text-zinc-700 dark:text-white mr-4 sm:mr-2 mb-5 sm:mb-0">
-            ${course.off === 100 ? 'رایگان!' : (course.price - (course.off * course.price / 100)).toLocaleString()}
-            ${course.off === 100 ? '' : `<svg class="w-6 h-6">
+            ${course.discount === 100 ? 'رایگان!' : (course.price - (course.discount * course.price / 100)).toLocaleString()}
+            ${course.discount === 100 ? '' : `<svg class="w-6 h-6">
                 <use href="#toman"></use>
             </svg>`}
         </span>
@@ -150,7 +150,7 @@ window.addEventListener('load', async () => {
     const courseTeacherSectionMobile = document.querySelector('.course-teacher-section__mobile')
     const courseTeacherSectionDesktop = document.querySelector('.course-teacher-section__desktop')
     courseStudentsCount.forEach(title => title.innerHTML = course.courseStudentsCount)
-    courseRatingTitles.forEach(title => title.innerHTML = course.rate.toFixed(1))
+    courseRatingTitles.forEach(title => title.innerHTML = course.rate?.toFixed(1) || 5)
     courseProgressTitle.forEach(title => title.innerHTML = `${calcCourseProgress(course)}%`)
     courseProgressBar.forEach(elem => elem.setAttribute('value', calcCourseProgress(course)))
     courseTeacherSectionMobile.innerHTML = `

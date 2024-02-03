@@ -85,7 +85,7 @@ const getHeaderMenus = async () => {
 
 const getApplyTotalPaidAmount = courses => {
     const totalPaidTitle = document.querySelector('#total-paid')
-    const totalPaidAmount = courses.reduce((total, course) => total + course.price - (course.price * course.off / 100), 0)
+    const totalPaidAmount = courses.reduce((total, course) => total + course.price - (course.price * course.discount / 100), 0)
     totalPaidTitle.innerHTML = totalPaidAmount.toLocaleString()
 }
 
@@ -135,7 +135,7 @@ const getApplyPricedCoursesCount = courses => {
     const title = document.querySelector('.account-center--priced-courses-count')
     let count = 0
     courses.forEach(course => {
-        if (course.off) {
+        if (course.discount) {
             count++
         }
     })
@@ -157,9 +157,9 @@ const compareItemsForLastEdited = (itemA, itemB) => {
     return timeA - timeB;
 }
 
-const compareCoursesForLastCreated = (courseA, courseB) => {
-    const timeA = new Date(courseA.createdAt).getTime();
-    const timeB = new Date(courseB.createdAt).getTime();
+const compareItemsForLastCreated = (itemA, itemB) => {
+    const timeA = new Date(itemA.createdAt).getTime();
+    const timeB = new Date(itemB.createdAt).getTime();
 
     return timeA - timeB;
 }
@@ -217,7 +217,7 @@ const getLastEditedCourses = async () => {
 const getLastCreatedCourses = async () => {
     const courses = await getCourses()
 
-    return quickSort(courses, compareCoursesForLastCreated)
+    return quickSort(courses, compareItemsForLastCreated)
 }
 
 const getPreSaleCourses = async () => {
@@ -263,9 +263,8 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
         const courseWithSessions = await getCourseByShortName(course.shortName)
         const relativeMin = courseWithSessions.sessions.reduce((accumulator, currentValue) => accumulator + timeToHour(currentValue.time), 0).toString().split('.')[1] || '0'
         const exactMin = (Number('0.' + relativeMin) * 60).toFixed(0)
-
         return `
-            <div class="${course.off === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
+            <div class="${course.discount === 0 ? '' : 'relative '}${isSwiperSlide ? '!flex min-h-[414px] swiper-slide ' : 'flex '}flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border dark:border-darkGray-700 rounded-2xl">
                 <!--item image-->
                 <div class="w-full h-[168px] rounded-2xl overflow-hidden">
                     <a href="course-page.html?c=${course.shortName}" title="${course.name}" class="w-full h-full">
@@ -275,7 +274,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                     </a>
                 </div>
                 <!--item body-->
-                <div class="${course.off === 0 ? 'flex flex-col ' : 'pb-2 '}px-5 pt-2.5 flex-grow">
+                <div class="${course.discount === 0 ? 'flex flex-col ' : 'pb-2 '}px-5 pt-2.5 flex-grow">
                     <!--item tags-->
                     <div class="mb-2.5">
                         <a href="${course.categoryID.name}"
@@ -320,7 +319,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         </div>
                         <!--rate-->
                         <div class="flex items-center gap-x-1 text-amber-400 text-xs">
-                            <span class="leading-[1px]">${(course.rate).toFixed(1)}</span>
+                            <span class="leading-[1px]">${(course.rate)?.toFixed(1) || 0}</span>
                             <svg class="w-4 h-4">
                                 <use href="#star"></use>
                             </svg>
@@ -338,17 +337,17 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                         </span>
                         </div>
                         <!--course price-->
-                        <div class="${course.off === 0 ? 'flex' : 'hidden'} items-center gap-x-1.5 font-danaMedium text-xl text-primary">
+                        <div class="${course.discount === 0 ? 'flex' : 'hidden'} items-center gap-x-1.5 font-danaMedium text-xl text-primary">
                             <span>${course.price.toLocaleString()}</span>
                             <svg class="w-4 h-4">
                                 <use href="#toman"></use>
                             </svg>
                         </div>
-                        <div class="${course.off === 0 ? 'hidden' : 'flex'} flex-col items-start gap-x-1.5 font-danaMedium text-xl text-primary">
+                        <div class="${course.discount === 0 ? 'hidden' : 'flex'} flex-col items-start gap-x-1.5 font-danaMedium text-xl text-primary">
                             <span class="course--price__offered">${course.price.toLocaleString()}</span>
                             <span class="course--price">
-                                ${course.off === 100 ? 'رایگان!' : ((course.price - (course.off * course.price / 100)).toLocaleString())}
-                                ${course.off === 100 ? '' : `<svg class="w-4 h-4">
+                                ${course.discount === 100 ? 'رایگان!' : ((course.price - (course.discount * course.price / 100)).toLocaleString())}
+                                ${course.discount === 100 ? '' : `<svg class="w-4 h-4">
                                 <use href="#toman"></use>
                             </svg>`}
                             </span>
@@ -356,9 +355,9 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                     </div>
                 </div>
                 <!--off percentage-->
-                <div class="absolute top-2.5 right-2.5 ${course.off === 0 ? 'hidden' : 'flex'} justify-center items-center w-12 h-6 font-danaDemiBold text-sm bg-primary text-white rounded-xl">
+                <div class="absolute top-2.5 right-2.5 ${course.discount === 0 ? 'hidden' : 'flex'} justify-center items-center w-12 h-6 font-danaDemiBold text-sm bg-primary text-white rounded-xl">
                 <span>
-                    ${course.off}%
+                    ${course.discount}%
                 </span>
                 </div>
             </div>
@@ -404,7 +403,7 @@ const showCoursesBasedOnUrl = async (courses, shownCoursesCount) => {
     filteredCoursesWrapper.innerHTML = 'در حال لود...'
     let finalCourses = courses;
     let onlyThisCatCourses;
-    const allCategories = await getAllEnCategories()
+    const allCategories = await getAllCategories()
 
     // applies the changes in the sort of the courses
     if (!getSearchParam('sort') || getSearchParam('sort') === 'default' || getSearchParam('sort') === 'cheapest' || getSearchParam('sort') === 'expensive' || getSearchParam('sort') === 'popular') {
@@ -472,88 +471,108 @@ const categoryCoursesLowerOptionsHandler = (courses, shownCoursesCount) => {
     }
 }
 
-// get all categories persian name
-const getAllFaCategories = async () => {
-    const allCourses = await getCourses()
-    const categories = []
-    let isAlreadyInCategories;
-    allCourses.forEach(course => {
-        isAlreadyInCategories = categories.find(category => category === course.categoryID.title)
-        if (!isAlreadyInCategories) {
-            categories.push(course.categoryID.title)
-        }
-    })
+// // get all categories persian name
+// const getAllFaCategories = async () => {
+//     const allCourses = await getCourses()
+//     const categories = []
+//     let isAlreadyInCategories;
+//     allCourses.forEach(course => {
+//         isAlreadyInCategories = categories.find(category => category === course.categoryID.title)
+//         if (!isAlreadyInCategories) {
+//             categories.push(course.categoryID.title)
+//         }
+//     })
+//
+//     return categories
+// }
+//
+// // get all categories english name
+// const getAllEnCategories = async () => {
+//     const allCourses = await getCourses()
+//     const categories = []
+//     let isAlreadyInCategories;
+//     allCourses.forEach(course => {
+//         isAlreadyInCategories = categories.find(category => category === course.categoryID.name)
+//         if (!isAlreadyInCategories) {
+//             categories.push(course.categoryID.name)
+//         }
+//     })
+//
+//     return categories
+// }
 
-    return categories
-}
+/////////////////////////////////////////////////////////////////
 
-// get all categories english name
-const getAllEnCategories = async () => {
-    const allCourses = await getCourses()
-    const categories = []
-    let isAlreadyInCategories;
-    allCourses.forEach(course => {
-        isAlreadyInCategories = categories.find(category => category === course.categoryID.name)
-        if (!isAlreadyInCategories) {
-            categories.push(course.categoryID.name)
-        }
-    })
-
-    return categories
-}
-
-// get each categories courses by searching with categories persian name
-const getEachCategoriesCoursesFa = async categories => {
-    const allCourses = await getCourses()
-    const categoryCourses = []
-
-    if (typeof categories !== "string") {
-        Array.from(categories).forEach(() => categoryCourses.push([]))
-        Array.from(categories).forEach((category, index) => {
-            allCourses.forEach(course => {
-                if (course.categoryID.title === category) {
-                    categoryCourses[index].push(course)
-                }
-            })
-        })
-    } else {
+const getAllCategories = async () => {
+    const allCourses = await getCourses();
+    const response = await fetch('http://localhost:4000/v1/category')
+    const allCategories = await response.json()
+    let eachCategoryCourses;
+    allCategories.forEach(category => {
+        eachCategoryCourses = []
         allCourses.forEach(course => {
-            if (course.categoryID.title === category) {
-                categoryCourses.push(course)
+            if (course.categoryID._id === category._id) {
+                eachCategoryCourses.push(course)
             }
         })
-    }
-    return categoryCourses
+        category.coursesCount = eachCategoryCourses.length;
+        category.courses = eachCategoryCourses
+    })
+
+    return allCategories;
 }
 
-// get each categories courses by searching with categories english name
-const getEachCategoriesCoursesEn = async categories => {
-    const allCourses = await getCourses()
-    const categoryCourses = []
-
-    if (typeof categories !== 'string') {
-        Array.from(categories).forEach(() => categoryCourses.push([]))
-        Array.from(categories).forEach((category, index) => {
-            allCourses.forEach(course => {
-                if (course.categoryID.name === category) {
-                    categoryCourses[index].push(course)
-                }
-            })
-        })
-    } else {
-        allCourses.forEach(course => {
-            if (course.categoryID.name === categories) {
-                categoryCourses.push(course)
-            }
-        })
-    }
-    return categoryCourses
-}
+// // get each categories courses by searching with categories persian name
+// const getEachCategoriesCoursesFa = async categories => {
+//     const allCourses = await getCourses()
+//     const categoryCourses = []
+//
+//     if (typeof categories !== "string") {
+//         Array.from(categories).forEach(() => categoryCourses.push([]))
+//         Array.from(categories).forEach((category, index) => {
+//             allCourses.forEach(course => {
+//                 if (course.categoryID.title === category) {
+//                     categoryCourses[index].push(course)
+//                 }
+//             })
+//         })
+//     } else {
+//         allCourses.forEach(course => {
+//             if (course.categoryID.title === category) {
+//                 categoryCourses.push(course)
+//             }
+//         })
+//     }
+//     return categoryCourses
+// }
+//
+// // get each categories courses by searching with categories english name
+// const getEachCategoriesCoursesEn = async categories => {
+//     const allCourses = await getCourses()
+//     const categoryCourses = []
+//
+//     if (typeof categories !== 'string') {
+//         Array.from(categories).forEach(() => categoryCourses.push([]))
+//         Array.from(categories).forEach((category, index) => {
+//             allCourses.forEach(course => {
+//                 if (course.categoryID.name === category) {
+//                     categoryCourses[index].push(course)
+//                 }
+//             })
+//         })
+//     } else {
+//         allCourses.forEach(course => {
+//             if (course.categoryID.name === categories) {
+//                 categoryCourses.push(course)
+//             }
+//         })
+//     }
+//     return categoryCourses
+// }
 
 // shows all the categories in the page
 const showCourseCategories = async () => {
-    const allCategories = await getAllFaCategories()
-    const categoryCourses = await getEachCategoriesCoursesFa(allCategories)
+    const allCategories = await getAllCategories()
     const courseCategoriesContainer = document.querySelector('.course-categories--wrapper')
     const mobileCourseCategoriesContainer = document.querySelector('.category-mobile__body')
 
@@ -565,12 +584,12 @@ const showCourseCategories = async () => {
                     <input type="checkbox" class="absolute w-0 h-0 opacity-0" data-value="filter${index + 1}">
                     <span class="categories--toggle w-4 h-4 shrink-0 rounded-[2px] bg-gray-200 dark:bg-darkGray transition-all select-none"></span>
                     <span class="text-sm sm:text-base dark:text-white select-none">
-                            ${category}
+                            ${category.title}
                     </span>
                 </label>
                 <!--count-->
                 <span class="text-sm text-darkGray-500 sm:text-slate-500 dark:text-darkGray-500">
-                    ${categoryCourses[index].length}
+                    ${category.coursesCount}
                 </span>
             </div>
         `
@@ -592,7 +611,7 @@ const getUserCourses = async () => {
 
 // handles filtering data
 const filterCourses = async (courses, filter) => {
-    const categories = await getAllEnCategories()
+    const categories = await getAllCategories()
     switch (filter) {
         case 'default' || false :
             courses = await getCourses()
@@ -607,7 +626,7 @@ const filterCourses = async (courses, filter) => {
             courses = quickSort(courses, compareCoursesForPopular)
             break
         case 'only_free' :
-            courses = courses.filter(course => course.off === 100)
+            courses = courses.filter(course => course.discount === 100)
             break
         case 'presale' :
             courses = courses.filter(course => course.status === 1)
@@ -620,8 +639,8 @@ const filterCourses = async (courses, filter) => {
             break
         case getSearchParam('cat') || Math.random() :
             // random is here because when sorting it enters here because both are null
-            console.log(getSearchParam('cat'))
-            const categoryCourses = await getEachCategoriesCoursesEn(getSearchParam('cat'))
+            const targetCategory = categories.find(category => category.name === getSearchParam('cat'))
+            const categoryCourses = targetCategory?.courses || []
             courses = courses.filter(course => {
                 return categoryCourses.some(catCourse => catCourse._id === course._id)
             })
@@ -630,8 +649,8 @@ const filterCourses = async (courses, filter) => {
             for (const category of categories) {
                 const index = categories.indexOf(category);
                 if (getSearchParam(`filter${index + 1}`) === 'yes') {
-                    const categoryCourses = await getEachCategoriesCoursesEn(category)
-
+                    const targetCategory = categories.find(c => c._id === category._id)
+                    const categoryCourses = targetCategory?.courses || []
                     courses = courses.filter(course => {
                         return categoryCourses.some(catCourse => catCourse._id === course._id)
                     })
@@ -828,11 +847,8 @@ export {
     addSearchParam,
     removeSearchParam,
     getSearchParam,
-    getAllEnCategories,
     createCourseTemplate,
     createArticlesTemplate,
-    getEachCategoriesCoursesEn,
-    getAllFaCategories,
     searchFormSubmissionHandler,
     clearSearchParams,
     getCourseByShortName,
@@ -853,5 +869,8 @@ export {
     getApplyPricedCoursesCount,
     getApplyOpenTicketsCount,
     getApplyClosedTicketsCount,
-    lastEditedTickets
+    lastEditedTickets,
+    quickSort,
+    compareItemsForLastCreated,
+    getAllCategories
 }
