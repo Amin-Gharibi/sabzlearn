@@ -1,232 +1,396 @@
-let menuBtn = document.querySelector(".sidebar-menu-btn");
-let tBodyTable = document.querySelector("tbody");
-let homeContent = document.querySelector("#home-content .container");
-let latsetUser = document.querySelector(".home-content-latset-users");
-let body = document.body;
-let userArray = [];
-menuBtn.addEventListener("click", function () {
-  if (body.className !== "active-sidebar") {
-    body.classList.add("active-sidebar");
-    body.classList.remove("notactive-sidebar");
-  } else {
-    body.classList.add("notactive-sidebar");
-    body.classList.remove("active-sidebar");
-  }
-});
+import {
+  emailValidation,
+  passwordValidation,
+  phoneNumberValidation,
+  userNameValidation
+} from "../../../scripts/funcs/informationValidation.js";
+import {getToken} from "../../../scripts/utils/utils.js";
 
-function getDataFromDataBase() {
-  let datas = JSON.parse(localStorage.getItem("users"));
-  if (datas !== null) {
-    datas.forEach(function (user) {
-      tBodyTable.insertAdjacentHTML(
-        "beforeend",
-        "<tr><td>" +
-          user.id +
-          "</td><td>" +
-          user.name +
-          "</td><td>" +
-          user.family +
-          "</td><td>" +
-          user.phoneNumber +
-          "</td><td>" +
-          user.email +
-          "</td><td>" +
-          user.password +
-          "</td><td>" +
-          "<button type='button' onclick='editUsers(event)' class='btn btn-primary edit-btn'>ویرایش</button>" +
-          "</td><td>" +
-          "<button type='button' onclick='deleteUsers(event)' class='btn btn-danger delete-btn'>حذف</button>" +
-          "</td></tr>"
-      );
-    });
+const response = await fetch('http://localhost:4000/v1/users', {
+  headers: {
+    "Authorization": `Bearer ${getToken()}`
   }
+})
+
+const allUsers = await response.json()
+const usersDetailsContainer = document.querySelector('tbody')
+allUsers.forEach((user, index) => {
+  usersDetailsContainer.insertAdjacentHTML('beforeend', `
+      <tr>
+          <td>${index + 1}</td>
+          <td>${user.username}</td>
+          <td>${user.name}</td>
+          <td>${user.phone}</td>
+          <td>${user.email}</td>
+          <td>${user.role}</td>
+          <td>
+              <button type='button' class='btn ${user.isBanned ? 'btn-primary unban-btn' : 'btn-danger ban-btn'}' data-value="${user._id}">${user.isBanned ? 'آن بن' : 'بن'}</button>
+          </td>
+          <td>
+              <button type='button' class='btn btn-primary edit-btn' data-value="${user._id}">ویرایش</button>
+          </td>
+          <td>
+              <button type='button' class='btn btn-danger delete-btn' data-value="${user._id}">حذف</button>
+          </td>
+      </tr>
+  `)
+})
+
+
+const addUserForm = document.querySelector('form')
+addUserForm.addEventListener('submit', event => {
+  event.preventDefault()
+
+  const firstNameInput = document.querySelector('#first-name-input')
+  const lastNameInput = document.querySelector('#last-name-input')
+  const usernameInput = document.querySelector('#username-input')
+  const emailInput = document.querySelector('#email-input')
+  const passwordInput = document.querySelector('#password-input')
+  const confirmPasswordInput = document.querySelector('#confirm-password-input')
+  const phoneInput = document.querySelector('#phone-input')
+
+  const alertContainer = document.querySelector('.bottom-form')
+  const doesPasswordsMatch = (passwordInput.value.trim() === confirmPasswordInput.value.trim())
+  const {isPhoneNumberValid, formattedPhoneNumber} = phoneNumberValidation(phoneInput.value.trim())
+  if (!userNameValidation(usernameInput.value.trim())) {
+
+  } else if (!isPhoneNumberValid) {
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger">
+            شماره تلفن وارد شده صحیح نیست*
+        </span>
+    `)
+  } else if (!emailValidation(emailInput.value.trim())) {
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger">
+            ایمیل وارد شده صحیح نیست*
+        </span>
+    `)
+  } else if (!doesPasswordsMatch) {
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger">
+            پسوردهای وارد شده تطابق ندارند*
+        </span>
+    `)
+  } else if (!passwordValidation(passwordInput.value.trim())) {
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger">
+            پسورد باید حداقل 1 حرف بزرگ 1 کاراکتر خاص و 1 کاراکتر عددی داشته باشد*
+        </span>
+    `)
+  } else {
+    const newUserInfos = {
+      name: firstNameInput.value.trim() + ' ' + lastNameInput.value.trim(),
+      username: usernameInput.value.trim().toLowerCase(),
+      email: emailInput.value.trim().toLowerCase(),
+      password: passwordInput.value.trim(),
+      confirmPassword: confirmPasswordInput.value.trim(),
+      phone: formattedPhoneNumber
+    }
+    fetch('http://localhost:4000/v1/auth/register', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newUserInfos)
+    })
+        .then(response => {
+          if (response.status === 201) {
+            swal.fire({
+              title: "موفق",
+              text: "کاربر با موفقیت اضافه شد",
+              icon: "success",
+              confirmButtonText: "بستن"
+            }).then(() => {
+              location.reload()
+            })
+          } else {
+            swal.fire({
+              title: "ناموفق",
+              text: "خطایی در ثبت نام کاربر رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+              icon: "error",
+              confirmButtonText: "بستن"
+            }).then(() => {
+              location.reload()
+            })
+          }
+        })
+  }
+})
+
+
+const deleteBtns = document.querySelectorAll('.delete-btn')
+deleteBtns.forEach(btn => {
+  btn.addEventListener('click', () => deleteUserHandler(btn.getAttribute('data-value')))
+})
+
+const deleteUserHandler = userId => {
+  swal.fire({
+    title: `آیا از حذف این کاربر مطمئن هستید؟`,
+    text: "اگر کاربر را حذف کنید دیگر قادر به بازگرداندن آن نخواهید بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "حذف",
+  }).then(willDelete => {
+    if (willDelete.isConfirmed) {
+      fetch(`http://localhost:4000/v1/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: "کاربر با موفقیت حذف شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: "خطایی در حذف کاربر رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
 }
 
-function editUsers(e) {
-  let userId = e.target.parentElement.parentElement.firstChild.innerHTML;
-  let users = JSON.parse(localStorage.getItem("users"));
-  let userFromLs = users.find(function (user) {
-    return +userId === +user.id;
+const banBtns = document.querySelectorAll('.ban-btn')
+banBtns.forEach(btn => {
+  btn.addEventListener('click', () => banUserHandler(btn.getAttribute('data-value')))
+})
+
+const banUserHandler = userId => {
+  swal.fire({
+    title: `آیا از بن کردن این کاربر مطمئن هستید؟`,
+    text: "اگر کاربر را بن کنید دیگر قادر به آن بن کردن آن نخواهید بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "بن",
+  }).then(willBan => {
+    if (willBan.isConfirmed) {
+      fetch(`http://localhost:4000/v1/users/ban/${userId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: "کاربر با موفقیت بن شد. هر وقت که خواستید میتوانید این کاربر را آن بن کنید",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: "خطایی در بن کردن کاربر رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+}
+
+
+const unbanBtns = document.querySelectorAll('.unban-btn')
+unbanBtns.forEach(btn => {
+  btn.addEventListener('click', () => userUnbanningHandler(btn.getAttribute('data-value')))
+})
+
+const userUnbanningHandler = userId => {
+  swal.fire({
+    title: `آیا مطمئنید میخواهید این کاربر را آن بن کنید؟`,
+    text: "بعدا قادیر به بن کردن کاربر خواهید بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "آن بن",
+  }).then(willBan => {
+    if (willBan.isConfirmed) {
+      fetch(`http://localhost:4000/v1/users/unban/${userId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`,
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: "کاربر با موفقیت آن بن شد. هر وقت که خواستید میتوانید این کاربر را بن کنید",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: "خطایی در آن بن کردن کاربر رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+}
+
+
+const editBtns = document.querySelectorAll(".edit-btn");
+editBtns.forEach(btn => {
+  btn.addEventListener('click', () => userEditHandler(btn.getAttribute('data-value')))
+})
+
+const userEditHandler = async userId => {
+  const targetUser = allUsers.find(user => user._id === userId)
+
+  let nameInput = HTMLInputElement
+  let usernameInput = HTMLInputElement
+  let emailInput = HTMLInputElement
+  let newPasswordInput = HTMLInputElement
+  let phoneInput = HTMLInputElement
+  let roleInput = HTMLInputElement
+
+  const {value: formValues} = await Swal.fire({
+    title: "ویرایش",
+    customClass: "swal-wide",
+    html: `
+      <div id="edit-swal-container" class="d-flex flex-column gap-3">
+        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <label for="swal-name-input">نام و نام خانوادگی:</label>
+            <input type="text" id="swal-name-input">
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <label for="swal-username-input">نام کاربری:</label>
+            <input type="text" id="swal-username-input">
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <label for="swal-email-input">ایمیل:</label>
+            <input type="text" id="swal-email-input" style="width: 280px !important;">
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <label for="swal-phone-input">شماره موبایل:</label>
+            <input type="text" id="swal-phone-input">
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <label for="swal-newpassword-input">پسورد جدید:</label>
+            <input type="text" id="swal-newpassword-input" style="width: 280px !important;" placeholder="اگر میخواهید پسورد را تغییر دهید...">
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <label for="swal-phone-input">نقش:</label>
+            <select id="swal-role-input">
+                <option value="0">انتخاب نقش جدید...</option>
+                <option value="USER">کاربر</option>
+                <option value="TEACHER">مدرس</option>
+                <option value="ADMIN">ادمین</option>
+            </select>
+        </div>
+      </div>
+    </div>
+  `,
+    confirmButtonText: "ثبت",
+    focusConfirm: false,
+    allowOutsideClick: () => !Swal.isLoading(),
+    didOpen: () => {
+      const popup = Swal.getPopup()
+      nameInput = popup.querySelector('#swal-name-input')
+      usernameInput = popup.querySelector('#swal-username-input')
+      emailInput = popup.querySelector('#swal-email-input')
+      newPasswordInput = popup.querySelector('#swal-newpassword-input')
+      phoneInput = popup.querySelector('#swal-phone-input')
+      roleInput = popup.querySelector('#swal-role-input')
+
+      nameInput.value = targetUser.name
+      usernameInput.value = targetUser.username
+      emailInput.value = targetUser.email
+      phoneInput.value = targetUser.phone
+
+      const roles = {'USER': 1, 'TEACHER': 2, 'ADMIN': 3}
+      roleInput.selectedIndex = roles[targetUser.role]
+
+
+      nameInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      usernameInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      emailInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      newPasswordInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      phoneInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      roleInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+    },
+    preConfirm: () => {
+      const name = nameInput.value.trim()
+      const username = usernameInput.value.trim()
+      const email = emailInput.value.trim()
+      const newPassword = newPasswordInput.value.trim()
+      const phone = phoneInput.value.trim()
+      const role = roleInput.value.trim()
+
+      if (role === '0') {
+        Swal.showValidationMessage('لطفا یک نقش برای کاربر انتخاب کنید');
+        return false
+      }
+
+      const sendingBody = {}
+      name && (sendingBody.name = name)
+      username && (sendingBody.username = username)
+      email && (sendingBody.email = email)
+      newPassword && (sendingBody.newPassword = newPassword)
+      phone && (sendingBody.phone = phone);
+      (role !== '0') && (sendingBody.role = role)
+
+      fetch(`http://localhost:4000/v1/users/${userId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sendingBody)
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: "کاربر با موفقیت ویرایش شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: "خطایی در اصلاح کاربر رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
   });
-  latsetUser.style.display = "none";
-  let template = `
-  <div class="home-content-edit">
-  <div class="back-btn">
-      <i class="fas fa-arrow-right" onclick="hideEditTemplate(event)"></i>
-  </div>
-  <form class="form" onsubmit="editUserToDataBase(event,${userId})">
-      <div class="col-6">
-          <div class="name input">
-              <label class="input-title">نام</label>
-              <input type="text" isValid="false" onkeyup="validateLength(event,${3})" value="${
-    userFromLs.name
-  }" placeholder="لطفا نام کاربر را وارد کنید...">
-              <span class="error-message text-danger"></span>
-          </div>
-      </div>
-      <div class="col-6">
-          <div class="family input">
-              <label class="input-title">نام خانوادگی</label>
-              <input type="text" isValid="false" value="${
-                userFromLs.family
-              }" onkeyup="validateLength(event,${4})"
-                  placeholder="لطفا نام خانوادگی کاربر را وارد کنید...">
-              <span class="error-message text-danger"></span>
-          </div>
-      </div>
-      <div class="col-6">
-          <div class="email input">
-              <label class="input-title">ایمیل</label>
-              <input type="text" isValid="false" value="${
-                userFromLs.email
-              }" onkeyup="validateEmail(event)" placeholder="لطفا ایمیل کاربر را وارد کنید...">
-              <span class="error-message text-danger"></span>
-          </div>
-      </div>
-      <div class="col-6">
-          <div class="password input">
-              <label class="input-title">رمز عبور</label>
-              <input type="password" isValid="false" value="${
-                userFromLs.password
-              }" onkeyup="validateLength(event,${8})"
-                  placeholder="لطفا رمز عبور کاربر را وارد کنید...">
-              <span class="error-message text-danger"></span>
-          </div>
-      </div>
-      <div class="col-6">
-          <div class="phone input">
-              <label class="input-title">شماره تلفن</label>
-              <input type="text" isValid="false" value="${
-                userFromLs.phoneNumber
-              }" onkeyup="validateLength(event,${11})" placeholder="لطفا شماره تلفن کاربر را وارد کنید...">
-              <span class="error-message text-danger"></span>
-          </div>
-      </div>
-      <div class="col-12">
-          <div class="bottom-form">
-              <div class="sex">
-                  <label class="input-title">جنسیت</label>
-                  <div class="radios">
-                      <div class="male">
-                          <label>
-                              <span>مرد</span>
-                              <input type="radio" name="sex">
-                          </label>
-                      </div>
-                      <div class="female">
-                          <label>
-                              <span>زن</span>
-                              <input type="radio" name="sex">
-                          </label>
-                      </div>
-                      <div class="other">
-                          <label>
-                              <span>سایر</span>
-                              <input type="radio" name="sex">
-                          </label>
-                      </div>
-                  </div>
-              </div>
-              <div class="submit-btn">
-                  <input type="submit" value="ویرایش" >
-              </div>
-          </div>
-      </div>
-  </form>
-</div>
-  `;
-  homeContent.insertAdjacentHTML("beforeend", template);
-}
 
-function hideEditTemplate(e) {
-  latsetUser.style.display = "block";
-  e.target.parentElement.parentElement.style.display = "none";
 }
-
-function editUserToDataBase(event, userId) {
-  event.preventDefault();
-  let getUserFromDataBase = JSON.parse(localStorage.getItem("users"));
-  if (getUserFromDataBase !== null) {
-    userArray = getUserFromDataBase;
-  } else {
-    userArray = [];
-  }
-  let form = event.target;
-  let nameInput = form.querySelector(".name input");
-  let familyInput = form.querySelector(".family input");
-  let emailInput = form.querySelector(".email input");
-  let passwordInput = form.querySelector(".password input");
-  let phoneInput = form.querySelector(".phone input");
-  let userFromDataBase = getUserFromDataBase.find(function (user) {
-    return +userId === user.id;
-  });
-  userFromDataBase.name = nameInput.value;
-  userFromDataBase.family = familyInput.value;
-  userFromDataBase.email = emailInput.value;
-  userFromDataBase.password = passwordInput.value;
-  userFromDataBase.phoneNumber = phoneInput.value;
-  swal("کاربر با موفقیت ویرایش شد!", "", "success");
-  setTimeout(function () {
-    location.reload();
-  }, 2000);
-  addToDataBase(getUserFromDataBase);
-}
-
-function addToDataBase(userArr) {
-  localStorage.setItem("users", JSON.stringify(userArr));
-}
-
-function validateLength(e, lengthReq) {
-  let valueLength = e.target.value.length;
-  let valueLengthReq = lengthReq;
-  let spanError = e.target.nextElementSibling;
-  if (valueLength < valueLengthReq) {
-    spanError.innerHTML =
-      "لطفا تعداد کارکتر را به درستی وارد کنید!" +
-      "(حداقل " +
-      valueLengthReq +
-      "کارکتر )";
-    spanError.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    spanError.innerHTML = "";
-    spanError.style.display = "none";
-    e.target.style.border = "1px solid #4CAF50";
-    e.target.setAttribute("isValid", "true");
-  }
-}
-
-function validateEmail(e) {
-  let emailValue = e.target.value;
-  let spanError = e.target.nextElementSibling;
-  if (!emailValue.includes("@")) {
-    spanError.innerHTML = "لطفا ایمیل معتبر وارد کنید!";
-    spanError.classList.add("text-danger");
-    spanError.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    spanError.innerHTML = "";
-    spanError.style.display = "none";
-    e.target.style.border = "1px solid #4CAF50";
-    e.target.setAttribute("isValid", "true");
-  }
-}
-
-function deleteUsers(event) {
-  document.body.classList = "active-modal"
-  // let userId = event.target.parentElement.parentElement.firstChild.innerHTML;
-  // let users = JSON.parse(localStorage.getItem("users"));
-  // let userFromDataBase = users.findIndex(function (user) {
-  //   return +userId === user.id;
-  // });
-  // users.splice(userFromDataBase, 1);
-  // addToDataBase(users);
-  // swal("کاربر با موفقیت حذف شد!", "", "success");
-  // setTimeout(function () {
-  //   location.reload();
-  // }, 2000);
-}
-
-window.addEventListener("load", getDataFromDataBase);

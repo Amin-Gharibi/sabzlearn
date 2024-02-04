@@ -151,8 +151,8 @@ deleteCoursesBtn.forEach(btn => {
 	btn.addEventListener('click',async () => await removeCourse(btn.getAttribute('data-value')))
 })
 
-const removeCourse = async courseId => {
-	const targetCourse = (await getCourses()).find(course => course._id === courseId)
+const removeCourse = courseId => {
+	const targetCourse = allCourses.find(course => course._id === courseId)
 	swal.fire({
 		title: `آیا از حذف دوره ${targetCourse.name} مطمئن هستید؟`,
 		text: "اگر دوره را حذف کنید دیگر قادر به بازگرداندن آن نخواهید بود",
