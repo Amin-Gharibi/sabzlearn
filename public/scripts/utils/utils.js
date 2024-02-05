@@ -522,54 +522,6 @@ const getAllCategories = async () => {
     return allCategories;
 }
 
-// // get each categories courses by searching with categories persian name
-// const getEachCategoriesCoursesFa = async categories => {
-//     const allCourses = await getCourses()
-//     const categoryCourses = []
-//
-//     if (typeof categories !== "string") {
-//         Array.from(categories).forEach(() => categoryCourses.push([]))
-//         Array.from(categories).forEach((category, index) => {
-//             allCourses.forEach(course => {
-//                 if (course.categoryID.title === category) {
-//                     categoryCourses[index].push(course)
-//                 }
-//             })
-//         })
-//     } else {
-//         allCourses.forEach(course => {
-//             if (course.categoryID.title === category) {
-//                 categoryCourses.push(course)
-//             }
-//         })
-//     }
-//     return categoryCourses
-// }
-//
-// // get each categories courses by searching with categories english name
-// const getEachCategoriesCoursesEn = async categories => {
-//     const allCourses = await getCourses()
-//     const categoryCourses = []
-//
-//     if (typeof categories !== 'string') {
-//         Array.from(categories).forEach(() => categoryCourses.push([]))
-//         Array.from(categories).forEach((category, index) => {
-//             allCourses.forEach(course => {
-//                 if (course.categoryID.name === category) {
-//                     categoryCourses[index].push(course)
-//                 }
-//             })
-//         })
-//     } else {
-//         allCourses.forEach(course => {
-//             if (course.categoryID.name === categories) {
-//                 categoryCourses.push(course)
-//             }
-//         })
-//     }
-//     return categoryCourses
-// }
-
 // shows all the categories in the page
 const showCourseCategories = async () => {
     const allCategories = await getAllCategories()

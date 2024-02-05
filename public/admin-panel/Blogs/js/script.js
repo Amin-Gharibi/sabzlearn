@@ -1,194 +1,352 @@
-let menuBtn = document.querySelector(".sidebar-menu-btn");
-let tbodyElement = document.querySelector("tbody");
-let homeContentProducts = document.querySelector(".home-content-products");
-let homeContent = document.querySelector("#home-content .container");
-let searchBarInput = document.querySelector(".search-bar");
-let body = document.body;
-let productsArray = [];
+import {getAllCategories, getToken, intlDateToPersianDate} from "../../../scripts/utils/utils.js";
 
-menuBtn.addEventListener("click", function () {
-  if (body.className !== "active-sidebar") {
-    body.classList.add("active-sidebar");
-    body.classList.remove("notactive-sidebar");
-  } else {
-    body.classList.add("notactive-sidebar");
-    body.classList.remove("active-sidebar");
-  }
-});
+const [allCategories, response] = await Promise.all([getAllCategories(), fetch('http://localhost:4000/v1/articles')])
 
-function getDataFromDataBase() {
-  let products = JSON.parse(localStorage.getItem("products"));
-  if (products === null) {
-    productsArray = [];
-  } else {
-    productsArray = products;
-  }
-}
+const allArticles = await response.json()
+const articlesContainer = document.querySelector('tbody')
+allArticles.forEach(article => {
+  const createDate = intlDateToPersianDate(article.createdAt)
+  const editDate = intlDateToPersianDate(article.updatedAt)
+  const category = allCategories.find(cat => cat._id === article.categoryID)
+  articlesContainer.insertAdjacentHTML('beforeend', `
+    <tr>
+        <td>${article.title}</td>
+        <td>${createDate}</td>
+        <td>${editDate}</td>
+        <td>${article.creator.name}</td>
+        <td>${category.title}</td>
+        <td>
+            <button type="button" data-value="${article._id}" class="btn${article.publish ? ' btn-danger' : ' btn-primary'} publish-unpublish-btn">${article.publish ? 'لغو انتشار' : 'انتشار'}</button>
+        </td>
+        <td>
+            <button type="button" data-value="${article._id}" class="btn btn-primary edit-btn">ویرایش</button>
+        </td>
+        <td>
+            <button type="button" data-value="${article._id}" class="btn btn-danger delete-btn">حذف</button>
+        </td>
+    </tr>
+  `)
+})
 
-function addDataToDom() {
-  productsArray.forEach(function (product) {
-    let id = product.id;
-    let name = product.name;
-    let number = product.number;
-    let condition = product.condition;
-    let presell = product.presell;
-    let price = product.price;
-    if (condition === true) {
-      condition = "موجود";
-    } else {
-      condition = "ناموجود";
+const categoriesContainer = document.querySelector('#article-category-input')
+allCategories.forEach(cat => {
+  categoriesContainer.insertAdjacentHTML('beforeend', `
+    <option value="${cat._id}">${cat.title}</option>
+  `)
+})
+
+const publishUnPublishBtns = document.querySelectorAll('.publish-unpublish-btn')
+publishUnPublishBtns.forEach(btn => {
+  btn.addEventListener('click', () => changePublishStatusHandler(btn.getAttribute('data-value')))
+})
+
+const changePublishStatusHandler = articleId => {
+  const targetArticle = allArticles.find(article => article._id === articleId)
+
+  Swal.fire({
+    title: "آیا مطمئنید؟",
+    text: "دوباره قادر به تغییر وضعیت مقاله خواهید بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "بله"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/v1/articles/${articleId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`,
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+          publish: +!targetArticle.publish
+        })
+      }).then(res => {
+        if (res.status === 200) {
+          Swal.fire({
+            title: "موفق",
+            text: "وضعیت مقاله با موفقیت تغییر کرد",
+            icon: "success",
+            cancelButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          Swal.fire({
+            title: "ناموفق",
+            text: "خطایی در تغییر وضعیت مقاله رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "failed",
+            cancelButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
     }
+  });
+}
 
-    if (presell === true) {
-      presell = "پیش فروش";
-    } else {
-      presell = "در حال برگزاری";
+
+const deleteBtns = document.querySelectorAll('.delete-btn')
+deleteBtns.forEach(btn => {
+  btn.addEventListener('click', () => deleteArticleHandler(btn.getAttribute('data-value')))
+})
+
+const deleteArticleHandler = articleId => {
+  Swal.fire({
+    title: "آیا از حذف مقاله مطمئنید؟",
+    text: "پس از حذف قادر به بازگرداندن آن نخواهید بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "بله"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/v1/articles/${articleId}`, {
+        method: 'DELETE',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.status === 200) {
+          Swal.fire({
+            title: "موفق",
+            text: "مقاله با موفقیت حذف شد",
+            icon: "success",
+            cancelButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          Swal.fire({
+            title: "ناموفق",
+            text: "خطایی در حذف مقاله رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "failed",
+            cancelButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
     }
-    let template = `
-          <tr>
-              <td>
-                  <input type="checkbox" class="checkbox-table form-check-input">
-              </td>
-              <td id="id">${id}</td>
-              <td id="name">
-                <a href="file:///D:/Project/Admin_Panel/Product/index.html?id=${id}">${name}</a>
-              </td>
-              <td id="number">${number}</td>
-              <td id="condition">${condition},${presell}</td>
-              <td id="price">${price} تومان</td>
-              <td>
-                  <button type="button" class="btn btn-primary" id="edit-btn" onclick="editProduct(event)">ویرایش</button>
-              </td>
-              <td>
-                  <button type="button" class="btn btn-danger" id="delete-btn" onclick="deleteProduct(event)">حذف</button>
-              </td>
-          </tr>
-          `;
-    tbodyElement.insertAdjacentHTML("beforeend", template);
   });
 }
 
-function editProduct(event) {
-  let id =
-    +event.target.parentElement.parentElement.firstChild.nextElementSibling
-      .nextElementSibling.innerHTML;
-  let products = JSON.parse(localStorage.getItem("products"));
-  let productFromDataBase = products.find(function (product) {
-    return product.id === id;
-  });
-  homeContentProducts.style.display = "none";
-  let template = `
-  <div class="home-content-edit">
-                        <div class="back-btn">
-                            <i class="fas fa-arrow-right" onclick="hideEditTemplate(event)"></i>
-                        </div>
-                        <form class="form" onsubmit="editProductToDataBase(event , ${id})">
-                            <div class="col-6">
-                                <div class="name input">
-                                    <label class="input-title">نام محصول</label>
-                                    <input type="text" isValid="false" placeholder="لطفا نام محصول را وارد کنید..." value="${productFromDataBase.name}">
-                                    <span class="error-message text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="price input">
-                                    <label class="input-title">قیمت محصول</label>
-                                    <input type="text" isValid="false" placeholder="لطفا قیمت محصول را وارد کنید..." value="${productFromDataBase.price}">
-                                    <span class="error-message text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="number input">
-                                    <label class="input-title">تعداد محصول</label>
-                                    <input type="text" isValid="false" placeholder="لطفا تعداد محصول را وارد کنید..." value="${productFromDataBase.number}">
-                                    <span class="error-message text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="bottom-form">
-                                    <div class="condition">
-                                        <label class="input-title">موجودی</label>
-                                        <div class="radios">
-                                            <div class="available">
-                                                <label>
-                                                    <span>موجود</span>
-                                                    <input type="radio" value="avalibe" name="condition" checked>
-                                                </label>
-                                            </div>
-                                            <div class="unavailable">
-                                                <label>
-                                                    <span>ناموجود</span>
-                                                    <input type="radio" value="unavailable" name="condition">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="submit-btn">
-                                        <input type="submit" value="ویرایش">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-  `;
-  homeContent.insertAdjacentHTML("beforeend", template);
-}
+const addArticleForm = document.querySelector('form')
+addArticleForm.addEventListener('submit', event => {
+  event.preventDefault()
 
-function editProductToDataBase(event, productId) {
-  event.preventDefault();
-  let products = JSON.parse(localStorage.getItem("products"));
-  if (products !== null) {
-    productsArray = products;
-  } else {
-    productsArray = [];
+  const articleTitleInput = document.querySelector('#article-title-input')
+  const articleShortnameInput = document.querySelector('#article-shortname-input')
+  const articleDescriptionInput = document.querySelector('#article-description-input')
+  const articleBodyInput = document.querySelector('#article-body-input')
+  const articleCoverInput = document.querySelector('#article-cover-input')
+  const articleCategoryInput = document.querySelector('#article-category-input')
+
+  let areInputsValid = true
+
+  const selectedCoverFiles = articleCoverInput.files
+  if (selectedCoverFiles.length > 1) {
+    const coverInputContainer = document.querySelector('#cover-input-container')
+    coverInputContainer.insertAdjacentHTML('beforeend', `
+			<span class="alert-failed" style="color: red; font-size: 12px">یک فایل بیشتر نمیتونی اپلود کنی*</span>
+		`)
+    areInputsValid = false
   }
-  let form = event.target;
-  let nameInput = form.querySelector(".name input").value;
-  let priceInput = form.querySelector(".price input").value;
-  let numberInput = form.querySelector(".number input").value;
-  let productDataBase = products.find(function (product) {
-    return product.id === productId;
+  if (articleCategoryInput.value === "0") {
+    const container = document.querySelector('#category-input-container')
+    container.insertAdjacentHTML('beforeend', `
+			<span class="alert-failed" style="color: red; font-size: 12px">یک گزینه رو انتخاب کن*</span>
+		`)
+    areInputsValid = false
+  }
+
+
+  if (areInputsValid) {
+    const sendingBody = new FormData();
+    sendingBody.append('title', articleTitleInput.value.trim())
+    sendingBody.append('shortName', articleShortnameInput.value.trim())
+    sendingBody.append('description', articleDescriptionInput.value.trim())
+    sendingBody.append('body', articleBodyInput.value.trim())
+    sendingBody.append('cover', selectedCoverFiles[0])
+    sendingBody.append('categoryID', articleCategoryInput.value.trim())
+
+    fetch('http://localhost:4000/v1/articles/draft', {
+      method: 'POST',
+      headers: {
+        "Authorization": `Bearer ${getToken()}`
+      },
+      body: sendingBody
+    }).then(res => {
+      console.log(res)
+      if (res.status === 201) {
+        swal.fire({
+          title: "موفق",
+          text: "مقاله با موفقیت به لیست مقالات پیش نویس اضافه شد!",
+          icon: "success",
+          confirmButtonText: "بستن",
+        }).then(() => {
+          location.reload()
+        })
+      } else {
+        swal.fire({
+          title: "ناموفق",
+          text: "عملیات با خطا مواجه شد. لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید!",
+          icon: "warning",
+          confirmButtonText: "بستن",
+        }).then(() => {
+          location.reload()
+        })
+      }
+    })
+  }
+})
+
+
+const editBtns = document.querySelectorAll('.edit-btn')
+editBtns.forEach(btn => {
+	btn.addEventListener('click', () => editArticleHandler(btn.getAttribute('data-value')))
+})
+
+const editArticleHandler = articleId => {
+  const targetArticle = allArticles.find(article => article._id === articleId)
+
+  let titleInput = HTMLInputElement ;
+  let shortNameInput = HTMLInputElement ;
+  let descriptionInput = HTMLInputElement ;
+  let bodyInput = HTMLInputElement ;
+  let coverInput = HTMLInputElement ;
+  let categoryInput = HTMLInputElement ;
+
+  Swal.fire({
+    title: "ویرایش",
+    customClass: "swal-wide",
+    html: `
+    <form class="form d-flex flex-column gap-3">
+        <div class="name input w-100 d-flex align-items-center gap-2">
+                <label class="input-title" style="min-width: max-content !important;">عنوان:</label>
+                <input class="w-100" type="text" id="swal-article-title-input" required value="${targetArticle.title}">
+        </div>
+        <div class="name input w-100 d-flex align-items-center gap-2">
+                <label class="input-title" style="min-width: max-content !important;">لینک:</label>
+                <input class="w-100" type="text" id="swal-article-shortname-input" required value="${targetArticle.shortName}">
+        </div>
+        <div class="col-12">
+            <div class="name input w-100 d-flex align-items-start gap-2">
+                <label class="input-title" style="min-width: max-content !important;">توضیح کوتاه:</label>
+                <textarea style="width: 100%;height: 100px;" id="swal-article-description-input" required>${targetArticle.description}</textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="name input w-100 d-flex align-items-start gap-2">
+                <label class="input-title" style="min-width: max-content !important;">مقاله:</label>
+                <textarea style="width: 100%;height: 200px;" id="swal-article-body-input" required>${targetArticle.body}</textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="name input d-flex gap-2" id="cover-input-container">
+                <label class="input-title" style="display: block;">کاور:</label>
+                <div>
+                    <input type="file" required id="swal-article-cover-input">
+                    <a target="_blank" href="http://localhost:4000/courses/covers/${targetArticle.cover}" style="color: #0c63e4; text-decoration: underline;">کاور کنونی مقاله</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="name input d-flex align-items-center gap-2" id="category-input-container">
+                <label class="input-title" style="min-width: max-content !important;">دسته بندی:</label>
+                <select class="w-100" id="swal-article-category-input" required style="height: 40px!important;">
+                    <option value="0">لطفا دسته بندی دوره را انتخاب کنید...</option>
+                </select>
+            </div>
+        </div>
+    </form>
+  `,
+    confirmButtonText: "ثبت",
+    focusConfirm: false,
+    allowOutsideClick: () => !Swal.isLoading(),
+    didOpen: () => {
+      const categoriesContainer = document.querySelector('#swal-article-category-input')
+      allCategories.forEach(cat => {
+        categoriesContainer.insertAdjacentHTML('beforeend', `
+            <option value="${cat._id}">${cat.title}</option>
+        `)
+      })
+      categoriesContainer.value = targetArticle.categoryID
+
+      const popup = Swal.getPopup()
+      titleInput = popup.querySelector('#swal-article-title-input')
+      shortNameInput = popup.querySelector('#swal-article-shortname-input')
+      descriptionInput = popup.querySelector('#swal-article-description-input')
+      bodyInput = popup.querySelector('#swal-article-body-input')
+      coverInput = popup.querySelector('#swal-article-cover-input')
+      categoryInput = popup.querySelector('#swal-article-category-input')
+
+      titleInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      shortNameInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      descriptionInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      bodyInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      coverInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      categoryInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+    },
+    preConfirm: () => {
+      const title = titleInput
+      const description = descriptionInput
+      const body = bodyInput
+      const shortName = shortNameInput
+      const category = categoryInput
+      const coverInp = coverInput
+      const selectedCover = coverInp.files
+
+      if (!categoryInput.value) {
+          Swal.showValidationMessage('لطفا یک دسته بندی برای مقاله انتخاب کنید');
+          return false;
+      }
+      if (selectedCover.length > 1) {
+        Swal.showValidationMessage('بیش از یک کاور نمیتوانید انتخاب کنید');
+        return false;
+      }
+
+      const sendingBody = new FormData();
+      sendingBody.append('title', title.value.trim())
+      sendingBody.append('description', description.value.trim())
+      sendingBody.append('body', body.value.trim())
+      sendingBody.append('cover', selectedCover[0])
+      sendingBody.append('shortName', shortName.value.trim())
+      sendingBody.append('categoryID', category.value.trim())
+
+      fetch(`http://localhost:4000/v1/articles/${articleId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        },
+        body: sendingBody
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: "مقاله با موفقیت ویرایش شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: "خطایی در اصلاح مقاله رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
   });
-  productDataBase.name = nameInput;
-  productDataBase.price = priceInput;
-  productDataBase.number = numberInput;
-  localStorage.setItem("products", JSON.stringify(products));
-  homeContentProducts.style.display = "block";
-  event.target.parentElement.style.display = "none";
 }
-
-function hideEditTemplate(event) {
-  homeContentProducts.style.display = "block";
-  event.target.parentElement.parentElement.style.display = "none";
-}
-
-function deleteProduct(event) {
-  document.body.classList = "active-modal"
-
-  // let id =
-  //   +event.target.parentElement.parentElement.firstChild.nextElementSibling
-  //     .nextElementSibling.innerHTML;
-  // let products = JSON.parse(localStorage.getItem("products"));
-  // if (products !== null) {
-  //   productsArray = products;
-  // } else {
-  //   productsArray = [];
-  // }
-  // let indexOfDeleted = products.findIndex(function (product) {
-  //   return product.id === id;
-  // });
-  // products.splice(indexOfDeleted, 1);
-  // localStorage.setItem("products", JSON.stringify(productsArray));
-}
-
-function searchDataFromDataBase() {
-  let dataFromDataBase = JSON.parse(localStorage.getItem("products"));
-  let findDataFromDataBase = dataFromDataBase.filter(function(product){
-    return searchBarInput.value === product.name
-  })
-  console.log(findDataFromDataBase)
-}
-
-window.addEventListener("load", getDataFromDataBase);
-window.addEventListener("load", addDataToDom);
-searchBarInput.addEventListener("keydown", searchDataFromDataBase);

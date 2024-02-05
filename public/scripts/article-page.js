@@ -16,8 +16,16 @@ window.addEventListener('load', async () => {
     })
     const response = await fetch(`http://localhost:4000/v1/articles/${getSearchParam('article')}`)
     const article = await response.json()
-    console.log(article)
     const lastEditedArticles = (await getLastEditedArticles()).slice(0, 5)
+
+    if (!article.publish) {
+        document.body.innerHTML = `
+            <div class="h-screen flex justify-center items-center text-zinc-700 dark:text-white">
+            شما مجاز به ورود به این صفحه نیستید!
+            </div>    
+    `
+        return false
+    }
 
     // make address bar dynamic
     const pageAddressBar = document.querySelector('.page-address-bar')
