@@ -163,7 +163,7 @@ const removeCourse = courseId => {
 		title: `آیا از حذف دوره ${targetCourse.name} مطمئن هستید؟`,
 		text: "اگر دوره را حذف کنید دیگر قادر به بازگرداندن آن نخواهید بود",
 		icon: "warning",
-		cancelButton: true,
+		showCancelButton: true,
 		cancelButtonText: "لغو",
 		confirmButtonText: "حذف",
 	}).then(willDelete => {

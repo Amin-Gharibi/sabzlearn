@@ -1,161 +1,231 @@
-let body = document.body;
-let menuBtn = document.querySelector(".sidebar-menu-btn");
-let nameInput = document.querySelector(".name input");
-let emailInput = document.querySelector(".email input");
-let familyInput = document.querySelector(".family input");
-let phoneInput = document.querySelector(".phone input");
-let passwordInput = document.querySelector(".password input");
-let form = document.querySelector(".form");
-let inputs = document.querySelectorAll(".input input");
-let errorMessage = document.querySelectorAll(".error-message");
-let userArray = [];
-let isThereUser = false;
+import {getCourses, getToken} from "../../../scripts/utils/utils.js";
 
-//!==============> sidebar <==============!//
-menuBtn.addEventListener("click", function () {
-  if (body.className !== "active-sidebar") {
-    body.classList.add("active-sidebar");
-    body.classList.remove("notactive-sidebar");
-  } else {
-    body.classList.add("notactive-sidebar");
-    body.classList.remove("active-sidebar");
-  }
-});
-//!==============> sidebar <==============!//
+const [discountsResponse, allCourses] = await Promise.all([fetch('http://localhost:4000/v1/offs', {headers: {"Authorization": `Bearer ${getToken()}`}}), getCourses()])
 
-//!==============> Form Validation <==============!//
-function validateLength(e, lengthReq) {
-  let valueLength = e.target.value.length;
-  let valueLengthReq = lengthReq;
-  let spanError = e.target.nextElementSibling;
-  if (valueLength < valueLengthReq) {
-    spanError.innerHTML =
-      "لطفا تعداد کارکتر را به درستی وارد کنید!" +
-      "(حداقل " +
-      valueLengthReq +
-      "کارکتر )";
-    spanError.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    spanError.innerHTML = "";
-    spanError.style.display = "none";
-    e.target.style.border = "1px solid #4CAF50";
-    e.target.setAttribute("isValid", "true");
-  }
-}
+const allDiscounts = await discountsResponse.json()
+const discountsContainer = document.querySelector('tbody')
+allDiscounts.forEach(discount => {
+  const targetCourse = allCourses.find(course => course._id === discount.course)
+  discountsContainer.insertAdjacentHTML('beforeend', `
+    <tr>
+        <td>${discount.code}</td>
+        <td>${discount.percent}</td>
+        <td>${targetCourse.name}</td>
+        <td>${discount.max}</td>
+        <td>${discount.uses}</td>
+        <td>${discount.creator}</td>
+        <td>
+            <button type="button" class="btn btn-danger delete-btns" data-value="${discount._id}">
+            حذف
+			</button>
+        </td>
+    </tr>
+  `)
+})
 
-function validateEmail(e) {
-  let emailValue = e.target.value;
-  let spanError = e.target.nextElementSibling;
-  if (!emailValue.includes("@")) {
-    spanError.innerHTML = "لطفا ایمیل معتبر وارد کنید!";
-    spanError.classList.add("text-danger");
-    spanError.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    spanError.innerHTML = "";
-    spanError.style.display = "none";
-    e.target.style.border = "1px solid #4CAF50";
-    e.target.setAttribute("isValid", "true");
-  }
-}
-//!==============> Form Validation <==============!//
+const coursesContainer = document.querySelector('#courses-container')
+allCourses.forEach(course => {
+  coursesContainer.insertAdjacentHTML('beforeend', `
+      <option value="${course._id}">${course.name}</option>
+  `)
+})
 
-// !==============> Adding New Users <==============!//
-function addNewUsers() {
-  let userObj = {
-    id: userArray.length,
-    name: nameInput.value,
-    family: familyInput.value,
-    email: emailInput.value,
-    password: passwordInput.value,
-    phoneNumber: phoneInput.value,
-  };
-  userArray.push(userObj);
-  addUserToDataBase(userArray);
-}
 
-function addUserToDataBase(userArr) {
-  localStorage.setItem("users", JSON.stringify(userArr));
-}
+const deleteBtns = document.querySelectorAll('.delete-btns')
+deleteBtns.forEach(btn => {
+  btn.addEventListener('click', () => deleteDiscountCodeHandler(btn.getAttribute('data-value')))
+})
 
-function getUsersFromDataBase() {
-  let users = JSON.parse(localStorage.getItem("users"));
-  if (users !== null) {
-    userArray = users;
-  } else {
-    userArray = [];
-  }
-  addUserToDataBase(userArray);
-}
-
-function validateUsers() {
-  let users = JSON.parse(localStorage.getItem("users"));
-  if (users !== null) {
-    let validateEmailThere = users.some(function (user) {
-      return user.email === emailInput.value;
-    });
-    let validatePhoneThere = users.some(function (user) {
-      return user.phoneNumber === phoneInput.value;
-    });
-
-    if (validatePhoneThere === true || validateEmailThere === true) {
-      isThereUser = true;
-    } else {
-      isThereUser = false;
+const deleteDiscountCodeHandler = discountCodeId => {
+  swal.fire({
+    title: `آیا مطمئن هستید؟`,
+    text: "اگر کد تخفیف را حذف کنید دیگر کاربران قادر به استفاده از آن نخواهند بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "حذف",
+  }).then(willDelete => {
+    if (willDelete.isConfirmed) {
+      fetch(`http://localhost:4000/v1/offs/${discountCodeId}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: `کد تخفیف با موفقیت حذف شد`,
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: `خطا در حذف کد تخفیف، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید`,
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
     }
-  }
+  })
 }
-//!==============> Adding New Users <==============!//
 
-//!==============> Form Validation Events <==============!//
-nameInput.addEventListener("keyup", function (e) {
-  let lengthReq = 3;
-  validateLength(e, lengthReq);
-});
-familyInput.addEventListener("keyup", function (e) {
-  let lengthReq = 4;
-  validateLength(e, lengthReq);
-});
-emailInput.addEventListener("keyup", function (e) {
-  // let lengthReq = 10;
-  // validateLength(e, lengthReq);
-  validateEmail(e);
-  validateUsers();
-});
-passwordInput.addEventListener("keyup", function (e) {
-  let lengthReq = 8;
-  validateLength(e, lengthReq);
-});
-phoneInput.addEventListener("keyup", function (e) {
-  let lengthReq = 11;
-  validateLength(e, lengthReq);
-  validateUsers();
-});
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  let isValid = false;
-  inputs.forEach(function (input) {
-    let isValidAttr = input.getAttribute("isValid");
-    if (isValidAttr === "false") {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-  });
-  if (isValid === false) {
-    errorMessage.forEach(function (err) {
-      err.innerHTML = "لطفا مقادیر را به درستی وارد کنید !";
-      err.style.display = "block";
-    });
-  } else if (isThereUser === true) {
-    alert("این کاربر از قبل وجود دارد");
-  } else {
-    addNewUsers();
+const activateAllDiscountBtn = document.querySelector('#activate-all-discount')
+activateAllDiscountBtn.addEventListener('click', () => {
+  const discountAmount = document.querySelector('#discount-amount')
+
+  if (discountAmount.value.trim() < 0 || discountAmount.value.trim() > 99 || !discountAmount.value) {
+    const alertContainer = document.querySelector('.all-courses-discount-input')
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger" style="font-size: 14px">مقدار تخفیف باید بین 0 تا 99 باشد*</span>
+    `)
+    return false;
   }
-  validateUsers();
-});
-//!==============> Form Validation Events <==============!//
-window.addEventListener("load", getUsersFromDataBase);
+
+  fetch('http://localhost:4000/v1/offs/setall', {
+    method: 'PUT',
+    headers: {
+      "Authorization": `Bearer ${getToken()}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      discount: +discountAmount.value.trim()
+    })
+  }).then(res => {
+    if (res.status === 200) {
+      swal.fire({
+        title: "موفق",
+        text: `کد تخفیف همگانی با موفقیت فعال شد`,
+        icon: "success",
+        confirmButtonText: "بستن"
+      }).then(() => {
+        location.reload()
+      })
+    } else {
+      swal.fire({
+        title: "ناموفق",
+        text: `خطا در اعمال تخفیف همگانی، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید`,
+        icon: "error",
+        confirmButtonText: "بستن"
+      }).then(() => {
+        location.reload()
+      })
+    }
+  })
+})
+
+const deactivateAllCoursesDiscountInput = document.querySelector('#deactivate-all-discount')
+deactivateAllCoursesDiscountInput.addEventListener('click', () => {
+  swal.fire({
+    title: `آیا مطمئن هستید؟`,
+    text: "اگر تخفیف همگانی را غیرفعال کنید دیگر کاربران قادر به استفاده از آن نخواهند بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "غیرفعال",
+  }).then(willDelete => {
+    if (willDelete.isConfirmed) {
+      fetch(`http://localhost:4000/v1/offs/unsetall`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: `تخفیف همگانی با موفقیت غیرفعال شد`,
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: `خطا در غیرفعال کردن تخفیف همگانی، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید`,
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+})
+
+const activateOneCodeSubmitBtn = document.querySelector('#activate-one-discount')
+activateOneCodeSubmitBtn.addEventListener('click', () => {
+  const codeInput = document.querySelector('#discount-code-on-one')
+  const discountAmountInput = document.querySelector('#discount-amount-on-one')
+  const courseInput = document.querySelector('#courses-container')
+  const maxUseInput = document.querySelector('#discount-max-use-on-one')
+
+  if (!codeInput.value.trim() || !discountAmountInput.value.trim() || !courseInput.value.trim() || !maxUseInput.value.trim()) {
+    const alertContainer = document.querySelector('.one-course-alert-container')
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger" style="font-size: 14px">لطفا همه مقادیر را وارد کنید*</span>
+    `)
+    return false;
+  }
+
+  if (discountAmountInput.value.trim() < 0 || discountAmountInput.value.trim() > 100) {
+    const alertContainer = document.querySelector('.one-course-discount-input')
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger" style="font-size: 14px">لطفا مقدار را بین 0 تا 100 وارد*</span>      
+    `)
+    return false;
+  }
+
+  if (maxUseInput.value.trim() < 0) {
+    const alertContainer = document.querySelector('.one-course-max-use-input')
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="text-danger" style="font-size: 14px">لطفا مقدار را بزرگتر از 0 وارد کنید*</span>      
+    `)
+    return false;
+  }
+
+  const sendingBody = {
+    code: codeInput.value.trim(),
+    percent: discountAmountInput.value.trim(),
+    course: courseInput.value.trim(),
+    max: maxUseInput.value.trim()
+  }
+
+  fetch('http://localhost:4000/v1/offs', {
+    method: 'POST',
+    headers: {
+      "Authorization": `Bearer ${getToken()}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(sendingBody)
+  }).then(res => {
+    if (res.status === 201) {
+      swal.fire({
+        title: "موفق",
+        text: `کد تخقیق روی دوره مورد نظر با موفقیت قعال شد`,
+        icon: "success",
+        confirmButtonText: "بستن"
+      }).then(() => {
+        location.reload()
+      })
+    } else {
+      swal.fire({
+        title: "ناموفق",
+        text: `خطا در فعالسازی کد تخفیف روی دوره مورد نظر، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید`,
+        icon: "error",
+        confirmButtonText: "بستن"
+      }).then(() => {
+        location.reload()
+      })
+    }
+  })
+})

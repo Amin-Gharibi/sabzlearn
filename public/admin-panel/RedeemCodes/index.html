@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>سبزلرن | پنل ادمین</title>
     <link rel="stylesheet" href="vendor/FontAwesome/FontAwesome.min.css">
     <link rel="stylesheet" href="vendor/BootStrap/Bootstrap5.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../Courses/css/main.css">
 </head>
 
 <body>
@@ -99,30 +100,92 @@
             <div class="container-fluid" id="home-content">
                 <div class="container">
                     <div class="home-title">
-                        <span>افزودن کاربر جدید</span>
+                        <span>فعال کردن تخفیف همگانی</span>
                     </div>
-                    <form class="form">
+                    <form class="form pb-2 border-bottom">
                         <div class="col-6">
-                            <div class="name input">
-                                <label class="input-title">عنوان</label>
-                                <input type="text" isValid="false" placeholder="لطفا عنوان را وارد کنید...">
-                                <span class="error-message text-danger"></span>
+                            <div class="name input all-courses-discount-input">
+                                <label class="input-title">مقدار تخفیف</label>
+                                <input type="number" min="0" max="99" id="discount-amount" placeholder="لطفا مقدار تخفیف را وارد کنید..." required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="bottom-form">
                                 <div class="submit-btn">
-                                    <input type="submit" value="افزودن">
+                                    <input type="button" value="فعال کردن" id="activate-all-discount">
+                                    <input type="button" style="background-color: #dc3545;" id="deactivate-all-discount" value="غیرفعال کردن تخفیف حال حاضر">
                                 </div>
                             </div>
                         </div>
                     </form>
+                    <div class="home-title">
+                        <span>فعال کردن کد تخفیف روی دوره مورد نظر</span>
+                    </div>
+                    <form class="form">
+                        <div class="col-6">
+                            <div class="name input one-course-code-input">
+                                <label class="input-title">کد مورد نظر</label>
+                                <input type="text" id="discount-code-on-one" placeholder="لطفا کد تخفیف را وارد کنید..." required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="name input one-course-discount-input">
+                                <label class="input-title">مقدار تخفیف</label>
+                                <input type="number" min="0" max="99" id="discount-amount-on-one" placeholder="لطفا مقدار تخفیف را وارد کنید..." required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="name input one-course-course-input one-course-alert-container">
+                                <label class="input-title">دوره مورد نظر</label>
+                                <select id="courses-container">
+                                    <option value="0">لطفا دوره مورد نظر را انتخاب کنید...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="name input one-course-max-use-input">
+                                <label class="input-title">تعداد قابل استفاده</label>
+                                <input type="number" min="0" id="discount-max-use-on-one" placeholder="لطفا تعداد قابل استفاده را وارد کنید..." required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="bottom-form">
+                                <div class="submit-btn">
+                                    <input type="button" value="فعال کردن" id="activate-one-discount">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="home-content-products">
+                        <div class="home-content-products-title">
+                            <span>لیست <span class="signup">کدهای تخفیف</span></span>
+                        </div>
+                        <div class="home-content-products-table">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>کد</th>
+                                    <th>درصد تخفیف</th>
+                                    <th>دوره مورد نظر</th>
+                                    <th>تعداد قابل استفاده</th>
+                                    <th>تعداد استفاده شده</th>
+                                    <th>سازنده</th>
+                                    <th>حذف</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="vendor/FontAwesome/FontAwesome.min.js"></script>
     <script src="../shared.js" type="module"></script>
+    <script src="js/script.js" type="module"></script>
 </body>
 
 </html>
