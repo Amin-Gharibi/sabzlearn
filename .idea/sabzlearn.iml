@@ -7,5 +7,7 @@
     <orderEntry type="library" name="sweetalert" level="application" />
     <orderEntry type="library" name="sweetalert2" level="application" />
     <orderEntry type="library" name="font-awesome" level="application" />
+    <orderEntry type="library" name="sweetalert2" level="application" />
+    <orderEntry type="library" name="ckeditor" level="application" />
   </component>
 </module>

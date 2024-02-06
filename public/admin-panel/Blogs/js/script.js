@@ -2,6 +2,23 @@ import {getAllCategories, getToken, intlDateToPersianDate} from "../../../script
 
 const [allCategories, response] = await Promise.all([getAllCategories(), fetch('http://localhost:4000/v1/articles')])
 
+let articleBodyInput = null;
+ClassicEditor
+    .create(document.querySelector('#article-body-input'), {
+      language: {
+        // The UI will be English.
+        ui: 'en',
+
+        // But the content will be edited in Arabic.
+        content: 'fa'
+      }
+    }).then(editor => {
+      articleBodyInput = editor
+})
+    .catch(error => {
+      console.log(error)
+    });
+
 const allArticles = await response.json()
 const articlesContainer = document.querySelector('tbody')
 allArticles.forEach(article => {
@@ -144,7 +161,6 @@ addArticleForm.addEventListener('submit', event => {
   const articleTitleInput = document.querySelector('#article-title-input')
   const articleShortnameInput = document.querySelector('#article-shortname-input')
   const articleDescriptionInput = document.querySelector('#article-description-input')
-  const articleBodyInput = document.querySelector('#article-body-input')
   const articleCoverInput = document.querySelector('#article-cover-input')
   const articleCategoryInput = document.querySelector('#article-category-input')
 
@@ -172,9 +188,10 @@ addArticleForm.addEventListener('submit', event => {
     sendingBody.append('title', articleTitleInput.value.trim())
     sendingBody.append('shortName', articleShortnameInput.value.trim())
     sendingBody.append('description', articleDescriptionInput.value.trim())
-    sendingBody.append('body', articleBodyInput.value.trim())
+    sendingBody.append('body', articleBodyInput.getData())
     sendingBody.append('cover', selectedCoverFiles[0])
     sendingBody.append('categoryID', articleCategoryInput.value.trim())
+
 
     fetch('http://localhost:4000/v1/articles/draft', {
       method: 'POST',
@@ -203,6 +220,9 @@ addArticleForm.addEventListener('submit', event => {
           location.reload()
         })
       }
+        return res.json()
+    }).then(data => {
+      console.log(data)
     })
   }
 })
@@ -219,9 +239,9 @@ const editArticleHandler = articleId => {
   let titleInput = HTMLInputElement ;
   let shortNameInput = HTMLInputElement ;
   let descriptionInput = HTMLInputElement ;
-  let bodyInput = HTMLInputElement ;
   let coverInput = HTMLInputElement ;
   let categoryInput = HTMLInputElement ;
+  let swalBodyInput = null;
 
   Swal.fire({
     title: "ویرایش",
@@ -243,9 +263,9 @@ const editArticleHandler = articleId => {
             </div>
         </div>
         <div class="col-12">
-            <div class="name input w-100 d-flex align-items-start gap-2">
+            <div class="name input w-100 d-flex align-items-start gap-2 swal-editor">
                 <label class="input-title" style="min-width: max-content !important;">مقاله:</label>
-                <textarea style="width: 100%;height: 200px;" id="swal-article-body-input" required>${targetArticle.body}</textarea>
+                <div id="swal-article-body-input"></div>
             </div>
         </div>
         <div class="col-12">
@@ -271,6 +291,23 @@ const editArticleHandler = articleId => {
     focusConfirm: false,
     allowOutsideClick: () => !Swal.isLoading(),
     didOpen: () => {
+      ClassicEditor
+          .create(document.querySelector('#swal-article-body-input'), {
+            language: {
+              // The UI will be English.
+              ui: 'en',
+
+              // But the content will be edited in Arabic.
+              content: 'fa'
+            }
+          }).then(editor => {
+        swalBodyInput = editor
+        editor.setData(targetArticle.body) // set default value in the input
+      })
+          .catch(error => {
+            console.log(error)
+          });
+
       const categoriesContainer = document.querySelector('#swal-article-category-input')
       allCategories.forEach(cat => {
         categoriesContainer.insertAdjacentHTML('beforeend', `
@@ -283,21 +320,19 @@ const editArticleHandler = articleId => {
       titleInput = popup.querySelector('#swal-article-title-input')
       shortNameInput = popup.querySelector('#swal-article-shortname-input')
       descriptionInput = popup.querySelector('#swal-article-description-input')
-      bodyInput = popup.querySelector('#swal-article-body-input')
       coverInput = popup.querySelector('#swal-article-cover-input')
       categoryInput = popup.querySelector('#swal-article-category-input')
 
       titleInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
       shortNameInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
       descriptionInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
-      bodyInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
+      articleBodyInput.editing.view.document.on('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
       coverInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
       categoryInput.addEventListener('keyup', event => event.key === 'Enter' && Swal.clickConfirm())
     },
     preConfirm: () => {
       const title = titleInput
       const description = descriptionInput
-      const body = bodyInput
       const shortName = shortNameInput
       const category = categoryInput
       const coverInp = coverInput
@@ -315,7 +350,7 @@ const editArticleHandler = articleId => {
       const sendingBody = new FormData();
       sendingBody.append('title', title.value.trim())
       sendingBody.append('description', description.value.trim())
-      sendingBody.append('body', body.value.trim())
+      sendingBody.append('body', swalBodyInput.getData())
       sendingBody.append('cover', selectedCover[0])
       sendingBody.append('shortName', shortName.value.trim())
       sendingBody.append('categoryID', category.value.trim())

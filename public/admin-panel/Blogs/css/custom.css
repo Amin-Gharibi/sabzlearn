@@ -2,6 +2,15 @@
     width: 700px !important;
 }
 
+.ck-editor__editable[role="textbox"] {
+    /* Editing area */
+    min-height: 200px;
+}
+
+.swal-editor .ck-editor {
+    width: 590px !important;
+}
+
 * {
     margin: 0;
     padding: 0;
