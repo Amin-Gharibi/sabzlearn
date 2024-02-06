@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سبزلرن | پنل ادمین</title>
+    <link rel="stylesheet" href="vendor/FontAwesome/FontAwesome.min.css" />
+    <link rel="stylesheet" href="vendor/BootStrap/Bootstrap5.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="shortcut icon" href="../../images/logos/favIcon.png" type="image/x-icon">
+  </head>
+
+  <body>
+    <div id="content">
+      <div id="sidebar" class="col-2">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <a href="#"><img src="img/logo.png" alt="Logo" /></a>
+          </div>
+
+          <div class="sidebar-menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div class="sidebar-menu mt-0">
+          <ul>
+            <li id="EditAdmin"><a href="../EditAdmin"><span>من</span></a></li>
+            <li id="main"><a href="../main"><span>صفحه اصلی</span></a></li>
+            <li id="Courses"><a href="../Courses"><span>دوره ها</span></a></li>
+            <li id="َAddNewSession"><a href="../AddNewSession"><span>جلسات</span></a></li>
+            <li id="Menus"><a href="../Menus"><span>منو ها</span></a></li>
+            <li id="Blogs"><a href="../Blogs"><span>مقاله ها</span></a></li>
+            <li id="Users"><a href="../Users"><span>کاربران</span></a></li>
+            <li id="Categories"><a href="../Categories"><span>دسته‌بندی‌ ها</span></a></li>
+            <li id="RedeemCodes"><a href="../RedeemCodes"><span>کدهای تخفیف</span></a></li>
+            <li id="comments"><a href="../comments"><span>کامنت ها</span></a></li>
+            <li id="Tickets"><a href="#"><span>تیکت‌ ها</span></a></li>
+            <li id="Notifications"><a href="#"><span>اعلان ها</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="home" class="col-10">
+        <div class="container-fluid">
+          <div class="container">
+            <div class="home-header">
+              <div class="home-right">
+                <div class="home-searchbar">
+                  <input
+                    type="text"
+                    class="search-bar"
+                    placeholder="جستجو..."
+                  />
+                </div>
+                <div class="home-notification">
+                  <button type="button" id="notifications-icon">
+                    <i class="far fa-bell"></i>
+                  </button>
+                </div>
+                <div class="home-notification-modal">
+                  <ul class="home-notification-modal-list">
+                    <li class="home-notification-modal-item">
+                      <span class="home-notification-modal-text">پیغام ها</span>
+                      <label class="switch">
+                        <input type="checkbox" checked />
+                        <span class="slider round"></span>
+                      </label>
+                    </li>
+                    <li class="home-notification-modal-item">
+                      <span class="home-notification-modal-text">پیغام ها</span>
+                      <label class="switch">
+                        <input type="checkbox" checked />
+                        <span class="slider round"></span>
+                      </label>
+                    </li>
+                    <li class="home-notification-modal-item">
+                      <span class="home-notification-modal-text">پیغام ها</span>
+                      <label class="switch">
+                        <input type="checkbox" checked />
+                        <span class="slider round"></span>
+                      </label>
+                    </li>
+                    <li class="home-notification-modal-item">
+                      <span class="home-notification-modal-text">پیغام ها</span>
+                      <label class="switch">
+                        <input type="checkbox" checked />
+                        <span class="slider round"></span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+               
+              </div>
+              <div class="home-left">
+                <div class="home-profile">
+                  <div class="home-profile-image">
+                    <img src="" alt="">
+                  </div>
+                  <div class="home-profile-name">
+                    <span class="admin-name"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid" id="home-content">
+
+          <div class="container">
+            <div class="home-content-latset-users">
+              <div class="home-content-users-title">
+                <span>لیست <span class="signup">کامنت‌ها</span></span>
+              </div>
+              <div class="home-content-users-table">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>شماره</th>
+                      <th>ارسال کننده</th>
+                      <th>دوره</th>
+                      <th>تاریخ ثبت</th>
+                      <th>امتیاز</th>
+                      <th>مشاهده</th>
+                      <th>پاسخ</th>
+                      <th>تایید</th>
+                      <th>رد</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <script src="vendor/FontAwesome/FontAwesome.min.js"></script>
+    <script src="../shared.js" type="module"></script>
+
+  </body>
+</html>
