@@ -1,161 +1,246 @@
-let body = document.body;
-let menuBtn = document.querySelector(".sidebar-menu-btn");
-let nameInput = document.querySelector(".name input");
-let emailInput = document.querySelector(".email input");
-let familyInput = document.querySelector(".family input");
-let phoneInput = document.querySelector(".phone input");
-let passwordInput = document.querySelector(".password input");
-let form = document.querySelector(".form");
-let inputs = document.querySelectorAll(".input input");
-let errorMessage = document.querySelectorAll(".error-message");
-let userArray = [];
-let isThereUser = false;
+import {getToken, intlDateToPersianDate} from "../../../scripts/utils/utils.js";
 
-//!==============> sidebar <==============!//
-menuBtn.addEventListener("click", function () {
-  if (body.className !== "active-sidebar") {
-    body.classList.add("active-sidebar");
-    body.classList.remove("notactive-sidebar");
-  } else {
-    body.classList.add("notactive-sidebar");
-    body.classList.remove("active-sidebar");
-  }
-});
-//!==============> sidebar <==============!//
+const response = await fetch('http://localhost:4000/v1/comments')
+const allComments = await response.json()
 
-//!==============> Form Validation <==============!//
-function validateLength(e, lengthReq) {
-  let valueLength = e.target.value.length;
-  let valueLengthReq = lengthReq;
-  let spanError = e.target.nextElementSibling;
-  if (valueLength < valueLengthReq) {
-    spanError.innerHTML =
-      "لطفا تعداد کارکتر را به درستی وارد کنید!" +
-      "(حداقل " +
-      valueLengthReq +
-      "کارکتر )";
-    spanError.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    spanError.innerHTML = "";
-    spanError.style.display = "none";
-    e.target.style.border = "1px solid #4CAF50";
-    e.target.setAttribute("isValid", "true");
-  }
-}
+const commentsContainer = document.querySelector('tbody')
+allComments.forEach((comment, index) => {
+  commentsContainer.insertAdjacentHTML('beforeend', `
+    <tr>
+                <td class="${
+      comment.answer === 1 ? "answer-comment" : "no-answer-comment"
+  }">${index + 1}</td>
+                <td>${comment.creator.name}</td>
+                <td>${comment.course}</td>
+                <td>${intlDateToPersianDate(comment.createdAt)}</td>
+                <td>${comment.score}</td>
+                <td class="${comment.isAccepted ? "text-success" : "text-danger"}">${comment.isAccepted ? "تایید شده" : "تایید نشده"}</td>
+                <td>
+                    <button type='button' data-value="${comment._id}" class='btn btn-primary view-btn'>مشاهده</button>
+                </td>
+                <td>
+                    <button type='button' data-value="${comment._id}" class='btn btn-primary answer-btn'>پاسخ</button>
+                </td>
+                <td>
+                    <button type='button' data-value="${comment._id}" class='btn btn-primary accept-btn'>تایید</button>
+                </td>
+                <td>
+                    <button type='button' data-value="${comment._id}" class='btn btn-primary reject-btn'>رد</button>
+                </td>
+                <td>
+                    <button type='button' data-value="${comment._id}" class='btn btn-danger delete-btn'>حذف</button>
+                </td>
+            </tr>
+  `)
+})
 
-function validateEmail(e) {
-  let emailValue = e.target.value;
-  let spanError = e.target.nextElementSibling;
-  if (!emailValue.includes("@")) {
-    spanError.innerHTML = "لطفا ایمیل معتبر وارد کنید!";
-    spanError.classList.add("text-danger");
-    spanError.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    spanError.innerHTML = "";
-    spanError.style.display = "none";
-    e.target.style.border = "1px solid #4CAF50";
-    e.target.setAttribute("isValid", "true");
-  }
-}
-//!==============> Form Validation <==============!//
+const viewBtns = document.querySelectorAll('.view-btn')
+viewBtns.forEach(btn => {
+  btn.addEventListener('click', () => viewCommentContentHandler(btn.getAttribute('data-value')))
+})
 
-// !==============> Adding New Users <==============!//
-function addNewUsers() {
-  let userObj = {
-    id: userArray.length,
-    name: nameInput.value,
-    family: familyInput.value,
-    email: emailInput.value,
-    password: passwordInput.value,
-    phoneNumber: phoneInput.value,
-  };
-  userArray.push(userObj);
-  addUserToDataBase(userArray);
-}
-
-function addUserToDataBase(userArr) {
-  localStorage.setItem("users", JSON.stringify(userArr));
-}
-
-function getUsersFromDataBase() {
-  let users = JSON.parse(localStorage.getItem("users"));
-  if (users !== null) {
-    userArray = users;
-  } else {
-    userArray = [];
-  }
-  addUserToDataBase(userArray);
-}
-
-function validateUsers() {
-  let users = JSON.parse(localStorage.getItem("users"));
-  if (users !== null) {
-    let validateEmailThere = users.some(function (user) {
-      return user.email === emailInput.value;
-    });
-    let validatePhoneThere = users.some(function (user) {
-      return user.phoneNumber === phoneInput.value;
-    });
-
-    if (validatePhoneThere === true || validateEmailThere === true) {
-      isThereUser = true;
-    } else {
-      isThereUser = false;
-    }
-  }
-}
-//!==============> Adding New Users <==============!//
-
-//!==============> Form Validation Events <==============!//
-nameInput.addEventListener("keyup", function (e) {
-  let lengthReq = 3;
-  validateLength(e, lengthReq);
-});
-familyInput.addEventListener("keyup", function (e) {
-  let lengthReq = 4;
-  validateLength(e, lengthReq);
-});
-emailInput.addEventListener("keyup", function (e) {
-  // let lengthReq = 10;
-  // validateLength(e, lengthReq);
-  validateEmail(e);
-  validateUsers();
-});
-passwordInput.addEventListener("keyup", function (e) {
-  let lengthReq = 8;
-  validateLength(e, lengthReq);
-});
-phoneInput.addEventListener("keyup", function (e) {
-  let lengthReq = 11;
-  validateLength(e, lengthReq);
-  validateUsers();
-});
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  let isValid = false;
-  inputs.forEach(function (input) {
-    let isValidAttr = input.getAttribute("isValid");
-    if (isValidAttr === "false") {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
+const viewCommentContentHandler = commentId => {
+  const targetComment = allComments.find(comment => comment._id === commentId)
+  const commentText = targetComment.answer ? `${targetComment.body}<br><br><span class="text-success">پاسخ: ${targetComment.answerContent.body}</span>` : targetComment.body;
+  Swal.fire({
+    title: "متن کامنت",
+    html: `
+      <span>${commentText}</span>
+    `,
+    showConfirmButton: false,
+    showCancelButton: true,
+    cancelButtonText: "بستن"
   });
-  if (isValid === false) {
-    errorMessage.forEach(function (err) {
-      err.innerHTML = "لطفا مقادیر را به درستی وارد کنید !";
-      err.style.display = "block";
-    });
-  } else if (isThereUser === true) {
-    alert("این کاربر از قبل وجود دارد");
-  } else {
-    addNewUsers();
-  }
-  validateUsers();
-});
-//!==============> Form Validation Events <==============!//
-window.addEventListener("load", getUsersFromDataBase);
+}
+
+
+const answerBtns = document.querySelectorAll('.answer-btn')
+answerBtns.forEach(btn => {
+  btn.addEventListener('click', () => answerToCommentHandler(btn.getAttribute('data-value')))
+})
+
+const answerToCommentHandler = commentId => {
+  Swal.fire({
+    input: "textarea",
+    inputLabel: "پاسخ",
+    inputPlaceholder: "پاسخ را بنویسید",
+    confirmButtonText: "ثبت",
+    allowOutsideClick: true,
+    inputValidator: (value) => {
+      if (!value) {
+        return 'پاسخ نمی‌تواند خالی باشد!';
+      }
+    }
+  }).then(result => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/v1/comments/answer/${commentId}`, {
+        method: 'POST',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          body: result.value.trim()
+        })
+      }).then(res => {
+        if (res.status === 200) {
+          Swal.fire({
+            title: "موفق",
+            text: "پاسخ با موفقیت ثبت شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          Swal.fire({
+            title: "ناموفق",
+            text: "خطا در ثبت پاسخ برای این کامنت، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+}
+
+
+const acceptBtns = document.querySelectorAll('.accept-btn')
+acceptBtns.forEach(btn => {
+  btn.addEventListener('click', () => acceptCommentHandler(btn.getAttribute('data-value')))
+})
+
+const acceptCommentHandler = commentId => {
+  swal.fire({
+    title: 'تایید کامنت',
+    text: "آیا مطمئن هستید میخواهید این کامنت را تایید کنید؟",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "تایید",
+  }).then(result => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/v1/comments/accept/${commentId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          Swal.fire({
+            title: "موفق",
+            text: "کامنت با موفقیت تایید شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          Swal.fire({
+            title: "ناموفق",
+            text: "خطایی در تایید کامنت رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+}
+
+
+const rejectBtns = document.querySelectorAll('.reject-btn')
+rejectBtns.forEach(btn => {
+  btn.addEventListener('click', () => rejectCommentHandler(btn.getAttribute('data-value')))
+})
+
+const rejectCommentHandler = commentId => {
+  swal.fire({
+    title: 'رد کامنت',
+    text: "آیا مطمئن هستید میخواهید این کامنت را رد کنید؟",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "رد",
+  }).then(result => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/v1/comments/reject/${commentId}`, {
+        method: 'PUT',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          Swal.fire({
+            title: "موفق",
+            text: "کامنت با موفقیت رد شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          Swal.fire({
+            title: "ناموفق",
+            text: "خطایی در رد کامنت رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+}
+
+
+const deleteBtns = document.querySelectorAll('.delete-btn')
+deleteBtns.forEach(btn => {
+  btn.addEventListener('click', () => deleteCommentHandler(btn.getAttribute('data-value')))
+})
+
+const deleteCommentHandler = commentId => {
+  swal.fire({
+    title: 'حذف کامنت',
+    text: "آیا مطمئن هستید میخواهید این کامنت را حذف کنید؟",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "حذف",
+  }).then(result => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/v1/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          Swal.fire({
+            title: "موفق",
+            text: "کامنت با موفقیت حذف شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          Swal.fire({
+            title: "ناموفق",
+            text: "خطایی در حذف کامنت رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  })
+}
