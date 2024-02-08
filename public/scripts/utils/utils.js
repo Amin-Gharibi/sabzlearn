@@ -268,7 +268,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                 <!--item image-->
                 <div class="w-full h-[168px] rounded-2xl overflow-hidden">
                     <a href="course-page.html?c=${course.shortName}" title="${course.name}" class="w-full h-full">
-                        <img src="http://localhost:4000/courses/covers/${course.cover}" alt="${course.name}"
+                        <img src="http://localhost:4000/courses/${course.cover}" alt="${course.name}"
                              loading="lazy"
                              class="w-full h-full object-cover">
                     </a>
@@ -629,7 +629,7 @@ const createArticlesTemplate = articles => {
             <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border border-gray-700 rounded-2xl">
                     <!--article image-->
                     <div class="article--image__container">
-                        <img src="http://localhost:4000/courses/covers/${article.cover}" alt="${article.title}" class="w-full h-full">
+                        <img src="http://localhost:4000/articles/${article.cover}" alt="${article.title}" class="w-full h-full">
                     </div>
                     <!--article content-->
                     <div class="flex flex-col flex-grow gap-y-8 px-5">
