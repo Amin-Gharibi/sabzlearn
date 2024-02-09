@@ -223,32 +223,27 @@
                 <img id="course-banner" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-26-1.webp"
                      class="w-full block -mt-[70px] rounded-2xl" alt="آموزش PWA بصورت پروژه محور">
                 <h2 id="course-name" class="mt-5 mb-5 font-danaMedium text-lg sm:text-xl text-zinc-700 dark:text-white line-clamp-2">
-                    آموزش PWA بصورت پروژه محور
+
                 </h2>
                 <!-- discount code -->
                 <div class="py-5 border-y border-gray-100 dark:border-darkGray-700">
-                    <div class="font-danaMedium md:text-lg text-sky-500 dark:text-secondary">
+                    <div class="have-redeem-code-title font-danaMedium md:text-lg text-sky-500 dark:text-secondary">
                         <span>کد تخفیف دارید؟</span>
-                        <span class="underline cursor-pointer">کلیک کنید</span>
+                        <span class="underline cursor-pointer" id="show-redeem-code-form-btn">کلیک کنید</span>
                     </div>
-                    <div class="offer-form hidden">
-                        <div class="flex justify-between">
+                    <div class="redeem-code-form hidden">
+                        <div class="flex justify-between redeem-code-form--alert-container">
                             <span class="inline-block mb-2 md:text-lg font-danaMedium text-zinc-700 dark:text-white">کد تخفیف</span>
-                            <span class="font-danaMedium text-rose-500">منقضی شده</span>
                         </div>
-                        <div class="relative w-full h-12 sm:h-[3.5rem] px-3 sm:px-5 bg-gray-100 dark:bg-darkGray-700 border border-transparent text-sm tracking-tight rounded-xl transition-all">
-                            <input type="text" class="w-[calc(100%-75px)] h-full bg-transparent text-base md:text-lg outline-0" placeholder="کد تخفیف را وارد کنید">
-                            <button class="w-max h-9 absolute left-3.5 top-0 bottom-0 my-auto px-3 bg-secondary-light dark:bg-secondary dark:hover:bg-blue-600 text-sm text-white rounded-xl transition-colors">اعمال
+                        <form class="redeem-code-form relative w-full h-12 sm:h-[3.5rem] px-3 sm:px-5 bg-gray-100 dark:bg-darkGray-700 border border-transparent text-sm tracking-tight rounded-xl transition-all">
+                            <input type="text" class="redeem-code-form--input w-[calc(100%-75px)] h-full bg-transparent text-base dark:text-white md:text-lg outline-0" placeholder="کد تخفیف را وارد کنید" required>
+                            <button type="submit" class="w-max h-9 absolute left-3.5 top-0 bottom-0 my-auto px-3 bg-secondary-light dark:bg-secondary dark:hover:bg-blue-600 text-sm text-white rounded-xl transition-colors">اعمال
                             </button>
-                        </div>
+                        </form>
                     </div>
                     <!-- Offer Code Success -->
-                    <div class="hidden flex items-center gap-x-1.5 text-primary">
-                        <svg class="w-5 h-5 md:w-6 md:h-6">
-                            <use href="#check-circle"></use>
-                        </svg>
-                        <span>کد تخفیف EbadiDev اعمال شد، <span
-                                class="underline cursor-pointer text-rose-500">حذف؟</span></span>
+                    <div class="offer-code-success hidden items-center gap-x-1.5 text-primary">
+
                     </div>
                 </div>
                 <!-- real price -->
