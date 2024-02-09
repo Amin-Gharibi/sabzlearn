@@ -287,7 +287,7 @@ const editCourseHandler = courseId => {
 				<div class="d-flex justify-content-between align-items-center gap-2">
 					<label class="input-title" style="min-width: max-content !important;">کاور دوره:</label>
 					<div class="w-100 d-flex justify-content-around">
-						<input required type="file" id="swal-course-cover-input" accept="image/*">
+						<input required type="file" id="swal-course-cover-input" accept=".jpeg, .jpg, .png, .webp">
 						<a target="_blank" href="http://localhost:4000/courses/covers/${targetCourse.cover}" style="color: #0c63e4; text-decoration: underline">کاور کنونی</a>
 					</div>
 				</div>

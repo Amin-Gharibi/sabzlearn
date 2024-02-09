@@ -49,7 +49,7 @@ infos.lastUsers.forEach(user => {
         <td>${user.name}</td>
         <td>${user.phone}</td>
         <td>${user.email}</td>
-        <td>${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} ${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}</td>
+        <td>${date.toLocaleTimeString('fa-IR') + ' ,' + date.toLocaleDateString('fa-IR')}</td>
     </tr>
 `)
 })

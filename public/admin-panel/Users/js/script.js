@@ -331,7 +331,7 @@ const userEditHandler = async userId => {
             <div class="name input d-flex gap-2" id="cover-input-container">
                 <label class="input-title" style="display: block;">کاور:</label>
                 <div>
-                    <input type="file" required id="swal-profile-input">
+                    <input type="file" required id="swal-profile-input" accept=".jpeg, .jpg, .png, .webp">
                     <a target="_blank" href="http://localhost:4000/profile/${targetUser.profile}" style="color: #0c63e4; text-decoration: underline;">عکس پروفایل کنونی</a>
                 </div>
             </div>

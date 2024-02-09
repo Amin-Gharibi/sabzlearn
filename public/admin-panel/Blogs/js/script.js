@@ -268,7 +268,7 @@ const editArticleHandler = articleId => {
             <div class="name input d-flex gap-2" id="cover-input-container">
                 <label class="input-title" style="display: block;">کاور:</label>
                 <div>
-                    <input type="file" required id="swal-article-cover-input">
+                    <input type="file" required id="swal-article-cover-input" accept=".jpeg, .jpg, .png, .webp">
                     <a target="_blank" href="http://localhost:4000/articles/${targetArticle.cover}" style="color: #0c63e4; text-decoration: underline;">کاور کنونی مقاله</a>
                 </div>
             </div>

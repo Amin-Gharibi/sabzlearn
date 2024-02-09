@@ -1,151 +1,160 @@
-let body = document.body;
-let menuBtn = document.querySelector(".sidebar-menu-btn");
-let form = document.querySelector(".form");
-let nameInput = document.querySelector(".name input");
-let priceInput = document.querySelector(".price input");
-let numberInput = document.querySelector(".number input");
-let available = document.querySelector(".available input");
-let presellTrue = document.querySelector(".presell-true input");
-let inputs = document.querySelectorAll(".input input");
-let fileInput = document.querySelector(".file input");
-let products = [];
-let isValid = false;
+import {getCourses, getToken} from "../../../scripts/utils/utils.js";
+import {getMe} from "../../../scripts/funcs/auth.js";
 
-menuBtn.addEventListener("click", function () {
-  if (body.className !== "active-sidebar") {
-    body.classList.add("active-sidebar");
-    body.classList.remove("notactive-sidebar");
-  } else {
-    body.classList.add("notactive-sidebar");
-    body.classList.remove("active-sidebar");
-  }
-});
+let [ allCourses, user, allSessions ] = await Promise.all([getCourses(), getMe(), fetch(`http://localhost:4000/v1/courses/sessions`)])
+allSessions = (await allSessions.json()).reverse()
+if (user.role !== "ADMIN") {
+  allCourses = allCourses.filter(course => {
+    return course.creator._id === user._id
+  })
 
-function addProducts(event) {
-  let randomId;
+  allSessions = allSessions.filter(session => {
+    return allCourses.some(course => course.name === session.course.name)
+  })
+}
 
-  let dataFromDataBase = JSON.parse(localStorage.getItem("products"));
-  if (dataFromDataBase !== null) {
-    let isRandomNumberAvalibe = dataFromDataBase.some(function (product) {
-      return +randomId === product.id;
-    });
-    console.log(isRandomNumberAvalibe)
-    if (isRandomNumberAvalibe === false) {
-      randomId = generateRandomId();
+const sessionsContainer = document.querySelector('tbody')
+allSessions.forEach((session, index) => {
+  const date = new Date(session.createdAt)
+  sessionsContainer.insertAdjacentHTML('beforeend', `
+    <tr>
+        <td>${index + 1}</td>
+        <td>${session.title}</td>
+        <td>${session.time}</td>
+        <td>${date.toLocaleTimeString('fa-IR') + ' ,' + date.toLocaleDateString('fa-IR')}</td>
+        <td>${session.course.name}</td>
+        <td>
+              <button type='button' class='btn btn-danger delete-btn' data-value="${session._id}">حذف</button>
+        </td>
+    </tr>
+  `)
+})
+
+const coursesContainer = document.querySelector('#courses-container')
+allCourses.forEach(course => {
+  coursesContainer.insertAdjacentHTML('beforeend', `
+    <option value="${course._id}">${course.name}</option>
+  `)
+})
+
+const form = document.querySelector('form')
+form.addEventListener('submit', event => {
+  event.preventDefault()
+
+  const sessionTitle = document.querySelector('#session-name')
+  const sessionTime = document.querySelector('#session-time')
+  const sessionVideo = document.querySelector('#session-video-file')
+  let isSessionFree = document.querySelector('#is-session-free')
+  isSessionFree = +isSessionFree.checked
+
+  const timePattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
+  if (coursesContainer.value === "0") {
+    const alertContainer = document.querySelector('.alert-container')
+    if (alertContainer.children[alertContainer.children.length - 1].classList.contains('alert')) {
+      alertContainer.children[alertContainer.children.length - 1].remove()
     }
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="alert text-danger" style="padding-right: 1rem;">لطفا دوره را انتخاب کنید*</span>
+    `)
+    return false;
+  } else if (sessionVideo.files.length > 1) {
+    const alertContainer = document.querySelector('.alert-container')
+    if (alertContainer.children[alertContainer.children.length - 1].classList.contains('alert')) {
+      alertContainer.children[alertContainer.children.length - 1].remove()
+    }
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="alert text-danger" style="padding-right: 1rem;">تعداد ویدیو نمی تواند بیشتر از یکی باشد*</span>
+    `)
+    return false;
+  } else if (!timePattern.test(sessionTime.value.trim())) {
+    const alertContainer = document.querySelector('.alert-container')
+    if (alertContainer.children[alertContainer.children.length - 1].classList.contains('alert')) {
+      alertContainer.children[alertContainer.children.length - 1].remove()
+    }
+    alertContainer.insertAdjacentHTML('beforeend', `
+        <span class="alert text-danger" style="padding-right: 1rem;">مدت زمان جلسه صحیح نیست*</span>
+    `)
+    return false;
   }
 
-  let imgSrc = `../NewProducts/img/products/${fileInput.value.slice(
-    12,
-    fileInput.value.length
-  )}`;
-  event.preventDefault();
-  if (isValid === true) {
-    let condition = true;
-    if (available.checked === true) {
-      condition = true;
+  const sendingBody = new FormData();
+  sendingBody.append('title', sessionTitle.value.trim())
+  sendingBody.append('time', sessionTime.value.trim())
+  sendingBody.append('video', sessionVideo.files[0])
+  sendingBody.append('free', isSessionFree)
+
+  fetch(`http://localhost:4000/v1/courses/${coursesContainer.value}/sessions`, {
+    method: 'POST',
+    headers: {
+      "Authorization": `Bearer ${getToken()}`
+    },
+    body: sendingBody
+  }).then(res => {
+    if (res.status === 201) {
+      swal.fire({
+        title: "موفق",
+        text: "جلسه با موفقیت اضافه شد",
+        icon: "success",
+        confirmButtonText: "بستن"
+      }).then(() => {
+        location.reload()
+      })
     } else {
-      condition = false;
+      swal.fire({
+        title: "ناموفق",
+        text: "خطا در اضافه کردن جلسه رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+        icon: "error",
+        confirmButtonText: "بستن"
+      }).then(() => {
+        location.reload()
+      })
     }
+  })
+})
 
-    let presell = true;
-    if (presellTrue.checked === true) {
-      presell = true;
-    } else {
-      presell = false;
+
+const deleteBtns = document.querySelectorAll('.delete-btn')
+deleteBtns.forEach(btn => {
+  btn.addEventListener('click', () => deleteSessionHandler(btn.getAttribute('data-value')))
+})
+
+const deleteSessionHandler = sessionId => {
+  swal.fire({
+    title: `آیا از حذف این جلسه اطمینان دارید؟`,
+    text: "اگر جلسه را حذف کنید دیگر قادر به بازگرداندن آن نخواهید بود",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "لغو",
+    confirmButtonText: "حذف",
+  }).then(willDelete => {
+    if (willDelete.isConfirmed) {
+      fetch(`http://localhost:4000/v1/courses/sessions/${sessionId}`, {
+        method: 'DELETE',
+        headers: {
+          "Authorization": `Bearer ${getToken()}`
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          swal.fire({
+            title: "موفق",
+            text: "جلسه با موفقیت حذف شد",
+            icon: "success",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        } else {
+          swal.fire({
+            title: "ناموفق",
+            text: "خطایی در حذف جلسه رخ داد، لطفا بعدا تلاش کنید یا با پشتیبانی تماس بگیرید",
+            icon: "error",
+            confirmButtonText: "بستن"
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
     }
-    let productObj = {
-      id: +randomId,
-      name: nameInput.value,
-      price: priceInput.value,
-      number: numberInput.value,
-      condition: condition,
-      presell: presell,
-      img: imgSrc,
-    };
-    products.push(productObj);
-    addToDataBase(products);
-  }
-  validateInputsForm();
+  })
 }
-
-function validateInputsForm() {
-  let nameInputLength = nameInput.value.length;
-  let priceInputLength = priceInput.value.length;
-  let numberInputLength = numberInput.value.length;
-  let errorMessage = document.querySelectorAll('[isValid="false"]');
-
-  if (nameInputLength < 2 || priceInputLength < 1 || numberInputLength < 1) {
-    errorMessage.forEach(function (err) {
-      err.nextElementSibling.innerHTML = "لطفا مقادیر را به درستی وارد کنید!";
-      err.nextElementSibling.style.display = "block";
-      err.style.border = "1px solid #dc3545";
-      err.setAttribute("isValid", "false");
-    });
-    // isValid = false;
-  } else {
-    errorMessage.forEach(function (err) {
-      err.nextElementSibling.innerHTML = "";
-      err.nextElementSibling.style.display = "none";
-      err.style.border = "1px solid green";
-      err.setAttribute("isValid", "true");
-    });
-    // isValid = true;
-  }
-}
-
-function addToDataBase() {
-  localStorage.setItem("products", JSON.stringify(products));
-}
-
-function validateInputs(e) {
-  let inputLength = e.target.value.length;
-  if (inputLength < 2) {
-    e.target.nextElementSibling.style.display = "block";
-    e.target.style.border = "1px solid #dc3545";
-    e.target.nextElementSibling.innerHTML =
-      "لطفا مقادیر را به درستی وارد کنید!";
-    e.target.setAttribute("isValid", "false");
-  } else {
-    e.target.nextElementSibling.style.display = "none";
-    e.target.style.border = "1px solid green";
-    e.target.nextElementSibling.innerHTML = "";
-    e.target.setAttribute("isValid", "true");
-  }
-  inputs.forEach(function (input) {
-    if (input.getAttribute("isValid") !== "true") {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-  });
-}
-
-function getDataFromDataBase() {
-  let data = JSON.parse(localStorage.getItem("products"));
-  if (data !== null) {
-    products = data;
-  } else {
-    products = [];
-  }
-  addToDataBase(products);
-}
-
-function generateRandomId() {
-  let firstNumber = String(Math.floor(Math.random() * 10));
-  let secondNumber = String(Math.floor(Math.random() * 10));
-  let thirdNumber = String(Math.floor(Math.random() * 10));
-  let fourthNumber = String(Math.floor(Math.random() * 10));
-  let fifthNumber = String(Math.floor(Math.random() * 10));
-  let finalId = firstNumber
-    .concat(secondNumber)
-    .concat(thirdNumber)
-    .concat(fourthNumber)
-    .concat(fifthNumber);
-  return finalId;
-}
-form.addEventListener("submit", addProducts);
-nameInput.addEventListener("blur", validateInputs);
-priceInput.addEventListener("blur", validateInputs);
-numberInput.addEventListener("blur", validateInputs);
-window.addEventListener("load", getDataFromDataBase);

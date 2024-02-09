@@ -471,38 +471,6 @@ const categoryCoursesLowerOptionsHandler = (courses, shownCoursesCount) => {
     }
 }
 
-// // get all categories persian name
-// const getAllFaCategories = async () => {
-//     const allCourses = await getCourses()
-//     const categories = []
-//     let isAlreadyInCategories;
-//     allCourses.forEach(course => {
-//         isAlreadyInCategories = categories.find(category => category === course.categoryID.title)
-//         if (!isAlreadyInCategories) {
-//             categories.push(course.categoryID.title)
-//         }
-//     })
-//
-//     return categories
-// }
-//
-// // get all categories english name
-// const getAllEnCategories = async () => {
-//     const allCourses = await getCourses()
-//     const categories = []
-//     let isAlreadyInCategories;
-//     allCourses.forEach(course => {
-//         isAlreadyInCategories = categories.find(category => category === course.categoryID.name)
-//         if (!isAlreadyInCategories) {
-//             categories.push(course.categoryID.name)
-//         }
-//     })
-//
-//     return categories
-// }
-
-/////////////////////////////////////////////////////////////////
-
 const getAllCategories = async () => {
     const allCourses = await getCourses();
     const response = await fetch('http://localhost:4000/v1/category')
