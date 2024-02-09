@@ -1,0 +1,45 @@
+.menu-all-courses-container {
+    max-height: 400px;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+.menu-all-courses-container::-webkit-scrollbar {
+    width: 0; /* Set the width to 0 to hide the scrollbar */
+}
+
+.menu-course-container {
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+.menu-course-selector-input {
+    display: none !important;
+}
+
+.menu-course-selector-label {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+}
+
+.menu-course-selector-input + .menu-course-selector-label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    background-color: white;
+    transition: background-color 0.1s linear;
+}
+
+.menu-course-selector-input:checked + .menu-course-selector-label:after {
+    background-color: blue;
+    border-color: blue;
+}
+
+.swal-wide {
+    width: 600px !important;
+}

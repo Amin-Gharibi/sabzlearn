@@ -24,9 +24,9 @@ window.addEventListener('load', async () => {
         form.addEventListener('submit', event => searchFormSubmissionHandler(event))
     })
 
-    const [data] = await Promise.all([getMe()])
+    const data = await getMe() // get user info
 
-    showDetailsInAccountCenter(data)
+    showDetailsInAccountCenter(data) // show user details in header
 })
 
 mobileMenuOverlay.addEventListener('click', toggleMobileMenu)

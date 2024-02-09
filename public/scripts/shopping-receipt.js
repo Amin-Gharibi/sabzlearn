@@ -1,7 +1,7 @@
 import {alert, getCourseByShortName, getSearchParam, getToken, getUserCourses} from "./utils/utils.js";
 
 window.addEventListener('load', async () => {
-    if (getToken()) {
+    if (getToken()) { // if user was logged in show the receipt otherwise show error
         const course = await getCourseByShortName(getSearchParam('c'))
 
         const courseBannerImageElem = document.querySelector('#course-banner')
@@ -14,7 +14,7 @@ window.addEventListener('load', async () => {
         courseRealPriceWrapper.insertAdjacentHTML('afterbegin', course.price.toLocaleString())
 
         const coursePayingPriceWrapper = document.querySelector('#course-paying-price')
-        coursePayingPriceWrapper.insertAdjacentHTML('afterbegin', (course.price - (course.off * course.price / 100)).toLocaleString())
+        coursePayingPriceWrapper.insertAdjacentHTML('afterbegin', (course.price - (course.discount * course.price / 100)).toLocaleString())
 
         const cancelShoppingBtn = document.querySelector('#cancel-shopping')
         cancelShoppingBtn.setAttribute('href', `course-page.html?c=${course.shortName}`)
@@ -24,16 +24,16 @@ window.addEventListener('load', async () => {
             event.preventDefault()
             try {
                 const requestBody = {
-                    price: course.price - (course.off * course.price / 100)
+                    price: course.price - (course.discount * course.price / 100)
                 }
                 let previousPageUrl = ''
-                if (document.referrer) {
+                if (document.referrer) { // save previous page's url
                     previousPageUrl = document.referrer
                 }
-                if (!previousPageUrl) {
+                if (!previousPageUrl) { // if there was no previous url, it's suspicious
                     throw 1
                 } else {
-                    fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+                    fetch(`http://localhost:4000/v1/courses/${course._id}/register`, { // add course to user's courses in db
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${getToken()}`,
@@ -41,11 +41,11 @@ window.addEventListener('load', async () => {
                         },
                         body: JSON.stringify(requestBody)
                     }).then(response => {
-                        if (response.status === 409) {
+                        if (response.status === 409) { // if user had already bought the course show an error
                             alert(document.body, 'close-circle', 'alert-red', 'خطا', 'شما از قبل در این دوره ثبت نام کرده اید!')
                         } else if (response.status === 201) {
                             alert(document.body, 'check-circle', 'primary', 'موفق', 'خرید با موفقیت انجام شد.')
-                        } else {
+                        } else { // if there was unexpected error throw "error" and handle it in catch scope
                             throw "error"
                         }
                         setTimeout(() => {

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبزلرن | پنل ادمین</title>
+    <link rel="stylesheet" href="vendor/BootStrap/Bootstrap5.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="../../images/logos/favIcon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="content">
+        <div id="sidebar" class="col-2">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="#"><img src="img/logo.png" alt="Logo"></a>
+                </div>
+
+                <div class="sidebar-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div class="sidebar-menu mt-0">
+                <ul>
+                    <li id="EditAdmin"><a href="../EditAdmin"><span>من</span></a></li>
+                    <li id="main"><a href="../main"><span>صفحه اصلی</span></a></li>
+                    <li id="Courses"><a href="../Courses"><span>دوره ها</span></a></li>
+                    <li id="َAddNewSession"><a href="../AddNewSession"><span>جلسات</span></a></li>
+                    <li id="Menus"><a href="../Menus"><span>منو ها</span></a></li>
+                    <li id="Blogs"><a href="../Blogs"><span>مقاله ها</span></a></li>
+                    <li id="Users"><a href="../Users"><span>کاربران</span></a></li>
+                    <li id="Categories"><a href="../Categories"><span>دسته‌بندی‌ ها</span></a></li>
+                    <li id="RedeemCodes"><a href="../RedeemCodes"><span>کدهای تخفیف</span></a></li>
+                    <li id="comments"><a href="../comments"><span>کامنت ها</span></a></li>
+                    <li id="tickets"><a href="../tickets"><span>تیکت‌ ها</span></a></li>
+                    <li id="log-out-btn"><a href="#"><span>خروج</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="home" class="col-10">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="home-header">
+                        <div class="home-right">
+                            <div class="home-searchbar">
+                                <input type="text" class="search-bar" placeholder="جستجو...">
+                            </div>
+                            <div class="home-notification">
+                                <button type="button">
+                                    <i class="far fa-bell"></i>
+                                </button>
+                            </div>
+                            <div class="home-notification-modal">
+                                <ul class="home-notification-modal-list">
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="home-left">
+                            <div class="home-profile">
+                                <div class="home-profile-image">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="home-profile-name">
+                                    <span class="admin-name"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" id="home-content">
+                <div class="container">
+                    <div class="home-title">
+                        <span>افزودن منو جدید</span>
+                    </div>
+                    <form class="form">
+                        <div class="col-6">
+                            <div class="name input">
+                                <label class="input-title">عنوان</label>
+                                <input type="text" placeholder="لطفا عنوان منو را وارد کنید..." id="menu-title-input" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="name input">
+                                <label class="input-title">لینک مربوط به دسته بندی<span style="opacity: 0.5; font-size: 10px;">(short-name)</span></label>
+                                <input type="text" placeholder="لطفا لینک منو را وارد کنید..." id="menu-href-input" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="name input">
+                                <label class="input-title">دوره های منو</label>
+                                <div class="d-flex flex-column menu-all-courses-container">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="bottom-form">
+                                <div class="submit-btn">
+                                    <input type="submit" value="افزودن">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="home-content-latset-users">
+                        <div class="home-content-users-title">
+                            <span>لیست <span class="signup">منوها</span></span>
+                        </div>
+                        <div class="home-content-users-table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>عنوان منو</th>
+                                        <th>مقصد منو</th>
+                                        <th>دوره های منو</th>
+                                        <th>ویرایش</th>
+                                        <th>حذف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="delete-modal">
+            <i class="far fa-trash-alt delete-modal-icon"></i>
+            <span class="delete-modal-title">از پاک کردن کاربر مطمئنی؟</span>
+            <div class="delete-modal-btns">
+                <button class="delete-modal-btn-no">خیر</button>
+                <button class="delete-modal-btn-yes">بله</button>
+            </div>
+        </div>
+        <div id="overlay"></div>
+    </div>
+    <script src="vendor/FontAwesome/FontAwesome.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../shared.js" type="module"></script>
+    <script src="js/script.js" type="module"></script>
+</body>
+
+</html>

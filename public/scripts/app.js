@@ -1,6 +1,6 @@
 import {
     createArticlesTemplate,
-    createCourseTemplate, getEachCategoriesCoursesEn,
+    createCourseTemplate, getAllCategories,
     getLastCreatedCourses,
     getLastEditedCourses,
     getPopularCourses,
@@ -37,12 +37,13 @@ window.addEventListener('load', async () => {
             }
         }
     })
-    const [latestCourses, newestCourses, publishedArticles, preSaleCourses, popularCourses] = await Promise.all([
+    const [latestCourses, newestCourses, publishedArticles, preSaleCourses, popularCourses, allCategories] = await Promise.all([
         getLastEditedCourses(),
         getLastCreatedCourses(),
         getPublishedArticles(),
         getPreSaleCourses(),
-        getPopularCourses()
+        getPopularCourses(),
+        getAllCategories()
     ])
 
     // handle search input in the header of page
@@ -56,8 +57,10 @@ window.addEventListener('load', async () => {
 
     for (const category of Array.from(categories)) {
         const index = Array.from(categories).indexOf(category);
-        categoryCoursesCount[index].innerHTML = (await getEachCategoriesCoursesEn(category.getAttribute('data-value'))).length.toString()
+        const targetCat = allCategories.find(cat => cat.name === category.getAttribute('data-value'))
+        categoryCoursesCount[index].innerHTML = targetCat?.coursesCount.toString() || "0"
     }
+
 
     const latestCoursesWrapper = document.querySelector('.latest-courses--wrapper')
     latestCoursesWrapper.innerHTML = await createCourseTemplate(latestCourses.slice(0, 12), false)

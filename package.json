@@ -6,6 +6,7 @@
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./public/css/app.css --watch"
   },
   "dependencies": {
+    "ckeditor5-direction": "^1.0.1",
     "jalaali-js": "^1.2.6"
   }
 }

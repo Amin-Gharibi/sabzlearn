@@ -16,8 +16,16 @@ window.addEventListener('load', async () => {
     })
     const response = await fetch(`http://localhost:4000/v1/articles/${getSearchParam('article')}`)
     const article = await response.json()
-    console.log(article)
     const lastEditedArticles = (await getLastEditedArticles()).slice(0, 5)
+
+    if (!article.publish) {
+        document.body.innerHTML = `
+            <div class="h-screen flex justify-center items-center text-zinc-700 dark:text-white">
+            شما مجاز به ورود به این صفحه نیستید!
+            </div>    
+    `
+        return false
+    }
 
     // make address bar dynamic
     const pageAddressBar = document.querySelector('.page-address-bar')
@@ -38,7 +46,7 @@ window.addEventListener('load', async () => {
     const articleMainContentWrapper = document.querySelector('.article--main-content')
     articleMainContentWrapper.insertAdjacentHTML('beforeend', `
         <!--article cover-->
-        <img src="http://localhost:4000/courses/covers/${article.cover}" alt="${article.title}" class="w-full block mb-6 rounded-3xl">
+        <img src="http://localhost:4000/articles/${article.cover}" alt="${article.title}" class="w-full block mb-6 rounded-3xl">
         <!--article text-->
         <div class="article--text max-h-[800px] dark:text-white text-lg/7 lg:text-xl/9 overflow-hidden">
             ${article.body}

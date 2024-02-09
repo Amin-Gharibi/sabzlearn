@@ -15,8 +15,8 @@ const register = () => {
 
     const newUserInfos = {
         name: username.value.trim(),
-        username: username.value.trim(),
-        email: email.value.trim(),
+        username: username.value.trim().toLowerCase(),
+        email: email.value.trim().toLowerCase(),
         phone: phone.value.trim(),
         password: password.value.trim(),
         confirmPassword: password.value.trim()
@@ -47,16 +47,16 @@ const register = () => {
                     setTimeout(() => {
                         location.href = 'index.html'
                     }, 1000)
+                    return response.json()
                 } else if (response.status === 409) {
                     alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'این نام کاربری یا ایمیل قبلا استفاده شده است!')
+                } else if (response.status === 403) {
+                    alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'متاسفانه این شماره تلفن بن شده است!')
+                } else {
+                    alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'خطا در ارتباط با سرور. لطفا مجدد تلاش کنید')
                 }
-                return response.json()
-                    .then(data => {
-                        saveToLocalStorage('user', {token: data.accessToken})
-                    })
-            })
-            .catch(() => {
-                alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'خطا در ارتباط با سرور. لطفا مجدد تلاش کنید')
+            }).then(data => {
+                saveToLocalStorage('user', {token: data?.accessToken})
             })
     }
 }
@@ -67,7 +67,7 @@ const login = () => {
     const passwordInput = document.querySelector('#password-input');
 
     const userInfos = {
-        identifier: identifierInput.value.trim(),
+        identifier: identifierInput.value.trim().toLowerCase(),
         password: passwordInput.value.trim()
     }
 
@@ -81,21 +81,28 @@ const login = () => {
             },
             body: JSON.stringify(userInfos)
         }).then(response => {
-            return response.json()
-        })
-            .then(data => {
-                if (data.message && data.message === "password is not correct") {
-                    alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'نام کاربری یا رمز عبور درست نیست!')
-                } else if (data === "there is no user with this email or username") {
-                    alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'کاربری با این اطلاعات یافت نشد')
-                } else {
-                    alert(document.body, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
-                    saveToLocalStorage('user', {token: data.accessToken})
-                    setTimeout(() => {
+            if (response.status === 401) {
+                alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'نام کاربری یا رمز عبور اشتباه است!')
+            } else if (response.status === 403) {
+                alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'متاسفانه این شماره تلفن بن شده است!')
+            } else {
+                return response.json()
+            }
+        }).then(data => {
+            saveToLocalStorage('user', {token: data?.accessToken})
+            data && alert(document.body, 'check-circle', 'primary', 'موفق', 'با موفقیت وارد شدید')
+            data && getMe().then(res => {
+                const user = res
+
+                setTimeout(() => {
+                    if (user.role === "ADMIN" || user.role === "TEACHER") {
+                        location.href = 'admin-panel/main'
+                    } else {
                         location.href = document.referrer
-                    }, 1000)
-                }
+                    }
+                }, 1000)
             })
+        })
     }
 }
 
@@ -113,6 +120,10 @@ const getMe = async () => {
             'Authorization': `Bearer ${userToken}`
         }
     })
+    if (request.status === 403 || request.status === 401) {
+        logOut()
+        return false
+    }
 
     return await request.json()
 }

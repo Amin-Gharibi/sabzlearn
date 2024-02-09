@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبزلرن | پنل ادمین</title>
+    <link rel="stylesheet" href="vendor/BootStrap/Bootstrap5.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../Menus/css/main.css">
+    <link rel="shortcut icon" href="../../images/logos/favIcon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="content">
+        <div id="sidebar" class="col-2">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="#"><img src="img/logo.png" alt="Logo"></a>
+                </div>
+                <div class="sidebar-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div class="sidebar-menu mt-0">
+                <ul>
+                    <li id="EditAdmin"><a href="../EditAdmin"><span>من</span></a></li>
+                    <li id="main"><a href="../main"><span>صفحه اصلی</span></a></li>
+                    <li id="Courses"><a href="../Courses"><span>دوره ها</span></a></li>
+                    <li id="َAddNewSession"><a href="../AddNewSession"><span>جلسات</span></a></li>
+                    <li id="Menus"><a href="../Menus"><span>منو ها</span></a></li>
+                    <li id="Blogs"><a href="../Blogs"><span>مقاله ها</span></a></li>
+                    <li id="Users"><a href="../Users"><span>کاربران</span></a></li>
+                    <li id="Categories"><a href="../Categories"><span>دسته‌بندی‌ ها</span></a></li>
+                    <li id="RedeemCodes"><a href="../RedeemCodes"><span>کدهای تخفیف</span></a></li>
+                    <li id="comments"><a href="../comments"><span>کامنت ها</span></a></li>
+                    <li id="tickets"><a href="../tickets"><span>تیکت‌ ها</span></a></li>
+                    <li id="log-out-btn"><a href="#"><span>خروج</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="home" class="col-10">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="home-header">
+                        <div class="home-right">
+                            <div class="home-searchbar">
+                                <input type="text" class="search-bar" placeholder="جستجو...">
+                            </div>
+                            <div class="home-notification">
+                                <button type="button">
+                                    <i class="far fa-bell"></i>
+                                </button>
+                            </div>
+                            <div class="home-notification-modal">
+                                <ul class="home-notification-modal-list">
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                    <li class="home-notification-modal-item">
+                                        <span class="home-notification-modal-text">پیغام ها</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="home-left">
+                            <div class="home-profile">
+                                <div class="home-profile-image">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="home-profile-name">
+                                    <span class="admin-name"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" id="home-content">
+                <div class="container">
+                    <div class="home-title">
+                        <span>افزودن دوره جدید</span>
+                    </div>
+                    <form class="form" id="add-course-form">
+                        <div class="col-6">
+                            <div class="name input">
+                                <label class="input-title">نام دوره</label>
+                                <input required type="text" id="course-name-input" placeholder="لطفا نام دوره را وارد کنید...">
+                                <span class="error-message text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-around align-items-start">
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">قیمت دوره<span style="opacity: 0.5; font-size: 10px;">(بدون کاما)</span></label>
+                                    <input required type="text" id="course-price-input" placeholder="لطفا قیمت دوره را وارد کنید...">
+                                </div>
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">تخفیف دوره<span style="opacity: 0.5; font-size: 10px;">(بصورت درصد. مثال: 50)</span></label>
+                                    <input required type="number" min="0" max="100" id="course-discount-input" placeholder="لطفا تخفیف دوره را وارد کنید...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="name input">
+                                <label class="input-title">توضیحات دوره</label>
+                            </div>
+                            <div class="name input">
+                                <textarea id="course-description-input" rows="10" cols="70" style="padding: 2px;" required></textarea>
+                                <span class="error-message text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-around align-items-start">
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">تعداد حدودی جلسات</label>
+                                    <input required type="number" min="0" id="course-sessions-input" placeholder="لطفا تعداد حدودی جلسات را وارد کنید...">
+                                </div>
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">نام کوتاه دوره<span style="opacity: 0.5; font-size: 10px;">(short-name)</span></label>
+                                    <input required type="text" id="course-shortname-input" placeholder="لطفا نام کوتاه دوره را به انگلیسی وارد کنید...">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-around align-items-start">
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">پیش نیازهای دوره</label>
+                                    <input required type="text" id="course-requirements-input" placeholder="لطفا پیش نیازهای دوره را وارد کنید...">
+                                </div>
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">نحوه پشتیبانی</label>
+                                    <input required type="text" id="course-support-input" placeholder="لطفا نحوه پشتیبانی دوره را وارد کنید...">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-around align-items-start">
+                                <div class="name input" style="width: 100%">
+                                    <label class="input-title">نحوه مشاهده دوره</label>
+                                    <input required type="text" id="course-watching-option-input" placeholder="لطفا نحوه مشاهده دوره را وارد کنید...">
+                                </div>
+                                <div class="name input" id="course-category-input-container" style="width: 100%">
+                                    <label class="input-title">دسته بندی</label>
+                                    <select id="course-category-input" required style="font-size: 13px">
+                                        <option value="0">لطفا دسته بندی دوره را انتخاب کنید...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-around align-items-start">
+                                <div class="name input" id="cover-input-container" style="width: 100%">
+                                    <label class="input-title">کاور دوره</label>
+                                    <input required type="file" id="course-cover-input" accept=".jpeg, .jpg, .png, .webp">
+                                </div>
+                                <div class="name input" id="course-status-input-container" style="width: 100%">
+                                    <label class="input-title">وضعیت</label>
+                                    <select id="course-status-input" required style="font-size: 13px">
+                                        <option value="0">لطفا وضعیت دوره را انتخاب کنید...</option>
+                                        <option value="1">پیش فروش</option>
+                                        <option value="2">در حال ضبط</option>
+                                        <option value="3">پایان یافته</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="bottom-form">
+                                <div class="submit-btn">
+                                    <input type="submit" value="افزودن">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="home-content-products">
+                        <div class="home-content-products-title">
+                            <span>لیست <span class="signup">دوره ها</span></span>
+                        </div>
+                        <div class="home-content-products-table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>نام دوره</th>
+                                        <th>نام کوتاه</th>
+                                        <th>تعداد دانشجویان</th>
+                                        <th>وضعیت</th>
+                                        <th>قیمت</th>
+                                        <th>نام استاد</th>
+                                        <th>ویرایش</th>
+                                        <th>حذف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../shared.js" type="module"></script>
+    <script src="js/script.js" type="module"></script>
+</body>
+
+</html>

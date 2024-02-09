@@ -1,7 +1,6 @@
 import {
     addSearchParam,
-    clearSearchParams,
-    getAllEnCategories, getAllFaCategories,
+    clearSearchParams, getAllCategories,
     getCourses,
     getSearchParam,
     removeSearchParam, searchFormSubmissionHandler,
@@ -18,13 +17,8 @@ window.addEventListener('load', async () => {
         const pageTitle = document.querySelector('.page-title')
         categoriesWrapper.classList.remove('sm:block')
         // change page title
-        const [enCategories, faCategories] = await Promise.all([getAllEnCategories(), getAllFaCategories()])
-        // create an object with english categories as key and persian categories as value
-        const resultObject = enCategories.reduce((result, key, index) => {
-            result[key] = faCategories[index];
-            return result;
-        }, {});
-        pageTitle.innerHTML = (getSearchParam('s') && `جستجو: ${getSearchParam('s')}`) || (resultObject[getSearchParam('cat')] || getSearchParam('cat'))
+        const categories = await getAllCategories()
+        pageTitle.innerHTML = (getSearchParam('s') && `جستجو: ${getSearchParam('s')}`) || (categories.find(category => category.name === getSearchParam('cat'))?.title || getSearchParam('cat'))
         if (getSearchParam('s')) {
             const searchInput = document.querySelector('.search-cat-form input:first-child')
             searchInput.value = getSearchParam('s')
@@ -45,7 +39,7 @@ window.addEventListener('load', async () => {
     let shownCoursesCount = 12
     let courses = await getCourses()
     // get all asynchronous functions
-    const [courseCategories] = await Promise.all([getAllEnCategories(), showCourseCategories(), showCoursesBasedOnUrl(courses, shownCoursesCount)])
+    const [courseCategories] = await Promise.all([getAllCategories(), showCourseCategories(), showCoursesBasedOnUrl(courses, shownCoursesCount)])
 
     const desktopSortingButtons = document.querySelectorAll('.sorting-data:not(.mobile-sorting-data) > button')
     const mobileSortingButtons = document.querySelectorAll('.mobile-sorting-data > button')
