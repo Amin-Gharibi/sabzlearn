@@ -2,8 +2,15 @@ import {getMe, logOut} from "../scripts/funcs/auth.js";
 
 const user = await getMe()
 
+if (user.role === 'USER') {
+    location.replace('../../index.html')
+}
+
 const logOutBtn = document.querySelector('#log-out-btn')
-logOutBtn.addEventListener('click', logOut)
+logOutBtn.addEventListener('click', () => {
+    logOut()
+    location.replace('../../index.html')
+})
 
 // activate sidebar menu item
 const sidebarMenuItems = document.querySelectorAll(".sidebar-menu > ul > li")

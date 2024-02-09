@@ -60,7 +60,7 @@ window.addEventListener('load', async () => {
         getApplyClosedTicketsCount(tickets)
         const userProfilePicElem = document.querySelectorAll('.user-profile-pictures')
         userProfilePicElem.forEach(pic => {
-            pic.setAttribute('src', `http://localhost:4000${data.profile || '/images/profile.png'}`)
+            pic.setAttribute('src', `http://localhost:4000/profile/${data.profile}`)
         })
 
         const logOutBtns = document.querySelectorAll('.log-out-btns')
@@ -190,7 +190,7 @@ window.addEventListener('load', async () => {
                         <a class="w-full h-full block" href="course-page.html?c=${course.shortName}/#lessons"
                            title="${course.name}">
                             <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="http://localhost:4000/courses/covers/${course.cover}"
+                                 src="http://localhost:4000/courses/${course.cover}"
                                  alt="${course.name}">
                         </a>
                     </div>
