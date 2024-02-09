@@ -1764,6 +1764,10 @@ input:checked~.filtering--special-items__toggle:after {
   margin-bottom: 2.5rem;
 }
 
+.mb-11 {
+  margin-bottom: 2.75rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -2000,6 +2004,10 @@ input:checked~.filtering--special-items__toggle:after {
   height: 5rem;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .h-4 {
   height: 1rem;
 }
@@ -2192,6 +2200,10 @@ input:checked~.filtering--special-items__toggle:after {
   width: 5rem;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .w-4 {
   width: 1rem;
 }
@@ -2348,6 +2360,10 @@ input:checked~.filtering--special-items__toggle:after {
   animation: spin 1s linear infinite;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -2424,6 +2440,10 @@ input:checked~.filtering--special-items__toggle:after {
 
 .gap-1 {
   gap: 0.25rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .gap-2 {
@@ -2552,6 +2572,10 @@ input:checked~.filtering--special-items__toggle:after {
 
 .gap-y-5 {
   row-gap: 1.25rem;
+}
+
+.gap-y-6 {
+  row-gap: 1.5rem;
 }
 
 .gap-y-8 {
@@ -2731,6 +2755,10 @@ input:checked~.filtering--special-items__toggle:after {
   border-width: 1px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-y {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -2778,6 +2806,11 @@ input:checked~.filtering--special-items__toggle:after {
 
 .border-transparent {
   border-color: transparent;
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .border-b-darkGray-700 {
@@ -2888,6 +2921,11 @@ input:checked~.filtering--special-items__toggle:after {
 
 .bg-sky-500\/50 {
   background-color: rgb(14 165 233 / 0.5);
+}
+
+.bg-sky-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 132 199 / var(--tw-bg-opacity));
 }
 
 .bg-slate-500 {
@@ -3061,6 +3099,10 @@ input:checked~.filtering--special-items__toggle:after {
   padding: 14px;
 }
 
+.p-\[18px\] {
+  padding: 18px;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -3211,6 +3253,10 @@ input:checked~.filtering--special-items__toggle:after {
 
 .pb-\[14px\] {
   padding-bottom: 14px;
+}
+
+.pb-\[18px\] {
+  padding-bottom: 18px;
 }
 
 .pl-12 {
@@ -4041,6 +4087,11 @@ span:has(+ .mobile-menu--submenu__open) {
   border-color: rgb(50 51 77 / var(--tw-border-opacity));
 }
 
+:is(.dark .dark\:border-darkGray-800) {
+  --tw-border-opacity: 1;
+  border-color: rgb(40 41 61 / var(--tw-border-opacity));
+}
+
 :is(.dark .dark\:border-darkSlate) {
   --tw-border-opacity: 1;
   border-color: rgb(74 75 109 / var(--tw-border-opacity));
@@ -4123,6 +4174,11 @@ span:has(+ .mobile-menu--submenu__open) {
 :is(.dark .dark\:bg-gray-700) {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-gray-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:bg-primary\/10) {
@@ -4240,6 +4296,11 @@ span:has(+ .mobile-menu--submenu__open) {
 :is(.dark .dark\:text-yellow-400) {
   --tw-text-opacity: 1;
   color: rgb(250 204 21 / var(--tw-text-opacity));
+}
+
+:is(.dark .dark\:text-zinc-700) {
+  --tw-text-opacity: 1;
+  color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
 :is(.dark .dark\:placeholder-darkGray-500)::-moz-placeholder {
@@ -4845,6 +4906,10 @@ span:has(+ .mobile-menu--submenu__open) {
     height: 8rem;
   }
 
+  .md\:h-44 {
+    height: 11rem;
+  }
+
   .md\:h-6 {
     height: 1.5rem;
   }
@@ -4885,6 +4950,10 @@ span:has(+ .mobile-menu--submenu__open) {
     width: 8rem;
   }
 
+  .md\:w-44 {
+    width: 11rem;
+  }
+
   .md\:w-6 {
     width: 1.5rem;
   }
@@ -4919,6 +4988,10 @@ span:has(+ .mobile-menu--submenu__open) {
 
   .md\:w-\[68px\] {
     width: 68px;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:flex-grow-0 {
@@ -4998,8 +5071,18 @@ span:has(+ .mobile-menu--submenu__open) {
     margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
   }
 
+  .md\:space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+  }
+
   .md\:rounded-2xl {
     border-radius: 1rem;
+  }
+
+  .md\:border-4 {
+    border-width: 4px;
   }
 
   .md\:border-none {
@@ -5364,6 +5447,14 @@ span:has(+ .mobile-menu--submenu__open) {
 }
 
 @media (min-width: 1280px) {
+  .xl\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
+  .xl\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .xl\:col-span-3 {
     grid-column: span 3 / span 3;
   }
