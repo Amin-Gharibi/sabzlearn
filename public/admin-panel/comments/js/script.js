@@ -1,7 +1,7 @@
 import {getToken, intlDateToPersianDate} from "../../../scripts/utils/utils.js";
 
 const response = await fetch('http://localhost:4000/v1/comments')
-const allComments = await response.json()
+const allComments = (await response.json()).reverse()
 
 const commentsContainer = document.querySelector('tbody')
 allComments.forEach((comment, index) => {
