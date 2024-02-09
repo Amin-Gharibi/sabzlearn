@@ -15,7 +15,7 @@ import {
 import {getMe, logOut} from "./funcs/auth.js";
 import {showRecentTicketsHandler} from "./funcs/tickets.js";
 import {toggleMobileMenu, toggleProfileDropDown} from "./shared/header.js"
-import {passwordValidation} from "./funcs/informationValidation.js";
+import {emailValidation, passwordValidation} from "./funcs/informationValidation.js";
 
 let $ = document
 const userProfileBtn = $.querySelector('#user-profile')
@@ -269,6 +269,11 @@ window.addEventListener('load', async () => {
             editAccountInfoForm.addEventListener('submit', event => {
                 event.preventDefault()
 
+                if (!emailValidation(userEmailInput.value.trim())) {
+                    alert(document.body, 'close-circle', 'alert-red', 'دقت', 'ایمیل مورد نظر قابل قبول نیست!')
+                    return false;
+                }
+
                 const sendingBody = new FormData();
                 sendingBody.append('name', userFirstNameInput.value.trim() + ' ' + userLastNameInput.value.trim())
                 sendingBody.append('email', userEmailInput.value.trim())
@@ -281,7 +286,6 @@ window.addEventListener('load', async () => {
                     },
                     body: sendingBody
                 }).then(res => {
-                    console.log(res)
                     if (res.ok) {
                         alert(document.body, 'check-circle', 'primary', 'موفق', 'اطلاعات شما با موفقیت ویرایش شد!')
                     } else {

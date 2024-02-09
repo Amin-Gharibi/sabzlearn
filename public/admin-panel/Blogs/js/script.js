@@ -129,7 +129,6 @@ const deleteArticleHandler = articleId => {
 					"Authorization": `Bearer ${getToken()}`
 				}
 			}).then(res => {
-				console.log(res)
 				if (res.status === 200) {
 					Swal.fire({
 						title: "موفق",
@@ -197,7 +196,6 @@ addArticleForm.addEventListener('submit', event => {
 		},
 		body: sendingBody
 	}).then(res => {
-		console.log(res)
 		if (res.status === 201) {
 			swal.fire({
 				title: "موفق",
@@ -218,8 +216,6 @@ addArticleForm.addEventListener('submit', event => {
 			})
 		}
 		return res.json()
-	}).then(data => {
-		console.log(data)
 	})
 })
 
