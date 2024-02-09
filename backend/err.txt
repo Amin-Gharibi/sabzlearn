@@ -1,0 +1,30 @@
+On Windows, you can use the `netstat` and `taskkill` commands in Command Prompt (CMD) to identify the process using a specific port and terminate it. Here's a step-by-step guide:
+
+1. **Open Command Prompt:**
+   Press `Win + R` to open the Run dialog, type `cmd`, and press Enter.
+
+2. **Find the Process ID (PID) using the Port:**
+   Run the following command to find the process ID (PID) associated with the port (replace `4000` with your actual port number):
+
+   ```bash
+   netstat -ano | find "4000"
+   ```
+
+   Look for the line with your port number. The last column will be the PID.
+
+3. **Terminate the Process:**
+   Once you have the PID, you can use the `taskkill` command to terminate the process:
+
+   ```bash
+   taskkill /F /PID PID
+   ```
+
+   Replace `PID` with the actual process ID you obtained from the previous step. The `/F` flag forces the termination of the process.
+
+For example, if the PID is 1234, you would run:
+
+```bash
+taskkill /F /PID 1234
+```
+
+Please note that terminating a process forcefully can lead to data loss or corruption, so be sure that the process you are terminating is not critical. If the process is essential, try to find a way to gracefully stop it or reconfigure your application to use a different port.
