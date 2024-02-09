@@ -15,6 +15,7 @@ import {
 import {getMe, logOut} from "./funcs/auth.js";
 import {showRecentTicketsHandler} from "./funcs/tickets.js";
 import {toggleMobileMenu, toggleProfileDropDown} from "./shared/header.js"
+import {passwordValidation} from "./funcs/informationValidation.js";
 
 let $ = document
 const userProfileBtn = $.querySelector('#user-profile')
@@ -222,6 +223,115 @@ window.addEventListener('load', async () => {
             if (freeCoursesCountTitle) {
                 freeCoursesCountTitle.innerHTML = (data.courses.length - getApplyPricedCoursesCount(data.courses)).toString()
             }
+        } else if (getSearchParam('sec') === 'my-infos') {
+            const user = await getMe()
+            targetSection.classList.remove('hidden')
+
+            // set default values
+            const profileImageTag = document.querySelector('#profile-image-tag')
+            profileImageTag.setAttribute('src', `http://localhost:4000/profile/${user.profile}`)
+
+            const userPhoneNumberInput = document.querySelector('#phone')
+            userPhoneNumberInput.setAttribute('value', user.phone)
+
+            const userFirstNameInput = document.querySelector('#first_name')
+            userFirstNameInput.setAttribute('value', (user.name).split(' ')[0])
+
+            const userLastNameInput = document.querySelector('#last_name')
+            userLastNameInput.setAttribute('value', (user.name).split(' ')[1] || '')
+
+            const userNameInput = document.querySelector('#username')
+            userNameInput.setAttribute('value', user.username)
+
+            const userEmailInput = document.querySelector('#email')
+            userEmailInput.setAttribute('value', user.email)
+
+            const editAccountInfoForm = document.querySelector('#edit-account-info')
+            editAccountInfoForm.setAttribute('data-value', user._id)
+
+            const editAccountPasswordForm = document.querySelector('#edit-account-password')
+            editAccountPasswordForm.setAttribute('data-value', user._id)
+
+            // handle changing profile picture
+            const profileInput = document.querySelector('#profile-input')
+            profileInput.addEventListener('change', event => {
+                const selectedFile = event.target.files[0];
+                if (selectedFile) {
+                    const reader = new FileReader()
+                    reader.onload = event => {
+                        profileImageTag.src = event.target.result
+                    }
+                    reader.readAsDataURL(selectedFile)
+                }
+            })
+
+            // handle changing initial infos
+            editAccountInfoForm.addEventListener('submit', event => {
+                event.preventDefault()
+
+                const sendingBody = new FormData();
+                sendingBody.append('name', userFirstNameInput.value.trim() + ' ' + userLastNameInput.value.trim())
+                sendingBody.append('email', userEmailInput.value.trim())
+                sendingBody.append('profile', profileInput.files[0])
+
+                fetch(`http://localhost:4000/v1/users/${event.target.getAttribute('data-value')}`, {
+                    method: 'PUT',
+                    headers: {
+                        "Authorization": `Bearer ${getToken()}`
+                    },
+                    body: sendingBody
+                }).then(res => {
+                    console.log(res)
+                    if (res.ok) {
+                        alert(document.body, 'check-circle', 'primary', 'موفق', 'اطلاعات شما با موفقیت ویرایش شد!')
+                    } else {
+                        alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'خطایی در ویرایش اطلاعات رخ داد!')
+                    }
+                })
+            })
+
+
+            // handle changing account password
+            editAccountPasswordForm.addEventListener('submit', event => {
+                event.preventDefault()
+
+                const currentPasswordInput = document.querySelector('#old_pass')
+                const newPasswordInput = document.querySelector('#new_pass')
+
+                if (!passwordValidation(newPasswordInput.value.trim())) {
+                    alert(document.body, 'close-circle', 'alert-red', 'دقت', 'رمز عبور جدید قابل قبول نیست!')
+                    return false;
+                }
+
+                const sendingBody = {
+                    currentPassword: currentPasswordInput.value.trim(),
+                    newPassword: newPasswordInput.value.trim()
+                }
+
+                fetch(`http://localhost:4000/v1/users/${event.target.getAttribute('data-value')}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${getToken()}`
+                    },
+                    body: sendingBody
+                }).then(res => {
+                    if (res.ok) {
+                        alert(document.body, 'check-circle', 'primary', 'موفق', 'رمز عبور شما با موفقیت عوض شد!')
+                        setTimeout(() => {
+                            logOut()
+                            location.href = 'login-email.html'
+                        }, 2000)
+                    } else if (res.status === 403) {
+                        alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'رمز عبور کنونی شما درست نیست!')
+                        setTimeout(() => {
+                            logOut()
+                            location.href = 'login-email.html'
+                        }, 2000)
+                    } else {
+                        alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'خطایی در عوض کردن رمز عبور شما رخ داد!')
+                    }
+                })
+            })
         }
     }
 })

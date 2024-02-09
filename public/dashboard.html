@@ -22,6 +22,10 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
     </symbol>
 
+    <symbol id="arrow-path-rounded-square-mini" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 4.5c1.215 0 2.417.055 3.604.162a.68.68 0 0 1 .615.597c.124 1.038.208 2.088.25 3.15l-1.689-1.69a.75.75 0 0 0-1.06 1.061l2.999 3a.75.75 0 0 0 1.06 0l3.001-3a.75.75 0 1 0-1.06-1.06l-1.748 1.747a41.31 41.31 0 0 0-.264-3.386 2.18 2.18 0 0 0-1.97-1.913 41.512 41.512 0 0 0-7.477 0 2.18 2.18 0 0 0-1.969 1.913 41.16 41.16 0 0 0-.16 1.61.75.75 0 1 0 1.495.12c.041-.52.093-1.038.154-1.552a.68.68 0 0 1 .615-.597A40.012 40.012 0 0 1 10 4.5ZM5.281 9.22a.75.75 0 0 0-1.06 0l-3.001 3a.75.75 0 1 0 1.06 1.06l1.748-1.747c.042 1.141.13 2.27.264 3.386a2.18 2.18 0 0 0 1.97 1.913 41.533 41.533 0 0 0 7.477 0 2.18 2.18 0 0 0 1.969-1.913c.064-.534.117-1.071.16-1.61a.75.75 0 1 0-1.495-.12c-.041.52-.093 1.037-.154 1.552a.68.68 0 0 1-.615.597 40.013 40.013 0 0 1-7.208 0 .68.68 0 0 1-.615-.597 39.785 39.785 0 0 1-.25-3.15l1.689 1.69a.75.75 0 0 0 1.06-1.061l-2.999-3Z" clip-rule="evenodd" />
+    </symbol>
+
     <symbol id="home" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round"
@@ -294,6 +298,13 @@
                 </svg>
                 تیکت ها
             </a>
+            <a href="dashboard.html?sec=my-infos" data-value="my-infos"
+               class="desktop-menu--items flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
+                <svg class="w-6 h-6">
+                    <use href="#user"></use>
+                </svg>
+                جزئیات حساب
+            </a>
             <button type="button" class="log-out-btns flex items-center gap-x-2.5 h-10 px-3 rounded-lg">
                 <svg class="w-6 h-6">
                     <use href="#logout-icon"></use>
@@ -412,6 +423,16 @@
                                     </svg>
                                     <span>
                                         تیکت های پشتیبانی
+                                    </span>
+                                </a>
+                                <!--my infos-->
+                                <a href="dashboard.html?sec=my-infos"
+                                   class="w-full h-[46px] flex justify-start items-center gap-x-3 hover:bg-gray-100 dark:hover:bg-darkSlate px-2.5 rounded-xl transition-colors">
+                                    <svg class="w-5 h-5">
+                                        <use href="#chat-bubble"></use>
+                                    </svg>
+                                    <span>
+                                        جزئیات حساب
                                     </span>
                                 </a>
                             </div>
@@ -730,6 +751,72 @@
                     <div class="recent-tickets--wrapper">
                         <!--each ticket-->
 
+                    </div>
+                </div>
+            </div>
+
+            <!--my infos-->
+            <div id="my-infos" class="dashboard--sections hidden">
+                <div class="px-5 md:px-0 ">
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
+                        <div class="xl:col-span-2 bg-white dark:bg-gray-800 p-[18px] rounded-2xl">
+                            <div class="pb-[18px] border-b border-b-gray-200 dark:border-b-darkSlate">
+                                <span class="font-danaMedium md:text-xl text-zinc-700 dark:text-white">جزئیات حساب کاربری</span>
+                            </div>
+                            <form id="edit-account-info" class="p-3.5 pt-8">
+                                <div class="relative mb-11">
+                                    <img src="" id="profile-image-tag" class="w-32 md:w-44 h-32 md:h-44 rounded-full">
+                                    <label for="profile-input" class="absolute bottom-0 right-0 flex justify-center items-center w-10 md:w-14 h-10 md:h-14 rounded-full bg-sky-600 dark:bg-secondary dark:hover:bg-blue-600 border-2 md:border-4 border-white dark:border-darkGray-800 cursor-pointer transition-colors">
+                                        <svg class="w-5 md:w-6 h-5 md:h-6 text-white">
+                                            <use href="#arrow-path-rounded-square-mini"></use>
+                                        </svg>
+                                    </label>
+                                    <input type="file" class="absolute hide" id="profile-input" accept=".jpg, .jpeg, .png, .webp">
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-6">
+                                    <div>
+                                        <label for="phone" class="font-danaDemiBold text-zinc-700 dark:text-white">شماره موبایل</label>
+                                        <input type="text" id="phone" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-200 text-base border border-transparent tracking-tight cursor-not-allowed rounded-xl transition-all" style="direction: rtl;" disabled>
+                                    </div>
+                                    <div class="hidden md:block"></div>
+                                    <div>
+                                        <label for="first_name" class="font-danaDemiBold text-zinc-700 dark:text-white">نام</label>
+                                        <input type="text" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-100 text-base border border-transparent focus-within:border-gray-300 outline-0 tracking-tight rounded-xl transition-all" id="first_name" name="first_name" required>
+                                    </div>
+                                    <div>
+                                        <label for="last_name" class="font-danaDemiBold text-zinc-700 dark:text-white">نام خانوادگی</label>
+                                        <input type="text" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-100 text-base border border-transparent focus-within:border-gray-300 outline-0 tracking-tight rounded-xl transition-all" id="last_name" name="last_name">
+                                    </div>
+                                    <div>
+                                        <label for="username" class="font-danaDemiBold text-zinc-700 dark:text-white">نام کاربری</label>
+                                        <input type="text" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-200 text-base border border-transparent tracking-tight cursor-not-allowed rounded-xl transition-all" disabled="" id="username">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="font-danaDemiBold text-zinc-700 dark:text-white">ایمیل</label>
+                                        <input type="email" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-100 text-base border border-transparent focus-within:border-gray-300 outline-0 tracking-tight rounded-xl transition-all" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="flex justify-center items-center w-full md:w-auto h-14 gap-y-2 mr-auto mt-10 px-7 bg-primary hover:bg-green-500 text-xl text-white dark:text-zinc-700 rounded-xl">ثبت اطلاعات</button>
+                            </form>
+                        </div>
+                        <div class="xl:col-span-1 bg-white dark:bg-gray-800 p-4.5 rounded-2xl">
+                            <div class="p-[18px] border-b border-b-gray-200 dark:border-b-darkSlate">
+                                <span class="font-danaMedium md:text-xl text-zinc-700 dark:text-white">تغییر رمز عبور</span>
+                            </div>
+                            <form id="edit-account-password" class="p-3.5 pt-8">
+                                <div class="space-y-5 md:space-y-6">
+                                    <div>
+                                        <label for="old_pass" class="font-danaDemiBold text-zinc-700 dark:text-white">رمز عبور فعلی</label>
+                                        <input type="password" id="old_pass" name="old_pass" required="" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-100 text-base border border-transparent focus-within:border-gray-300 outline-0 tracking-tight rounded-xl transition-all" placeholder="رمز فعلی را وارد کنید">
+                                    </div>
+                                    <div>
+                                        <label for="new_pass" class="font-danaDemiBold text-zinc-700 dark:text-white">رمز عبور جدید</label>
+                                        <input type="password" class="w-full h-14 px-5 mt-3.5 md:mt-4 bg-gray-100 text-base border border-transparent focus-within:border-gray-300 outline-0 tracking-tight rounded-xl transition-all" id="new_pass" name="new_pass" required="" placeholder="رمز جدید را وارد کنید">
+                                    </div>
+                                </div>
+                                <button type="submit" class="flex justify-center items-center w-full md:w-auto h-14 gap-y-2 mr-auto mt-10 px-7 bg-primary hover:bg-green-500 text-xl text-white dark:text-zinc-700 rounded-xl">تغییر رمز</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
