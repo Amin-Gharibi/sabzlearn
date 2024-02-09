@@ -88,7 +88,6 @@ const removeCategoryHandler = catId => {
           "Authorization": `Bearer ${getToken()}`
         }
       }).then(res => {
-        console.log(res)
         if (res.status !== 200) {
           swal.fire({
             title: "ناموفق",

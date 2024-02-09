@@ -88,7 +88,6 @@ const answerTicketHandler = ticketId => {
 					ticketID: ticketId
 				})
 			}).then(res => {
-				console.log(res)
 				if (res.status === 200) {
 					Swal.fire({
 						title: "موفق",

@@ -207,8 +207,6 @@ editBtns.forEach(btn => {
 const editCourseHandler = courseId => {
 	const targetCourse = allCourses.find(course => course._id === courseId)
 
-	console.log(targetCourse)
-
 	let courseName = HTMLInputElement
 	let coursePrice = HTMLInputElement
 	let courseDiscount = HTMLInputElement

@@ -281,7 +281,6 @@ window.addEventListener('load', async () => {
                     },
                     body: sendingBody
                 }).then(res => {
-                    console.log(res)
                     if (res.ok) {
                         alert(document.body, 'check-circle', 'primary', 'موفق', 'اطلاعات شما با موفقیت ویرایش شد!')
                     } else {

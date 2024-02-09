@@ -99,12 +99,6 @@ addUserForm.addEventListener('submit', event => {
 		newUserInfos.append('phone', formattedPhoneNumber)
 		newUserInfos.append('profile', profileInput.files[0])
 
-		for (const entry of newUserInfos.entries()) {
-			const [key, value] = entry;
-			console.log(key, value);
-		}
-
-
 		fetch('http://localhost:4000/v1/auth/register', {
 			method: 'POST',
 			body: newUserInfos

@@ -400,7 +400,7 @@ window.addEventListener('load', async () => {
     // function to handle connection between frontend and backend to add new comment
     const SendNewCommentHandler = () => {
         const commentContentInput = document.querySelector('#comment-textarea')
-        console.log(commentContentInput.value)
+
         const newCommentObj = {
             body: commentContentInput.value,
             courseShortName: course.shortName,
