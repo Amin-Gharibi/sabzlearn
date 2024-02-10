@@ -491,8 +491,7 @@ const getAllCategories = async () => {
 }
 
 // shows all the categories in the page
-const showCourseCategories = async () => {
-    const allCategories = await getAllCategories()
+const showCourseCategories = allCategories => {
     const courseCategoriesContainer = document.querySelector('.course-categories--wrapper')
     const mobileCourseCategoriesContainer = document.querySelector('.category-mobile__body')
 
