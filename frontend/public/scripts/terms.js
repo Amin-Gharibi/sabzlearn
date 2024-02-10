@@ -2,9 +2,7 @@ import {searchFormSubmissionHandler} from "./utils/utils.js";
 import {renderShared, sharedFetches} from "./shared/shared.js";
 import {footerFetches, renderFooter} from "./shared/footer.js";
 
-let $ = document
-
-$.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
     await fetchData();
 })
 
@@ -975,22 +973,4 @@ const renderPage = (user, headerMenus, popularCourses) => {
     searchForms.forEach(form => {
         form.addEventListener('submit', event => searchFormSubmissionHandler(event))
     })
-
-    // const userProfileBtn = $.querySelector('#user-profile')
-    // const themeChangerBtn = $.querySelectorAll('.theme-changer-btn')
-    // const hamburgerMenuBtn = $.querySelector('#hamburger-menu-btn')
-    // const mobileMenuCloseBtn = $.querySelector('#mobile-menu--close-btn')
-    // const mobileMenuOverlay = $.querySelector('.mobile-menu--overlay')
-    // const mobileMenuListItems = $.querySelectorAll('.mobile-menu--list-items')
-    //
-    // mobileMenuOverlay.addEventListener('click', toggleMobileMenu)
-    // mobileMenuCloseBtn.addEventListener('click', toggleMobileMenu)
-    // hamburgerMenuBtn.addEventListener('click', toggleMobileMenu)
-    // mobileMenuListItems.forEach(item => {
-    //     item.addEventListener('click', event => toggleSubMenusHandler(event))
-    // })
-    // userProfileBtn.addEventListener('click', toggleProfileDropDown)
-    // themeChangerBtn.forEach(btn => {
-    //     btn.addEventListener('click', changeThemeHandler)
-    // })
 }
