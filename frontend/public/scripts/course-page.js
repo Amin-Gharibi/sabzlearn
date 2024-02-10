@@ -793,7 +793,7 @@ const renderPage = (data, course, headerMenus, popularCourses, courseComments) =
         <h4 class="mb-1 text-2xl dark:text-white">
             ${course.creator.name}
         </h4>
-        <a href="teacher-page.html?n=${course.creator.username}" class="inline-flex gap-x-1.5 text-slate-500 dark:text-darkGray-500 text-sm">
+        <a href="teacher-page.html?teacher=${course.creator.username}" class="inline-flex gap-x-1.5 text-slate-500 dark:text-darkGray-500 text-sm">
             <span>
                 مدرس دوره
             </span>
