@@ -1,10 +1,10 @@
 import {getToken} from "../../../scripts/utils/utils.js";
 
-const response = await fetch('http://localhost:4000/v1/category')
+const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/category')
 const allCategories = await response.json()
 
 const categoriesContainer = document.querySelector('tbody')
-allCategories.forEach(cat => {
+allCategories.length && allCategories.forEach(cat => {
   categoriesContainer.insertAdjacentHTML('beforeend', `
     <tr>
         <td>${cat._id}</td>        
@@ -33,7 +33,7 @@ addCatForm.addEventListener('submit', event => {
     name: newCatName.value.trim()
   }
 
-  fetch('http://localhost:4000/v1/category', {
+  fetch('https://amingharibi-sabzlearn.liara.run/v1/category', {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${getToken()}`,
@@ -82,7 +82,7 @@ const removeCategoryHandler = catId => {
 
       const targetCat = allCategories.find(cat => cat._id === catId)
 
-      fetch(`http://localhost:4000/v1/category/${targetCat._id}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/category/${targetCat._id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${getToken()}`
@@ -152,7 +152,7 @@ const editCategoryHandler = async (catId, catName, catTitle) => {
           title,
           name
         }
-        fetch(`http://localhost:4000/v1/category/${catId}`, {
+        fetch(`https://amingharibi-sabzlearn.liara.run/v1/category/${catId}`, {
           method: "PUT",
           headers: {
             "Authorization": `Bearer ${getToken()}`,

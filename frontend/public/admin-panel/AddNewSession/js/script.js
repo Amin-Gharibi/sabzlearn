@@ -1,7 +1,7 @@
 import {getCourses, getToken} from "../../../scripts/utils/utils.js";
 import {getMe} from "../../../scripts/funcs/auth.js";
 
-let [ allCourses, user, allSessions ] = await Promise.all([getCourses(), getMe(), fetch(`http://localhost:4000/v1/courses/sessions`)])
+let [ allCourses, user, allSessions ] = await Promise.all([getCourses(), getMe(), fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/sessions`)])
 allSessions = (await allSessions.json()).reverse()
 if (user.role !== "ADMIN") {
   allCourses = allCourses.filter(course => {
@@ -84,7 +84,7 @@ form.addEventListener('submit', event => {
   sendingBody.append('video', sessionVideo.files[0])
   sendingBody.append('free', isSessionFree)
 
-  fetch(`http://localhost:4000/v1/courses/${coursesContainer.value}/sessions`, {
+  fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/${coursesContainer.value}/sessions`, {
     method: 'POST',
     headers: {
       "Authorization": `Bearer ${getToken()}`
@@ -129,7 +129,7 @@ const deleteSessionHandler = sessionId => {
     confirmButtonText: "حذف",
   }).then(willDelete => {
     if (willDelete.isConfirmed) {
-      fetch(`http://localhost:4000/v1/courses/sessions/${sessionId}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/sessions/${sessionId}`, {
         method: 'DELETE',
         headers: {
           "Authorization": `Bearer ${getToken()}`

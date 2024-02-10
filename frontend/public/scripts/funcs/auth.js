@@ -34,7 +34,7 @@ const register = () => {
     } else if (!passwordValidation(password.value.trim())) {
         alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'رمز عبور باید حداقل 8 کاراکتر شامل حداقل یک حرف بزرگ و یک کاراکتر ویژه باشد!')
     } else {
-        fetch('http://localhost:4000/v1/auth/register', {
+        fetch('https://amingharibi-sabzlearn.liara.run/v1/auth/register', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -74,7 +74,7 @@ const login = () => {
     if (!emailValidation(identifierInput.value.trim())) {
         alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'ایمیل درست نیست!')
     } else {
-        fetch('http://localhost:4000/v1/auth/login', {
+        fetch('https://amingharibi-sabzlearn.liara.run/v1/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ const getMe = async () => {
         return false
     }
 
-    const request = await fetch('http://localhost:4000/v1/auth/me', {
+    const request = await fetch('https://amingharibi-sabzlearn.liara.run/v1/auth/me', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${userToken}`

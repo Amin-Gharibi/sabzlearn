@@ -1,10 +1,10 @@
 import {getCourses, getToken} from "../../../scripts/utils/utils.js";
 
-const [discountsResponse, allCourses] = await Promise.all([fetch('http://localhost:4000/v1/offs', {headers: {"Authorization": `Bearer ${getToken()}`}}), getCourses()])
+const [discountsResponse, allCourses] = await Promise.all([fetch('https://amingharibi-sabzlearn.liara.run/v1/offs', {headers: {"Authorization": `Bearer ${getToken()}`}}), getCourses()])
 
 const allDiscounts = await discountsResponse.json()
 const discountsContainer = document.querySelector('tbody')
-allDiscounts.forEach(discount => {
+allDiscounts.length && allDiscounts.forEach(discount => {
   const targetCourse = allCourses.find(course => course._id === discount.course)
   discountsContainer.insertAdjacentHTML('beforeend', `
     <tr>
@@ -46,7 +46,7 @@ const deleteDiscountCodeHandler = discountCodeId => {
     confirmButtonText: "حذف",
   }).then(willDelete => {
     if (willDelete.isConfirmed) {
-      fetch(`http://localhost:4000/v1/offs/${discountCodeId}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/offs/${discountCodeId}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${getToken()}`
@@ -88,7 +88,7 @@ activateAllDiscountBtn.addEventListener('click', () => {
     return false;
   }
 
-  fetch('http://localhost:4000/v1/offs/setall', {
+  fetch('https://amingharibi-sabzlearn.liara.run/v1/offs/setall', {
     method: 'PUT',
     headers: {
       "Authorization": `Bearer ${getToken()}`,
@@ -131,7 +131,7 @@ deactivateAllCoursesDiscountInput.addEventListener('click', () => {
     confirmButtonText: "غیرفعال",
   }).then(willDelete => {
     if (willDelete.isConfirmed) {
-      fetch(`http://localhost:4000/v1/offs/unsetall`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/offs/unsetall`, {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${getToken()}`
@@ -199,7 +199,7 @@ activateOneCodeSubmitBtn.addEventListener('click', () => {
     max: maxUseInput.value.trim()
   }
 
-  fetch('http://localhost:4000/v1/offs', {
+  fetch('https://amingharibi-sabzlearn.liara.run/v1/offs', {
     method: 'POST',
     headers: {
       "Authorization": `Bearer ${getToken()}`,

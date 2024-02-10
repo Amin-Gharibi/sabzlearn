@@ -5,7 +5,7 @@ window.addEventListener('load', async () => {
         const course = await getCourseByShortName(getSearchParam('c'))
 
         const courseBannerImageElem = document.querySelector('#course-banner')
-        courseBannerImageElem.setAttribute('src', `http://localhost:4000/courses/${course.cover}`)
+        courseBannerImageElem.setAttribute('src', `https://amingharibi-sabzlearn.liara.run/courses/${course.cover}`)
 
         const courseNameElem = document.querySelector('#course-name')
         courseNameElem.innerHTML = course.name
@@ -35,7 +35,7 @@ window.addEventListener('load', async () => {
 
             const codeInput = document.querySelector('.redeem-code-form--input')
 
-            fetch(`http://localhost:4000/v1/offs/${codeInput.value}`, { // send request to use the redeem code
+            fetch(`https://amingharibi-sabzlearn.liara.run/v1/offs/${codeInput.value}`, { // send request to use the redeem code
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${getToken()}`,
@@ -79,7 +79,7 @@ window.addEventListener('load', async () => {
 
                     const deleteRedeemCodeBtn = document.querySelector('.delete-redeem-code')
                     deleteRedeemCodeBtn.addEventListener('click', () => {
-                        fetch(`http://localhost:4000/v1/offs/${codeInput.value}/cancel`, { // cancel the redeem code
+                        fetch(`https://amingharibi-sabzlearn.liara.run/v1/offs/${codeInput.value}/cancel`, { // cancel the redeem code
                             method: 'POST',
                             headers: {
                                 'Authorization': `Bearer ${getToken()}`,
@@ -130,7 +130,7 @@ window.addEventListener('load', async () => {
                 if (!previousPageUrl) { // if there was no previous url, it's suspicious
                     throw 1
                 } else {
-                    fetch(`http://localhost:4000/v1/courses/${course._id}/register`, { // add course to user's courses in db
+                    fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/${course._id}/register`, { // add course to user's courses in db
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${getToken()}`,

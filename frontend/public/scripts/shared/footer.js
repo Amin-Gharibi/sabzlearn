@@ -1,7 +1,7 @@
 window.addEventListener('load', async () => {
     const useFullCoursesContainer = document.querySelector("#footer-usefull-courses");
 
-    const response = await fetch('http://localhost:4000/v1/courses/popular')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/courses/popular')
     const popularCourses = await response.json()
 
 

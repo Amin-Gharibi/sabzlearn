@@ -61,7 +61,7 @@ window.addEventListener('load', async () => {
         getApplyClosedTicketsCount(tickets)
         const userProfilePicElem = document.querySelectorAll('.user-profile-pictures')
         userProfilePicElem.forEach(pic => {
-            pic.setAttribute('src', `http://localhost:4000/profile/${data.profile}`)
+            pic.setAttribute('src', `https://amingharibi-sabzlearn.liara.run/profile/${data.profile}`)
         })
 
         const logOutBtns = document.querySelectorAll('.log-out-btns')
@@ -86,7 +86,7 @@ window.addEventListener('load', async () => {
             const addTicketFormContainer = document.querySelector('#add-ticket-form-container')
             addTicketFormContainer.classList.remove('hidden')
 
-            const departmentsResponse = await fetch('http://localhost:4000/v1/tickets/departments')
+            const departmentsResponse = await fetch('https://amingharibi-sabzlearn.liara.run/v1/tickets/departments')
             const departments = await departmentsResponse.json()
             const departmentsSelectBox = document.querySelector('#department')
             departments.forEach(department => {
@@ -102,7 +102,7 @@ window.addEventListener('load', async () => {
                 event.preventDefault()
                 const selectedDepartmentIndex = departmentsSelectBox.selectedIndex
                 const selectedOption = departmentsSelectBox.options[selectedDepartmentIndex]
-                const subDepartmentOfSelectedDepartment = await (await fetch(`http://localhost:4000/v1/tickets/departments-subs/${selectedOption.value}`)).json()
+                const subDepartmentOfSelectedDepartment = await (await fetch(`https://amingharibi-sabzlearn.liara.run/v1/tickets/departments-subs/${selectedOption.value}`)).json()
                 const ticketTitle = document.querySelector('#title')
                 const ticketText = document.querySelector('#text')
                 if (ticketTitle.value.trim() && ticketText.value.trim() && selectedOption.value) {
@@ -113,7 +113,7 @@ window.addEventListener('load', async () => {
                         priority: 3,
                         body: ticketText.value.trim()
                     }
-                    fetch('http://localhost:4000/v1/tickets', {
+                    fetch('https://amingharibi-sabzlearn.liara.run/v1/tickets', {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -138,7 +138,7 @@ window.addEventListener('load', async () => {
         } else if ((getSearchParam('sec') === "my-tickets" && getSearchParam('add-ticket') && getSearchParam('ticket'))) {
             const ticketPage = document.querySelector('#ticket-page')
             ticketPage.classList.remove('hidden')
-            const response = await fetch(`http://localhost:4000/v1/tickets/answer/${getSearchParam('ticket')}`, {
+            const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/tickets/answer/${getSearchParam('ticket')}`, {
                 headers: {
                     "Authorization": `Bearer ${getToken()}`
                 }
@@ -191,7 +191,7 @@ window.addEventListener('load', async () => {
                         <a class="w-full h-full block" href="course-page.html?c=${course.shortName}/#lessons"
                            title="${course.name}">
                             <img class="block w-full h-full object-cover rounded-2xl"
-                                 src="http://localhost:4000/courses/${course.cover}"
+                                 src="https://amingharibi-sabzlearn.liara.run/courses/${course.cover}"
                                  alt="${course.name}">
                         </a>
                     </div>
@@ -229,7 +229,7 @@ window.addEventListener('load', async () => {
 
             // set default values
             const profileImageTag = document.querySelector('#profile-image-tag')
-            profileImageTag.setAttribute('src', `http://localhost:4000/profile/${user.profile}`)
+            profileImageTag.setAttribute('src', `https://amingharibi-sabzlearn.liara.run/profile/${user.profile}`)
 
             const userPhoneNumberInput = document.querySelector('#phone')
             userPhoneNumberInput.setAttribute('value', user.phone)
@@ -279,7 +279,7 @@ window.addEventListener('load', async () => {
                 sendingBody.append('email', userEmailInput.value.trim())
                 sendingBody.append('profile', profileInput.files[0])
 
-                fetch(`http://localhost:4000/v1/users/${event.target.getAttribute('data-value')}`, {
+                fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/${event.target.getAttribute('data-value')}`, {
                     method: 'PUT',
                     headers: {
                         "Authorization": `Bearer ${getToken()}`
@@ -312,7 +312,7 @@ window.addEventListener('load', async () => {
                     newPassword: newPasswordInput.value.trim()
                 }
 
-                fetch(`http://localhost:4000/v1/users/${event.target.getAttribute('data-value')}`, {
+                fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/${event.target.getAttribute('data-value')}`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `Bearer ${getToken()}`

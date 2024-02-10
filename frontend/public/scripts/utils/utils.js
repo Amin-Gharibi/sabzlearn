@@ -77,7 +77,7 @@ const getToken = () => {
 }
 
 const getHeaderMenus = async () => {
-    const response = await fetch('http://localhost:4000/v1/menus', {
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/menus', {
         method: 'GET',
     })
     return await response.json()
@@ -144,7 +144,7 @@ const getApplyPricedCoursesCount = courses => {
 }
 
 const getCourses = async () => {
-    const response = await fetch('http://localhost:4000/v1/courses')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/courses')
 
     return response.json()
 }
@@ -221,19 +221,19 @@ const getLastCreatedCourses = async () => {
 }
 
 const getPreSaleCourses = async () => {
-    const response = await fetch('http://localhost:4000/v1/courses/presell')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/courses/presell')
 
     return response.json()
 }
 
 const getPopularCourses = async () => {
-    const response = await fetch('http://localhost:4000/v1/courses/popular')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/courses/popular')
 
     return response.json()
 }
 
 const getArticles = async () => {
-    const response = await fetch('http://localhost:4000/v1/articles')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/articles')
 
     return response.json()
 }
@@ -241,7 +241,7 @@ const getArticles = async () => {
 const getPublishedArticles = async () => {
     const allArticles = await getArticles()
 
-    return allArticles.filter(article => article.publish)
+    return allArticles.length && allArticles.filter(article => article.publish) || []
 }
 
 const timeToHour = time => {
@@ -268,7 +268,7 @@ const createCourseTemplate = async (courses, isSwiperSlide) => {
                 <!--item image-->
                 <div class="w-full h-[168px] rounded-2xl overflow-hidden">
                     <a href="course-page.html?c=${course.shortName}" title="${course.name}" class="w-full h-full">
-                        <img src="http://localhost:4000/courses/${course.cover}" alt="${course.name}"
+                        <img src="https://amingharibi-sabzlearn.liara.run/courses/${course.cover}" alt="${course.name}"
                              loading="lazy"
                              class="w-full h-full object-cover">
                     </a>
@@ -473,7 +473,7 @@ const categoryCoursesLowerOptionsHandler = (courses, shownCoursesCount) => {
 
 const getAllCategories = async () => {
     const allCourses = await getCourses();
-    const response = await fetch('http://localhost:4000/v1/category')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/category')
     const allCategories = await response.json()
     let eachCategoryCourses;
     allCategories.forEach(category => {
@@ -520,7 +520,7 @@ const showCourseCategories = async () => {
 }
 
 const getUserCourses = async () => {
-    const response = await fetch(`http://localhost:4000/v1/users/courses`, {
+    const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/courses`, {
         headers: {
             "Authorization": `Bearer ${getToken()}`
         }
@@ -597,7 +597,7 @@ const createArticlesTemplate = articles => {
             <div class="flex flex-col overflow-hidden bg-white dark:bg-darkGray-800 shadow-light dark:shadow-none dark:border border-gray-700 rounded-2xl">
                     <!--article image-->
                     <div class="article--image__container">
-                        <img src="http://localhost:4000/articles/${article.cover}" alt="${article.title}" class="w-full h-full">
+                        <img src="https://amingharibi-sabzlearn.liara.run/articles/${article.cover}" alt="${article.title}" class="w-full h-full">
                     </div>
                     <!--article content-->
                     <div class="flex flex-col flex-grow gap-y-8 px-5">
@@ -664,7 +664,7 @@ const searchFormSubmissionHandler = event => {
 }
 
 const getCourseByShortName = async shortName => {
-    const response = await fetch(`http://localhost:4000/v1/courses/${shortName}`)
+    const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/${shortName}`)
     return response.json()
 }
 
@@ -676,7 +676,7 @@ const calcCourseProgress = course => {
 }
 
 const getAllComments = async () => {
-    const response = fetch('http://localhost:4000/v1/comments')
+    const response = fetch('https://amingharibi-sabzlearn.liara.run/v1/comments')
 
     return (await response).json()
 }
@@ -684,11 +684,11 @@ const getAllComments = async () => {
 const getCourseComments = async courseName => {
     const allComments = await getAllComments()
 
-    return allComments.filter(comment => comment.course === courseName)
+    return allComments.length && allComments.filter(comment => comment.course === courseName) || []
 }
 
 const getCategoryById = async id => {
-    const response = await fetch('http://localhost:4000/v1/category')
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/category')
     const categories = await response.json()
     return categories.find(cat => cat._id === id)
 }
@@ -728,7 +728,7 @@ const filterArticles = async shownArticlesCount => {
 }
 
 const getUserTickets = async () => {
-    const response = await fetch(`http://localhost:4000/v1/tickets/user`, {
+    const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/tickets/user`, {
         headers: {
             "Authorization": `Bearer ${getToken()}`
         }

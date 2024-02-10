@@ -1,6 +1,6 @@
 import {getToken} from "../../../scripts/utils/utils.js";
 
-const response = await fetch('http://localhost:4000/v1/tickets', {
+const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/tickets', {
 	headers: {
 		"Authorization": `Bearer ${getToken()}`
 	}
@@ -40,7 +40,7 @@ const showTicketBodyHandler = async ticketId => {
 	const targetTicket = allTickets.find(ticket => ticket._id === ticketId)
 	let commentText = targetTicket.body
 	if (targetTicket.answer) {
-		const response = await fetch(`http://localhost:4000/v1/tickets/answer/${ticketId}`, {
+		const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/tickets/answer/${ticketId}`, {
 			headers: {
 				"Authorization": `Bearer ${getToken()}`
 			}
@@ -77,7 +77,7 @@ const answerTicketHandler = ticketId => {
 		}
 	}).then(result => {
 		if (result.isConfirmed) {
-			fetch(`http://localhost:4000/v1/tickets/answer`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/tickets/answer`, {
 				method: 'POST',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`,

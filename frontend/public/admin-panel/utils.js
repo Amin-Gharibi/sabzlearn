@@ -1,7 +1,7 @@
 import {compareItemsForLastCreated, getToken, quickSort} from "../scripts/utils/utils.js";
 
 const getAllUsers = async () => {
-    const response = await fetch('http://localhost:4000/v1/users', {
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/users', {
         headers: {
             "Authorization": `Bearer ${getToken()}`
         }
@@ -17,7 +17,7 @@ const getLatestSignedUpUsers = async () => {
 }
 
 const getAllMenusForAdmin = async () => {
-    const response = await fetch('http://localhost:4000/v1/menus/all', {
+    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/menus/all', {
         headers: {
             "Authorization": `Bearer ${getToken()}`
         }

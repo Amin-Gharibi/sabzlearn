@@ -1,6 +1,6 @@
 import {getToken} from "../../../scripts/utils/utils.js";
 
-const response = await fetch('http://localhost:4000/v1/infos/p-admin', {
+const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/infos/p-admin', {
     headers: {
         "Authorization": `Bearer ${getToken()}`
     }

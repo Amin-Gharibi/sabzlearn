@@ -35,6 +35,6 @@ adminNameElems.forEach(elem => {
 })
 const adminProfPicElem = document.querySelectorAll('.home-profile-image > img')
 adminProfPicElem.forEach(elem => {
-    elem.setAttribute('src', `http://localhost:4000/profile/${user.profile}`)
+    elem.setAttribute('src', `https://amingharibi-sabzlearn.liara.run/profile/${user.profile}`)
     elem.setAttribute('alt', user.name)
 })

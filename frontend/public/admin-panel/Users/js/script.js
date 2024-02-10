@@ -6,7 +6,7 @@ import {
 } from "../../../scripts/funcs/informationValidation.js";
 import {getToken} from "../../../scripts/utils/utils.js";
 
-const response = await fetch('http://localhost:4000/v1/users', {
+const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/users', {
 	headers: {
 		"Authorization": `Bearer ${getToken()}`
 	}
@@ -99,7 +99,7 @@ addUserForm.addEventListener('submit', event => {
 		newUserInfos.append('phone', formattedPhoneNumber)
 		newUserInfos.append('profile', profileInput.files[0])
 
-		fetch('http://localhost:4000/v1/auth/register', {
+		fetch('https://amingharibi-sabzlearn.liara.run/v1/auth/register', {
 			method: 'POST',
 			body: newUserInfos
 		})
@@ -143,7 +143,7 @@ const deleteUserHandler = userId => {
 		confirmButtonText: "حذف",
 	}).then(willDelete => {
 		if (willDelete.isConfirmed) {
-			fetch(`http://localhost:4000/v1/users/${userId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/${userId}`, {
 				method: 'DELETE',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`
@@ -188,7 +188,7 @@ const banUserHandler = userId => {
 		confirmButtonText: "بن",
 	}).then(willBan => {
 		if (willBan.isConfirmed) {
-			fetch(`http://localhost:4000/v1/users/ban/${userId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/ban/${userId}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`
@@ -234,7 +234,7 @@ const userUnbanningHandler = userId => {
 		confirmButtonText: "آن بن",
 	}).then(willBan => {
 		if (willBan.isConfirmed) {
-			fetch(`http://localhost:4000/v1/users/unban/${userId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/unban/${userId}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`,
@@ -326,7 +326,7 @@ const userEditHandler = async userId => {
                 <label class="input-title" style="display: block;">کاور:</label>
                 <div>
                     <input type="file" required id="swal-profile-input" accept=".jpeg, .jpg, .png, .webp">
-                    <a target="_blank" href="http://localhost:4000/profile/${targetUser.profile}" style="color: #0c63e4; text-decoration: underline;">عکس پروفایل کنونی</a>
+                    <a target="_blank" href="https://amingharibi-sabzlearn.liara.run/profile/${targetUser.profile}" style="color: #0c63e4; text-decoration: underline;">عکس پروفایل کنونی</a>
                 </div>
             </div>
         </div>
@@ -387,7 +387,7 @@ const userEditHandler = async userId => {
 			sendingBody.append('role', role)
 			sendingBody.append('profile', profile)
 
-			fetch(`http://localhost:4000/v1/users/${userId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/${userId}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`

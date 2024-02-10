@@ -22,7 +22,7 @@ usernameInput.value = user.username;
 emailInput.value = user.email;
 phoneInput.value = user.phone;
 profileInputContainer.insertAdjacentHTML('beforeend', `
-    <a target="_blank" href="http://localhost:4000/profile/${user.profile}" style="color: #0c63e4; text-decoration: underline;">عکس پروفایل کنونی</a>
+    <a target="_blank" href="https://amingharibi-sabzlearn.liara.run/profile/${user.profile}" style="color: #0c63e4; text-decoration: underline;">عکس پروفایل کنونی</a>
 `)
 
 const form = document.querySelector('form')
@@ -80,7 +80,7 @@ form.addEventListener('submit', event => {
 			sendingBody.append('phone', phoneInput.value.trim())
 			sendingBody.append('profile', profileInput.files[0])
 
-			fetch(`http://localhost:4000/v1/users/${user._id}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/users/${user._id}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`

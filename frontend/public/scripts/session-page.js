@@ -20,7 +20,7 @@ window.addEventListener('load', async () => {
     const targetCourse = await accessingToSessionValidation()
     if (targetCourse) {
 
-        const response = await fetch(`http://localhost:4000/v1/courses/${getSearchParam('c')}/${getSearchParam('session')}`, {
+        const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/${getSearchParam('c')}/${getSearchParam('session')}`, {
             headers: {
                 "Authorization": `Bearer ${getToken()}`
             }
@@ -60,11 +60,11 @@ window.addEventListener('load', async () => {
             type: "video",
             sources: [
                 {
-                    src: `http://localhost:4000/sessions/${session.session.video}`,
+                    src: `https://amingharibi-sabzlearn.liara.run/sessions/${session.session.video}`,
                     type: 'video/mp4'
                 }
             ],
-            poster: `http://localhost:4000/courses/${targetCourse.cover}`
+            poster: `https://amingharibi-sabzlearn.liara.run/courses/${targetCourse.cover}`
         }
         const lessonNumber = document.querySelector('#lesson-number')
         const lessonTitle = document.querySelector('#lesson-title')
@@ -75,7 +75,7 @@ window.addEventListener('load', async () => {
 
         // customize session options
         const downloadVideoBtn = document.querySelector('#download-video-btn')
-        downloadVideoBtn.setAttribute('href', `http://localhost:4000/sessions/${session.session.video}`)
+        downloadVideoBtn.setAttribute('href', `https://amingharibi-sabzlearn.liara.run/sessions/${session.session.video}`)
         downloadVideoBtn.setAttribute('download', session.session.title)
 
         // customize the info boxes of the course
@@ -103,7 +103,7 @@ window.addEventListener('load', async () => {
         const teacher = await getCourseCreatorDetails(targetCourse.shortName)
         courseTeacherSectionMobile.innerHTML = `
         <div class="w-full flex justify-center items-center gap-x-2.5 mb-3.5 pb-5 border-b lg:border-none border-b-gray-100 dark:border-b-darkSlate">
-            <img src="http://localhost:4000/profile/${teacher.profile}" alt="${teacher.name}" class="block w-[60px] h-[60px] object-cover rounded-full">
+            <img src="https://amingharibi-sabzlearn.liara.run/profile/${teacher.profile}" alt="${teacher.name}" class="block w-[60px] h-[60px] object-cover rounded-full">
             <div>
                 <h4 class="mb-1 font-danaDemiBold text-2xl dark:text-white">
                     ${teacher.name}
@@ -123,7 +123,7 @@ window.addEventListener('load', async () => {
         </a>
     `
         courseTeacherSectionDesktop.innerHTML = `
-        <img src="http://localhost:4000/profile/${teacher.profile}" alt="${teacher.name}" class="block w-[90px] h-[90px] mx-auto mb-2 object-cover rounded-full">
+        <img src="https://amingharibi-sabzlearn.liara.run/profile/${teacher.profile}" alt="${teacher.name}" class="block w-[90px] h-[90px] mx-auto mb-2 object-cover rounded-full">
         <h4 class="mb-1 text-2xl dark:text-white">
             ${teacher.name}
         </h4>

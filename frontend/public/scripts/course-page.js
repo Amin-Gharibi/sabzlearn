@@ -52,18 +52,18 @@ window.addEventListener('load', async () => {
     const playerWrapper = document.querySelector('#player-wrapper')
     if (!course.sessions.length || !course.sessions[0].video) {
         playerWrapper.innerHTML = `
-            <img src="http://localhost:4000/courses/${course.cover}" class="w-full h-full object-cover" alt="${course.name}">
+            <img src="https://amingharibi-sabzlearn.liara.run/courses/${course.cover}" class="w-full h-full object-cover" alt="${course.name}">
         `
     } else {
         player.source = {
             type: "video",
             sources: [
                 {
-                    src: `http://localhost:4000/sessions/${course.sessions[0].video}`,
+                    src: `https://amingharibi-sabzlearn.liara.run/sessions/${course.sessions[0].video}`,
                     type: 'video/mp4'
                 }
             ],
-            poster: `http://localhost:4000/courses/${course.cover}`
+            poster: `https://amingharibi-sabzlearn.liara.run/courses/${course.cover}`
         }
     }
 
@@ -155,7 +155,7 @@ window.addEventListener('load', async () => {
     courseProgressBar.forEach(elem => elem.setAttribute('value', calcCourseProgress(course)))
     courseTeacherSectionMobile.innerHTML = `
         <div class="w-full flex justify-center items-center gap-x-2.5 mb-3.5 pb-5 border-b lg:border-none border-b-gray-100 dark:border-b-darkSlate">
-            <img src="http://localhost:4000/profile/${course.creator.profile}" alt="${course.creator.name}" class="block w-[60px] h-[60px] object-cover rounded-full">
+            <img src="https://amingharibi-sabzlearn.liara.run/profile/${course.creator.profile}" alt="${course.creator.name}" class="block w-[60px] h-[60px] object-cover rounded-full">
             <div>
                 <h4 class="mb-1 font-danaDemiBold text-2xl dark:text-white">
                     ${course.creator.name}
@@ -175,7 +175,7 @@ window.addEventListener('load', async () => {
         </a>
     `
     courseTeacherSectionDesktop.innerHTML = `
-        <img src="http://localhost:4000/profile/${course.creator.profile}" alt="${course.creator.name}" class="block w-[90px] h-[90px] mb-2 object-cover rounded-full">
+        <img src="https://amingharibi-sabzlearn.liara.run/profile/${course.creator.profile}" alt="${course.creator.name}" class="block w-[90px] h-[90px] mb-2 object-cover rounded-full">
         <h4 class="mb-1 text-2xl dark:text-white">
             ${course.creator.name}
         </h4>
@@ -259,7 +259,7 @@ window.addEventListener('load', async () => {
     // customize the header of add new comment form for each user
     const addCommentFormHeaderSection = document.querySelector('#add-comment-form-header')
     addCommentFormHeaderSection.innerHTML = `
-        <img src="http://localhost:4000/profile/${data.profile}" alt="${data.name}" class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
+        <img src="https://amingharibi-sabzlearn.liara.run/profile/${data.profile}" alt="${data.name}" class="block w-10 h-10 md:w-14 md:h-14 object-cover rounded-full shrink-0">
         <div class="dark:text-white">
             <span class="inline-block font-danaMedium text-base md:text-xl">
                 ${data.name}
@@ -285,7 +285,7 @@ window.addEventListener('load', async () => {
                 <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-200 dark:bg-darkSlate rounded-2xl">
                             <!--user profile and role-->
                             <div class="hidden md:flex flex-col items-center gap-y-2">
-                                <img src="http://localhost:4000/profile/${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}"
+                                <img src="https://amingharibi-sabzlearn.liara.run/profile/${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}"
                                      class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
                                 <span class="w-[60px] h-[18px] ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.answerContent.creator.role.toLowerCase() === 'admin' || comment.answerContent.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                                     ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}
@@ -299,7 +299,7 @@ window.addEventListener('load', async () => {
                                 <div class="w-full flex justify-between items-center">
                                     <!--username && date && profile and role for mobile size-->
                                     <div class="flex items-center gap-x-2">
-                                        <img src="http://localhost:4000/profile/${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}" class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
+                                        <img src="https://amingharibi-sabzlearn.liara.run/profile/${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}" class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
                                         <div class="shrink-0">
                                             <!--username-->
                                             <span class="font-danaMedium text-base md:text-xl dark:text-white">
@@ -332,7 +332,7 @@ window.addEventListener('load', async () => {
             <div class="flex gap-x-5 p-3.5 md:p-5 bg-gray-100 dark:bg-darkGray-700 rounded-2xl">
                 <!--user profile and role for desktop-->
                 <div class="hidden md:flex flex-col items-center gap-y-2">
-                    <img src="http://localhost:4000/profile/${comment.creator.profile}" alt="${comment.creator.name}" class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
+                    <img src="https://amingharibi-sabzlearn.liara.run/profile/${comment.creator.profile}" alt="${comment.creator.name}" class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
                     <span class="w-[60px] h-[18px] ${course.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${course.creator.role.toLowerCase() === 'admin' || course.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                         ${comment.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}
                         ${comment.creator.role.toLowerCase() === 'admin' ? 'مدیریت' : ''}
@@ -345,7 +345,7 @@ window.addEventListener('load', async () => {
                     <div class="w-full flex justify-between items-center">
                         <!--username && date && profile and role for mobile size-->
                         <div class="flex items-center gap-x-2">
-                            <img src="http://localhost:4000/profile${comment.creator.profile}" alt="${comment.creator.name}" class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
+                            <img src="https://amingharibi-sabzlearn.liara.run/profile${comment.creator.profile}" alt="${comment.creator.name}" class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
                             <div class="shrink-0">
                                 <!--username-->
                                 <span class="font-danaMedium text-base md:text-xl dark:text-white">
@@ -407,7 +407,7 @@ window.addEventListener('load', async () => {
             score: 5,
             isAccepted: 0
         }
-        fetch('http://localhost:4000/v1/comments', {
+        fetch('https://amingharibi-sabzlearn.liara.run/v1/comments', {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${getToken()}`,

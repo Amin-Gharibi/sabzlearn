@@ -1,6 +1,6 @@
 import {getAllCategories, getToken, intlDateToPersianDate} from "../../../scripts/utils/utils.js";
 
-const [allCategories, response] = await Promise.all([getAllCategories(), fetch('http://localhost:4000/v1/articles')])
+const [allCategories, response] = await Promise.all([getAllCategories(), fetch('https://amingharibi-sabzlearn.liara.run/v1/articles')])
 
 let articleBodyInput = null;
 ClassicEditor
@@ -21,7 +21,7 @@ ClassicEditor
 
 const allArticles = await response.json()
 const articlesContainer = document.querySelector('tbody')
-allArticles.forEach(article => {
+allArticles.length && allArticles.forEach(article => {
 	const createDate = intlDateToPersianDate(article.createdAt)
 	const editDate = intlDateToPersianDate(article.updatedAt)
 	const category = allCategories.find(cat => cat._id === article.categoryID)
@@ -71,7 +71,7 @@ const changePublishStatusHandler = articleId => {
 		confirmButtonText: "بله"
 	}).then((result) => {
 		if (result.isConfirmed) {
-			fetch(`http://localhost:4000/v1/articles/${articleId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/articles/${articleId}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`,
@@ -123,7 +123,7 @@ const deleteArticleHandler = articleId => {
 		confirmButtonText: "بله"
 	}).then((result) => {
 		if (result.isConfirmed) {
-			fetch(`http://localhost:4000/v1/articles/${articleId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/articles/${articleId}`, {
 				method: 'DELETE',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`
@@ -189,7 +189,7 @@ addArticleForm.addEventListener('submit', event => {
 	sendingBody.append('categoryID', articleCategoryInput.value.trim())
 
 
-	fetch('http://localhost:4000/v1/articles/draft', {
+	fetch('https://amingharibi-sabzlearn.liara.run/v1/articles/draft', {
 		method: 'POST',
 		headers: {
 			"Authorization": `Bearer ${getToken()}`
@@ -265,7 +265,7 @@ const editArticleHandler = articleId => {
                 <label class="input-title" style="display: block;">کاور:</label>
                 <div>
                     <input type="file" required id="swal-article-cover-input" accept=".jpeg, .jpg, .png, .webp">
-                    <a target="_blank" href="http://localhost:4000/articles/${targetArticle.cover}" style="color: #0c63e4; text-decoration: underline;">کاور کنونی مقاله</a>
+                    <a target="_blank" href="https://amingharibi-sabzlearn.liara.run/articles/${targetArticle.cover}" style="color: #0c63e4; text-decoration: underline;">کاور کنونی مقاله</a>
                 </div>
             </div>
         </div>
@@ -347,7 +347,7 @@ const editArticleHandler = articleId => {
 			sendingBody.append('shortName', shortName.value.trim())
 			sendingBody.append('categoryID', category.value.trim())
 
-			fetch(`http://localhost:4000/v1/articles/${articleId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/articles/${articleId}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`

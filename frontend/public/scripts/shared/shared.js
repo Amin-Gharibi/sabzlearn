@@ -20,7 +20,7 @@ window.addEventListener('load',  async () => {
 
     const userProfilePicElem = document.querySelectorAll('.user-profile-pictures')
     userProfilePicElem.forEach(pic => {
-        pic.setAttribute('src', (data ? `http://localhost:4000/profile/${data.profile}` : ''))
+        pic.setAttribute('src', (data ? `https://amingharibi-sabzlearn.liara.run/profile/${data.profile}` : ''))
     })
 
     const logOutBtn = document.querySelector('#logout-btn')

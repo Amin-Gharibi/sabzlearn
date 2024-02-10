@@ -1,6 +1,6 @@
 import {getToken, intlDateToPersianDate} from "../../../scripts/utils/utils.js";
 
-const response = await fetch('http://localhost:4000/v1/comments')
+const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/comments')
 const allComments = (await response.json()).reverse()
 
 const commentsContainer = document.querySelector('tbody')
@@ -73,7 +73,7 @@ const answerToCommentHandler = commentId => {
     }
   }).then(result => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:4000/v1/comments/answer/${commentId}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/comments/answer/${commentId}`, {
         method: 'POST',
         headers: {
           "Authorization": `Bearer ${getToken()}`,
@@ -123,7 +123,7 @@ const acceptCommentHandler = commentId => {
     confirmButtonText: "تایید",
   }).then(result => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:4000/v1/comments/accept/${commentId}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/comments/accept/${commentId}`, {
         method: 'PUT',
         headers: {
           "Authorization": `Bearer ${getToken()}`
@@ -169,7 +169,7 @@ const rejectCommentHandler = commentId => {
     confirmButtonText: "رد",
   }).then(result => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:4000/v1/comments/reject/${commentId}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/comments/reject/${commentId}`, {
         method: 'PUT',
         headers: {
           "Authorization": `Bearer ${getToken()}`
@@ -215,7 +215,7 @@ const deleteCommentHandler = commentId => {
     confirmButtonText: "حذف",
   }).then(result => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:4000/v1/comments/${commentId}`, {
+      fetch(`https://amingharibi-sabzlearn.liara.run/v1/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           "Authorization": `Bearer ${getToken()}`

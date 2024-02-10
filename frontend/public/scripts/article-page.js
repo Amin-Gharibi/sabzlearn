@@ -14,7 +14,7 @@ window.addEventListener('load', async () => {
     searchForms.forEach(form => {
         form.addEventListener('submit', event => searchFormSubmissionHandler(event))
     })
-    const response = await fetch(`http://localhost:4000/v1/articles/${getSearchParam('article')}`)
+    const response = await fetch(`https://amingharibi-sabzlearn.liara.run/v1/articles/${getSearchParam('article')}`)
     const article = await response.json()
     const lastEditedArticles = (await getLastEditedArticles()).slice(0, 5)
 
@@ -46,7 +46,7 @@ window.addEventListener('load', async () => {
     const articleMainContentWrapper = document.querySelector('.article--main-content')
     articleMainContentWrapper.insertAdjacentHTML('beforeend', `
         <!--article cover-->
-        <img src="http://localhost:4000/articles/${article.cover}" alt="${article.title}" class="w-full block mb-6 rounded-3xl">
+        <img src="https://amingharibi-sabzlearn.liara.run/articles/${article.cover}" alt="${article.title}" class="w-full block mb-6 rounded-3xl">
         <!--article text-->
         <div class="article--text max-h-[800px] dark:text-white text-lg/7 lg:text-xl/9 overflow-hidden">
             ${article.body}

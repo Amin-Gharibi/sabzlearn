@@ -1,13 +1,13 @@
 import {getCourses, getToken} from "../../../scripts/utils/utils.js";
 import {getMe} from "../../../scripts/funcs/auth.js";
 
-const [allCourses, user, response] = await Promise.all([getCourses(), getMe(), await fetch('http://localhost:4000/v1/category')])
+const [allCourses, user, response] = await Promise.all([getCourses(), getMe(), await fetch('https://amingharibi-sabzlearn.liara.run/v1/category')])
 
 const categories = await response.json()
 
 // add each course's detail to the table
 const coursesWrapper = document.querySelector('tbody')
-allCourses.forEach(course => {
+allCourses.length && allCourses.forEach(course => {
 	let courseSituation;
 	switch (course.status) {
 		case 1:
@@ -120,7 +120,7 @@ addCourseForm.addEventListener('submit', event => {
 		alerts.forEach(alert => {
 			alert.delete
 		})
-		fetch('http://localhost:4000/v1/courses', {
+		fetch('https://amingharibi-sabzlearn.liara.run/v1/courses', {
 			method: "POST",
 			headers: {
 				"Authorization": `Bearer ${getToken()}`
@@ -168,7 +168,7 @@ const removeCourse = courseId => {
 		confirmButtonText: "حذف",
 	}).then(willDelete => {
 		if (willDelete.isConfirmed) {
-			fetch(`http://localhost:4000/v1/courses/${courseId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/${courseId}`, {
 				method: "DELETE",
 				headers: {
 					"Authorization": `Bearer ${getToken()}`
@@ -286,7 +286,7 @@ const editCourseHandler = courseId => {
 					<label class="input-title" style="min-width: max-content !important;">کاور دوره:</label>
 					<div class="w-100 d-flex justify-content-around">
 						<input required type="file" id="swal-course-cover-input" accept=".jpeg, .jpg, .png, .webp">
-						<a target="_blank" href="http://localhost:4000/courses/covers/${targetCourse.cover}" style="color: #0c63e4; text-decoration: underline">کاور کنونی</a>
+						<a target="_blank" href="https://amingharibi-sabzlearn.liara.run/courses/covers/${targetCourse.cover}" style="color: #0c63e4; text-decoration: underline">کاور کنونی</a>
 					</div>
 				</div>
 				<div class="d-flex justify-content-between align-items-start gap-2">
@@ -366,7 +366,7 @@ const editCourseHandler = courseId => {
 			sendingBody.append('support', courseSupport.value.trim())
 			sendingBody.append('watchingOptions', courseWatchingOption.value.trim())
 
-			fetch(`http://localhost:4000/v1/courses/${courseId}`, {
+			fetch(`https://amingharibi-sabzlearn.liara.run/v1/courses/${courseId}`, {
 				method: 'PUT',
 				headers: {
 					"Authorization": `Bearer ${getToken()}`

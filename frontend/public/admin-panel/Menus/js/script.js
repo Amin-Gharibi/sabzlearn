@@ -5,7 +5,7 @@ const [allCourses, allMenus, allArticles] = await Promise.all([getCourses(), get
 const coursesContainer = document.querySelector('.menu-all-courses-container')
 
 // show all courses available in the course-list
-const allCoursesAndArticles = [...allCourses, ...allArticles]
+const allCoursesAndArticles = [...(Array.isArray(allCourses) ? allCourses : []), ...(Array.isArray(allArticles) ? allArticles : [])]
 allCoursesAndArticles.forEach((item, index) => {
 	coursesContainer.insertAdjacentHTML('beforeend', `
         <div class="d-flex justify-content-between align-items-center menu-course-container">
@@ -71,7 +71,7 @@ newMenuForm.addEventListener('submit', async event => {
 		href: menuHrefInput.value.trim()
 	};
 
-	const response = await fetch('http://localhost:4000/v1/menus', {
+	const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/menus', {
 		method: "POST",
 		headers: {
 			"Authorization": `Bearer ${getToken()}`,
@@ -98,7 +98,7 @@ newMenuForm.addEventListener('submit', async event => {
 		let errorOccurred = false
 		submenusToFetch.forEach((submenu, index) => {
 			if (!errorOccurred) {
-				fetch('http://localhost:4000/v1/menus', {
+				fetch('https://amingharibi-sabzlearn.liara.run/v1/menus', {
 					method: 'POST',
 					headers: {
 						'Authorization': `Bearer ${getToken()}`,
@@ -126,6 +126,15 @@ newMenuForm.addEventListener('submit', async event => {
 
 		if (errorOccurred) {
 			errorCreatingNewMenu()
+		} else if (!submenusToFetch.length) {
+			swal.fire({
+				title: "موفق",
+				text: "منو با موفقیت به اضافه شد",
+				icon: "success",
+				confirmButtonText: "بستن"
+			}).then(() => {
+				location.reload()
+			})
 		}
 	} else {
 		errorCreatingNewMenu()
@@ -147,7 +156,6 @@ const deleteMenuHandler = async menuId => {
 		showCancelButton: true,
 		cancelButtonText: "لغو",
 		confirmButtonText: "حذف",
-		dangerMode: true,
 	}).then(async willDelete => {
 		if (willDelete.isConfirmed) {
 
@@ -159,7 +167,7 @@ const deleteMenuHandler = async menuId => {
 			let errorOccurred = false
 			itemsToBeDeleted.forEach((item, index) => {
 				if (!errorOccurred) {
-					fetch(`http://localhost:4000/v1/menus/${item}`, {
+					fetch(`https://amingharibi-sabzlearn.liara.run/v1/menus/${item}`, {
 						method: "DELETE",
 						headers: {
 							"Authorization": `Bearer ${getToken()}`
@@ -299,7 +307,7 @@ ${
 							href: typeof targetItem.publish === 'undefined' ? `course-page.html?c=${targetItem.shortName}` : `article-page.html?article=${targetItem.shortName}`,
 							parent: menuId
 						}
-						fetch('http://localhost:4000/v1/menus', {
+						fetch('https://amingharibi-sabzlearn.liara.run/v1/menus', {
 							method: "POST",
 							headers: {
 								"Authorization": `Bearer ${getToken()}`,
@@ -317,7 +325,7 @@ ${
 				if (!errorOccurred) {
 					menusToDelete.forEach(id => {
 						if (!errorOccurred) {
-							fetch(`http://localhost:4000/v1/menus/${id}`, {
+							fetch(`https://amingharibi-sabzlearn.liara.run/v1/menus/${id}`, {
 								method: "DELETE",
 								headers: {
 									"Authorization": `Bearer ${getToken()}`

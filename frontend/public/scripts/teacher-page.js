@@ -9,7 +9,7 @@ window.addEventListener('load', async () => {
 
     const teacher = courses[0].creator
     const teacherProfilePic = document.querySelector('#teacher-profile-pic')
-    teacherProfilePic.setAttribute('src', `http://localhost:4000${teacher.profile}`)
+    teacherProfilePic.setAttribute('src', `https://amingharibi-sabzlearn.liara.run${teacher.profile}`)
     teacherProfilePic.setAttribute('alt', teacher.name)
 
     const teacherName = document.querySelector('#teacher-name')
