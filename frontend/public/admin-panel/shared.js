@@ -2,7 +2,7 @@ import {getMe, logOut} from "../scripts/funcs/auth.js";
 
 const user = await getMe()
 
-if (user.role === 'USER') {
+if (user.role === 'USER' || !user) {
     location.replace('../../index.html')
 }
 
