@@ -1,9 +1,5 @@
-window.addEventListener('load', async () => {
+export const renderFooter = popularCourses => {
     const useFullCoursesContainer = document.querySelector("#footer-usefull-courses");
-
-    const response = await fetch('https://amingharibi-sabzlearn.liara.run/v1/courses/popular')
-    const popularCourses = await response.json()
-
 
     const finalStr = popularCourses.slice(0, 4).map(course => {
         return `
@@ -14,4 +10,4 @@ window.addEventListener('load', async () => {
     }).join('')
 
     useFullCoursesContainer.innerHTML = finalStr;
-})
+}

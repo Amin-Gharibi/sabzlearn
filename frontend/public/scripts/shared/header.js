@@ -55,8 +55,7 @@ const showDetailsInAccountCenter = data => {
     }
 }
 
-const showHeaderMenusForDesktop = async () => {
-    const data = await getHeaderMenus()
+const showHeaderMenusForDesktop = data => {
     const menus = !data.message && data.map(menu => {
         return `
             <li class="relative group flex justify-start items-center">
@@ -96,9 +95,7 @@ const showHeaderMenusForDesktop = async () => {
     navigationLinksWrapper.insertAdjacentHTML('beforeend', menus)
 }
 
-const showHeaderMenusForMobile = async () => {
-    const data = await getHeaderMenus()
-
+const showHeaderMenusForMobile = data => {
     const finalStr = !data.message && data.map(menu => {
 
         return `

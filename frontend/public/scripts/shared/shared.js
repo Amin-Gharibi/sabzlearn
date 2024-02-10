@@ -1,4 +1,5 @@
 import {
+    getHeaderMenus,
     showDetailsInAccountCenter,
     showHeaderMenusForDesktop,
     showHeaderMenusForMobile,
@@ -7,8 +8,16 @@ import {
 import {getMe, logOut} from "../funcs/auth.js";
 import {changeThemeHandler} from "../utils/utils.js";
 
-window.addEventListener('load',  async () => {
-    const [data] = await Promise.all([getMe(), showHeaderMenusForDesktop(), showHeaderMenusForMobile()])
+export const sharedFetches = async () => {
+    const [user, headerMenus] = await Promise.all([getMe(), getHeaderMenus()])
+
+    return {user, headerMenus}
+}
+
+
+export const renderShared = (data, headerMenus) => {
+    showHeaderMenusForDesktop(headerMenus)
+    showHeaderMenusForMobile(headerMenus)
     showDetailsInAccountCenter(data)
 
     const userProfileBtn = document.querySelector('#user-profile')
@@ -39,4 +48,4 @@ window.addEventListener('load',  async () => {
     themeChangerBtn.forEach(btn => {
         btn.addEventListener('click', changeThemeHandler)
     })
-})
+}
