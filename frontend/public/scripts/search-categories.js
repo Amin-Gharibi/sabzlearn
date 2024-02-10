@@ -7,7 +7,7 @@ import {
     showCourseCategories,
     showCoursesBasedOnUrl,
 } from "./utils/utils.js";
-import {toggleMobileSortingMenu} from "./shared/shared-categories-pages.js";
+import {renderSharedCategoriesPages, toggleMobileSortingMenu} from "./shared/shared-categories-pages.js";
 import {sortingButtonsClickHandler} from "./shared/shared-between-teacher-and-categories-page.js";
 import {renderShared, sharedFetches} from "./shared/shared.js";
 import {footerFetches, renderFooter} from "./shared/footer.js";
@@ -578,6 +578,7 @@ const renderPage = async (courses, courseCategories, user, headerMenus, popularC
     `
 
     renderShared(user, headerMenus);
+    renderSharedCategoriesPages();
     renderFooter(popularCourses);
 
     // set page title handling
