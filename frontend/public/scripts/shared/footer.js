@@ -1,3 +1,9 @@
+import {getPopularCourses} from "../utils/utils.js";
+
+export const footerFetches = async () => {
+    return (await getPopularCourses())
+}
+
 export const renderFooter = popularCourses => {
     const useFullCoursesContainer = document.querySelector("#footer-usefull-courses");
 

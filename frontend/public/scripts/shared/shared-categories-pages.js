@@ -1,6 +1,6 @@
 import {getSearchParam} from "../utils/utils.js";
 
-window.addEventListener('load', async () => {
+export const renderSharedCategoriesPages = () => {
     // get both buttons so if one changed in a size the other one also changes
     const desktopSortingButtons = document.querySelectorAll('.sorting-data:not(.mobile-sorting-data) > button')
     const mobileSortingButtons = document.querySelectorAll('.mobile-sorting-data > button')
@@ -41,9 +41,9 @@ window.addEventListener('load', async () => {
                 return defaultValue.innerHTML
         }
     })()
-})
+}
 
-const toggleMobileSortingMenu = () => {
+export const toggleMobileSortingMenu = () => {
     const defaultValue = document.querySelector('.sorting-data > button[data-value = "default"]')
     const sortedTitle = document.querySelector('#sorted-title')
     sortedTitle.innerHTML = (() => {
@@ -76,5 +76,3 @@ const toggleMobileSortingMenu = () => {
         btn.addEventListener('click', toggleMobileSortingMenu)
     })
 }
-
-export {toggleMobileSortingMenu}
