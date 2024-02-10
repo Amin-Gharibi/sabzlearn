@@ -165,7 +165,7 @@ window.addEventListener('load', async () => {
                 </p>
             </div>
         </div>
-        <a href="teacher-page.html?n=${course.creator.username}" class="inline-flex gap-x-1.5 text-sm text-slate-500 dark:text-darkGray-500">
+        <a href="teacher-page.html?teacher=${course.creator.username}" class="inline-flex gap-x-1.5 text-sm text-slate-500 dark:text-darkGray-500">
             <svg class="w-5 h-5">
                 <use href="#exit"></use>
             </svg>

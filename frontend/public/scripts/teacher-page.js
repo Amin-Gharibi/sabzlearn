@@ -3,13 +3,14 @@ import {sortingButtonsClickHandler} from "./shared/shared-between-teacher-and-ca
 import {toggleMobileSortingMenu} from "./shared/shared-categories-pages.js";
 
 window.addEventListener('load', async () => {
-    const courses = (await getCourses()).filter(course => course.creator.username === getSearchParam('teacher')) // get the courses based on teacher name
+    const courses = (await getCourses()).filter(course => course.creator.username === getSearchParam('teacher'));
+    // get the courses based on teacher name
     let shownCoursesCount = 12
     await showCoursesBasedOnUrl(courses, shownCoursesCount)
 
     const teacher = courses[0].creator
     const teacherProfilePic = document.querySelector('#teacher-profile-pic')
-    teacherProfilePic.setAttribute('src', `https://amingharibi-sabzlearn.liara.run${teacher.profile}`)
+    teacherProfilePic.setAttribute('src', `https://amingharibi-sabzlearn.liara.run/profile/${teacher.profile}`)
     teacherProfilePic.setAttribute('alt', teacher.name)
 
     const teacherName = document.querySelector('#teacher-name')
