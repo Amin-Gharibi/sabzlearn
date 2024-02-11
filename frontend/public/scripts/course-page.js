@@ -902,7 +902,7 @@ const renderPage = (data, course, headerMenus, popularCourses, courseComments) =
                             <div class="hidden md:flex flex-col items-center gap-y-2">
                                 <img src="https://amingharibi-sabzlearn.liara.run/profile/${comment.answerContent.creator.profile}" alt="${comment.answerContent.creator.name}"
                                      class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                                <span class="w-[60px] h-[18px] ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.answerContent.creator.role.toLowerCase() === 'admin' || comment.answerContent.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
+                                <span class="w-[60px] h-[18px] ${comment.answerContent.creator.role === 'USER' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.answerContent.creator.role === 'ADMIN' || comment.answerContent.creator.role === 'TEACHER' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                                     ${comment.answerContent.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}
                                     ${comment.answerContent.creator.role.toLowerCase() === 'admin' ? 'مدیریت' : ''}
                                     ${comment.answerContent.creator.role.toLowerCase() === 'teacher' ? 'مدرس' : ''}
@@ -948,7 +948,7 @@ const renderPage = (data, course, headerMenus, popularCourses, courseComments) =
                 <!--user profile and role for desktop-->
                 <div class="hidden md:flex flex-col items-center gap-y-2">
                     <img src="https://amingharibi-sabzlearn.liara.run/profile/${comment.creator.profile}" alt="${comment.creator.name}" class="block w-10 h-10 md:w-[60px] md:h-[60px] object-cover rounded-full">
-                    <span class="w-[60px] h-[18px] ${course.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${course.creator.role.toLowerCase() === 'admin' || course.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
+                    <span class="w-[60px] h-[18px] ${comment.creator.role === 'USER' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.creator.role === 'ADMIN' || comment.creator.role.toLowerCase() === 'TEACHER' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                         ${comment.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}
                         ${comment.creator.role.toLowerCase() === 'admin' ? 'مدیریت' : ''}
                         ${comment.creator.role.toLowerCase() === 'teacher' ? 'مدرس' : ''}
@@ -960,7 +960,7 @@ const renderPage = (data, course, headerMenus, popularCourses, courseComments) =
                     <div class="w-full flex justify-between items-center">
                         <!--username && date && profile and role for mobile size-->
                         <div class="flex items-center gap-x-2">
-                            <img src="https://amingharibi-sabzlearn.liara.run/profile${comment.creator.profile}" alt="${comment.creator.name}" class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
+                            <img src="https://amingharibi-sabzlearn.liara.run/profile/${comment.creator.profile}" alt="${comment.creator.name}" class="block md:hidden w-10 h-10 object-cover rounded-full shrink-0">
                             <div class="shrink-0">
                                 <!--username-->
                                 <span class="font-danaMedium text-base md:text-xl dark:text-white">
@@ -968,7 +968,7 @@ const renderPage = (data, course, headerMenus, popularCourses, courseComments) =
                                 </span>
                                 <!--user role and release date-->
                                 <div class="flex items-center gap-x-1.5 mt-1">
-                                    <span class="md:hidden w-[60px] h-[18px] ${course.creator.role.toLowerCase() === 'user' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${course.creator.role.toLowerCase() === 'admin' || course.creator.role.toLowerCase() === 'teacher' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
+                                    <span class="md:hidden w-[60px] h-[18px] ${comment.creator.role === 'USER' ? 'bg-slate-500 dark:bg-slate-400/10 dark:text-slate-400' : ''}${comment.creator.role === 'ADMIN' || comment.creator.role === 'TEACHER' ? 'bg-secondary-light dark:bg-[#4E81FB]/10 dark:text-[#4E81FB]' : ''} text-xs text-white text-center rounded">
                                         ${comment.creator.role.toLowerCase() === 'user' ? 'کاربر' : ''}
                                         ${comment.creator.role.toLowerCase() === 'admin' ? 'مدیریت' : ''}
                                         ${comment.creator.role.toLowerCase() === 'teacher' ? 'مدرس' : ''}

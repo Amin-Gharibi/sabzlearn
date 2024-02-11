@@ -5,6 +5,7 @@ const allComments = (await response.json()).reverse()
 
 const commentsContainer = document.querySelector('tbody')
 allComments.forEach((comment, index) => {
+  const date = new Date(comment.createdAt)
   commentsContainer.insertAdjacentHTML('beforeend', `
     <tr>
                 <td class="${
@@ -12,7 +13,7 @@ allComments.forEach((comment, index) => {
   }">${index + 1}</td>
                 <td>${comment.creator.name}</td>
                 <td>${comment.course}</td>
-                <td>${intlDateToPersianDate(comment.createdAt)}</td>
+                <td>${date.toLocaleTimeString('fa-IR') + ' ,' + date.toLocaleDateString('fa-IR')}</td>
                 <td>${comment.score}</td>
                 <td class="${comment.isAccepted ? "text-success" : "text-danger"}">${comment.isAccepted ? "تایید شده" : "تایید نشده"}</td>
                 <td>
