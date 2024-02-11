@@ -25,6 +25,13 @@ const toggleRememberMeCheckBox = (event) => {
 const formSubmissionHandler = event => {
     event.preventDefault()
 
+    const submitBtn = document.querySelector('#submit-btn')
+    submitBtn.innerHTML = `
+        <div class="w-full h-full flex justify-center">
+            <span class="linear-loader"></span>
+        </div>
+    `
+
     login()
 }
 

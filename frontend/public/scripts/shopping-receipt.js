@@ -99,7 +99,7 @@ const renderPage = course => {
                 </div>
             </div>
             <form id="shop-course-form">
-                <button type="submit" class="w-full h-[3.5rem] sm:h-[62px] px-7 sm:px-5 mt-[18px] sm:mt-5 bg-primary hover:bg-green-500 sm:font-danaDemiBold text-xl sm:text-2xl text-white rounded-xl transition-colors">تکمیل خرید
+                <button type="submit" id="submit-btn" class="w-full h-[3.5rem] sm:h-[62px] flex justify-center items-center px-7 sm:px-5 mt-[18px] sm:mt-5 bg-primary hover:bg-green-500 sm:font-danaDemiBold text-xl sm:text-2xl text-white rounded-xl transition-colors">تکمیل خرید
                 </button>
             </form>
             <a id="cancel-shopping" href="course-page.html?c=${course.shortName}" class="flex justify-center items-center gap-x-1 mt-5 text-sm text-slate-500">
@@ -224,6 +224,12 @@ const renderPage = course => {
 	shoppingCourseForm.addEventListener('submit', async event => {
 		event.preventDefault()
 		try {
+			const submitBtn = document.querySelector('#submit-btn')
+			submitBtn.innerHTML = `
+				<div class="w-full h-full flex justify-center">
+            		<span class="linear-loader"></span>
+        		</div>
+			`
 			const requestBody = {
 				price: course.price - (course.discount * course.price / 100)
 			}
@@ -242,6 +248,8 @@ const renderPage = course => {
 					},
 					body: JSON.stringify(requestBody)
 				}).then(response => {
+					submitBtn.innerHTML = 'تکمیل خرید'
+
 					if (response.status === 409) { // if user had already bought the course show an error
 						alert(document.body, 'close-circle', 'alert-red', 'خطا', 'شما از قبل در این دوره ثبت نام کرده اید!')
 					} else if (response.status === 201) {

@@ -42,6 +42,8 @@ const register = () => {
             body: JSON.stringify(newUserInfos)
         })
             .then(response => {
+                const submitBtn = document.querySelector('#submit-btn')
+                submitBtn && (submitBtn.innerHTML = 'ادامه')
                 if (response.status === 201) {
                     alert(document.body, 'check-circle', 'primary', 'موفق', 'ثبت نام با موفقیت انجام شد!')
                     setTimeout(() => {
@@ -81,6 +83,8 @@ const login = () => {
             },
             body: JSON.stringify(userInfos)
         }).then(response => {
+            const submitBtn = document.querySelector('#submit-btn')
+            submitBtn.innerHTML = 'ورود'
             if (response.status === 401) {
                 alert(document.body, 'close-circle', 'alert-red', 'ناموفق', 'نام کاربری یا رمز عبور اشتباه است!')
             } else if (response.status === 403) {
