@@ -5,6 +5,7 @@ This project is a clone project for [Sabzelearn.ir](https://sabzlearn.ir) which 
 ## Table Of Contents
 
 - [Overview](#overview)
+- [Live Demo](#live-demo)
 - [Features](#features)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
@@ -13,6 +14,21 @@ This project is a clone project for [Sabzelearn.ir](https://sabzlearn.ir) which 
 ## Overview
 
 This project is a website that students who want to learn programming can sign up inside it and use the courses that have been provided in it. user would be able to watch courses, comment on each course, read articles about different technologies and such things. this project's purpose is mainly showing my ability of coding in pure js nothing more or nothing less.
+
+## Live Demo
+
+You Can See The Project Online In [This Link](https://main--amingharibi-sabzlearn.netlify.app/).
+<br/>
+<br/>
+Admin's Credentials:
+<br/>
+Email: ```admin@gmail.com```
+<br/>
+Password: ```Aa!12345```
+<br/>
+<br/>
+<br/>
+***admin panel will be updated soon***
 
 ## Features
 
